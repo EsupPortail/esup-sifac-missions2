@@ -1,0 +1,84 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:tr="http://myfaces.apache.org/trinidad" template="template.xhtml">
+	<ui:define name="content">
+		<tr:group rendered="#{not empty welcomeController.specialMessage}">
+			<tr:outputText value="#{welcomeController.specialMessage}" />
+		</tr:group>
+		<tr:spacer height="20px" />
+		<tr:group
+			rendered="#{(empty welcomeController.missions or welcomeController.homonyme == true) and (empty welcomeController.specialMessage)}">
+			<tr:outputText
+				rendered="#{empty welcomeController.missions and welcomeController.homonyme == false}"
+				value="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{welcomeController.year}"
+				style="color:red;font-weight: bold;" />
+			<h:outputText rendered="#{empty welcomeController.matricule}"
+				value="#{msgs['WELCOME.ERROR.MATRICULE']}"
+				style="color:red;font-weight: bold;" />
+		</tr:group>
+		<tr:form>
+			<tr:panelHorizontalLayout>
+				<tr:selectOneChoice label="#{msgs['WELCOME.YEAR.SELECT_LABEL']}"
+					value="#{welcomeController.year}">
+					<f:selectItems value="#{welcomeController.yearItems}" />
+				</tr:selectOneChoice>
+				<tr:commandButton text="#{msgs['WELCOME.YEAR.SELECT_ACTION']}"
+					action="#{welcomeController.changeYear}" />
+			</tr:panelHorizontalLayout>
+		</tr:form>
+		<tr:spacer height="20px" />
+		<tr:form>
+			<tr:table value="#{welcomeController.missions}" var="mission"
+				rows="#{welcomeController.missionsPerPage}"
+				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}"
+				allDetailsEnabled="true">
+				<f:facet name="detailStamp">
+					<tr:table value="#{mission.details}" var="detail"
+						emptyText="#{msgs['WELCOME.MISSION.EMPTY_DETAILS']}"
+						styleClass="mission-details">
+						<tr:column>
+							<tr:outputText value="#{detail.description}" />
+						</tr:column>
+						<tr:column align="right">
+							<tr:outputText value="#{detail.montant}">
+								<tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
+							</tr:outputText>
+						</tr:column>
+					</tr:table>
+				</f:facet>
+				<tr:column headerText="#{msgs['WELCOME.MISSION.MOTIF']}">
+					<tr:outputText value="#{mission.motif}" />
+				</tr:column>
+				<tr:column headerText="#{msgs['WELCOME.MISSION.MONTANT']}" align="right">
+					<tr:outputText value="#{mission.montant}">
+						<tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
+					</tr:outputText>
+				</tr:column>
+				<tr:column headerText="#{msgs['WELCOME.MISSION.DATE']}">
+					<tr:outputText rendered="#{not empty mission.date}"
+						value="#{mission.date}">
+						<tr:convertDateTime locale="fr" type="date" />
+					</tr:outputText>
+					<tr:outputText rendered="#{empty mission.date}"
+						value="#{msgs['WELCOME.MISSION.ATTENTE']}" />
+				</tr:column>
+				<tr:column headerText="#{msgs['WELCOME.MISSION.ORDRE']}">
+					<tr:outputText value="#{mission.ordre}" />
+				</tr:column>
+				<tr:column headerText="#{msgs['WELCOME.MISSION.PERIODE']}">
+					<tr:group>
+						<h:outputText value="#{msgs['WELCOME.MISSION.PERIODE.FROM']} " />
+						<h:outputText value="#{mission.periode.debut}">
+							<tr:convertDateTime locale="fr" type="date" />
+						</h:outputText>
+						<h:outputText value=" #{msgs['WELCOME.MISSION.PERIODE.TO']} " />
+						<h:outputText value="#{mission.periode.fin}">
+							<tr:convertDateTime locale="fr" type="date" />
+						</h:outputText>
+					</tr:group>
+				</tr:column>
+			</tr:table>
+		</tr:form>
+	</ui:define>
+</ui:composition>

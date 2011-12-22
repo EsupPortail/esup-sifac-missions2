@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="urn:sap-com:document:sap:rfc:functions"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="urn:sap-com:document:sap:rfc:functions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="urn:sap-com:document:sap:rfc:functions" targetNamespace="urn:sap-com:document:sap:rfc:functions"
+			elementFormDefault="unqualified" attributeFormDefault="qualified">
+			<xsd:simpleType name="char1">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="1" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char10">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char12">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="12" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char16">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="16" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char18">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="18" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char20">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="20" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char220">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="220" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char24">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="24" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char25">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="25" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char3">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="3" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char30">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="30" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char32">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="32" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char35">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="35" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char4">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="4" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char40">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="40" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char50">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="50" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char59">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="59" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char60">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="60" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="clnt3">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="3" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="cuky5">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="5" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="curr11.2">
+				<xsd:restriction base="xsd:decimal">
+					<xsd:totalDigits value="11" />
+					<xsd:fractionDigits value="2" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="curr13.2">
+				<xsd:restriction base="xsd:decimal">
+					<xsd:totalDigits value="13" />
+					<xsd:fractionDigits value="2" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="curr17.2">
+				<xsd:restriction base="xsd:decimal">
+					<xsd:totalDigits value="17" />
+					<xsd:fractionDigits value="2" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="date">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10" />
+					<xsd:pattern value="\d\d\d\d-\d\d-\d\d" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="decimal23.4">
+				<xsd:restriction base="xsd:decimal">
+					<xsd:totalDigits value="23" />
+					<xsd:fractionDigits value="4" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric10">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric2">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="2" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric3">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="3" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric4">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="4" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric5">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="5" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric6">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="6" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric8">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="8" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="quantum13.3">
+				<xsd:restriction base="xsd:decimal">
+					<xsd:totalDigits value="13" />
+					<xsd:fractionDigits value="3" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:complexType name="BAPIRET2">
+				<xsd:sequence>
+					<xsd:element name="TYPE" type="tns:char1" />
+					<xsd:element name="ID" type="tns:char20" />
+					<xsd:element name="NUMBER" type="tns:numeric3" />
+					<xsd:element name="MESSAGE" type="tns:char220" />
+					<xsd:element name="LOG_NO" type="tns:char20" />
+					<xsd:element name="LOG_MSG_NO" type="tns:numeric6" />
+					<xsd:element name="MESSAGE_V1" type="tns:char50" />
+					<xsd:element name="MESSAGE_V2" type="tns:char50" />
+					<xsd:element name="MESSAGE_V3" type="tns:char50" />
+					<xsd:element name="MESSAGE_V4" type="tns:char50" />
+					<xsd:element name="PARAMETER" type="tns:char32" />
+					<xsd:element name="ROW" type="xsd:int" />
+					<xsd:element name="FIELD" type="tns:char30" />
+					<xsd:element name="SYSTEM" type="tns:char10" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ZZPORTSTT_BAPI_MISSION">
+				<xsd:sequence>
+					<xsd:element name="MATRICULE" type="tns:numeric8" />
+					<xsd:element name="NUMERO" type="tns:numeric10" />
+					<xsd:element name="MOTIF" type="tns:char59" />
+					<xsd:element name="DATE_DEBUT" type="tns:date" />
+					<xsd:element name="DATE_FIN" type="tns:date" />
+					<xsd:element name="MNT_TOT_MISSION" type="tns:curr13.2" />
+					<xsd:element name="MNT_REMB_MISSION" type="tns:curr13.2" />
+					<xsd:element name="DATE_PRISE_EN_COMPTE_COMPTABLE"
+						type="tns:char10" />
+					<xsd:element name="HDVRS" type="tns:numeric2" />
+					<xsd:element name="NOM" type="tns:char25" />
+					<xsd:element name="PRENOM" type="tns:char25" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ZZPORTSTT_BAPI_MISSION_DETAIL">
+				<xsd:sequence>
+					<xsd:element name="NO_JUST" type="tns:char3" />
+					<xsd:element name="CODE_RETENUE" type="tns:char1" />
+					<xsd:element name="PAYE_SOCIETE" type="tns:char1" />
+					<xsd:element name="CAT_FRAIS_DEPL" type="tns:char4" />
+					<xsd:element name="DES_FRAIS_DEPL" type="tns:char30" />
+					<xsd:element name="MONTANT" type="tns:decimal23.4" />
+					<xsd:element name="DEVISE" type="tns:cuky5" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ZZPORTSTT_BAPI_CF_DETAIL_DA">
+				<xsd:sequence>
+					<xsd:element name="DATE_DA" type="tns:date" />
+					<xsd:element name="MOIS" type="tns:numeric2" />
+					<xsd:element name="NO_FOURNISSEUR" type="tns:char10" />
+					<xsd:element name="NOM_FOURNISSEUR" type="tns:char30" />
+					<xsd:element name="NO_POSTE_DA" type="tns:numeric5" />
+					<xsd:element name="NO_DA" type="tns:char10" />
+					<xsd:element name="TEM_SUPPR_POST" type="tns:char3" />
+					<xsd:element name="DESIGNATION" type="tns:char40" />
+					<xsd:element name="TTC" type="tns:curr13.2" />
+					<xsd:element name="TVA" type="tns:curr13.2" />
+					<xsd:element name="NB_SERVICE_FAIT" type="xsd:short" />
+					<xsd:element name="MT_SERVICE_FAIT" type="tns:curr13.2" />
+					<xsd:element name="NB_FACTURE" type="xsd:short" />
+					<xsd:element name="MT_FACTURE" type="tns:curr13.2" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ZZPORTSTT_BAPI_FMIT_CUMUL">
+				<xsd:sequence>
+					<xsd:element name="RYEAR" type="tns:numeric4" />
+					<xsd:element name="RCLNT" type="tns:clnt3" />
+					<xsd:element name="FIKRS" type="tns:char4" />
+					<xsd:element name="RBUKRS" type="tns:char4" />
+					<xsd:element name="RFISTL" type="tns:char16" />
+					<xsd:element name="RFONDS" type="tns:char10" />
+					<xsd:element name="RFIPEX" type="tns:char24" />
+					<xsd:element name="RFAREA" type="tns:char16" />
+					<xsd:element name="RMEASURE" type="tns:char24" />
+					<xsd:element name="RVERS" type="tns:char3" />
+					<xsd:element name="MNT_RECETTE_PREVISION" type="tns:curr17.2" />
+					<xsd:element name="MNT_RECETTE_RESTE_A_EMETTRE" type="tns:curr17.2" />
+					<xsd:element name="MNT_RECETTE_RESTE_A_REALISER" type="tns:curr17.2" />
+					<xsd:element name="MNT_RECETTE_RESTE_A_LIQUIDER" type="tns:curr17.2" />
+					<xsd:element name="MNT_RECETTE_TITRE" type="tns:curr17.2" />
+					<xsd:element name="MNT_DEPENSE_CREDIT_DISPONIBLE" type="tns:curr17.2" />
+					<xsd:element name="MNT_DEPENSE_PREENGAGE" type="tns:curr17.2" />
+					<xsd:element name="MNT_DEPENSE_ENGAGEMENT_FINANCI"
+						type="tns:curr17.2" />
+					<xsd:element name="MNT_DEPENSE_SERVICE_FAIT" type="tns:curr17.2" />
+					<xsd:element name="MNT_DEPENSE_RESTE_A_REALISER" type="tns:curr17.2" />
+					<xsd:element name="MNT_DEPENSE_RESTE_EJ" type="tns:curr17.2" />
+					<xsd:element name="MNT_DEPENSE_RESTE_EF" type="tns:curr17.2" />
+					<xsd:element name="MNT_DEPENSE_CREDIT_OUVERT" type="tns:curr17.2" />
+					<xsd:element name="MNT_DEPENSE_BUDGET_NON_CONS" type="tns:curr17.2" />
+					<xsd:element name="MNT_BUDGET_PRIMITIF" type="tns:curr17.2" />
+					<xsd:element name="MNT_BUDGET_PROVISOIRE" type="tns:curr17.2" />
+					<xsd:element name="MNT_BUDGET_DM" type="tns:curr17.2" />
+					<xsd:element name="MNT_BUDGET_VIREMENT_AJUSTEMENT"
+						type="tns:curr17.2" />
+					<xsd:element name="MNT_BUDGET_EXEC" type="tns:curr17.2" />
+					<xsd:element name="MNT_BUDGET_REEL" type="tns:curr17.2" />
+					<xsd:element name="NBR_DOCUMENT_VENTE" type="tns:quantum13.3" />
+					<xsd:element name="NBR_DOCUMENT_ACHAT" type="tns:quantum13.3" />
+					<xsd:element name="NBR_DOCUMENT_MISSION" type="tns:quantum13.3" />
+					<xsd:element name="LIBELLE_CENTREFINANCIER" type="tns:char20" />
+					<xsd:element name="LIBELLE_COMPTEBUDGETAIRE" type="tns:char20" />
+					<xsd:element name="LIBELLE_ORIGINEFINANCEMENT" type="tns:char50" />
+					<xsd:element name="LIBELLE_DOMAINEFONCTIONNEL" type="tns:char25" />
+					<xsd:element name="LIBELLE_PROGRAMMEFINANCEMENT" type="tns:char50" />
+					<xsd:element name="HIERARCHIE_CB_N1" type="tns:char24" />
+					<xsd:element name="HIERARCHIE_CB_N2" type="tns:char24" />
+					<xsd:element name="HIERARCHIE_CB_N3" type="tns:char24" />
+					<xsd:element name="HIERARCHIE_CB_N4" type="tns:char24" />
+					<xsd:element name="HIERARCHIE_CB_N5" type="tns:char24" />
+					<xsd:element name="HIERARCHIE_CB_N6" type="tns:char24" />
+					<xsd:element name="HIERARCHIE_CB_N7" type="tns:char24" />
+					<xsd:element name="HIERARCHIE_CB_N1T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CB_N2T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CB_N3T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CB_N4T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CB_N5T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CB_N6T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CB_N7T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CF_N1" type="tns:char16" />
+					<xsd:element name="HIERARCHIE_CF_N2" type="tns:char16" />
+					<xsd:element name="HIERARCHIE_CF_N3" type="tns:char16" />
+					<xsd:element name="HIERARCHIE_CF_N4" type="tns:char16" />
+					<xsd:element name="HIERARCHIE_CF_N5" type="tns:char16" />
+					<xsd:element name="HIERARCHIE_CF_N1T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CF_N2T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CF_N3T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CF_N4T" type="tns:char20" />
+					<xsd:element name="HIERARCHIE_CF_N5T" type="tns:char20" />
+					<xsd:element name="NOM_CONNEX" type="tns:char60" />
+					<xsd:element name="TYPE_PFI" type="tns:char4" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ZZPORTSTT_PARAM_PORTAIL">
+				<xsd:sequence>
+					<xsd:element name="ANNEE" type="tns:numeric4" />
+					<xsd:element name="VERSION_BUDGET" type="tns:char3" />
+					<xsd:element name="PERIMETRE_FINANCIER" type="tns:char4" />
+					<xsd:element name="NOM" type="tns:char12" />
+					<xsd:element name="FICTR" type="tns:char16" />
+					<xsd:element name="FIPEX" type="tns:char24" />
+					<xsd:element name="FKPER" type="tns:char16" />
+					<xsd:element name="FINCODE" type="tns:char10" />
+					<xsd:element name="MEASURE" type="tns:char24" />
+					<xsd:element name="DEPENSERECETTE" type="tns:char24" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="ZZPORTSTT_BAPI_CF_DETAIL_DV">
+				<xsd:sequence>
+					<xsd:element name="NO_DV" type="tns:char10" />
+					<xsd:element name="NOM_CLIENT" type="tns:char35" />
+					<xsd:element name="TYP_DOC_VENTE" type="tns:char4" />
+					<xsd:element name="DATE_DV" type="tns:date" />
+					<xsd:element name="NO_POSTE" type="tns:numeric6" />
+					<xsd:element name="DESIGN_POSTE" type="tns:char40" />
+					<xsd:element name="DESIGN_ARTICLE" type="tns:char40" />
+					<xsd:element name="NO_ARTICLE" type="tns:char18" />
+					<xsd:element name="MONTANT" type="tns:curr11.2" />
+					<xsd:element name="NO_FACTURE" type="tns:char10" />
+					<xsd:element name="NO_POSTE_FACTURE" type="tns:numeric6" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="TABLE_OF_BAPIRET2">
+				<xsd:sequence>
+					<xsd:element name="item" minOccurs="0" maxOccurs="unbounded"
+						type="tns:BAPIRET2" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="TABLE_OF_ZZPORTSTT_BAPI_MISSION">
+				<xsd:sequence>
+					<xsd:element name="item" minOccurs="0" maxOccurs="unbounded"
+						type="tns:ZZPORTSTT_BAPI_MISSION" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="TABLE_OF_ZZPORTSTT_BAPI_MISSION_DETAIL">
+				<xsd:sequence>
+					<xsd:element name="item" minOccurs="0" maxOccurs="unbounded"
+						type="tns:ZZPORTSTT_BAPI_MISSION_DETAIL" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="TABLE_OF_ZZPORTSTT_BAPI_CF_DETAIL_DA">
+				<xsd:sequence>
+					<xsd:element name="item" minOccurs="0" maxOccurs="unbounded"
+						type="tns:ZZPORTSTT_BAPI_CF_DETAIL_DA" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="TABLE_OF_ZZPORTSTT_BAPI_FMIT_CUMUL">
+				<xsd:sequence>
+					<xsd:element name="item" minOccurs="0" maxOccurs="unbounded"
+						type="tns:ZZPORTSTT_BAPI_FMIT_CUMUL" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="TABLE_OF_ZZPORTSTT_BAPI_CF_DETAIL_DV">
+				<xsd:sequence>
+					<xsd:element name="item" minOccurs="0" maxOccurs="unbounded"
+						type="tns:ZZPORTSTT_BAPI_CF_DETAIL_DV" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="Z_ZPORTSMF_CF_LISTE_MISSIONS">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ANNEE" minOccurs="0" type="tns:numeric4" />
+						<xsd:element name="CF" minOccurs="0" type="tns:char16" />
+						<xsd:element name="MISSIONS"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_MISSION" />
+						<xsd:element name="PERIMETRE_FINANCIER" type="tns:char4" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_CF_LISTE_MISSIONSResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="MISSIONS"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_MISSION" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_MISSION_DETAIL">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="DETAIL_MISSION"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_MISSION_DETAIL" />
+						<xsd:element name="MATRICULE" minOccurs="0" type="tns:numeric8" />
+						<xsd:element name="NO_MISSION" minOccurs="0"
+							type="tns:numeric10" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_MISSION_DETAILResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="DETAIL_MISSION"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_MISSION_DETAIL" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_CF_DETAIL_DA">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="AFF_SUPPR" minOccurs="0" type="tns:char1" />
+						<xsd:element name="ANNEE" minOccurs="0" type="tns:numeric4" />
+						<xsd:element name="CF" minOccurs="0" type="tns:char16" />
+						<xsd:element name="DETAIL_CF"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_CF_DETAIL_DA" />
+						<xsd:element name="PERIMETRE_FINANCIER" type="tns:char4" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_CF_DETAIL_DAResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="DETAIL_CF"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_CF_DETAIL_DA" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_BUDGET_PORTAIL">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="PARAM" minOccurs="0"
+							type="tns:ZZPORTSTT_PARAM_PORTAIL" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+						<xsd:element name="ZZBAPI_CUMUL"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_FMIT_CUMUL" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_BUDGET_PORTAILResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+						<xsd:element name="ZZBAPI_CUMUL"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_FMIT_CUMUL" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_CF_DETAIL_DV">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ANNEE" minOccurs="0" type="tns:numeric4" />
+						<xsd:element name="CF" minOccurs="0" type="tns:char16" />
+						<xsd:element name="CF_DETAIL_DV"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_CF_DETAIL_DV" />
+						<xsd:element name="PERIMETRE_FINANCIER" type="tns:char4" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_CF_DETAIL_DVResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="CF_DETAIL_DV"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_CF_DETAIL_DV" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_MISSION_PORTAIL">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="ANNEE" minOccurs="0" type="tns:numeric4" />
+						<xsd:element name="MATRICULE" type="tns:numeric8" />
+						<xsd:element name="MISSIONS"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_MISSION" />
+						<xsd:element name="NOM" minOccurs="0" type="tns:char40" />
+						<xsd:element name="PRENOM" minOccurs="0" type="tns:char40" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_MISSION_PORTAILResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="MISSIONS"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_MISSION" />
+						<xsd:element name="RETURN" type="tns:TABLE_OF_BAPIRET2" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Z_ZPORTSMF_CF_LISTE_MISSIONS">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_CF_LISTE_MISSIONS" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_CF_LISTE_MISSIONSResponse">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_CF_LISTE_MISSIONSResponse" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_MISSION_DETAIL">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_MISSION_DETAIL" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_MISSION_DETAILResponse">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_MISSION_DETAILResponse" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_CF_DETAIL_DA">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_CF_DETAIL_DA" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_CF_DETAIL_DAResponse">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_CF_DETAIL_DAResponse" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_BUDGET_PORTAIL">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_BUDGET_PORTAIL" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_BUDGET_PORTAILResponse">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_BUDGET_PORTAILResponse" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_CF_DETAIL_DV">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_CF_DETAIL_DV" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_CF_DETAIL_DVResponse">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_CF_DETAIL_DVResponse" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_MISSION_PORTAIL">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_MISSION_PORTAIL" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_MISSION_PORTAILResponse">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_MISSION_PORTAILResponse" />
+	</wsdl:message>
+	<wsdl:portType name="ZWEB_SERVICE_PORTAIL">
+		<wsdl:operation name="Z_ZPORTSMF_CF_LISTE_MISSIONS">
+			<wsdl:input message="tns:Z_ZPORTSMF_CF_LISTE_MISSIONS" />
+			<wsdl:output message="tns:Z_ZPORTSMF_CF_LISTE_MISSIONSResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="Z_ZPORTSMF_MISSION_DETAIL">
+			<wsdl:input message="tns:Z_ZPORTSMF_MISSION_DETAIL" />
+			<wsdl:output message="tns:Z_ZPORTSMF_MISSION_DETAILResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="Z_ZPORTSMF_CF_DETAIL_DA">
+			<wsdl:input message="tns:Z_ZPORTSMF_CF_DETAIL_DA" />
+			<wsdl:output message="tns:Z_ZPORTSMF_CF_DETAIL_DAResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="Z_ZPORTSMF_BUDGET_PORTAIL">
+			<wsdl:input message="tns:Z_ZPORTSMF_BUDGET_PORTAIL" />
+			<wsdl:output message="tns:Z_ZPORTSMF_BUDGET_PORTAILResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="Z_ZPORTSMF_CF_DETAIL_DV">
+			<wsdl:input message="tns:Z_ZPORTSMF_CF_DETAIL_DV" />
+			<wsdl:output message="tns:Z_ZPORTSMF_CF_DETAIL_DVResponse" />
+		</wsdl:operation>
+		<wsdl:operation name="Z_ZPORTSMF_MISSION_PORTAIL">
+			<wsdl:input message="tns:Z_ZPORTSMF_MISSION_PORTAIL" />
+			<wsdl:output message="tns:Z_ZPORTSMF_MISSION_PORTAILResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ZWEB_SERVICE_PORTAILSoapBinding" type="tns:ZWEB_SERVICE_PORTAIL">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="Z_ZPORTSMF_CF_LISTE_MISSIONS">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Z_ZPORTSMF_MISSION_DETAIL">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Z_ZPORTSMF_CF_DETAIL_DA">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Z_ZPORTSMF_BUDGET_PORTAIL">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Z_ZPORTSMF_CF_DETAIL_DV">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="Z_ZPORTSMF_MISSION_PORTAIL">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ZWEB_SERVICE_PORTAILService">
+		<wsdl:port name="ZWEB_SERVICE_PORTAILSoapBinding" binding="tns:ZWEB_SERVICE_PORTAILSoapBinding">
+			<soap:address
+				location="http://sifac-preprod.univ-valenciennes.fr:80/sap/bc/srt/rfc/sap/ZWEB_SERVICE_PORTAIL?sap-client=310" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions targetNamespace="urn:sap-com:document:sap:rfc:functions"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="urn:sap-com:document:sap:rfc:functions" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+			xmlns:tns="urn:sap-com:document:sap:rfc:functions" targetNamespace="urn:sap-com:document:sap:rfc:functions"
+			elementFormDefault="unqualified" attributeFormDefault="qualified">
+			<xsd:simpleType name="char1">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="1" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char10">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char20">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="20" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char220">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="220" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char25">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="25" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char30">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="30" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char32">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="32" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char50">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="50" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="char59">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="59" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="curr13.2">
+				<xsd:restriction base="xsd:decimal">
+					<xsd:totalDigits value="13" />
+					<xsd:fractionDigits value="2" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="date">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10" />
+					<xsd:pattern value="\d\d\d\d-\d\d-\d\d" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric10">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="10" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric2">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="2" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric3">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="3" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric6">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="6" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:simpleType name="numeric8">
+				<xsd:restriction base="xsd:string">
+					<xsd:maxLength value="8" />
+					<xsd:pattern value="\d*" />
+				</xsd:restriction>
+			</xsd:simpleType>
+			<xsd:complexType name="ZZPORTSTT_BAPI_MISSION">
+				<xsd:sequence>
+					<xsd:element name="MATRICULE" type="tns:numeric8" />
+					<xsd:element name="NUMERO" type="tns:numeric10" />
+					<xsd:element name="MOTIF" type="tns:char59" />
+					<xsd:element name="DATE_DEBUT" type="tns:date" />
+					<xsd:element name="DATE_FIN" type="tns:date" />
+					<xsd:element name="MNT_TOT_MISSION" type="tns:curr13.2" />
+					<xsd:element name="MNT_REMB_MISSION" type="tns:curr13.2" />
+					<xsd:element name="DATE_PRISE_EN_COMPTE_COMPTABLE"
+						type="tns:char10" />
+					<xsd:element name="HDVRS" type="tns:numeric2" />
+					<xsd:element name="NOM" type="tns:char25" />
+					<xsd:element name="PRENOM" type="tns:char25" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="BAPIRET2">
+				<xsd:sequence>
+					<xsd:element name="TYPE" type="tns:char1" />
+					<xsd:element name="ID" type="tns:char20" />
+					<xsd:element name="NUMBER" type="tns:numeric3" />
+					<xsd:element name="MESSAGE" type="tns:char220" />
+					<xsd:element name="LOG_NO" type="tns:char20" />
+					<xsd:element name="LOG_MSG_NO" type="tns:numeric6" />
+					<xsd:element name="MESSAGE_V1" type="tns:char50" />
+					<xsd:element name="MESSAGE_V2" type="tns:char50" />
+					<xsd:element name="MESSAGE_V3" type="tns:char50" />
+					<xsd:element name="MESSAGE_V4" type="tns:char50" />
+					<xsd:element name="PARAMETER" type="tns:char32" />
+					<xsd:element name="ROW" type="xsd:int" />
+					<xsd:element name="FIELD" type="tns:char30" />
+					<xsd:element name="SYSTEM" type="tns:char10" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:complexType name="TABLE_OF_ZZPORTSTT_BAPI_MISSION">
+				<xsd:sequence>
+					<xsd:element name="item" minOccurs="0" maxOccurs="unbounded"
+						type="tns:ZZPORTSTT_BAPI_MISSION" />
+				</xsd:sequence>
+			</xsd:complexType>
+			<xsd:element name="Z_ZPORTSMF_MATRICULE">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="I_LOGIN" type="tns:char25" />
+						<xsd:element name="T_MATRICULE"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_MISSION" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="Z_ZPORTSMF_MATRICULEResponse">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="RETURN" type="tns:BAPIRET2" />
+						<xsd:element name="T_MATRICULE"
+							type="tns:TABLE_OF_ZZPORTSTT_BAPI_MISSION" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="Z_ZPORTSMF_MATRICULE">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_MATRICULE" />
+	</wsdl:message>
+	<wsdl:message name="Z_ZPORTSMF_MATRICULEResponse">
+		<wsdl:part name="parameters" element="tns:Z_ZPORTSMF_MATRICULEResponse" />
+	</wsdl:message>
+	<wsdl:portType name="ZWEB_SERVICE_MATRICULE">
+		<wsdl:operation name="Z_ZPORTSMF_MATRICULE">
+			<wsdl:input message="tns:Z_ZPORTSMF_MATRICULE" />
+			<wsdl:output message="tns:Z_ZPORTSMF_MATRICULEResponse" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="ZWEB_SERVICE_MATRICULESoapBinding"
+		type="tns:ZWEB_SERVICE_MATRICULE">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="Z_ZPORTSMF_MATRICULE">
+			<soap:operation soapAction="" />
+			<wsdl:input>
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ZWEB_SERVICE_MATRICULEService">
+		<wsdl:port name="ZWEB_SERVICE_MATRICULESoapBinding" binding="tns:ZWEB_SERVICE_MATRICULESoapBinding">
+			<soap:address
+				location="http://sifac-preprod.univ-valenciennes.fr:80/sap/bc/srt/rfc/sap/ZWEB_SERVICE_MATRICULE?sap-client=310" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

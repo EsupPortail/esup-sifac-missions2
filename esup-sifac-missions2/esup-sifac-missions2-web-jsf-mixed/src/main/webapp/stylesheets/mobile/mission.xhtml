@@ -1,0 +1,84 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:tr="http://myfaces.apache.org/trinidad"
+	xmlns:trh="http://myfaces.apache.org/trinidad/html"
+	template="template.xhtml">
+
+	<ui:define name="content">
+		<tr:form>
+			<tr:panelHeader styleClass="toolbar half"
+				text="#{welcomeController.currentMission.motif}">
+				<tr:commandLink action="welcome" styleClass="backButton"
+					text="#{msgs['BACK.TEXT']}">
+					<f:setPropertyActionListener value="welcome"
+						target="#{sessionController.action}" />
+				</tr:commandLink>
+			</tr:panelHeader>
+		</tr:form>
+		<tr:form>
+			<div class="panelBase">
+				<tr:panelCaptionGroup>
+					<div class="row missionPanel">
+						<tr:outputText styleClass="centerLabelText"
+							value="#{welcomeController.currentMission.motif}" />
+						<tr:panelHorizontalLayout styleClass="missionDetail">
+							<h:outputText value="#{msgs['WELCOME.MISSION.M_START']} &#160;" />
+							<h:outputText
+								value="#{welcomeController.currentMission.periode.debut}">
+								<tr:convertDateTime locale="fr" type="date" />
+							</h:outputText>
+						</tr:panelHorizontalLayout>
+						<tr:panelHorizontalLayout styleClass="missionDetail">
+							<h:outputText value="#{msgs['WELCOME.MISSION.M_END']} &#160;" />
+							<h:outputText
+								value="#{welcomeController.currentMission.periode.fin}">
+								<tr:convertDateTime locale="fr" type="date" />
+							</h:outputText>
+						</tr:panelHorizontalLayout>
+						<tr:panelHorizontalLayout styleClass="missionDetail">
+							<h:outputText value="#{msgs['WELCOME.MISSION.M_ORDRE']} &#160;" />
+							<h:outputText value="#{welcomeController.currentMission.ordre}" />
+						</tr:panelHorizontalLayout>
+						<tr:panelHorizontalLayout styleClass="missionDetail"
+							rendered="#{not empty welcomeController.currentMission.date}">
+							<h:outputText value="#{msgs['WELCOME.MISSION.M_DATE']} &#160;" />
+							<h:outputText value="#{welcomeController.currentMission.date}">
+								<tr:convertDateTime locale="fr" type="date" />
+							</h:outputText>
+						</tr:panelHorizontalLayout>
+						<tr:panelHorizontalLayout
+							styleClass="listingStatus panelListingStatus status#{welcomeController.currentMission.status}">
+							<tr:outputText
+								value="#{welcomeController.currentMission.montant}">
+								<tr:convertNumber locale="fr" type="currency"
+									currencySymbol="&#8364;" />
+							</tr:outputText>
+						</tr:panelHorizontalLayout>
+					</div>
+				</tr:panelCaptionGroup>
+				<tr:outputText
+					rendered="#{not empty welcomeController.currentMission.details}"
+					value="#{msgs['WELCOME.MISSION.M_DETAILS']}"
+					styleClass="labelText panelLabel" />
+				<tr:panelCaptionGroup
+					rendered="#{not empty welcomeController.currentMission.details}">
+					<tr:iterator value="#{welcomeController.currentMission.details}"
+						var="detail">
+						<div class="row cat #{detail.paid ? 'paid' : ''}"
+							style="background-image:url(/media/pictos/#{detail.categorie}.png)">
+							<tr:outputText styleClass="labelText left"
+								value="#{detail.description}" truncateAt="25" />
+							<tr:outputText styleClass="messageText right"
+								value="#{detail.montant}">
+								<tr:convertNumber locale="fr" type="currency"
+									currencySymbol="&#8364;" />
+							</tr:outputText>
+						</div>
+					</tr:iterator>
+				</tr:panelCaptionGroup>
+			</div>
+		</tr:form>
+	</ui:define>
+
+</ui:composition>

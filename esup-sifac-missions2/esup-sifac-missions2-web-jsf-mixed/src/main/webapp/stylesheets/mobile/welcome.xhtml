@@ -1,0 +1,74 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:tr="http://myfaces.apache.org/trinidad"
+	xmlns:trh="http://myfaces.apache.org/trinidad/html"
+	template="template.xhtml">
+
+	<ui:define name="content">
+		<tr:form>
+			<tr:panelHeader styleClass="toolbar full"
+				text="#{msgs['M_BLANK.TEXT']}" />
+		</tr:form>
+		<tr:form>
+			<div class="messageSelect">
+				<h:selectOneMenu value="#{welcomeController.year}"
+					onchange="changeYear()">
+					<f:selectItems value="#{welcomeController.yearItems}" />
+				</h:selectOneMenu>
+			</div>
+			<div style="display: none">
+				<tr:commandButton id="yearSubmit"
+					action="#{welcomeController.changeYear}" />
+			</div>
+		</tr:form>
+		<tr:form>
+			<tr:table value="#{welcomeController.missions}" var="mission"
+				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}" width="100%"
+				horizontalGridVisible="false" verticalGridVisible="false"
+				styleClass="panelTable">
+				<tr:column>
+					<tr:panelGroupLayout layout="vertical" styleClass="listing">
+						<tr:panelGroupLayout layout="vertical" styleClass="listingDetails">
+							<trh:tableLayout>
+								<trh:rowLayout>
+									<h:outputText value="#{msgs['WELCOME.MISSION.M_START']} &#160;" />
+									<h:outputText value="#{mission.periode.debut}">
+										<tr:convertDateTime locale="fr" type="date" />
+									</h:outputText>
+								</trh:rowLayout>
+								<trh:rowLayout>
+									<h:outputText value="#{msgs['WELCOME.MISSION.M_END']} &#160;" />
+									<h:outputText value="#{mission.periode.fin}">
+										<tr:convertDateTime locale="fr" type="date" />
+									</h:outputText>
+								</trh:rowLayout>
+							</trh:tableLayout>
+						</tr:panelGroupLayout>
+						<tr:panelGroupLayout layout="vertical"
+							styleClass="listingStatus status#{mission.status}">
+							<tr:outputText value="#{mission.montant}">
+								<tr:convertNumber locale="fr" type="currency"
+									currencySymbol="&#8364;" />
+							</tr:outputText>
+						</tr:panelGroupLayout>
+						<tr:commandLink action="mission" text="#{mission.motif}"
+							styleClass="listingLink statusLink">
+							<f:setPropertyActionListener value="mission"
+								target="#{sessionController.action}" />
+							<f:setPropertyActionListener value="#{mission}"
+								target="#{welcomeController.currentMission}" />
+						</tr:commandLink>
+					</tr:panelGroupLayout>
+				</tr:column>
+			</tr:table>
+		</tr:form>
+
+		<script type="text/javascript">
+			function changeYear() {
+				document.getElementById('null:yearSubmit').click();
+			}
+		</script>
+	</ui:define>
+
+</ui:composition>

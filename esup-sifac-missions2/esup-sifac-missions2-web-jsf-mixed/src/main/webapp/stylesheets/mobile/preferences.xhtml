@@ -1,0 +1,49 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:tr="http://myfaces.apache.org/trinidad" template="template.xhtml">
+    <ui:define name="content">
+        <div class="panelButtons">
+            <tr:panelCaptionGroup>
+                <h:panelGroup>
+                    <div class="row">
+                        <tr:outputText styleClass="labelText"
+                            value="#{msgs['PREFERENCES.LANGUAGE.SHORT_LABEL']} " truncateAt="0" />
+
+                        <tr:selectOneChoice styleClass="messageText"
+                            value="#{sessionController.locale}">
+                            <f:selectItems value="#{preferencesController.localeItems}" />
+                        </tr:selectOneChoice>
+                    </div>
+                    <div class="row">
+                        <tr:outputText styleClass="labelText"
+                            value="#{msgs['PREFERENCES.ACCESSIBILITY.SHORT_LABEL']} "
+                            truncateAt="0" />
+                        <tr:selectOneChoice styleClass="messageText"
+                            value="#{sessionController.accessibilityMode}">
+                            <f:selectItems
+                                value="#{preferencesController.accessibilityModeItems}" />
+                        </tr:selectOneChoice>
+                    </div>
+                    <div class="row">
+                        <tr:outputText styleClass="labelText"
+                            value="#{msgs['PREFERENCES.MISSIONS_PER_PAGE.SHORT_LABEL']} " truncateAt="0" />
+                        <tr:selectOneChoice styleClass="messageText"
+                            value="#{welcomeController.missionsPerPage}">
+                            <f:selectItems value="#{preferencesController.missionsPerPageItems}" />
+                        </tr:selectOneChoice>
+                    </div>
+                </h:panelGroup>
+            </tr:panelCaptionGroup>
+        </div>
+        <div class="panelButtons">
+            <tr:panelCaptionGroup>
+                <div class="row">
+                    <tr:commandLink styleClass="centerMessageLink"
+                        text="#{msgs['SUBMIT.TEXT']} " action="preferences"
+                        icon="/media/images/accept.png" id="changePreferences" />
+                </div>
+            </tr:panelCaptionGroup>
+        </div>
+    </ui:define>
+</ui:composition>
