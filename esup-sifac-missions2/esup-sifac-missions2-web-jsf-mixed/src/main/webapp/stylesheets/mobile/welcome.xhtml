@@ -52,7 +52,9 @@
 									currencySymbol="&#8364;" />
 							</tr:outputText>
 						</tr:panelGroupLayout>
-						<tr:commandLink action="mission" text="#{mission.motif}"
+						<tr:outputText value="#{mission.motif}"
+							styleClass="listingLinkTitle" />
+						<tr:commandLink action="mission"
 							styleClass="listingLink statusLink">
 							<f:setPropertyActionListener value="mission"
 								target="#{sessionController.action}" />

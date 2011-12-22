@@ -183,6 +183,21 @@ a[selected =
 	min-height: 58px !important;
 }
 
+
+.listingLinkTitle {
+    display: block !important;
+    position: absolute !important;
+    top: 8px !important;
+    left: 10px !important;
+    right: 100px !important;
+    color: #000 !important;
+    font-size: 15px !important;
+    font-weight: bold !important;
+    overflow: hidden;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
 .listingDetails {
     display: block !important;
     position: absolute !important;
