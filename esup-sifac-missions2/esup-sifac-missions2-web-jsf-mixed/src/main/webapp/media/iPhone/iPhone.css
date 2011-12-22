@@ -746,6 +746,7 @@ label {
 .row.cat {
     background-position: 4px center !important;
     background-repeat: no-repeat !important;
+    background-image: url(/media/pictos/divers.png);
 }
 
 .row.cat.paid {
@@ -754,42 +755,6 @@ label {
 
 .row.cat.paid span {
     color: #000 !important;
-}
-
-.row.cat.airplane  {
-    background-image: url(/media/pictos/airplane.png);
-}
-
-.row.cat.bus {
-    background-image: url(/media/pictos/bus.png);
-}
-
-.row.cat.hotel {
-    background-image: url(/media/pictos/hotel.png);
-}
-
-.row.cat.bank {
-    background-image: url(/media/pictos/bank.png);
-}
-
-.row.cat.cash {
-    background-image: url(/media/pictos/cash.png);
-}
-
-.row.cat.parking {
-    background-image: url(/media/pictos/parking.png);
-}
-
-.row.cat.restaurant {
-    background-image: url(/media/pictos/restaurant.png);
-}
-
-.row.cat.taxi {
-    background-image: url(/media/pictos/taxi.png);
-}
-
-.row.cat.train {
-    background-image: url(/media/pictos/train.png);
 }
 
 .messageSelect {
