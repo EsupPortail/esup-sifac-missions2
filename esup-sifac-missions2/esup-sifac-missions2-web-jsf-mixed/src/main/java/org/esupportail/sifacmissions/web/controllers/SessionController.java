@@ -108,17 +108,11 @@ public class SessionController extends AbstractDomainAwareBean {
 
 	@Override
 	public void afterPropertiesSet() {
-		Assert.notNull(this.exceptionController,
-				"property exceptionController of class "
-						+ this.getClass().getName() + " can not be null");
-		Assert.notNull(this.authenticator, "property authenticator of class "
-				+ this.getClass().getName() + " can not be null");
-		Assert.notNull(this.version, "property version of class "
-				+ this.getClass().getName() + " can not be null");
-		Assert.notNull(this.site, "property site of class "
-				+ this.getClass().getName() + " can not be null");
-		Assert.notNull(this.casLogoutUrl, "property casLogoutUrl of class "
-				+ this.getClass().getName() + " can not be null");
+		Assert.notNull(this.exceptionController, "property exceptionController of class " + this.getClass().getName() + " can not be null");
+		Assert.notNull(this.authenticator, "property authenticator of class " + this.getClass().getName() + " can not be null");
+		Assert.notNull(this.version, "property version of class " + this.getClass().getName() + " can not be null");
+		Assert.notNull(this.site, "property site of class " + this.getClass().getName() + " can not be null");
+		Assert.notNull(this.casLogoutUrl, "property casLogoutUrl of class " + this.getClass().getName() + " can not be null");
 	}
 
 	/**
@@ -172,44 +166,49 @@ public class SessionController extends AbstractDomainAwareBean {
 		if (isPortletMode()) {
 			FacesContext fc = FacesContext.getCurrentInstance();
 			String uid = fc.getExternalContext().getRemoteUser();
+			
 			if (currentUser != null && currentUser.getLogin().equals(uid)) {
 				return currentUser;
 			}
+			
 			try {
 				currentUser = getDomainService().getUser(uid);
 			} catch (UserNotFoundException e) {
 				currentUser = new User();
 				currentUser.setLogin(uid);
-				currentUser.setDisplayName(I18nUtils.createI18nService()
-						.getString(e.getMessage()));
+				currentUser.setDisplayName(I18nUtils.createI18nService() .getString(e.getMessage()));
 				currentUser.setAdmin(false);
 			}
+			
 			return currentUser;
 		}
+		
 		User authUser;
+		
 		try {
 			authUser = authenticator.getUser();
 			if (authUser != null) {
-				if (currentUser != null
-						&& currentUser.getLogin().equals(authUser.getLogin())) {
+				if (currentUser != null&& currentUser.getLogin().equals(authUser.getLogin())) {
 					return currentUser;
 				}
-				// for updating
+				
 				String uid = authUser.getLogin();
+				
 				try {
 					currentUser = getDomainService().getUser(uid);
 				} catch (UserNotFoundException e) {
 					currentUser = new User();
 					currentUser.setLogin(uid);
-					currentUser.setDisplayName(I18nUtils.createI18nService()
-							.getString(e.getMessage()));
+					currentUser.setDisplayName(I18nUtils.createI18nService().getString(e.getMessage()));
 					currentUser.setAdmin(false);
 				}
+				
 				return currentUser;
 			}
 		} catch (Exception e) {
 			logger.error(e);
 		}
+		
 		return null;
 	}
 
@@ -242,12 +241,14 @@ public class SessionController extends AbstractDomainAwareBean {
 	public boolean isPortletMode() {
 		if (!modeDetected) {
 			modeDetected = true;
+			
 			if (logger.isDebugEnabled()) {
 				logger.debug("Mode detected in Application");
 			}
+			
 			FacesContext fc = FacesContext.getCurrentInstance();
-			portletMode = ExternalContextUtils.isPortlet(fc
-					.getExternalContext());
+			portletMode = ExternalContextUtils.isPortlet(fc.getExternalContext());
+			
 			if (logger.isDebugEnabled()) {
 				if (portletMode) {
 					logger.debug("Portlet mode detected");
@@ -267,6 +268,7 @@ public class SessionController extends AbstractDomainAwareBean {
 		if (isPortletMode()) {
 			return false;
 		}
+		
 		return (getCurrentUser() == null);
 	}
 
@@ -278,6 +280,7 @@ public class SessionController extends AbstractDomainAwareBean {
 		if (isPortletMode()) {
 			return false;
 		}
+		
 		return (getCurrentUser() != null);
 	}
 
@@ -287,28 +290,25 @@ public class SessionController extends AbstractDomainAwareBean {
 	public String logoutAction() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
-		HttpServletRequest request = (HttpServletRequest) externalContext
-				.getRequest();
-		String preReturnUrl = request.getRequestURL().toString()
-				.replaceFirst("/stylesheets/[^/]*$", "");
+		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+		String preReturnUrl = request.getRequestURL().toString().replaceFirst("/stylesheets/[^/]*$", "");
 		int index = preReturnUrl.lastIndexOf("/");
-		String returnUrl = preReturnUrl.substring(0, index + 1).concat(
-				"welcome.xhtml");
+		String returnUrl = preReturnUrl.substring(0, index + 1).concat("welcome.xhtml");
 		String forwardUrl;
-		forwardUrl = String.format(casLogoutUrl,
-				StringUtils.utf8UrlEncode(returnUrl));
+		forwardUrl = String.format(casLogoutUrl,StringUtils.utf8UrlEncode(returnUrl));
 		request.getSession().invalidate();
 		request.getSession(true);
+		
 		try {
 			externalContext.redirect(forwardUrl);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		facesContext.responseComplete();
-		// Il convient de desactiver les elements d'identification et de
-		// navigation
 		action = "welcome";
+		
 		return null;
 	}
 
@@ -334,6 +334,7 @@ public class SessionController extends AbstractDomainAwareBean {
 	 */
 	public void setLocale(Locale locale) {
 		FacesContext context = FacesContext.getCurrentInstance();
+		
 		if (context != null) {
 			context.getViewRoot().setLocale(locale);
 		}
@@ -343,6 +344,7 @@ public class SessionController extends AbstractDomainAwareBean {
 	public Locale getLocale() {
 		Locale locale = new Locale("fr");
 		FacesContext context = FacesContext.getCurrentInstance();
+		
 		if (context != null) {
 			locale = context.getViewRoot().getLocale();
 		}
@@ -400,8 +402,7 @@ public class SessionController extends AbstractDomainAwareBean {
 	 */
 	public String getServletUrl() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
-		return facesContext.getExternalContext().getRequestContextPath()
-				+ "/stylesheets/home.xhtml";
+		return facesContext.getExternalContext().getRequestContextPath() + "/stylesheets/home.xhtml";
 	}
 
 	/**
@@ -409,13 +410,12 @@ public class SessionController extends AbstractDomainAwareBean {
 	 */
 	public String getDisplayAccessibilityMode() {
 		if (accessibilityMode.equals("default"))
-			return I18nUtils.createI18nService().getString(
-					"PREFERENCES.ACCESSIBILITY.DEFAULT");
+			return I18nUtils.createI18nService().getString("PREFERENCES.ACCESSIBILITY.DEFAULT");
+		
 		if (accessibilityMode.equals("inaccessible"))
-			return I18nUtils.createI18nService().getString(
-					"PREFERENCES.ACCESSIBILITY.INACCESSIBLE");
-		return I18nUtils.createI18nService().getString(
-				"PREFERENCES.ACCESSIBILITY.SCREENREADER");
+			return I18nUtils.createI18nService().getString("PREFERENCES.ACCESSIBILITY.INACCESSIBLE");
+		
+		return I18nUtils.createI18nService().getString("PREFERENCES.ACCESSIBILITY.SCREENREADER");
 
 	}
 
@@ -425,6 +425,7 @@ public class SessionController extends AbstractDomainAwareBean {
 	public String getDisplayLanguage() {
 		Locale locale = getLocale();
 		StringBuffer buf = new StringBuffer(locale.getDisplayLanguage(locale));
+		
 		return buf.toString();
 	}
 
@@ -433,13 +434,14 @@ public class SessionController extends AbstractDomainAwareBean {
 	 * @return null;
 	 */
 	public String setLocaleAction(ActionEvent event) {
-		UIParameter component = (UIParameter) event.getComponent()
-				.findComponent("language");
+		UIParameter component = (UIParameter) event.getComponent().findComponent("language");
 		String languageString = component.getValue().toString();
 		FacesContext context = FacesContext.getCurrentInstance();
+		
 		if (context != null) {
 			context.getViewRoot().setLocale(new Locale(languageString));
 		}
+		
 		return null;
 	}
 

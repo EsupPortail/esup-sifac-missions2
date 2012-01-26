@@ -131,9 +131,11 @@ public class WelcomeController extends AbstractContextAwareController {
 	 */
 	public boolean isPageAuthorized() {
 		initUser();
+		
 		if (ContextUtils.isPortlet()) {
 			return false;
 		}
+		
 		return true;
 	}
 
@@ -153,25 +155,25 @@ public class WelcomeController extends AbstractContextAwareController {
 	 */
 	private void setParameters() {
 		logger.info("Current User: " + currentUser.getLogin());
+		
 		if (matricule == null) {
-			matricule = getDomainService().getMatriculeService().getMatricule(
-					currentUser.getLogin());
+			matricule = getDomainService().getMatriculeService().getMatricule(currentUser.getLogin());
+			
 			if (matricule == null) {
 				homonyme = getDomainService().isHomonyme(currentUser);
 				if (!homonyme) {
 					if (nom == null) {
-						nom = StringUtils.removeAccent(getDomainService()
-								.getNom(currentUser.getLogin()));
+						nom = StringUtils.removeAccent(getDomainService().getNom(currentUser.getLogin()));
 					}
+					
 					if (prenom == null) {
-						prenom = StringUtils.removeAccent(getDomainService()
-								.getPrenom(currentUser.getLogin()));
+						prenom = StringUtils.removeAccent(getDomainService().getPrenom(currentUser.getLogin()));
 					}
 				}
 			}
 		}
-		logger.info("Web Service Parameters : Maticule " + matricule
-				+ " - Nom " + nom + " Prenom " + prenom);
+		
+		logger.info("Web Service Parameters : Maticule " + matricule + " - Nom " + nom + " Prenom " + prenom);
 	}
 
 	/**
@@ -231,11 +233,9 @@ public class WelcomeController extends AbstractContextAwareController {
 			year = dateFormat.format(now);
 			int currentYear = Integer.valueOf(year).intValue();
 			year = Integer.toString(currentYear);
-			int firstYear = Integer.valueOf(getDomainService().getFirstYear())
-					.intValue();
+			int firstYear = Integer.valueOf(getDomainService().getFirstYear()).intValue();
 			for (int i = currentYear; i >= firstYear && yearItems.size() < 2; i--) {
-				yearItems.add(new SelectItem(Integer.toString(i), Integer
-						.toString(i)));
+				yearItems.add(new SelectItem(Integer.toString(i), Integer.toString(i)));
 			}
 		}
 	}

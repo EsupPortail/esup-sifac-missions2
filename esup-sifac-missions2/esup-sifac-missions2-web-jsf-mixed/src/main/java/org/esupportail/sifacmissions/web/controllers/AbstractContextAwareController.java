@@ -32,8 +32,7 @@ public abstract class AbstractContextAwareController extends AbstractDomainAware
 
 	@Override
 	public void afterPropertiesSetInternal() {
-		Assert.notNull(this.sessionController, "property sessionController of class " 
-				+ this.getClass().getName() + " can not be null");
+		Assert.notNull(this.sessionController, "property sessionController of class " + this.getClass().getName() + " can not be null");
 	}
 
 	/**

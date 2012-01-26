@@ -63,8 +63,7 @@ public class ExceptionController extends
 				logger.debug("Mode detected in Application");
 			}
 			FacesContext fc = FacesContext.getCurrentInstance();
-			portletMode = ExternalContextUtils.isPortlet(fc
-					.getExternalContext());
+			portletMode = ExternalContextUtils.isPortlet(fc.getExternalContext());
 			if (logger.isDebugEnabled()) {
 				if (portletMode) {
 					logger.debug("Portlet mode detected");
@@ -78,23 +77,27 @@ public class ExceptionController extends
 
 	@Override
 	public String restart() {
-		Map<String, Object> resettables = BeanUtils
-				.getBeansOfClass(Resettable.class);
+		Map<String, Object> resettables = BeanUtils.getBeansOfClass(Resettable.class);
 		for (String name : resettables.keySet()) {
 			if (logger.isDebugEnabled()) {
 				logger.debug("trying to reset bean [" + name + "]...");
 			}
+			
 			Object bean = resettables.get(name);
+			
 			if (bean == null) {
 				throw new ConfigException("bean [" + name + "] is null, "
 						+ "application can not be restarted.");
 			}
+			
 			if (!(bean instanceof Resettable)) {
 				throw new ConfigException("bean [" + name
 						+ "] does not implement Resettable, "
 						+ "application can not be restarted.");
 			}
+			
 			((Resettable) bean).reset();
+			
 			if (logger.isDebugEnabled()) {
 				logger.debug("bean [" + name + "] was reset.");
 			}
@@ -102,9 +105,9 @@ public class ExceptionController extends
 		if (!isPortletMode()) {
 			// it is always this case !
 			ExceptionUtils.unmarkExceptionCaught();
-			((HttpSession) FacesContext.getCurrentInstance()
-					.getExternalContext().getSession(false)).invalidate();
+			((HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false)).invalidate();
 		}
+		
 		return "applicationRestarted";
 	}
 
@@ -115,11 +118,10 @@ public class ExceptionController extends
 		if (isPortletMode()) {
 			FacesContext facesContext = FacesContext.getCurrentInstance();
 			ExternalContext externalContext = facesContext.getExternalContext();
-			PortletRequest request = (PortletRequest) externalContext
-					.getRequest();
-			ContextUtils.bindRequestAndContext(request,
-					(PortletContext) externalContext.getContext());
+			PortletRequest request = (PortletRequest) externalContext.getRequest();
+			ContextUtils.bindRequestAndContext(request,(PortletContext) externalContext.getContext());
 		}
+		
 		return ExceptionUtils.getMarkedExceptionService() != null;
 	}
 

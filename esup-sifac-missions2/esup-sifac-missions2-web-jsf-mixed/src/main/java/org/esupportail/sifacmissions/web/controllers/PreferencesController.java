@@ -49,6 +49,7 @@ public class PreferencesController extends AbstractContextAwareController {
 	@Override
 	public void reset() {
 		super.reset();
+		
 		accessibilityModeItems = null;
 		localeItems = null;
 		missionsPerPageItems = null;
@@ -60,15 +61,16 @@ public class PreferencesController extends AbstractContextAwareController {
 	public List<SelectItem> getLocaleItems() {
 		if (localeItems == null) {
 			localeItems = new ArrayList<SelectItem>();
-			Iterator<Locale> iter = FacesContext.getCurrentInstance()
-					.getApplication().getSupportedLocales();
+			
+			Iterator<Locale> iter = FacesContext.getCurrentInstance().getApplication().getSupportedLocales();
+			
 			while (iter.hasNext()) {
 				Locale locale = iter.next();
-				StringBuffer buf = new StringBuffer(
-						locale.getDisplayLanguage(locale));
+				StringBuffer buf = new StringBuffer(locale.getDisplayLanguage(locale));
 				localeItems.add(new SelectItem(locale, buf.toString()));
 			}
 		}
+		
 		return localeItems;
 	}
 
@@ -77,12 +79,10 @@ public class PreferencesController extends AbstractContextAwareController {
 	 */
 	public List<SelectItem> getAccessibilityModeItems() {
 		accessibilityModeItems = new ArrayList<SelectItem>();
-		accessibilityModeItems.add(new SelectItem("default", BundleService
-				.getString("PREFERENCES.ACCESSIBILITY.DEFAULT")));
-		accessibilityModeItems.add(new SelectItem("inaccessible", BundleService
-				.getString("PREFERENCES.ACCESSIBILITY.INACCESSIBLE")));
-		accessibilityModeItems.add(new SelectItem("screenReader", BundleService
-				.getString("PREFERENCES.ACCESSIBILITY.SCREENREADER")));
+		accessibilityModeItems.add(new SelectItem("default", BundleService.getString("PREFERENCES.ACCESSIBILITY.DEFAULT")));
+		accessibilityModeItems.add(new SelectItem("inaccessible", BundleService.getString("PREFERENCES.ACCESSIBILITY.INACCESSIBLE")));
+		accessibilityModeItems.add(new SelectItem("screenReader", BundleService.getString("PREFERENCES.ACCESSIBILITY.SCREENREADER")));
+		
 		return accessibilityModeItems;
 	}
 
@@ -97,6 +97,7 @@ public class PreferencesController extends AbstractContextAwareController {
 		missionsPerPageItems.add(new SelectItem(50, "50"));
 		missionsPerPageItems.add(new SelectItem(75, "75"));
 		missionsPerPageItems.add(new SelectItem(100, "100"));
+		
 		return missionsPerPageItems;
 	}
 

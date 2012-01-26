@@ -42,8 +42,7 @@ public abstract class AbstractDomainAwareBean extends AbstractJsfMessagesAwareBe
 	@Override
 	public void afterPropertiesSet() {
 		super.afterPropertiesSet(); 
-		Assert.notNull(this.domainService, 
-				"property domainService of class " + this.getClass().getName() + " can not be null");
+		Assert.notNull(this.domainService, "property domainService of class " + this.getClass().getName() + " can not be null");
 		afterPropertiesSetInternal();
 		reset();
 	}
