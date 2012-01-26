@@ -37,7 +37,6 @@
         <profile>
             <id>Development</id>
             <activation>
-            	<activeByDefault>true</activeByDefault>
                 <property>
                     <name>Development</name>
                     <value>true</value>
@@ -91,6 +90,7 @@
         <profile>
             <id>Production</id>
             <activation>
+            	<activeByDefault>true</activeByDefault>
                 <property>
                     <name>Production</name>
                     <value>true</value>
