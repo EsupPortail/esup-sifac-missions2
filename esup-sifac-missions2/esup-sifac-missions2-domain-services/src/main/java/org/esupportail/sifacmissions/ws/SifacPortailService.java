@@ -45,8 +45,7 @@ public class SifacPortailService {
 			ZWEB_SERVICE_PORTAILServiceLocator loc = new ZWEB_SERVICE_PORTAILServiceLocator();
 			loc.setZWEB_SERVICE_PORTAILSoapBindingEndpointAddress(endpoint);
 
-			stub = (ZWEB_SERVICE_PORTAILSoapBindingStub) loc
-					.getZWEB_SERVICE_PORTAILSoapBinding();
+			stub = (ZWEB_SERVICE_PORTAILSoapBindingStub) loc.getZWEB_SERVICE_PORTAILSoapBinding();
 
 			if (username != null && password != null) {
 				stub._setProperty(Stub.USERNAME_PROPERTY, username);
@@ -65,33 +64,34 @@ public class SifacPortailService {
 		TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder missionsHolder = new TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder();
 		TABLE_OF_BAPIRET2Holder ret = new TABLE_OF_BAPIRET2Holder();
 
-		getStub().z_ZPORTSMF_MISSION_PORTAIL(year, matricule, missionsHolder, nom,
-				prenom, ret);
+		getStub().z_ZPORTSMF_MISSION_PORTAIL(year, matricule, missionsHolder, nom, prenom, ret);
 
-		if (ret.value.getItem().length > 0) {
+		if (ret.value.getItem() != null && ret.value.getItem().length > 0) {
 			ZZPORTSTT_BAPI_MISSION[] missionsArray = missionsHolder.value.getItem();
-
-			for (int i = 0; i < missionsArray.length; i++) {
-				Mission mission = new Mission();
-
-				Periode periode = new Periode();
-				periode.setDebut(formatter.parse(missionsArray[i].getDATE_DEBUT()));
-				periode.setFin(formatter.parse(missionsArray[i].getDATE_FIN()));
-
-				mission.setPeriode(periode);
-				mission.setNumero(missionsArray[i].getNUMERO());
-				mission.setMotif(missionsArray[i].getMOTIF());
-				mission.setMontant(missionsArray[i].getMNT_TOT_MISSION());
-				mission.setRemboursement(missionsArray[i].getMNT_REMB_MISSION());
-				mission.setOrdre(Long.parseLong(missionsArray[i].getNUMERO()));
-				
-				mission.setDetails(getMissionDetails(matricule, mission.getNumero()));
-				
-				if (StringUtils.isNotBlank(missionsArray[i].getDATE_PRISE_EN_COMPTE_COMPTABLE())) {
-					mission.setDate(formatter.parse(missionsArray[i].getDATE_PRISE_EN_COMPTE_COMPTABLE()));
-				}
-
-				missionsList.add(mission);
+			
+			if (missionsArray != null && missionsArray.length > 0) {
+    			for (int i = 0; i < missionsArray.length; i++) {
+    				Mission mission = new Mission();
+    
+    				Periode periode = new Periode();
+    				periode.setDebut(formatter.parse(missionsArray[i].getDATE_DEBUT()));
+    				periode.setFin(formatter.parse(missionsArray[i].getDATE_FIN()));
+    
+    				mission.setPeriode(periode);
+    				mission.setNumero(missionsArray[i].getNUMERO());
+    				mission.setMotif(missionsArray[i].getMOTIF());
+    				mission.setMontant(missionsArray[i].getMNT_TOT_MISSION());
+    				mission.setRemboursement(missionsArray[i].getMNT_REMB_MISSION());
+    				mission.setOrdre(Long.parseLong(missionsArray[i].getNUMERO()));
+    				
+    				mission.setDetails(getMissionDetails(matricule, mission.getNumero()));
+    				
+    				if (StringUtils.isNotBlank(missionsArray[i].getDATE_PRISE_EN_COMPTE_COMPTABLE())) {
+    					mission.setDate(formatter.parse(missionsArray[i].getDATE_PRISE_EN_COMPTE_COMPTABLE()));
+    				}
+    
+    				missionsList.add(mission);
+    			}
 			}
 		}
 
