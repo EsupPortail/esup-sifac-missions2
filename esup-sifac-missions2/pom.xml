@@ -102,6 +102,7 @@
   <modules>
     <module>esup-sifac-missions2-domain-beans</module>
     <module>esup-sifac-missions2-domain-services</module>
+    <module>esup-sifac-missions2-sifac-services</module>
     <module>esup-sifac-missions2-web-jsf-mixed</module>
   </modules>
 </project>
