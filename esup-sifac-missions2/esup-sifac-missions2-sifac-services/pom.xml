@@ -54,6 +54,12 @@
 		</plugins>
 	</build>
 	<dependencies>
+		<dependency>
+			<groupId>org.esupportail</groupId>
+			<artifactId>esup-sifac-missions2-domain-beans</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+			<type>jar</type>
+		</dependency>
         <dependency>
             <groupId>org.apache.axis</groupId>
             <artifactId>axis</artifactId>

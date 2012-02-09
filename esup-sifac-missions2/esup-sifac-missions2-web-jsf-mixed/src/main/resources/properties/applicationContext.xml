@@ -16,6 +16,7 @@
     <import resource="classpath*:META-INF/esup-sifac-missions2-domain-services-auth.xml" />
 	<import resource="classpath*:META-INF/esup-sifac-missions2-domain-services-sifac.xml" />
 	<import resource="classpath*:META-INF/esup-sifac-missions2-domain-services-domain.xml" />
+	<import resource="classpath*:META-INF/esup-sifac-missions2-sifac-services.xml" />
 
 	<import resource="cache/cache.xml" />
 	<import resource="exceptionHandling/exceptionHandling.xml" />

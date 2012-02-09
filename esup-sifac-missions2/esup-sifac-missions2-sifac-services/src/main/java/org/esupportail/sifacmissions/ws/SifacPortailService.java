@@ -10,14 +10,14 @@ import java.util.List;
 import javax.xml.rpc.ServiceException;
 
 import org.apache.axis.client.Stub;
-import org.apache.commons.lang.StringUtils;
-import org.esupportail.sifacmissions.domain.Categorizer;
 import org.esupportail.sifacmissions.domain.beans.Mission;
 import org.esupportail.sifacmissions.domain.beans.MissionDetails;
 import org.esupportail.sifacmissions.domain.beans.Periode;
+import org.esupportail.sifacmissions.utils.Categorizer;
 import org.esupportail.sifacmissions.ws.holders.TABLE_OF_BAPIRET2Holder;
 import org.esupportail.sifacmissions.ws.holders.TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder;
 import org.esupportail.sifacmissions.ws.holders.TABLE_OF_ZZPORTSTT_BAPI_MISSION_DETAILHolder;
+import org.springframework.util.StringUtils;
 
 public class SifacPortailService {
 
@@ -86,7 +86,7 @@ public class SifacPortailService {
     				
     				mission.setDetails(getMissionDetails(matricule, mission.getNumero()));
     				
-    				if (StringUtils.isNotBlank(missionsArray[i].getDATE_PRISE_EN_COMPTE_COMPTABLE())) {
+    				if (StringUtils.hasText(missionsArray[i].getDATE_PRISE_EN_COMPTE_COMPTABLE())) {
     					mission.setDate(formatter.parse(missionsArray[i].getDATE_PRISE_EN_COMPTE_COMPTABLE()));
     				}
     

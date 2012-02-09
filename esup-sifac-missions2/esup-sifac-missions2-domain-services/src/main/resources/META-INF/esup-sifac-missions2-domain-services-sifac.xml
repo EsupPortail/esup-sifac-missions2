@@ -5,12 +5,6 @@
 	xsi:schemaLocation="
 	    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	    http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd">
-	    
-	<bean id="categorizer" class="org.esupportail.sifacmissions.domain.Categorizer">
-        <property name="words">
-            <util:properties location="classpath:/properties/words.properties"/>
-        </property>
-    </bean>
 
 	<bean id="sifacService" class="org.esupportail.sifacmissions.services.sifac.SifacServiceImpl">
 		<property name="mandant" value="${sifac.mandant}" />
@@ -19,12 +13,5 @@
 		<property name="cacheManager" ref="cacheManager" />
 		<property name="cacheName" value="ListOfFraisMission" />
 	</bean>
-	
-	<bean id="sifacPortailService" class="org.esupportail.sifacmissions.ws.SifacPortailService">
-        <constructor-arg><value>${sifac.ws.url}</value></constructor-arg>
-        <constructor-arg><value>${sifac.ws.login}</value></constructor-arg>
-        <constructor-arg><value>${sifac.ws.password}</value></constructor-arg>
-        <property name="categorizer" ref="categorizer" />
-    </bean>
 
 </beans>

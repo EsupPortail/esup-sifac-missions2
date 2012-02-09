@@ -1,4 +1,4 @@
-package org.esupportail.sifacmissions.domain;
+package org.esupportail.sifacmissions.utils;
 
 import java.util.HashMap;
 import java.util.Iterator;
