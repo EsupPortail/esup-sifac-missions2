@@ -17,12 +17,12 @@
 		<property name="cacheName" value="User" />
 	</bean>
 
-	<bean id="matriculeByLdap" class="org.esupportail.sifacmissions.domain.MatriculeByLdap">
+	<bean id="matriculeByLdap" class="org.esupportail.sifacmissions.domain.MatriculeByLdap" lazy-init="true">
 		<property name="ldapUserService" ref="ldapUserService" />
 		<property name="matriculeAttribute" value="${domain.matricule.ldap.attribute}" />
 	</bean>
 
-	<bean id="matriculeBySifac" class="org.esupportail.sifacmissions.domain.MatriculeBySifac">
+	<bean id="matriculeBySifac" class="org.esupportail.sifacmissions.domain.MatriculeBySifac"  lazy-init="true">
 		<property name="matriculeService" ref="sifacMatriculeService" />
 	</bean>
 	
