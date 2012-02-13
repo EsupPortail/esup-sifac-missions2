@@ -38,6 +38,9 @@ public class PreferencesController extends AbstractContextAwareController {
 	 * An items list for for missions pagination.
 	 */
 	private List<SelectItem> missionsPerPageItems;
+	
+	private boolean displayAboutLink = true;
+	private boolean displayHelpLink = true;
 
 	/**
 	 * Constructor.
@@ -87,7 +90,7 @@ public class PreferencesController extends AbstractContextAwareController {
 	}
 
 	/**
-	 * @return missionsPerPageItems.
+	 * @return the missionsPerPageItems
 	 */
 	public List<SelectItem> getMissionsPerPageItems() {
 		missionsPerPageItems = new ArrayList<SelectItem>();
@@ -101,4 +104,35 @@ public class PreferencesController extends AbstractContextAwareController {
 		return missionsPerPageItems;
 	}
 
+	/**
+	 * @return true if the 'about' page link should be displayed
+	 */
+    public boolean isDisplayAboutLink()
+    {
+        return displayAboutLink;
+    }
+
+    /**
+     * @param flag the 'displayAboutLink' flag
+     */
+    public void setDisplayAboutLink(boolean flag)
+    {
+        this.displayAboutLink = flag;
+    }
+
+    /**
+     * @return true if the 'about' page link should be displayed
+     */
+    public boolean isDisplayHelpLink()
+    {
+        return displayHelpLink;
+    }
+
+    /**
+     * @param flag the 'displayHelpLink' flag
+     */
+    public void setDisplayHelpLink(boolean flag)
+    {
+        this.displayHelpLink = flag;
+    }
 }

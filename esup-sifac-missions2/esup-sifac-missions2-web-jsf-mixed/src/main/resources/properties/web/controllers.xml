@@ -36,6 +36,12 @@
         class="org.esupportail.sifacmissions.web.controllers.PreferencesController"
         parent="abstractContextAwareController" scope="session">
         <description>A bean to manage the preferences.</description>
+        <property name="displayAboutLink" value="${view.displayAboutLink}">
+        	<description>If true, display the 'about' page. Default true.</description>
+        </property>
+        <property name="displayHelpLink" value="${view.displayHelpLink}">
+        	<description>If true, display the 'help' page. Default true.</description>
+        </property>
     </bean>
 	
 	<bean id="welcomeController"
