@@ -4,7 +4,6 @@
 	xmlns:tr="http://myfaces.apache.org/trinidad"
 	template="template_exception.xhtml">
 	<ui:define name="exceptionButtons">
-		<tr:spacer height="20px" />
 		<tr:form id="exceptionButtons">
 			<tr:commandButton text="#{msgs['EXCEPTION.TEXT.SHOW_DETAILS']}"
 				id="showDetails"
@@ -23,8 +22,6 @@
 	<ui:define name="exceptionDetailsPanel">
 		<tr:panelFormLayout rows="5" maxColumns="1" labelWidth="140"
 			rendered="#{sessionController.showExceptionDetails}">
-
-			<tr:spacer height="20px" />
 			<tr:inputText id="applicationName"
 				label="#{msgs['EXCEPTION.INFORMATION.APPLICATION']}:"
 				shortDesc="#{msgs['EXCEPTION.INFORMATION.APPLICATION']}"
