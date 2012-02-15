@@ -41,6 +41,7 @@ public class PreferencesController extends AbstractContextAwareController {
 	
 	private boolean displayAboutLink = true;
 	private boolean displayHelpLink = true;
+	private boolean displayServletLink = true;
 
 	/**
 	 * Constructor.
@@ -134,5 +135,21 @@ public class PreferencesController extends AbstractContextAwareController {
     public void setDisplayHelpLink(boolean flag)
     {
         this.displayHelpLink = flag;
+    }
+    
+    /**
+     * @return true if the 'servlet' link should be displayed
+     */
+    public boolean isDisplayServletLink()
+    {
+        return displayServletLink;
+    }
+    
+    /**
+     * @param flag the 'displayServletLink' flag
+     */
+    public void setDisplayServletLink(boolean flag)
+    {
+        this.displayServletLink = flag;
     }
 }

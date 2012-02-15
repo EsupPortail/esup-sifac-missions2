@@ -42,6 +42,9 @@
         <property name="displayHelpLink" value="${view.displayHelpLink}">
         	<description>If true, display the 'help' page. Default true.</description>
         </property>
+        <property name="displayServletLink" value="${view.displayHelpLink}">
+        	<description>If true, display the 'servlet' link. Default true.</description>
+        </property>
     </bean>
 	
 	<bean id="welcomeController"

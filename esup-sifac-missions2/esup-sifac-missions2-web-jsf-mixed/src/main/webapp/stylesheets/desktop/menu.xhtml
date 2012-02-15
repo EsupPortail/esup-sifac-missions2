@@ -42,8 +42,8 @@
 			action="mobileWelcome" immediate="true"
 			rendered="#{not sessionController.portletMode}" />
 			
-		<tr:commandNavigationItem text=""
-			immediate="true" rendered="#{sessionController.portletMode}">
+		<tr:commandNavigationItem text="" immediate="true"
+			rendered="#{sessionController.portletMode and preferencesController.displayServletLink}">
 			<h:outputLink value="#{sessionController.servletUrl}" target="_popup"
 				title="#{msgs['SERVLET.TEXT']}">
 				<tr:outputText value="#{msgs['SERVLET.TEXT']}"
