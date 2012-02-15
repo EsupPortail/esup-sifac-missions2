@@ -40,7 +40,7 @@
 			
 		<tr:commandNavigationItem text="#{msgs['MOBILE.TEXT']}"
 			action="mobileWelcome" immediate="true"
-			rendered="#{not sessionController.portletMode}" />
+			rendered="#{not sessionController.portletMode and preferencesController.displayMobileLink}" />
 			
 		<tr:commandNavigationItem text="" immediate="true"
 			rendered="#{sessionController.portletMode and preferencesController.displayServletLink}">

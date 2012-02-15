@@ -41,6 +41,7 @@ public class PreferencesController extends AbstractContextAwareController {
 	
 	private boolean displayAboutLink = true;
 	private boolean displayHelpLink = true;
+	private boolean displayMobileLink = true;
 	private boolean displayServletLink = true;
 
 	/**
@@ -135,6 +136,22 @@ public class PreferencesController extends AbstractContextAwareController {
     public void setDisplayHelpLink(boolean flag)
     {
         this.displayHelpLink = flag;
+    }
+    
+    /**
+     * @return true if the 'mobile' link should be displayed
+     */
+    public boolean isDisplayMobileLink()
+    {
+        return displayMobileLink;
+    }
+    
+    /**
+     * @param flag the 'displayMobileLink' flag
+     */
+    public void setDisplayMobileLink(boolean flag)
+    {
+        this.displayMobileLink = flag;
     }
     
     /**
