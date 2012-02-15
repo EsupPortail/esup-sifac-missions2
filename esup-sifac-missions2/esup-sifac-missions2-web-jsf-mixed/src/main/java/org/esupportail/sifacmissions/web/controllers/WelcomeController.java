@@ -84,19 +84,9 @@ public class WelcomeController extends AbstractContextAwareController {
 	private Integer missionsPerPage = 25;
 
 	/**
-	 * true if user has "homonyme".
-	 */
-	private boolean homonyme;
-
-	/**
 	 * A logger.
 	 */
 	private final Logger logger = new LoggerImpl(getClass());
-
-	/**
-	 * specialMessage.
-	 */
-	private String specialMessage;
 
 	/**
 	 * Bean constructor.
@@ -160,8 +150,9 @@ public class WelcomeController extends AbstractContextAwareController {
 			matricule = getDomainService().getMatriculeService().getMatricule(currentUser.getLogin());
 			
 			if (matricule == null) {
-				homonyme = getDomainService().isHomonyme(currentUser);
-				if (!homonyme) {
+				if (getDomainService().isHomonyme(currentUser)) {
+				    addWarnMessage(null, "WELCOME.ERROR.MATRICULE");
+				} else {
 					if (nom == null) {
 						nom = StringUtils.removeAccent(getDomainService().getNom(currentUser.getLogin()));
 					}
@@ -244,33 +235,22 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * @return the navigation.
 	 */
 	public String changeYear() {
-		specialMessage = null;
 		try {
-			if (logger.isDebugEnabled()) {
-				logger.debug("Appel Web Service via cache...");
-			}
 			if (matricule == null) {
-				specialMessage = getString("WELCOME.ERROR.GETMATRICULE");
+				addWarnMessage(null, "WELCOME.ERROR.GETMATRICULE");
 			} else {
 				missions = getDomainService().getFraisMissions(matricule, nom, prenom, year);
 				Collections.sort(missions, Collections.reverseOrder(Mission.ORDER_ORDRE));
 			}
-		} catch (RemoteException e) {
-			specialMessage = getString("WELCOME.ERROR.SERVICE");
 		} catch (ParseException e) {
-			specialMessage = getString("WELCOME.ERROR.DATES");
+		    addWarnMessage(null, "WELCOME.ERROR.DATES");
+		} catch (RemoteException e) {
+			addErrorMessage(null, "WELCOME.ERROR.SERVICE");
 		} catch (ServiceException e) {
-			specialMessage = getString("WELCOME.ERROR.SERVICE");
+		    addErrorMessage(null, "WELCOME.ERROR.SERVICE");
 		}
 		
 		return NAVIGATION_WELCOME;
-	}
-
-	/**
-	 * @return homonyme.
-	 */
-	public boolean isHomonyme() {
-		return homonyme;
 	}
 
 	/**
@@ -278,13 +258,6 @@ public class WelcomeController extends AbstractContextAwareController {
 	 */
 	public String getMatricule() {
 		return matricule;
-	}
-
-	/**
-	 * @return specialMessage.
-	 */
-	public String getSpecialMessage() {
-		return specialMessage;
 	}
 
 	/**

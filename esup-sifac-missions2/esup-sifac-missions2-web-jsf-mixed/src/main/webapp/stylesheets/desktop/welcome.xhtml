@@ -3,21 +3,8 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:tr="http://myfaces.apache.org/trinidad" template="template.xhtml">
 	<ui:define name="content">
-		<tr:group rendered="#{not empty welcomeController.specialMessage}">
-			<tr:outputText value="#{welcomeController.specialMessage}" />
-		</tr:group>
-		<tr:spacer height="20px" />
-		<tr:group
-			rendered="#{(empty welcomeController.missions or welcomeController.homonyme == true) and (empty welcomeController.specialMessage)}">
-			<tr:outputText
-				rendered="#{empty welcomeController.missions and welcomeController.homonyme == false}"
-				value="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{welcomeController.year}"
-				style="color:red;font-weight: bold;" />
-			<h:outputText rendered="#{empty welcomeController.matricule}"
-				value="#{msgs['WELCOME.ERROR.MATRICULE']}"
-				style="color:red;font-weight: bold;" />
-		</tr:group>
 		<tr:form>
+			<tr:messages/>
 			<tr:panelHorizontalLayout>
 				<tr:selectOneChoice label="#{msgs['WELCOME.YEAR.SELECT_LABEL']}"
 					value="#{welcomeController.year}">
