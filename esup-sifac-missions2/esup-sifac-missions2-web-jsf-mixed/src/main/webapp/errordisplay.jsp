@@ -1,9 +1,9 @@
 <%@page pageEncoding="UTF-8"%>
-<%@ page import="java.util.List,java.io.PrintWriter,org.apache.myfaces.shared_tomahawk.util.ExceptionUtils" isErrorPage="true" %>
+<%@page import="java.util.List,java.io.PrintWriter,org.apache.myfaces.shared_tomahawk.util.ExceptionUtils" isErrorPage="true" %>
 <html>
 <head>
   <meta HTTP-EQUIV="Content-Type" CONTENT="text/html;charset=UTF-8" />
-  <title>Application Blanche - Erreur</title>
+  <title>Erreur</title>
 </head>
 <body>
 <style>
@@ -55,28 +55,27 @@ body {
     font-size: 1.0em;
 }
 </style>
-<div class="errorHeader">Application Blanche - Une erreur est survenue</div>
+<div class="errorHeader">Une erreur est survenue</div>
 
 <%
     List exceptions = ExceptionUtils.getExceptions(exception);
-    Throwable throwable = (Throwable) exceptions.get(exceptions.size()-1);
+    Throwable throwable = (Throwable) exceptions.get(exceptions.size() - 1);
     String exceptionMessage = ExceptionUtils.getExceptionMessage(exceptions);
+    
     if (exceptionMessage.indexOf("No saved view state") > -1) { 
-        exceptionMessage="Temps de connexion dépassé...";    
+        exceptionMessage = "Temps de connexion dépassé...";    
     }
-    %><span class="errorMessage"><%=exceptionMessage %></span>
-    <%
-    if (exceptionMessage.indexOf("Erreur de configuration") == -1 && exceptionMessage.indexOf("Configuration exception") == -1) { 
-        %>
+%>
+
+<span class="errorMessage"><%=exceptionMessage %></span>
+
+<% if (exceptionMessage.indexOf("Erreur de configuration") == -1 && exceptionMessage.indexOf("Configuration exception") == -1) { %>
     	<br/>
         <a href="<%= request.getContextPath() %>">Veuillez cliquer ici...</a>   
-        <%
-    }
-    %>
-    
-    <%PrintWriter pw = new PrintWriter(out); %>
-    
-<div class="errorFooter">Application Blanche - Rapport d'exception</div>
+<% } %>
+<% PrintWriter pw = new PrintWriter(out); %>
+
+<div class="errorFooter">Rapport d'exception</div>
 
 </body>
 </html>
