@@ -5,7 +5,6 @@
 package org.esupportail.sifacmissions.web.controllers;
 
 import java.rmi.RemoteException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,11 +47,6 @@ public class WelcomeController extends AbstractContextAwareController {
 	private Mission currentMission;
 
 	/**
-	 * Current year.
-	 */
-	private String year;
-
-	/**
 	 * Matricule.
 	 */
 	private String matricule;
@@ -66,6 +60,11 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * Prenom.
 	 */
 	private String prenom;
+	
+	/**
+	 * Current year.
+	 */
+	private Integer year;
 
 	/**
 	 * A list of JSF year for the years.
@@ -121,18 +120,25 @@ public class WelcomeController extends AbstractContextAwareController {
 	}
 
 	/**
-	 * JSF callback.
-	 * 
-	 * @return a String.
+	 * Initialize the application data
 	 */
-	public String initData() {
-		setYearItems();
-		return changeYear();
+	private void initData() {
+	    // Get the current year
+        year = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date())).intValue();
+        
+        // Get displayed years
+        yearItems = new ArrayList<SelectItem>();
+        
+        int lastYear = Math.max(getDomainService().getFirstYear(), year - 1);
+        for (int i = year; i >= lastYear; i--) {
+            yearItems.add(new SelectItem(i));
+        }
+        
+		changeYear();
 	}
 
 	/**
-	 * set the web service sifac parameters.
-	 * 
+	 * Set the SIFAC web service parameters
 	 */
 	private void initSifac() {
 		logger.info("Current User: " + currentUser.getLogin());
@@ -182,14 +188,14 @@ public class WelcomeController extends AbstractContextAwareController {
 	/**
 	 * @return the year.
 	 */
-	public String getYear() {
+	public Integer getYear() {
 		return year;
 	}
 
 	/**
 	 * @param year the year to set.
 	 */
-	public void setYear(String year) {
+	public void setYear(Integer year) {
 		this.year = year;
 	}
 
@@ -197,29 +203,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * @return the years items.
 	 */
 	public List<SelectItem> getYearItems() {
-		if (yearItems == null) {
-			setYearItems();
-		}
-
 		return yearItems;
-	}
-
-	/**
-	 * Set the years items.
-	 */
-	private void setYearItems() {
-		if (yearItems == null) {
-			yearItems = new ArrayList<SelectItem>();
-			Date now = new Date();
-			DateFormat dateFormat = new SimpleDateFormat("yyyy");
-			year = dateFormat.format(now);
-			int currentYear = Integer.valueOf(year).intValue();
-			year = Integer.toString(currentYear);
-			int firstYear = Integer.valueOf(getDomainService().getFirstYear()).intValue();
-			for (int i = currentYear; i >= firstYear && yearItems.size() < 2; i--) {
-				yearItems.add(new SelectItem(Integer.toString(i), Integer.toString(i)));
-			}
-		}
 	}
 
 	/**

@@ -142,7 +142,7 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
 	/**
 	 * @see org.esupportail.sifacmissions.domain.DomainService#getFirstYear()
 	 */
-	public String getFirstYear() {
+	public Integer getFirstYear() {
 		return getSifacService().getFirstYear();
 	}
 
@@ -179,17 +179,17 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
 
 	/**
 	 * @see org.esupportail.sifacmissions.domain.DomainService#getFraisMissions(java.lang.String,
-	 *      java.lang.String, java.lang.String, java.lang.String)
+	 *      java.lang.String, java.lang.String, java.lang.Integer)
 	 */
 	public List<Mission> getFraisMissions(String matricule, String nom,
-			String prenom, String year) throws ServiceException, RemoteException, ParseException {
+			String prenom, Integer year) throws ServiceException, RemoteException, ParseException {
 		return getSifacService().getFraisMissions(matricule, nom, prenom, year);
 	}
 
 	/**
 	 * @see org.esupportail.sifacmissions.domain.DomainService#isHomonyme(org.esupportail.sifacmissions.domain.beans.User)
 	 */
-	public boolean isHomonyme(User user) {
+	public Boolean isHomonyme(User user) {
 		String filter = "(displayname=" + user.getDisplayName() + ")";
 		List<LdapUser> users = ldapUserService.getLdapUsersFromFilter(filter);
 		if (users.size() > 1)

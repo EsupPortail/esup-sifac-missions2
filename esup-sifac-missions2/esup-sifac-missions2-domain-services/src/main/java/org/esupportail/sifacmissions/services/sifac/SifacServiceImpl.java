@@ -45,7 +45,7 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
 	/**
 	 * The first year of SIFAC Application.
 	 */
-	private String firstYear;
+	private Integer firstYear;
 	
 	/**
 	 * The Web Service Stub
@@ -91,7 +91,7 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<Mission> getFraisMissions(String matricule, String nom,
-			String prenom, String year) throws ServiceException,
+			String prenom, Integer year) throws ServiceException,
 			RemoteException, ParseException {
 
 		String mandat = mandant;
@@ -110,7 +110,7 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
 		String cacheKey = matricule+"|"+paramNom+"|"+paramPrenom+"|"+year+"|"+mandat;
 		
 		if (cache.get(cacheKey) == null) {
-			fms = portailService.getFraisMissions(matricule, paramNom, paramPrenom, year);
+			fms = portailService.getFraisMissions(matricule, paramNom, paramPrenom, year.toString());
 			
 			// put in cache
 			if (logger.isDebugEnabled()) {
@@ -133,14 +133,14 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
 	/**
 	 * @see org.esupportail.sifacmissions.services.sifac.SifacService#getFirstYear()
 	 */
-	public String getFirstYear() {
+	public Integer getFirstYear() {
 		return firstYear;
 	}
 
 	/**
 	 * @param firstYear the firstYear to set.
 	 */
-	public void setFirstYear(String firstYear) {
+	public void setFirstYear(Integer firstYear) {
 		this.firstYear = firstYear;
 	}
 	

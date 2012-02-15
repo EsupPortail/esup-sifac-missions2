@@ -21,7 +21,7 @@ public interface SifacService extends Serializable {
 	/**
 	 * @return the first year of SIFAC application.
 	 */
-	String getFirstYear();
+	Integer getFirstYear();
 
 	/**
 	 * @param matricule
@@ -34,6 +34,6 @@ public interface SifacService extends Serializable {
 	 * @throws ParseException
 	 */
 	public List<Mission> getFraisMissions(String matricule, String nom,
-			String prenom, String year) throws ServiceException, RemoteException, ParseException;
+			String prenom, Integer year) throws ServiceException, RemoteException, ParseException;
 	
 }

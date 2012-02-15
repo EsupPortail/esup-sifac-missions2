@@ -17,18 +17,18 @@ import org.esupportail.sifacmissions.domain.beans.User;
  * @author Yves Deschamps (Universite de Lille 1) - 2010
  * 
  */
-public interface DomainService extends Serializable {
-	
-	/**
-	 * @param uid
-	 * @return a user.
-	 */
-	User getUser(String uid);
+public interface DomainService extends Serializable
+{
+    /**
+     * @param uid
+     * @return a user.
+     */
+    User getUser(String uid);
 
-	/**
+    /**
      * @return the first year of SIFAC application.
      */
-    String getFirstYear();
+    Integer getFirstYear();
 
     /**
      * @param id
@@ -41,7 +41,7 @@ public interface DomainService extends Serializable {
      * @return the given name of user (without accent).
      */
     String getPrenom(String id);
-    
+
     /**
      * @param matricule
      * @param nom
@@ -50,17 +50,16 @@ public interface DomainService extends Serializable {
      * @return a list of frais missions.
      * @throws RemoteException
      * @throws ParseException
-     * @throws ServiceException 
+     * @throws ServiceException
      */
-    List<Mission> getFraisMissions(String matricule, String nom, String prenom,
-            String year) throws RemoteException, ParseException, ServiceException;
+    List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws RemoteException, ParseException, ServiceException;
 
     /**
      * @param user
      * @return true if homonyme.
      */
-    boolean isHomonyme(User user);
-    
+    Boolean isHomonyme(User user);
+
     /**
      * @return the matricule service.
      */
