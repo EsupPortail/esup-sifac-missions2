@@ -76,13 +76,13 @@ public class SifacPortailService {
     				Periode periode = new Periode();
     				periode.setDebut(formatter.parse(missionsArray[i].getDATE_DEBUT()));
     				periode.setFin(formatter.parse(missionsArray[i].getDATE_FIN()));
-    
+    				
     				mission.setPeriode(periode);
-    				mission.setNumero(missionsArray[i].getNUMERO());
-    				mission.setMotif(missionsArray[i].getMOTIF());
+    				mission.setNumero(StringUtils.trimWhitespace(missionsArray[i].getNUMERO()));
+    				mission.setMotif(StringUtils.trimWhitespace(missionsArray[i].getMOTIF()));
     				mission.setMontant(missionsArray[i].getMNT_TOT_MISSION());
     				mission.setRemboursement(missionsArray[i].getMNT_REMB_MISSION());
-    				mission.setOrdre(Long.parseLong(missionsArray[i].getNUMERO()));
+    				mission.setOrdre(Long.parseLong(StringUtils.trimWhitespace(missionsArray[i].getNUMERO())));
     				
     				mission.setDetails(getMissionDetails(matricule, mission.getNumero()));
     				
@@ -113,7 +113,7 @@ public class SifacPortailService {
 				MissionDetails details = new MissionDetails();
 				
 				details.setCategorie(categorizer.getCategory(detailsArray[i].getCAT_FRAIS_DEPL()));
-				details.setDescription(detailsArray[i].getDES_FRAIS_DEPL());
+				details.setDescription(StringUtils.trimWhitespace(detailsArray[i].getDES_FRAIS_DEPL()));
 				details.setMontant(detailsArray[i].getMONTANT());
 				details.setPaid(detailsArray[i].getPAYE_SOCIETE().equals("X"));
 				
