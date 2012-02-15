@@ -18,7 +18,6 @@ import javax.xml.rpc.ServiceException;
 
 import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
-import org.esupportail.commons.utils.ContextUtils;
 import org.esupportail.sifacmissions.domain.beans.Mission;
 import org.esupportail.sifacmissions.domain.beans.User;
 import org.esupportail.sifacmissions.web.utils.StringUtils;
@@ -119,19 +118,6 @@ public class WelcomeController extends AbstractContextAwareController {
 		
 		// Initialize application data
 		initData();
-	}
-
-	/**
-	 * @return true if the current user is allowed to view the page.
-	 */
-	public boolean isPageAuthorized() {
-		initUser();
-		
-		if (ContextUtils.isPortlet()) {
-			return false;
-		}
-		
-		return true;
 	}
 
 	/**
@@ -286,5 +272,4 @@ public class WelcomeController extends AbstractContextAwareController {
 	public void setCurrentMission(Mission mission) {
 		this.currentMission = mission;
 	}
-
 }
