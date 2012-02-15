@@ -110,10 +110,15 @@ public class WelcomeController extends AbstractContextAwareController {
 	public void reset() {
 		currentUser = null;
 		matricule = null;
+		
+		// Initialize current user
 		initUser();
-		setParameters();
-		super.reset();
-		enter();
+		
+		// Initialize SIFAC parameters
+		initSifac();
+		
+		// Initialize application data
+		initData();
 	}
 
 	/**
@@ -134,7 +139,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * 
 	 * @return a String.
 	 */
-	public String enter() {
+	public String initData() {
 		setYearItems();
 		return changeYear();
 	}
@@ -143,7 +148,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * set the web service sifac parameters.
 	 * 
 	 */
-	private void setParameters() {
+	private void initSifac() {
 		logger.info("Current User: " + currentUser.getLogin());
 		
 		if (matricule == null) {
