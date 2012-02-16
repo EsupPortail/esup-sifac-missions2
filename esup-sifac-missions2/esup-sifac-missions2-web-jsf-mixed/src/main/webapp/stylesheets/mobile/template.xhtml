@@ -4,6 +4,14 @@
 	locale="#{sessionController.locale}">
 	<tr:document title="#{msgs['BLANK.TEXT']}">
 		<ui:include src="facet.xhtml" />
-		<ui:insert name="content" />
+		
+		<div id="jqt">
+			<div class="current">
+				<div class="toolbar">
+					<ui:insert name="toolbar" />
+				</div>
+				<ui:insert name="content" />
+			</div>
+		</div>
 	</tr:document>
 </f:view>

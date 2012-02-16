@@ -2,73 +2,68 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:tr="http://myfaces.apache.org/trinidad"
-	xmlns:trh="http://myfaces.apache.org/trinidad/html"
 	template="template.xhtml">
+	
+	<ui:define name="toolbar">
+		<h1 class="full">
+			<h:outputText value="#{msgs['M_BLANK.TEXT']}" />
+		</h1>
+	</ui:define>
 
 	<ui:define name="content">
-		<tr:form>
-			<tr:panelHeader styleClass="toolbar full"
-				text="#{msgs['M_BLANK.TEXT']}" />
-		</tr:form>
-		<tr:form>
-			<div class="messageSelect">
-				<h:selectOneMenu value="#{welcomeController.year}"
-					onchange="changeYear()">
-					<f:selectItems value="#{welcomeController.yearItems}" />
-				</h:selectOneMenu>
+		<h:form>
+			<ul class="rounded">
+				<li class="arrow">
+					<h:selectOneMenu value="#{welcomeController.year}" onchange="changeYear()">
+						<f:selectItems value="#{welcomeController.yearItems}" />
+					</h:selectOneMenu>
+				</li>
+			</ul>
+			<div style="display:none" id="changeYearBtn">
+				<h:commandButton action="#{welcomeController.changeYear}" />
 			</div>
-			<div style="display: none">
-				<tr:commandButton id="yearSubmit"
-					action="#{welcomeController.changeYear}" />
+		</h:form>
+		<f:subview rendered="#{empty welcomeController.missions}">
+			<div class="info">
+				<h:outputText value="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{welcomeController.year}" />
 			</div>
-		</tr:form>
-		<tr:form>
-			<tr:table value="#{welcomeController.missions}" var="mission"
-				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}" width="100%"
-				horizontalGridVisible="false" verticalGridVisible="false"
-				styleClass="panelTable" rows="0">
-				<tr:column>
-					<tr:panelGroupLayout layout="vertical" styleClass="listing">
-						<tr:panelGroupLayout layout="vertical" styleClass="listingDetails">
-							<trh:tableLayout>
-								<trh:rowLayout>
+		</f:subview>
+		<f:subview rendered="#{not empty welcomeController.missions}">
+			<h:form>
+				<ul class="scroll metal missions">
+					<tr:iterator var="mission" value="#{welcomeController.missions}" rows="0">
+						<li class="arrow">
+							<h:commandLink action="mission">
+								<f:setPropertyActionListener value="mission" target="#{sessionController.action}" />
+								<f:setPropertyActionListener value="#{mission}" target="#{welcomeController.currentMission}" />
+								<strong>
+									<h:outputText value="#{mission.motif}" />
+								</strong>
+								<em>
 									<h:outputText value="#{msgs['WELCOME.MISSION.M_START']} &#160;" />
 									<h:outputText value="#{mission.periode.debut}">
 										<tr:convertDateTime locale="fr" type="date" />
 									</h:outputText>
-								</trh:rowLayout>
-								<trh:rowLayout>
+									<br />
 									<h:outputText value="#{msgs['WELCOME.MISSION.M_END']} &#160;" />
 									<h:outputText value="#{mission.periode.fin}">
 										<tr:convertDateTime locale="fr" type="date" />
 									</h:outputText>
-								</trh:rowLayout>
-							</trh:tableLayout>
-						</tr:panelGroupLayout>
-						<tr:panelGroupLayout layout="vertical"
-							styleClass="listingStatus status#{mission.status}">
-							<tr:outputText value="#{mission.montant}">
-								<tr:convertNumber locale="fr" type="currency"
-									currencySymbol="&#8364;" />
-							</tr:outputText>
-						</tr:panelGroupLayout>
-						<tr:outputText value="#{mission.motif}"
-							styleClass="listingLinkTitle" />
-						<tr:commandLink action="mission"
-							styleClass="listingLink statusLink">
-							<f:setPropertyActionListener value="mission"
-								target="#{sessionController.action}" />
-							<f:setPropertyActionListener value="#{mission}"
-								target="#{welcomeController.currentMission}" />
-						</tr:commandLink>
-					</tr:panelGroupLayout>
-				</tr:column>
-			</tr:table>
-		</tr:form>
-
+								</em>
+								<small>
+									<h:outputText value="#{mission.montant}">
+										<tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
+									</h:outputText>
+								</small>
+							</h:commandLink>
+						</li>
+					</tr:iterator>
+				</ul>
+			</h:form>
+		</f:subview>
 		<script type="text/javascript">
 			function changeYear() {
-				document.getElementById('null:yearSubmit').click();
+				document.getElementById('changeYearBtn').getElementsByTagName("input").item(0).click();
 			}
 		</script>
 	</ui:define>
