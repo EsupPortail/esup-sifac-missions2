@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	
 	<modelVersion>4.0.0</modelVersion>
+	
 	<parent>
 		<artifactId>esup-sifac-missions2</artifactId>
 		<groupId>org.esupportail</groupId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.0.0-RC3-SNAPSHOT</version>
 	</parent>
+	
 	<artifactId>esup-sifac-missions2-sifac-services</artifactId>
-	<description>Sifac Services</description>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -53,30 +58,28 @@
 			</plugin>
 		</plugins>
 	</build>
+	
 	<dependencies>
-		<dependency>
-			<groupId>org.esupportail</groupId>
-			<artifactId>esup-sifac-missions2-domain-beans</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<type>jar</type>
-		</dependency>
         <dependency>
             <groupId>org.apache.axis</groupId>
             <artifactId>axis</artifactId>
             <version>1.4</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>org.apache.axis</groupId>
             <artifactId>axis-jaxrpc</artifactId>
             <version>1.4</version>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>wsdl4j</groupId>
             <artifactId>wsdl4j</artifactId>
             <version>1.6.2</version>
-            <type>jar</type>
         </dependency>
+		<dependency>
+			<groupId>org.esupportail</groupId>
+			<artifactId>esup-sifac-missions2-domain-beans</artifactId>
+			<version>${project.version}</version>
+		</dependency>
 	</dependencies>
+
 </project>
