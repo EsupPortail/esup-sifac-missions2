@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	<display-name>esup-sifac-missions2-${misc.version}</display-name>
-
+	
+	<display-name>esup-sifac-missions2</display-name>
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>esup-sifac-missions2-${misc.version}</param-value>
+		<param-value>esup-sifac-missions2</param-value>
 	</context-param>
 
 	<!-- Faces Servlet -->
@@ -20,10 +20,21 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
-
 	<context-param>
 		<param-name>javax.faces.CONFIG_FILES</param-name>
 		<param-value>/WEB-INF/navigation-rules.xml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+		<param-value>.xhtml</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.DEVELOPMENT</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>facelets.SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
 	</context-param>
 	
 	<!-- Trinidad -->
@@ -54,7 +65,7 @@
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
 
-	<!-- resource loader servlet -->
+	<!-- Resource loader servlet -->
 	<servlet>
 		<servlet-name>resources</servlet-name>
 		<servlet-class>org.apache.myfaces.trinidad.webapp.ResourceServlet</servlet-class>
@@ -66,8 +77,6 @@
 
 	<!-- for Spring -->
 	<context-param>
-		<description>The location of the main configuration file of the
-            Spring framework.</description>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:/properties/applicationContext.xml</param-value>
 	</context-param>
@@ -78,23 +87,13 @@
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
 
-	<context-param>
-		<param-name>facelets.DEVELOPMENT</param-name>
-		<param-value>true</param-value>
-	</context-param>
-
-	<context-param>
-		<param-name>facelets.SKIP_COMMENTS</param-name>
-		<param-value>true</param-value>
-	</context-param>
-
 	<!-- FaceletViewHandler configuration -->
 	<context-param>
 		<param-name>org.apache.myfaces.trinidad.ALTERNATE_VIEW_HANDLER</param-name>
 		<param-value>org.esupportail.commons.jsf.FaceletServletOrPortletViewHandler</param-value>
 	</context-param>
 
-	<!-- for sso-cas -->
+	<!-- for CAS -->
 	<filter>
 		<filter-name>CAS Authentication Filter</filter-name>
 		<filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
@@ -141,11 +140,5 @@
 		<error-code>500</error-code>
 		<location>/errordisplay.jsp</location>
 	</error-page>
-
-	<!-- Use documents saved as *.xhtml for Facelets -->
-	<context-param>
-		<param-name>javax.faces.DEFAULT_SUFFIX</param-name>
-		<param-value>.xhtml</param-value>
-	</context-param>
 
 </web-app>

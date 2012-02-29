@@ -5,11 +5,9 @@
                         http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
 
 	<portlet>
-		<portlet-name>${portlet.name}</portlet-name>
 		<display-name xml:lang="fr">esup-sifac-missions2</display-name>
+		<portlet-name>esup-sifac-missions2</portlet-name>
 		<portlet-class>javax.portlet.faces.GenericFacesPortlet</portlet-class>
-        <!-- if you don'nt need mobile, you can change this first page to 
-              /stylesheets/desktop/welcome.xhtml -->
 		<init-param>
 			<name>javax.portlet.faces.defaultViewId.view</name>
 			<value>/stylesheets/home.xhtml</value>
@@ -20,10 +18,9 @@
 			<portlet-mode>VIEW</portlet-mode>
 		</supports>
 		<supported-locale>fr</supported-locale>
-		<supported-locale>en</supported-locale>
 		<portlet-info>
-			<title>${portlet.name}</title>
-			<short-title>${portlet.name}</short-title>
+			<title>esup-sifac-missions2</title>
+			<short-title>esup-sifac-missions2</short-title>
 			<keywords>esup-sifac-missions2</keywords>
 		</portlet-info>
 	</portlet>

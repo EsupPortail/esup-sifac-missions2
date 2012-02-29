@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="agentUtil" class="org.esupportail.sifacmissions.web.utils.AgentUtil" scope="session">
-        <property name="skins">
-            <map>
-                <entry key="iPhone" value="iphoneFamily" />
-                <entry key="Android" value="iphoneFamily" />
-            </map>
-        </property>
-    </bean>
+	<bean id="agentUtil" class="org.esupportail.sifacmissions.web.utils.AgentUtil" scope="session">
+		<property name="skins">
+			<map>
+				<entry key="iPhone" value="iphoneFamily" />
+				<entry key="Android" value="iphoneFamily" />
+			</map>
+		</property>
+	</bean>
 
 </beans>

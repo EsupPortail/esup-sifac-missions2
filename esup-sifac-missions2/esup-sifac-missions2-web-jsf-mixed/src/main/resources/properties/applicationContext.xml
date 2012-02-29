@@ -6,15 +6,12 @@
 	    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 	    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:property-placeholder
-		location="classpath:/properties/defaults.properties,classpath:/properties/config.properties" />
+	<context:property-placeholder location="classpath:/properties/defaults.properties,classpath:/properties/config.properties" />
 
-	<bean id="app_context"
-		class="org.esupportail.commons.context.ApplicationContextHolder" />
+	<bean id="app_context" class="org.esupportail.commons.context.ApplicationContextHolder" />
 
 	<import resource="ldap/ldap.xml" />
     <import resource="classpath*:META-INF/esup-sifac-missions2-domain-services-auth.xml" />
-	<import resource="classpath*:META-INF/esup-sifac-missions2-domain-services-sifac.xml" />
 	<import resource="classpath*:META-INF/esup-sifac-missions2-domain-services-domain.xml" />
 	<import resource="classpath*:META-INF/esup-sifac-missions2-sifac-services.xml" />
 
