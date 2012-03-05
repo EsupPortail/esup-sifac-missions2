@@ -148,7 +148,7 @@ public class WelcomeController extends AbstractContextAwareController {
 			
 			if (matricule == null) {
 				if (getDomainService().isHomonyme(currentUser)) {
-				    addWarnMessage(null, "WELCOME.ERROR.MATRICULE");
+				    addWarnMessage(null, "WELCOME.ERROR.GETMATRICULE");
 				} else {
 					if (nom == null) {
 						nom = StringUtils.removeAccent(getDomainService().getNom(currentUser.getLogin()));
