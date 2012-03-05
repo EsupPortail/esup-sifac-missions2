@@ -8,7 +8,9 @@
 			<tr:group rendered="#{not exceptionController.exception}">
 				<ui:include src="menu.xhtml" />
 				<tr:spacer height="20px" />
-				<ui:insert name="content" />
+				<f:subview rendered="#{sessionController.currentUser}">
+					<ui:insert name="content" />
+				</f:subview>
 			</tr:group>
 			<tr:group rendered="#{exceptionController.exception}">
 				<tr:form id="exceptionButtons">

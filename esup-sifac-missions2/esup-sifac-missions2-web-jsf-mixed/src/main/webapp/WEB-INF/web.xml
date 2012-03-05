@@ -120,7 +120,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>CAS Authentication Filter</filter-name>
-		<url-pattern>/stylesheets/*</url-pattern>
+		<url-pattern>/stylesheets/protected/*</url-pattern>
 	</filter-mapping>
 	<filter-mapping>
 		<filter-name>CAS Validation Filter</filter-name>

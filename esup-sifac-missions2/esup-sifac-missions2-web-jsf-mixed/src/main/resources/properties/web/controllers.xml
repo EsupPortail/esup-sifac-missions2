@@ -11,8 +11,9 @@
 		<property name="version" value="${misc.version}" />
 		<property name="site" value="nothing" />
 		<property name="casLogoutUrl" value="${cas.url}/logout?service=%s"/>
+		<property name="locale" value="${misc.locale}"/>
 	</bean>
-
+	
 	<bean id="exceptionController"
 		class="org.esupportail.sifacmissions.web.controllers.ExceptionController"
 		scope="session">

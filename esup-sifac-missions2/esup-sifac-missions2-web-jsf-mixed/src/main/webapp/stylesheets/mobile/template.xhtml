@@ -1,4 +1,5 @@
 <f:view xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:tr="http://myfaces.apache.org/trinidad"
 	locale="#{sessionController.locale}">
@@ -10,7 +11,18 @@
 				<div class="toolbar">
 					<ui:insert name="toolbar" />
 				</div>
-				<ui:insert name="content" />
+				<f:subview rendered="#{sessionController.currentUser}">
+					<ui:insert name="content" />
+				</f:subview>
+				<f:subview rendered="#{not sessionController.currentUser}">
+					<ul class="rounded">
+						<li class="arrow">
+							<h:outputLink value="/stylesheets/protected/m_login.xhtml">
+								<h:outputText value="#{msgs['LOGIN.TEXT']}" />
+							</h:outputLink>
+						</li>
+					</ul>
+				</f:subview>
 			</div>
 		</div>
 	</tr:document>
