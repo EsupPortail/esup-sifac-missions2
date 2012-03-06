@@ -8,7 +8,7 @@
 			<tr:group rendered="#{not exceptionController.exception}">
 				<ui:include src="menu.xhtml" />
 				<tr:spacer height="20px" />
-				<f:subview rendered="#{sessionController.currentUser}">
+				<f:subview rendered="#{not empty sessionController.currentUser}">
 					<ui:insert name="content" />
 				</f:subview>
 			</tr:group>
