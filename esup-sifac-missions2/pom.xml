@@ -10,6 +10,8 @@
 	<version>1.0.0.RC4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
+	<name>esup-sifacmiss2</name>
+	
 	<repositories>
 		<repository>
 			<id>esup</id>
