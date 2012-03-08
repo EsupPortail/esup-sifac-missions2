@@ -8,11 +8,6 @@
 		<property name="ldapUserService" ref="ldapUserService" />
 		<property name="sifacService" ref="sifacService" />
 		<property name="matriculeService" ref="${domain.matricule.bean}" />
-		<property name="administrators">
-			<list>
-				<value>ydescham</value>
-			</list>
-		</property>
 		<property name="cacheManager" ref="cacheManager" />
 		<property name="cacheName" value="User" />
 	</bean>

@@ -6,6 +6,7 @@ package org.esupportail.sifacmissions.domain;
 
 import java.rmi.RemoteException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.rpc.ServiceException;
@@ -79,7 +80,7 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
 	 * Bean constructor.
 	 */
 	public DomainServiceImpl() {
-		super();
+		administrators = new ArrayList<String>();
 	}
 	
 	/**
@@ -94,7 +95,6 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
 		Assert.notNull(this.ldapUserService, "property ldapUserService of class " + this.getClass().getName() + " can not be null");
 		Assert.notNull(this.sifacService, "property sifacService of class " + this.getClass().getName() + " can not be null");
 		Assert.notNull(this.matriculeService, "property matriculeService of class " + this.getClass().getName() + " can not be null");
-		Assert.notNull(administrators, "property administrators of class " + getClass().getName() + " can not be null");
 		Assert.notNull(cacheManager, "property cacheManager of class " + getClass().getName() + " can not be null");
 		Assert.notNull(cacheName, "property cacheName of class " + getClass().getName() + " can not be null");
 		
