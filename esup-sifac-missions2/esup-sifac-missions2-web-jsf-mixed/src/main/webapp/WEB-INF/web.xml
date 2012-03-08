@@ -4,10 +4,10 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
 	
-	<display-name>esup-sifac-missions2</display-name>
+	<display-name>esup-sifacmiss2</display-name>
 	<context-param>
 		<param-name>webAppRootKey</param-name>
-		<param-value>esup-sifac-missions2</param-value>
+		<param-value>esup-sifacmiss2</param-value>
 	</context-param>
 
 	<!-- Faces Servlet -->

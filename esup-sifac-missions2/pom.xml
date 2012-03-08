@@ -6,7 +6,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>org.esupportail</groupId>
-	<artifactId>esup-sifac-missions2</artifactId>
+	<artifactId>esup-sifacmiss2</artifactId>
 	<version>1.0.0.RC4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
@@ -103,10 +103,10 @@
 	</properties>
 	
 	<modules>
-		<module>esup-sifac-missions2-domain-beans</module>
-		<module>esup-sifac-missions2-domain-services</module>
-		<module>esup-sifac-missions2-sifac-services</module>
-		<module>esup-sifac-missions2-web-jsf-mixed</module>
+		<module>esup-sifacmiss2-domain-beans</module>
+		<module>esup-sifacmiss2-domain-services</module>
+		<module>esup-sifacmiss2-sifac-services</module>
+		<module>esup-sifacmiss2-web-jsf-mixed</module>
 	</modules>
 
 </project>

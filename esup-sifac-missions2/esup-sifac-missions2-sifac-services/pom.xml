@@ -6,12 +6,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	
 	<parent>
-		<artifactId>esup-sifac-missions2</artifactId>
+		<artifactId>esup-sifacmiss2</artifactId>
 		<groupId>org.esupportail</groupId>
 		<version>1.0.0.RC4-SNAPSHOT</version>
 	</parent>
 	
-	<artifactId>esup-sifac-missions2-sifac-services</artifactId>
+	<artifactId>esup-sifacmiss2-sifac-services</artifactId>
 	
 	<build>
 		<plugins>
@@ -77,7 +77,7 @@
         </dependency>
 		<dependency>
 			<groupId>org.esupportail</groupId>
-			<artifactId>esup-sifac-missions2-domain-beans</artifactId>
+			<artifactId>esup-sifacmiss2-domain-beans</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

@@ -6,12 +6,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<artifactId>esup-sifac-missions2</artifactId>
+		<artifactId>esup-sifacmiss2</artifactId>
 		<groupId>org.esupportail</groupId>
 		<version>1.0.0.RC4-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>esup-sifac-missions2-web-jsf-mixed</artifactId>
+	<artifactId>esup-sifacmiss2-web-jsf-mixed</artifactId>
 	<packaging>war</packaging>
 
 	<properties>
@@ -66,7 +66,7 @@
 		<!-- ESUP Sifacmiss v2 -->
 		<dependency>
 			<groupId>org.esupportail</groupId>
-			<artifactId>esup-sifac-missions2-domain-services</artifactId>
+			<artifactId>esup-sifacmiss2-domain-services</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
