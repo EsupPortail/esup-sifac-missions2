@@ -7,7 +7,7 @@
 	
 	<groupId>org.esupportail</groupId>
 	<artifactId>esup-sifac-missions2</artifactId>
-	<version>1.0.0.RC3</version>
+	<version>1.0.0.RC4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	
 	<repositories>
