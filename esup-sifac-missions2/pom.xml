@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	
 	<modelVersion>4.0.0</modelVersion>
 	
 	<groupId>org.esupportail</groupId>
 	<artifactId>esup-sifacmiss2</artifactId>
-	<version>1.0.0.RC4-SNAPSHOT</version>
+	<version>1.0.0-RC4</version>
 	<packaging>pom</packaging>
 	
 	<name>esup-sifacmiss2</name>
@@ -49,8 +47,8 @@
 	</distributionManagement>
 	
 	<scm>
-		<developerConnection>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/trunk</developerConnection>
-		<url>https://subversion.cru.fr/esup-sifacmiss2</url>
+		<developerConnection>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/tags/1.0.0-RC4</developerConnection>
+		<url>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/tags/1.0.0-RC4</url>
 	</scm>
 	
 	<build>
