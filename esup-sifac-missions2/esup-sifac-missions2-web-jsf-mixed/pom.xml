@@ -36,21 +36,33 @@
 			<version>${javax.portlet.version}</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- ESUP Commons v2 -->
 		<dependency>
-			<groupId>org.esupportail</groupId>
-			<artifactId>esup-commons2-jsf-portlet</artifactId>
-			<version>${esupcommons.version}</version>
+			<groupId>org.apache.myfaces.portlet-bridge</groupId>
+			<artifactId>portlet-bridge-impl</artifactId>
+			<version>${portlet.bridge.version}</version>
 		</dependency>
+		<!-- ESUP Commons v2 -->
 		<dependency>
 			<groupId>org.esupportail</groupId>
 			<artifactId>esup-commons2-jsf-trinidad</artifactId>
 			<version>${esupcommons.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.myfaces.shared</groupId>
+					<artifactId>myfaces-shared-tomahawk</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.esupportail</groupId>
-			<artifactId>esup-commons2-ldap</artifactId>
+			<artifactId>esup-commons2-jsf-exception</artifactId>
 			<version>${esupcommons.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.apache.myfaces.tomahawk</groupId>
+					<artifactId>tomahawk12</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- ESUP Sifacmiss v2 -->
 		<dependency>
