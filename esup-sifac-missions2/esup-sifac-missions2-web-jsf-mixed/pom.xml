@@ -8,7 +8,7 @@
 	<parent>
 		<artifactId>esup-sifac-missions2</artifactId>
 		<groupId>org.esupportail</groupId>
-		<version>1.0.0-RC3-SNAPSHOT</version>
+		<version>1.0.0.RC3-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>esup-sifac-missions2-web-jsf-mixed</artifactId>
@@ -135,7 +135,7 @@
 									</includes>
 								</resource>
 							</webResources>
-							<warName>${project.parent.artifactId}</warName>
+							<warName>${project.parent.artifactId}-${project.parent.version}</warName>
 						</configuration>
 					</plugin>
 				</plugins>
