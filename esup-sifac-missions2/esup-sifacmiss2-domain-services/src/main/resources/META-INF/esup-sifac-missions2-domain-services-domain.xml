@@ -22,7 +22,7 @@
 		<property name="matriculeAttribute" value="${domain.matricule.ldap.attribute}" />
 	</bean>
 
-	<bean id="matriculeBySifac" class="org.esupportail.sifacmissions.domain.MatriculeBySifac"  lazy-init="true">
+	<bean id="matriculeBySifac" class="org.esupportail.sifacmissions.domain.MatriculeBySifac" lazy-init="true">
 		<property name="matriculeService" ref="sifacMatriculeService" />
 	</bean>
 	
