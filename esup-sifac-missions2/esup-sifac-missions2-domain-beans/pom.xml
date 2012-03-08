@@ -8,7 +8,7 @@
 	<parent>
 		<artifactId>esup-sifac-missions2</artifactId>
 		<groupId>org.esupportail</groupId>
-		<version>1.0.0.RC3-SNAPSHOT</version>
+		<version>1.0.0.RC3</version>
 	</parent>
 	
 	<artifactId>esup-sifac-missions2-domain-beans</artifactId>
