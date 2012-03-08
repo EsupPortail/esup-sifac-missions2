@@ -103,7 +103,7 @@
 		</init-param>
 		<init-param>
 			<param-name>serverName</param-name>
-			<param-value>http://${tomcat.host}${tomcat.port.string}</param-value>
+			<param-value>${cas.serverName}</param-value>
 		</init-param>
 	</filter>
 	<filter>
@@ -115,7 +115,7 @@
 		</init-param>
 		<init-param>
 			<param-name>serverName</param-name>
-			<param-value>http://${tomcat.host}${tomcat.port.string}</param-value>
+			<param-value>${cas.serverName}</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
