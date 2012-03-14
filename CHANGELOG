@@ -1,0 +1,7 @@
+
+1.0.0-RC4
+  * Added CHANGELOG
+  * Added READMEs
+  * Added EhCache XSD definition
+  * Fixed error in logs when 'quickStart' is not set 
+  * Fixed default locale selection
