@@ -203,6 +203,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	}
 	
 	public void yearChanged(ValueChangeEvent event) {
+		setYear((Integer) event.getNewValue());
 		changeYear();
 	}
 
