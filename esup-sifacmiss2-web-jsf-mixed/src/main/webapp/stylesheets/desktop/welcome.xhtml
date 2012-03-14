@@ -6,12 +6,12 @@
 		<tr:form>
 			<tr:messages/>
 			<tr:panelHorizontalLayout>
-				<tr:selectOneChoice label="#{msgs['WELCOME.YEAR.SELECT_LABEL']}"
+				<tr:selectOneChoice immediate="true" autoSubmit="true"
+					valueChangeListener="#{welcomeController.yearChanged}"
+					label="#{msgs['WELCOME.YEAR.SELECT_LABEL']}"
 					value="#{welcomeController.year}">
 					<f:selectItems value="#{welcomeController.yearItems}" />
 				</tr:selectOneChoice>
-				<tr:commandButton text="#{msgs['WELCOME.YEAR.SELECT_ACTION']}"
-					action="#{welcomeController.changeYear}" />
 			</tr:panelHorizontalLayout>
 		</tr:form>
 		<tr:spacer height="20px" />

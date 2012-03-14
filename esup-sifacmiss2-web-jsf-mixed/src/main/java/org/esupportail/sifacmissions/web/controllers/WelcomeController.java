@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
+import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 import javax.xml.rpc.ServiceException;
 
@@ -30,11 +31,6 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * The serialization id.
 	 */
 	private static final long serialVersionUID = -239570715531002003L;
-
-	/**
-	 * The jsf navigation.
-	 */
-	private static final String NAVIGATION_WELCOME = "navigationWelcome";
 
 	/**
 	 * The current user.
@@ -205,11 +201,12 @@ public class WelcomeController extends AbstractContextAwareController {
 	public List<SelectItem> getYearItems() {
 		return yearItems;
 	}
+	
+	public void yearChanged(ValueChangeEvent event) {
+		changeYear();
+	}
 
-	/**
-	 * @return the navigation.
-	 */
-	public String changeYear() {
+	private void changeYear() {
 		try {
 			if (matricule == null) {
 				addWarnMessage(null, "WELCOME.ERROR.GETMATRICULE");
@@ -224,8 +221,6 @@ public class WelcomeController extends AbstractContextAwareController {
 		} catch (ServiceException e) {
 		    addErrorMessage(null, "WELCOME.ERROR.SERVICE");
 		}
-		
-		return NAVIGATION_WELCOME;
 	}
 
 	/**
