@@ -16,7 +16,7 @@
 				<tr:statusIndicator/>
 			</tr:panelHorizontalLayout>
 			<tr:spacer height="20px" />
-			<tr:table partialTriggers="yearSelector"
+			<tr:table partialTriggers="::yearSelector"
 				value="#{welcomeController.missions}" var="mission"
 				rows="#{welcomeController.missionsPerPage}"
 				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}"
