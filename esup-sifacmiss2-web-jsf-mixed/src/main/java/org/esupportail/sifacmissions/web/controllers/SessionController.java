@@ -80,11 +80,6 @@ public class SessionController extends AbstractDomainAwareBean {
 	private boolean portletMode;
 
 	/**
-	 * The accessibility mode.
-	 */
-	private String accessibilityMode = "default";
-
-	/**
 	 * The CAS logout URL.
 	 */
 	private String casLogoutUrl;
@@ -302,8 +297,7 @@ public class SessionController extends AbstractDomainAwareBean {
 		try {
 			externalContext.redirect(forwardUrl);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		facesContext.responseComplete();
@@ -354,22 +348,6 @@ public class SessionController extends AbstractDomainAwareBean {
 	}
 
 	/**
-	 * @return the accessibility mode of the current user or default if not
-	 *         authenticated.
-	 */
-	public String getAccessibilityMode() {
-		return accessibilityMode;
-	}
-
-	/**
-	 * @param accessibilityMode
-	 *            The accessibilityMode to set
-	 */
-	public void setAccessibilityMode(String accessibilityMode) {
-		this.accessibilityMode = accessibilityMode;
-	}
-
-	/**
 	 * @param exceptionController
 	 */
 	public void setExceptionController(ExceptionController exceptionController) {
@@ -405,20 +383,6 @@ public class SessionController extends AbstractDomainAwareBean {
 	public String getServletUrl() {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		return facesContext.getExternalContext().getRequestContextPath() + "/stylesheets/home.xhtml";
-	}
-
-	/**
-	 * @return display accessibility mode.
-	 */
-	public String getDisplayAccessibilityMode() {
-		if (accessibilityMode.equals("default"))
-			return I18nUtils.createI18nService().getString("PREFERENCES.ACCESSIBILITY.DEFAULT");
-		
-		if (accessibilityMode.equals("inaccessible"))
-			return I18nUtils.createI18nService().getString("PREFERENCES.ACCESSIBILITY.INACCESSIBLE");
-		
-		return I18nUtils.createI18nService().getString("PREFERENCES.ACCESSIBILITY.SCREENREADER");
-
 	}
 
 	/**

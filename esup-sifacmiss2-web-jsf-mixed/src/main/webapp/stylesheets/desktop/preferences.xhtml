@@ -10,13 +10,6 @@
 					<f:selectItems value="#{preferencesController.localeItems}" />
 				</tr:selectOneChoice>
 				<tr:spacer height="20px" />
-				<tr:selectOneChoice
-					label="#{msgs['PREFERENCES.ACCESSIBILITY.LABEL']}: "
-					value="#{sessionController.accessibilityMode}">
-					<f:selectItems
-						value="#{preferencesController.accessibilityModeItems}" />
-				</tr:selectOneChoice>
-				<tr:spacer height="20px" />
                 <tr:selectOneChoice
                     label="#{msgs['PREFERENCES.MISSIONS_PER_PAGE.LABEL']}: "
                     value="#{welcomeController.missionsPerPage}">

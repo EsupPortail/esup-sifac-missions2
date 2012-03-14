@@ -11,8 +11,6 @@ import java.util.Locale;
 import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
-import org.esupportail.sifacmissions.web.jsf.BundleService;
-
 /**
  * @author Yves Deschamps (Universite de Lille 1) - 2011
  * 
@@ -28,11 +26,6 @@ public class PreferencesController extends AbstractContextAwareController {
 	 * An items list for locals.
 	 */
 	private List<SelectItem> localeItems;
-
-	/**
-	 * An items list for accessibility.
-	 */
-	private List<SelectItem> accessibilityModeItems;
 
 	/**
 	 * An items list for for missions pagination.
@@ -55,7 +48,6 @@ public class PreferencesController extends AbstractContextAwareController {
 	public void reset() {
 		super.reset();
 		
-		accessibilityModeItems = null;
 		localeItems = null;
 		missionsPerPageItems = null;
 	}
@@ -77,18 +69,6 @@ public class PreferencesController extends AbstractContextAwareController {
 		}
 		
 		return localeItems;
-	}
-
-	/**
-	 * @return the accessibilityModeItems
-	 */
-	public List<SelectItem> getAccessibilityModeItems() {
-		accessibilityModeItems = new ArrayList<SelectItem>();
-		accessibilityModeItems.add(new SelectItem("default", BundleService.getString("PREFERENCES.ACCESSIBILITY.DEFAULT")));
-		accessibilityModeItems.add(new SelectItem("inaccessible", BundleService.getString("PREFERENCES.ACCESSIBILITY.INACCESSIBLE")));
-		accessibilityModeItems.add(new SelectItem("screenReader", BundleService.getString("PREFERENCES.ACCESSIBILITY.SCREENREADER")));
-		
-		return accessibilityModeItems;
 	}
 
 	/**
