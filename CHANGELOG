@@ -7,3 +7,4 @@
   * Fixed error in logs when 'quickStart' is not set 
   * Fixed default locale selection
   * Fixed year selection auto-submit
+  * Fixed character encoding within the 'fr' bundle
