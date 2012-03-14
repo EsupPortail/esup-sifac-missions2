@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<faces-config xmlns="http://java.sun.com/xml/ns/javaee"
+<faces-config version="1.2"
+	xmlns="http://java.sun.com/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd"
-	version="1.2">
+	xsi:schemaLocation="
+		http://java.sun.com/xml/ns/javaee
+		http://java.sun.com/xml/ns/javaee/web-facesconfig_1_2.xsd">
 
-	<!-- desktop navigation -->
+	<!-- Desktop -->
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>desktopWelcome</from-outcome>
@@ -42,7 +43,7 @@
 		</navigation-case>
 	</navigation-rule>
 
-	<!-- mobile navigation -->
+	<!-- Mobile -->
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>mobileWelcome</from-outcome>
@@ -79,14 +80,6 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/stylesheets/mobile/*</from-view-id>
-		<navigation-case>
-			<from-outcome>applicationRestarted</from-outcome>
-			<to-view-id>/stylesheets/mobile/welcome.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
         <from-view-id>/stylesheets/mobile/*</from-view-id>
         <navigation-case>
             <from-outcome>mission</from-outcome>
@@ -96,7 +89,6 @@
 	
 	<!-- Exceptions -->
 	<navigation-rule>
-		<description>Gestion des exceptions depuis desktop</description>
 		<from-view-id>/stylesheets/desktop/*</from-view-id>
 		<navigation-case>
 			<from-outcome>exception</from-outcome>
@@ -105,7 +97,6 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<description>Gestion des exceptions depuis mobile</description>
 		<from-view-id>/stylesheets/mobile/*</from-view-id>
 		<navigation-case>
 			<from-outcome>exception</from-outcome>
@@ -113,8 +104,17 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<!-- Restart -->
 	<navigation-rule>
-		<description>Restart depuis desktop</description>
+		<from-view-id>/stylesheets/desktop/*</from-view-id>
+		<navigation-case>
+			<from-outcome>applicationRestarted</from-outcome>
+			<to-view-id>/stylesheets/desktop/welcome.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
 		<from-view-id>/stylesheets/desktop/exception.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>applicationRestarted</from-outcome>
@@ -123,7 +123,14 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<description>Restart depuis mobile</description>
+		<from-view-id>/stylesheets/mobile/*</from-view-id>
+		<navigation-case>
+			<from-outcome>applicationRestarted</from-outcome>
+			<to-view-id>/stylesheets/mobile/welcome.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
 		<from-view-id>/stylesheets/mobile/exception.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>applicationRestarted</from-outcome>
