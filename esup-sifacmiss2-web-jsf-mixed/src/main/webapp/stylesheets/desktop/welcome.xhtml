@@ -5,12 +5,16 @@
 	<ui:define name="content">
 		<tr:form>
 			<tr:messages/>
-			<tr:selectOneChoice id="yearSelector" autoSubmit="true"
-				valueChangeListener="#{welcomeController.yearChanged}"
-				label="#{msgs['WELCOME.YEAR.SELECT_LABEL']}"
-				value="#{welcomeController.year}">
-				<f:selectItems value="#{welcomeController.yearItems}" />
-			</tr:selectOneChoice>
+			<tr:panelHorizontalLayout>
+				<tr:selectOneChoice id="yearSelector" autoSubmit="true"
+					valueChangeListener="#{welcomeController.yearChanged}"
+					label="#{msgs['WELCOME.YEAR.SELECT_LABEL']}"
+					value="#{welcomeController.year}">
+					<f:selectItems value="#{welcomeController.yearItems}" />
+				</tr:selectOneChoice>
+				<tr:spacer width="10px" />
+				<tr:statusIndicator/>
+			</tr:panelHorizontalLayout>
 			<tr:spacer height="20px" />
 			<tr:table partialTriggers="yearSelector"
 				value="#{welcomeController.missions}" var="mission"
