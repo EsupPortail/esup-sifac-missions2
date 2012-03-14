@@ -5,3 +5,4 @@
   * Added EhCache XSD definition
   * Fixed error in logs when 'quickStart' is not set 
   * Fixed default locale selection
+  * Fixed year selection auto-submit
