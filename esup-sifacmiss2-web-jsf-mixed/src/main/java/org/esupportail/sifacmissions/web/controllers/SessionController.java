@@ -313,41 +313,43 @@ public class SessionController extends AbstractDomainAwareBean {
 	}
 
 	/**
-	 * @param casLogoutUrl
-	 *            the casLogoutUrl to set
+	 * @param casLogoutUrl the casLogoutUrl to set
 	 */
 	public void setCasLogoutUrl(String casLogoutUrl) {
 		this.casLogoutUrl = casLogoutUrl;
 	}
 
 	/**
-	 * @param authenticator
-	 *            the authenticator to set
+	 * @param authenticator the authenticator to set
 	 */
 	public void setAuthenticator(Authenticator authenticator) {
 		this.authenticator = authenticator;
 	}
 
 	/**
-	 * @param locale
-	 *            the locale to set
+	 * @param locale the locale to set
 	 */
 	public void setLocale(Locale locale) {
 		FacesContext context = FacesContext.getCurrentInstance();
 		
 		if (context != null) {
 			context.getViewRoot().setLocale(locale);
+		} else {
+			logger.warn("Cannot set the locale because the context is null");
 		}
 	}
-
+	
 	@Override
 	public Locale getLocale() {
-		Locale locale = new Locale("fr");
+		Locale locale = null;
 		FacesContext context = FacesContext.getCurrentInstance();
 		
 		if (context != null) {
 			locale = context.getViewRoot().getLocale();
+		} else {
+			locale = new Locale("fr");
 		}
+		
 		return locale;
 	}
 
@@ -444,5 +446,11 @@ public class SessionController extends AbstractDomainAwareBean {
 		
 		return null;
 	}
-
+	
+	/**
+	 * @param language the language to set
+	 */
+	public void setDefaultLanguage(String language) {
+		setSessionLocale(new Locale(language));
+	}
 }
