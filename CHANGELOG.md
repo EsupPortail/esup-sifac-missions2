@@ -1,5 +1,6 @@
 
 1.0.0-RC4
+
   * Added CHANGELOG
   * Added READMEs
   * Added EhCache XSD definition
@@ -8,3 +9,8 @@
   * Fixed default locale selection
   * Fixed year selection auto-submit
   * Fixed character encoding within the 'fr' bundle
+  * Fixed Sifac services initialization
+
+1.0.0-RC3 (2012-03-08)
+
+  * Initial release
