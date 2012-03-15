@@ -21,7 +21,7 @@
 		<property name="matriculeService" ref="sifacMatriculeService" />
 	</bean>
 	
-	<bean id="sifacMatriculeService" class="org.esupportail.sifacmissions.ws.SifacMatriculeService">
+	<bean id="sifacMatriculeService" class="org.esupportail.sifacmissions.ws.SifacMatriculeService" lazy-init="true">
         <constructor-arg><value>${domain.matricule.sifac.ws.url}</value></constructor-arg>
         <constructor-arg><value>${domain.matricule.sifac.ws.login}</value></constructor-arg>
         <constructor-arg><value>${domain.matricule.sifac.ws.password}</value></constructor-arg>
