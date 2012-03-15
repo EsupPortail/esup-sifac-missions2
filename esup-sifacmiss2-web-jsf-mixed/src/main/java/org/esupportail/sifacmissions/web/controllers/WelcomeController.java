@@ -4,8 +4,6 @@
  */
 package org.esupportail.sifacmissions.web.controllers;
 
-import java.rmi.RemoteException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +12,6 @@ import java.util.List;
 
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
-import javax.xml.rpc.ServiceException;
 
 import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
@@ -144,7 +141,7 @@ public class WelcomeController extends AbstractContextAwareController {
 			
 			if (matricule == null) {
 				if (getDomainService().isHomonyme(currentUser)) {
-				    addWarnMessage(null, "WELCOME.ERROR.GETMATRICULE");
+				    addWarnMessage(null, "WELCOME.ERROR.HOMONYME");
 				} else {
 					if (nom == null) {
 						nom = StringUtils.removeAccent(getDomainService().getNom(currentUser.getLogin()));
@@ -215,12 +212,9 @@ public class WelcomeController extends AbstractContextAwareController {
 				missions = getDomainService().getFraisMissions(matricule, nom, prenom, year);
 				Collections.sort(missions, Collections.reverseOrder(Mission.ORDER_ORDRE));
 			}
-		} catch (ParseException e) {
-		    addWarnMessage(null, "WELCOME.ERROR.DATES");
-		} catch (RemoteException e) {
-			addErrorMessage(null, "WELCOME.ERROR.SERVICE");
-		} catch (ServiceException e) {
-		    addErrorMessage(null, "WELCOME.ERROR.SERVICE");
+		} catch (Exception e) {
+			logger.error(e);
+		    addWarnMessage(null, "WELCOME.ERROR.SERVICE");
 		}
 	}
 
