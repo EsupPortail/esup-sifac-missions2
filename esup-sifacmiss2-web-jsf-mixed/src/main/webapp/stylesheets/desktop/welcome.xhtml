@@ -13,7 +13,11 @@
 					<f:selectItems value="#{welcomeController.yearItems}" />
 				</tr:selectOneChoice>
 				<tr:spacer width="10px" />
-				<tr:statusIndicator/>
+				<tr:statusIndicator>
+					<f:facet name="busy">
+						<tr:image source="/adf/images/sibusy.gif" height="16" width="16"/>
+					</f:facet>
+				</tr:statusIndicator>
 			</tr:panelHorizontalLayout>
 			<tr:spacer height="20px" />
 			<tr:table partialTriggers="::yearSelector"

@@ -11,6 +11,7 @@
   * Fixed character encoding within the 'fr' bundle
   * Fixed Sifac services initialization
   * Changed desktop display missions count to 5
+  * Show loading icon only when loading
 
 1.0.0-RC3 (2012-03-08)
 
