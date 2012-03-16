@@ -60,14 +60,22 @@
 				</tr:column>
 				<tr:column headerText="#{msgs['WELCOME.MISSION.PERIODE']}">
 					<tr:group>
-						<h:outputText value="#{msgs['WELCOME.MISSION.PERIODE.FROM']} " />
-						<h:outputText value="#{mission.periode.debut}">
-							<tr:convertDateTime locale="fr" type="date" />
-						</h:outputText>
-						<h:outputText value=" #{msgs['WELCOME.MISSION.PERIODE.TO']} " />
-						<h:outputText value="#{mission.periode.fin}">
-							<tr:convertDateTime locale="fr" type="date" />
-						</h:outputText>
+						<f:subview rendered="#{mission.periode.debut != mission.periode.fin}">
+							<h:outputText value="#{msgs['WELCOME.MISSION.PERIODE.FROM']} " />
+							<h:outputText value="#{mission.periode.debut}">
+								<tr:convertDateTime locale="fr" type="date" />
+							</h:outputText>
+							<h:outputText value=" #{msgs['WELCOME.MISSION.PERIODE.TO']} " />
+							<h:outputText value="#{mission.periode.fin}">
+								<tr:convertDateTime locale="fr" type="date" />
+							</h:outputText>
+						</f:subview>
+						<f:subview rendered="#{mission.periode.debut == mission.periode.fin}">
+							<h:outputText value="#{msgs['WELCOME.MISSION.PERIODE.DATE']} " />
+							<h:outputText value="#{mission.periode.debut}">
+								<tr:convertDateTime locale="fr" type="date" />
+							</h:outputText>
+						</f:subview>
 					</tr:group>
 				</tr:column>
 			</tr:table>
