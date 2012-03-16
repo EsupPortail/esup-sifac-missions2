@@ -72,7 +72,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	/**
 	 * The mission pagination count.
 	 */
-	private Integer missionsPerPage = 25;
+	private Integer missionsPerPage = 5;
 
 	/**
 	 * A logger.

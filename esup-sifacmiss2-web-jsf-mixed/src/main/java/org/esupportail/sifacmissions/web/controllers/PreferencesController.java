@@ -80,7 +80,6 @@ public class PreferencesController extends AbstractContextAwareController {
 		missionsPerPageItems.add(new SelectItem(10, "10"));
 		missionsPerPageItems.add(new SelectItem(25, "25"));
 		missionsPerPageItems.add(new SelectItem(50, "50"));
-		missionsPerPageItems.add(new SelectItem(75, "75"));
 		missionsPerPageItems.add(new SelectItem(100, "100"));
 		
 		return missionsPerPageItems;
