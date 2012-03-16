@@ -6,27 +6,23 @@ package org.esupportail.sifacmissions.domain;
 
 import org.esupportail.commons.services.ldap.LdapUser;
 import org.esupportail.commons.services.ldap.LdapUserService;
+import org.esupportail.commons.services.logging.Logger;
+import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.util.StringUtils;
 
 /**
  * @author Yves deschamps - Universite Lille1 - France
  */
 public class MatriculeByLdap implements MatriculeService, InitializingBean {
 
-	/**
-	 * For serialize.
-	 */
 	private static final long serialVersionUID = -6041573166349914967L;
+	
+	private final Logger logger = new LoggerImpl(getClass());
 
-	/**
-	 * {@link LdapUserService}.
-	 */
 	private LdapUserService ldapUserService;
 	
-	/**
-	 * The matricule attribute.
-	 */
 	private String matriculeAttribute;
 
 	/**
@@ -59,7 +55,16 @@ public class MatriculeByLdap implements MatriculeService, InitializingBean {
 	@Override
 	public String getMatricule(String id) {
 		LdapUser ldapUser = ldapUserService.getLdapUser(id);
-		return ldapUser.getAttribute(matriculeAttribute);
+		String matricule = ldapUser.getAttribute(matriculeAttribute);
+		
+		if (StringUtils.hasText(matricule)) {
+			logger.info("Récupération du matricule '" + matricule + "' pour '" + id + "'");
+			return matricule;
+		}
+		
+		logger.error("Aucun matricule n'a pu être récupéré pour '" + id + "'");
+		
+		return null;
 	}
 
 }

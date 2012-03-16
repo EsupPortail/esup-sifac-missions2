@@ -4,15 +4,12 @@
  */
 package org.esupportail.sifacmissions.domain;
 
-import java.rmi.RemoteException;
-
-import javax.xml.rpc.ServiceException;
-
 import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.sifacmissions.ws.SifacMatriculeService;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.util.StringUtils;
 
 /**
  * @author Yves deschamps - Universite Lille1 - France
@@ -20,14 +17,8 @@ import org.springframework.beans.factory.InitializingBean;
  */
 public class MatriculeBySifac implements MatriculeService, InitializingBean {
 
-	/**
-	 * The serialization id
-	 */
 	private static final long serialVersionUID = 8799556709982230546L;
 
-	/**
-	 * A logger.
-	 */
 	private final Logger logger = new LoggerImpl(getClass());
 
 	private SifacMatriculeService matriculeService;
@@ -51,15 +42,14 @@ public class MatriculeBySifac implements MatriculeService, InitializingBean {
 		try {
 			String matricule = matriculeService.getMatricule(id);
 
-			if (matricule != null) {
+			if (StringUtils.hasText(matricule)) {
+				logger.info("Récupération du matricule '" + matricule + "' pour '" + id + "'");
 				return matricule;
 			} else {
-				logger.error("Aucun matricule n a pu etre recupere pour " + id + " par le WS SAP-GETMATRICULE");
+				logger.error("Aucun matricule n'a pu être récupéré pour '" + id + "'");
 			}
-		} catch (ServiceException e) {
-			logger.error("Probleme d'acces au WS SAP-GETMATRICULE", e);
-		} catch (RemoteException e) {
-			logger.error("Probleme d'acces a SAP pour l'appel au WS SAP-GETMATRICULE", e);
+		} catch (Exception e) {
+			logger.error("Problème d'accès au web service SAP-GETMATRICULE", e);
 		}
 
 		return null;
