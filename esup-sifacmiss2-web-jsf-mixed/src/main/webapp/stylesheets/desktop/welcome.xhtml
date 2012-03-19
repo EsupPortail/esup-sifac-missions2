@@ -42,8 +42,8 @@
 				<tr:column headerText="#{msgs['WELCOME.MISSION.MOTIF']}">
 					<tr:outputText value="#{mission.motif}" />
 				</tr:column>
-				<tr:column headerText="#{msgs['WELCOME.MISSION.MONTANT']}" align="right">
-					<tr:outputText value="#{mission.montant}">
+				<tr:column headerText="#{msgs['WELCOME.MISSION.MONTANT_REMB']}" align="right">
+					<tr:outputText value="#{mission.remboursement}">
 						<tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
 					</tr:outputText>
 				</tr:column>
