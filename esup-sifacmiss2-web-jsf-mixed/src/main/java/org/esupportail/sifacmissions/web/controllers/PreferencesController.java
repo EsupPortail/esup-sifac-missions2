@@ -4,11 +4,8 @@
 package org.esupportail.sifacmissions.web.controllers;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 
-import javax.faces.context.FacesContext;
 import javax.faces.model.SelectItem;
 
 /**
@@ -21,11 +18,6 @@ public class PreferencesController extends AbstractContextAwareController {
 	 * For Serialize.
 	 */
 	private static final long serialVersionUID = -5420709995066427730L;
-
-	/**
-	 * An items list for locals.
-	 */
-	private List<SelectItem> localeItems;
 
 	/**
 	 * An items list for for missions pagination.
@@ -48,27 +40,7 @@ public class PreferencesController extends AbstractContextAwareController {
 	public void reset() {
 		super.reset();
 		
-		localeItems = null;
 		missionsPerPageItems = null;
-	}
-
-	/**
-	 * @return the localeItems
-	 */
-	public List<SelectItem> getLocaleItems() {
-		if (localeItems == null) {
-			localeItems = new ArrayList<SelectItem>();
-			
-			Iterator<Locale> iter = FacesContext.getCurrentInstance().getApplication().getSupportedLocales();
-			
-			while (iter.hasNext()) {
-				Locale locale = iter.next();
-				StringBuffer buf = new StringBuffer(locale.getDisplayLanguage(locale));
-				localeItems.add(new SelectItem(locale, buf.toString()));
-			}
-		}
-		
-		return localeItems;
 	}
 
 	/**

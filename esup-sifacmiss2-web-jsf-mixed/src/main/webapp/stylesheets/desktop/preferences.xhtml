@@ -4,20 +4,12 @@
 	xmlns:tr="http://myfaces.apache.org/trinidad" template="template.xhtml">
 	<ui:define name="content">
 		<tr:form>
-			<tr:panelFormLayout rows="3" maxColumns="1" labelWidth="140">
-				<tr:selectOneChoice label="#{msgs['PREFERENCES.LANGUAGE.LABEL']}: "
-					value="#{sessionController.locale}">
-					<f:selectItems value="#{preferencesController.localeItems}" />
-				</tr:selectOneChoice>
-				<tr:spacer height="20px" />
-                <tr:selectOneChoice
-                    label="#{msgs['PREFERENCES.MISSIONS_PER_PAGE.LABEL']}: "
-                    value="#{welcomeController.missionsPerPage}">
-                    <f:selectItems
-                        value="#{preferencesController.missionsPerPageItems}" />
-                </tr:selectOneChoice>
-			</tr:panelFormLayout>
-			<tr:spacer height="20px" />
+			<tr:selectOneChoice
+				label="#{msgs['PREFERENCES.MISSIONS_PER_PAGE.LABEL']}: "
+				value="#{welcomeController.missionsPerPage}">
+				<f:selectItems value="#{preferencesController.missionsPerPageItems}" />
+			</tr:selectOneChoice>
+			<tr:spacer height="20px"/>
 			<tr:commandButton text="#{msgs['SUBMIT.TEXT']} "
 				id="changePreferences" action="preferences"
 				icon="/media/images/accept.png" />
