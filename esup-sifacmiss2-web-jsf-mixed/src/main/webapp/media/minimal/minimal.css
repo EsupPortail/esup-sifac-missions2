@@ -1,0 +1,49 @@
+.mission-container td {
+	vertical-align: middle;
+}
+
+.mission-container .af_showDetail_disclosure-icon-link {
+	background: url(../images/zoom.png);
+	display: block;
+	margin: 0 auto;
+	width: 16px;
+	height: 16px;
+	text-decoration: none;
+}
+
+.mission-container div > .af_showDetail_disclosure-icon-link span {
+	display: none;
+}
+
+.mission-container div > .af_showDetail_prompt-link {
+	display: none;
+}
+
+.mission-details td {
+	background: transparent;
+}
+
+.mission-details table, .mission-details td {
+	border: none;
+}
+
+.mission-details .mission-desc {
+	min-width: 210px;
+	padding-right: 9px
+}
+
+.mission-details .mission-mont {
+	text-align: right;
+	width: 70px;
+}
+
+.mission-details .mission-mont {
+	text-align: right;
+	width: 70px;
+}
+
+/* Empty results */
+.mission-details td[colspan='2'] {
+	font-style: italic;
+	color: #555;
+}

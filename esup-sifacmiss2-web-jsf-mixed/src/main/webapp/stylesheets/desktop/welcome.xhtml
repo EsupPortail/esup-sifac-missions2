@@ -24,15 +24,15 @@
 				value="#{welcomeController.missions}" var="mission"
 				rows="#{welcomeController.missionsPerPage}"
 				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}"
-				allDetailsEnabled="true">
+				allDetailsEnabled="true" styleClass="mission-container">
 				<f:facet name="detailStamp">
 					<tr:table value="#{mission.details}" var="detail"
 						emptyText="#{msgs['WELCOME.MISSION.EMPTY_DETAILS']}"
 						styleClass="mission-details">
-						<tr:column>
+						<tr:column styleClass="mission-desc">
 							<tr:outputText value="#{detail.description}" />
 						</tr:column>
-						<tr:column align="right">
+						<tr:column styleClass="mission-mont">
 							<tr:outputText value="#{detail.montant}">
 								<tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
 							</tr:outputText>
