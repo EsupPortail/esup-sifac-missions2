@@ -63,7 +63,7 @@
 						value="#{mission.date}">
 						<tr:convertDateTime locale="fr" type="date" />
 					</tr:outputText>
-					<tr:outputText rendered="#{empty mission.date}"
+					<tr:outputText rendered="#{empty mission.date and mission.remboursement gt 0}"
 						value="#{msgs['WELCOME.MISSION.ATTENTE']}" />
 				</tr:column>
 				<tr:column headerText="#{msgs['WELCOME.MISSION.ORDRE']}">
