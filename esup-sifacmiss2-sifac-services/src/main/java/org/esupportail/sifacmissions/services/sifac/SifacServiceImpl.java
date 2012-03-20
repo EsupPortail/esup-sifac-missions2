@@ -4,11 +4,7 @@
  */
 package org.esupportail.sifacmissions.services.sifac;
 
-import java.rmi.RemoteException;
-import java.text.ParseException;
 import java.util.List;
-
-import javax.xml.rpc.ServiceException;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
@@ -18,6 +14,7 @@ import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.sifacmissions.domain.beans.Mission;
+import org.esupportail.sifacmissions.domain.beans.MissionDetails;
 import org.esupportail.sifacmissions.ws.SifacPortailService;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -81,20 +78,11 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
 		cache = cacheManager.getCache(cacheName);
 	}
 
-	/**
-	 * @throws ServiceException
-	 * @throws ServiceException
-	 * @throws RemoteException
-	 * @throws ParseException
-	 * @see org.esupportail.sifacmissions.services.sifac.SifacService#getFraisMissions(java.lang.String,
-	 *      java.lang.String, java.lang.String, java.lang.String)
-	 */
 	@SuppressWarnings("unchecked")
+	@Override
 	public List<Mission> getFraisMissions(String matricule, String nom,
-			String prenom, Integer year) throws ServiceException,
-			RemoteException, ParseException {
+			String prenom, Integer year) throws SifacException {
 
-		String mandat = mandant;
 		String paramNom = "";
 		String paramPrenom = "";
 		
@@ -107,10 +95,15 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
 		}
 		
 		List<Mission> fms = null;
-		String cacheKey = matricule+"|"+paramNom+"|"+paramPrenom+"|"+year+"|"+mandat;
+		String cacheKey = matricule+"|"+paramNom+"|"+paramPrenom+"|"+year+"|"+mandant;
 		
 		if (cache.get(cacheKey) == null) {
-			fms = portailService.getFraisMissions(matricule, paramNom, paramPrenom, year.toString());
+			try {
+				fms = portailService.getFraisMissions(matricule, paramNom, paramPrenom, year.toString());
+			}
+			catch (Exception e) {
+				throw new SifacException(e);
+			}
 			
 			// put in cache
 			if (logger.isDebugEnabled()) {
@@ -128,6 +121,39 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
 		}
 		
 		return fms;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<MissionDetails> getMissionDetails(String matricule, String numeroMission) throws SifacException {
+		
+		List<MissionDetails> details = null;
+		String cacheKey = matricule+"|"+numeroMission+"|"+mandant;
+		
+		if (cache.get(cacheKey) == null) {
+			try {
+				details = portailService.getMissionDetails(matricule, numeroMission);
+			}
+			catch (Exception e) {
+				throw new SifacException(e);
+			}
+			
+			// put in cache
+			if (logger.isDebugEnabled()) {
+				logger.debug("Mission details " + cacheKey + " not found in cache");
+			}
+			
+			cache.put(new Element(cacheKey, details));
+			return details;
+		} else {
+			details = (List<MissionDetails>) cache.get(cacheKey).getObjectValue();
+			
+			if (logger.isDebugEnabled()) {
+				logger.debug("Mission details " + cacheKey + " found in cache");
+			}
+		}
+		
+		return details;
 	}
 
 	/**

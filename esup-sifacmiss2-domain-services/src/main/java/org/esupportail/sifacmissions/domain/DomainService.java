@@ -4,14 +4,12 @@
 package org.esupportail.sifacmissions.domain;
 
 import java.io.Serializable;
-import java.rmi.RemoteException;
-import java.text.ParseException;
 import java.util.List;
 
-import javax.xml.rpc.ServiceException;
-
 import org.esupportail.sifacmissions.domain.beans.Mission;
+import org.esupportail.sifacmissions.domain.beans.MissionDetails;
 import org.esupportail.sifacmissions.domain.beans.User;
+import org.esupportail.sifacmissions.services.sifac.SifacException;
 
 /**
  * @author Yves Deschamps (Universite de Lille 1) - 2010
@@ -48,11 +46,17 @@ public interface DomainService extends Serializable
      * @param prenom
      * @param year
      * @return a list of frais missions.
-     * @throws RemoteException
-     * @throws ParseException
-     * @throws ServiceException
+     * @throws SifacException
      */
-    List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws RemoteException, ParseException, ServiceException;
+    List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws SifacException;
+    
+    /**
+     * @param matricule
+     * @param mission
+     * @return a list of mission details.
+     * @throws SifacException
+     */
+    List<MissionDetails> getMissionDetails(String matricule, String numeroMission) throws SifacException;
 
     /**
      * @param user

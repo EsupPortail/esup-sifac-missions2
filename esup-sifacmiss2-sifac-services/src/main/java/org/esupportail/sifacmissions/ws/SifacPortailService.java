@@ -84,8 +84,6 @@ public class SifacPortailService {
     				mission.setRemboursement(missionsArray[i].getMNT_REMB_MISSION());
     				mission.setOrdre(Long.parseLong(StringUtils.trimWhitespace(missionsArray[i].getNUMERO())));
     				
-    				mission.setDetails(getMissionDetails(matricule, mission.getNumero()));
-    				
     				if (StringUtils.hasText(missionsArray[i].getDATE_PRISE_EN_COMPTE_COMPTABLE())) {
     					mission.setDate(formatter.parse(missionsArray[i].getDATE_PRISE_EN_COMPTE_COMPTABLE()));
     				}

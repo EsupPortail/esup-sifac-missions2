@@ -4,12 +4,8 @@
  */
 package org.esupportail.sifacmissions.domain;
 
-import java.rmi.RemoteException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.xml.rpc.ServiceException;
 
 import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
@@ -21,7 +17,9 @@ import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.sifacmissions.domain.beans.Mission;
+import org.esupportail.sifacmissions.domain.beans.MissionDetails;
 import org.esupportail.sifacmissions.domain.beans.User;
+import org.esupportail.sifacmissions.services.sifac.SifacException;
 import org.esupportail.sifacmissions.services.sifac.SifacService;
 import org.springframework.beans.factory.InitializingBean;
 
@@ -182,8 +180,17 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
 	 *      java.lang.String, java.lang.String, java.lang.Integer)
 	 */
 	public List<Mission> getFraisMissions(String matricule, String nom,
-			String prenom, Integer year) throws ServiceException, RemoteException, ParseException {
+			String prenom, Integer year) throws SifacException {
 		return getSifacService().getFraisMissions(matricule, nom, prenom, year);
+	}
+	
+	/**
+	 * @see org.esupportail.sifacmissions.domain.DomainService#getMissionDetails(java.lang.String,
+	 *      java.lang.String)
+	 */
+	public List<MissionDetails> getMissionDetails(String matricule, 
+			String numeroMission) throws SifacException {
+		return getSifacService().getMissionDetails(matricule, numeroMission);
 	}
 
 	/**
