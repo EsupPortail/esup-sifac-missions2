@@ -59,7 +59,7 @@
 				<tr:column headerText="#{msgs['WELCOME.MISSION.DATE']}">
 					<tr:outputText rendered="#{not empty mission.date}"
 						value="#{mission.date}">
-						<tr:convertDateTime locale="fr" type="date" dateStyle="full" />
+						<tr:convertDateTime locale="fr" type="date" />
 					</tr:outputText>
 					<tr:outputText rendered="#{empty mission.date}"
 						value="#{msgs['WELCOME.MISSION.ATTENTE']}" />

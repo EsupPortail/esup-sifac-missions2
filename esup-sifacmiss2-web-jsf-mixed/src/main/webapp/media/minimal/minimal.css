@@ -47,7 +47,7 @@
 }
 
 /* Empty results */
-.mission-details td[colspan='2'] {
+.mission-details td[colspan='3'] {
 	font-style: italic;
 	color: #555;
 }
