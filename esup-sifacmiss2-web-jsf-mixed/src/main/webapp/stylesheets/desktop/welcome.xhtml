@@ -35,6 +35,9 @@
 					<tr:table value="#{mission.details}" var="detail"
 						emptyText="#{msgs['WELCOME.MISSION.EMPTY_DETAILS']}"
 						styleClass="mission-details">
+						<tr:column styleClass="mission-paid">
+							<tr:selectBooleanCheckbox selected="#{detail.paid}" disabled="true" />
+						</tr:column>
 						<tr:column styleClass="mission-desc">
 							<tr:outputText value="#{detail.description}" />
 						</tr:column>

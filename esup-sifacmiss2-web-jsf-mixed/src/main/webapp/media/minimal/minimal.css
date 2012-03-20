@@ -27,8 +27,12 @@
 	border: none;
 }
 
+.mission-details .mission-paid {
+	width: 20px;
+}
+
 .mission-details .mission-desc {
-	min-width: 210px;
+	min-width: 190px;
 	padding-right: 9px
 }
 
