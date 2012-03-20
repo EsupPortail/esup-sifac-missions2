@@ -2,17 +2,12 @@
 	vertical-align: middle;
 }
 
-.mission-container .af_showDetail_disclosure-icon-link {
-	background: url(../images/zoom.png);
+.mission-container div > .af_showDetail_disclosure-icon-link {
 	display: block;
 	margin: 0 auto;
 	width: 16px;
 	height: 16px;
 	text-decoration: none;
-}
-
-.mission-container div > .af_showDetail_disclosure-icon-link span {
-	display: none;
 }
 
 .mission-container div > .af_showDetail_prompt-link {
