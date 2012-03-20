@@ -52,27 +52,6 @@
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<from-view-id>/stylesheets/mobile/*</from-view-id>
-		<navigation-case>
-			<from-outcome>preferences</from-outcome>
-			<to-view-id>/stylesheets/mobile/preferences.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/stylesheets/mobile/*</from-view-id>
-		<navigation-case>
-			<from-outcome>about</from-outcome>
-			<to-view-id>/stylesheets/mobile/about.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/stylesheets/mobile/*</from-view-id>
-		<navigation-case>
-			<from-outcome>help</from-outcome>
-			<to-view-id>/stylesheets/mobile/help.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
         <from-view-id>/stylesheets/mobile/*</from-view-id>
         <navigation-case>
             <from-outcome>mission</from-outcome>
