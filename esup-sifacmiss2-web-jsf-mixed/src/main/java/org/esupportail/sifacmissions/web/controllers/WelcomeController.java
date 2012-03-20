@@ -8,15 +8,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
+import org.apache.myfaces.trinidad.component.UIXTable;
+import org.apache.myfaces.trinidad.component.core.data.CoreTable;
+import org.apache.myfaces.trinidad.event.RowDisclosureEvent;
+import org.apache.myfaces.trinidad.model.RowKeySet;
+import org.apache.myfaces.trinidad.model.RowKeySetImpl;
 import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.sifacmissions.domain.beans.Mission;
 import org.esupportail.sifacmissions.domain.beans.User;
+import org.esupportail.sifacmissions.services.sifac.SifacException;
 import org.esupportail.sifacmissions.web.utils.StringUtils;
 
 /**
@@ -88,6 +95,16 @@ public class WelcomeController extends AbstractContextAwareController {
 	private boolean displayHelpLink = true;
 	private boolean displayMobileLink = true;
 	private boolean displayServletLink = true;
+	
+	private CoreTable missionsTable;
+
+	public CoreTable getMissionsTable() {
+		return missionsTable;
+	}
+
+	public void setMissionsTable(CoreTable table) {
+		this.missionsTable = table;
+	}
 
 	/**
 	 * Bean constructor.
@@ -222,6 +239,39 @@ public class WelcomeController extends AbstractContextAwareController {
 		setYear((Integer) event.getNewValue());
 		changeYear();
 	}
+	
+	public void detailsToggled(RowDisclosureEvent event) {
+		RowKeySet rows = event.getAddedSet();
+		
+		if (rows.size() > 0) {
+			UIXTable table = (UIXTable) event.getSource();
+			Iterator<Object> it = rows.iterator();
+			
+			while (it.hasNext()) {
+				requestMissionDetails((Mission) table.getRowData(it.next()));
+			}
+		}
+	}
+	
+	private void dataChanged() {
+		if (missionsTable != null) {
+			missionsTable.setDisclosedRowKeys(new RowKeySetImpl());
+		}
+	}
+	
+	private void requestMissionDetails(Mission mission) {
+		if (mission.getDetails() != null) {
+			return;
+		}
+		
+		try {
+			mission.setDetails(getDomainService().getMissionDetails(matricule, mission.getNumero()));
+		}
+		catch (SifacException e) {
+			logger.error(e);
+		    addWarnMessage(null, "WELCOME.ERROR.SERVICE");
+		}
+	}
 
 	private void changeYear() {
 		try {
@@ -230,6 +280,7 @@ public class WelcomeController extends AbstractContextAwareController {
 			} else {
 				missions = getDomainService().getFraisMissions(matricule, nom, prenom, year);
 				Collections.sort(missions, Collections.reverseOrder(Mission.ORDER_ORDRE));
+				dataChanged();
 			}
 		} catch (Exception e) {
 			logger.error(e);
