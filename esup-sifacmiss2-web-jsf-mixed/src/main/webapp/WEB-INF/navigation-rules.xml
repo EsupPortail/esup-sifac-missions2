@@ -24,13 +24,6 @@
 	<navigation-rule>
 		<from-view-id>/stylesheets/desktop/*</from-view-id>
 		<navigation-case>
-			<from-outcome>preferences</from-outcome>
-			<to-view-id>/stylesheets/desktop/preferences.xhtml</to-view-id>
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/stylesheets/desktop/*</from-view-id>
-		<navigation-case>
 			<from-outcome>about</from-outcome>
 			<to-view-id>/stylesheets/desktop/about.xhtml</to-view-id>
 		</navigation-case>

@@ -14,6 +14,7 @@
   * Show loading icon only when loading
   * Show condensed date when possible
   * Removed locale selection
+  * Removed settings controller
 
 1.0.0-RC3 (2012-03-08)
 

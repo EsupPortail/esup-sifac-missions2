@@ -19,18 +19,13 @@
 		scope="session">
 	</bean>
 
-	<bean id="preferencesController"
-		class="org.esupportail.sifacmissions.web.controllers.PreferencesController"
+	<bean id="welcomeController"
+		class="org.esupportail.sifacmissions.web.controllers.WelcomeController"
 		parent="abstractContextAwareController" scope="session">
 		<property name="displayAboutLink" value="${view.displayAboutLink}"/>
 		<property name="displayHelpLink" value="${view.displayHelpLink}"/>
 		<property name="displayMobileLink" value="${view.displayMobileLink}"/>
 		<property name="displayServletLink" value="${view.displayServletLink}"/>
-	</bean>
-
-	<bean id="welcomeController"
-		class="org.esupportail.sifacmissions.web.controllers.WelcomeController"
-		parent="abstractContextAwareController" scope="session">
 	</bean>
 
 	<bean id="abstractContextAwareController" abstract="true"

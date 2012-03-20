@@ -13,6 +13,12 @@
 					<f:selectItems value="#{welcomeController.yearItems}" />
 				</tr:selectOneChoice>
 				<tr:spacer width="10px" />
+				<tr:selectOneChoice id="pageSizeSelector" autoSubmit="true"
+					label="#{msgs['WELCOME.MISSIONS_PER_PAGE']}"
+					value="#{welcomeController.missionsPerPage}">
+					<f:selectItems value="#{welcomeController.missionsPerPageItems}" />
+				</tr:selectOneChoice>
+				<tr:spacer width="10px"/>
 				<tr:statusIndicator>
 					<f:facet name="busy">
 						<tr:image source="/adf/images/sibusy.gif" height="16" width="16"/>
@@ -20,7 +26,7 @@
 				</tr:statusIndicator>
 			</tr:panelHorizontalLayout>
 			<tr:spacer height="20px" />
-			<tr:table partialTriggers="::yearSelector"
+			<tr:table partialTriggers="::yearSelector ::pageSizeSelector"
 				value="#{welcomeController.missions}" var="mission"
 				rows="#{welcomeController.missionsPerPage}"
 				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}"

@@ -28,6 +28,11 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * The serialization id.
 	 */
 	private static final long serialVersionUID = -239570715531002003L;
+	
+	/**
+	 * A logger.
+	 */
+	private final Logger logger = new LoggerImpl(getClass());
 
 	/**
 	 * The current user.
@@ -73,11 +78,16 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * The mission pagination count.
 	 */
 	private Integer missionsPerPage = 5;
-
+	
 	/**
-	 * A logger.
+	 * An items list for for missions pagination.
 	 */
-	private final Logger logger = new LoggerImpl(getClass());
+	private List<SelectItem> missionsPerPageItems;
+	
+	private boolean displayAboutLink = true;
+	private boolean displayHelpLink = true;
+	private boolean displayMobileLink = true;
+	private boolean displayServletLink = true;
 
 	/**
 	 * Bean constructor.
@@ -101,6 +111,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	public void reset() {
 		currentUser = null;
 		matricule = null;
+		missionsPerPageItems = null;
 		
 		// Initialize current user
 		initUser();
@@ -116,6 +127,14 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * Initialize the application data
 	 */
 	private void initData() {
+		// Get missions table pagination
+		missionsPerPageItems = new ArrayList<SelectItem>();
+		missionsPerPageItems.add(new SelectItem(5, "5"));
+		missionsPerPageItems.add(new SelectItem(10, "10"));
+		missionsPerPageItems.add(new SelectItem(25, "25"));
+		missionsPerPageItems.add(new SelectItem(50, "50"));
+		missionsPerPageItems.add(new SelectItem(100, "100"));
+		
 	    // Get the current year
         year = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date())).intValue();
         
@@ -245,5 +264,76 @@ public class WelcomeController extends AbstractContextAwareController {
 	
 	public void setCurrentMission(Mission mission) {
 		this.currentMission = mission;
+	}
+	
+	/**
+	 * @return true if the 'about' page link should be displayed
+	 */
+    public boolean isDisplayAboutLink()
+    {
+        return displayAboutLink;
+    }
+
+    /**
+     * @param flag the 'displayAboutLink' flag
+     */
+    public void setDisplayAboutLink(boolean flag)
+    {
+        this.displayAboutLink = flag;
+    }
+
+    /**
+     * @return true if the 'about' page link should be displayed
+     */
+    public boolean isDisplayHelpLink()
+    {
+        return displayHelpLink;
+    }
+
+    /**
+     * @param flag the 'displayHelpLink' flag
+     */
+    public void setDisplayHelpLink(boolean flag)
+    {
+        this.displayHelpLink = flag;
+    }
+    
+    /**
+     * @return true if the 'mobile' link should be displayed
+     */
+    public boolean isDisplayMobileLink()
+    {
+        return displayMobileLink;
+    }
+    
+    /**
+     * @param flag the 'displayMobileLink' flag
+     */
+    public void setDisplayMobileLink(boolean flag)
+    {
+        this.displayMobileLink = flag;
+    }
+    
+    /**
+     * @return true if the 'servlet' link should be displayed
+     */
+    public boolean isDisplayServletLink()
+    {
+        return displayServletLink;
+    }
+    
+    /**
+     * @param flag the 'displayServletLink' flag
+     */
+    public void setDisplayServletLink(boolean flag)
+    {
+        this.displayServletLink = flag;
+    }
+    
+    /**
+	 * @return the missionsPerPageItems
+	 */
+	public List<SelectItem> getMissionsPerPageItems() {
+		return missionsPerPageItems;
 	}
 }
