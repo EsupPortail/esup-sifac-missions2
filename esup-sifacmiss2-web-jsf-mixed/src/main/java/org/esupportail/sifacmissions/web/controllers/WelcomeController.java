@@ -257,7 +257,7 @@ public class WelcomeController extends AbstractContextAwareController {
 		}
 	}
 
-	private void changeYear() {
+	public void changeYear() {
 		try {
 			if (matricule == null) {
 				addWarnMessage(null, "WELCOME.ERROR.GETMATRICULE");
@@ -284,6 +284,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	}
 	
 	public void setCurrentMission(Mission mission) {
+		requestMissionDetails(mission);
 		this.currentMission = mission;
 	}
 	
