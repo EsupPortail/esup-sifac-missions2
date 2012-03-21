@@ -30,15 +30,16 @@
 			<tr:spacer height="20px" />
 			<tr:table binding="#{welcomeController.missionsTable}"
 				partialTriggers="::yearSelector ::pageSizeSelector"
-				value="#{welcomeController.missions}" var="mission"
+				value="#{welcomeController.missions}"
+				var="mission" varStatus="status"
 				rows="#{welcomeController.missionsPerPage}"
 				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}"
 				rowDisclosureListener="#{welcomeController.detailsToggled}"
-				styleClass="mission-container">
+				styleClass="mission-container" rowBandingInterval="1">
 				<f:facet name="detailStamp">
 					<tr:table value="#{mission.details}" var="detail"
 						emptyText="#{msgs['WELCOME.MISSION.EMPTY_DETAILS']}"
-						styleClass="mission-details">
+						styleClass="mission-details #{status.index mod 2 == 0 ? 'even' : 'odd'}">
 						<tr:column styleClass="mission-paid">
 							<tr:selectBooleanCheckbox selected="#{detail.paid}" disabled="true" />
 						</tr:column>

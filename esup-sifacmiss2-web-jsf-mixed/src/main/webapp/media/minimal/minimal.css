@@ -14,6 +14,18 @@
 	display: none;
 }
 
+td.af_table_detail {
+	padding: 0;
+}
+
+td.af_table_detail .mission-details {
+	padding: 1px;
+}
+
+.mission-details.even {
+	background: #E9E8E8;
+}
+
 .mission-details td {
 	background: transparent;
 }
