@@ -34,7 +34,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	/**
 	 * The serialization id.
 	 */
-	private static final long serialVersionUID = -239570715531002003L;
+	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * A logger.

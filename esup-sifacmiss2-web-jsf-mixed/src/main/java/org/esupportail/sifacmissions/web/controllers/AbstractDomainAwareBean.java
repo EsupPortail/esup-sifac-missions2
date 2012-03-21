@@ -19,7 +19,7 @@ public abstract class AbstractDomainAwareBean extends AbstractJsfMessagesAwareBe
 	/**
 	 * serialVersionUID
 	 */
-	private static final long serialVersionUID = 3917164987541810598L;
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * A logger.

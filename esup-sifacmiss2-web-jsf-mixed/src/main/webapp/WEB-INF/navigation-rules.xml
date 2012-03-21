@@ -63,57 +63,5 @@
 			<redirect />
         </navigation-case>
     </navigation-rule>
-	
-	<!-- Exceptions -->
-	<navigation-rule>
-		<from-view-id>/stylesheets/desktop/*</from-view-id>
-		<navigation-case>
-			<from-outcome>exception</from-outcome>
-			<to-view-id>/stylesheets/desktop/exception.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/stylesheets/mobile/*</from-view-id>
-		<navigation-case>
-			<from-outcome>exception</from-outcome>
-			<to-view-id>/stylesheets/mobile/exception.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	
-	<!-- Restart -->
-	<navigation-rule>
-		<from-view-id>/stylesheets/desktop/*</from-view-id>
-		<navigation-case>
-			<from-outcome>applicationRestarted</from-outcome>
-			<to-view-id>/stylesheets/desktop/welcome.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/stylesheets/desktop/exception.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>applicationRestarted</from-outcome>
-			<to-view-id>/stylesheets/home.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/stylesheets/mobile/*</from-view-id>
-		<navigation-case>
-			<from-outcome>applicationRestarted</from-outcome>
-			<to-view-id>/stylesheets/mobile/welcome.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/stylesheets/mobile/exception.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>applicationRestarted</from-outcome>
-			<to-view-id>/stylesheets/home.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
 
 </faces-config>

@@ -15,7 +15,7 @@ public abstract class AbstractContextAwareController extends AbstractDomainAware
 	/**
 	 * The serialization id.
 	 */
-	private static final long serialVersionUID = -1826458262448752328L;
+	private static final long serialVersionUID = 1L;
 	
 	
 	/**

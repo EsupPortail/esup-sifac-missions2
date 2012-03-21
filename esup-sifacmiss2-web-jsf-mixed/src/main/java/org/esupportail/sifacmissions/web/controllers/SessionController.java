@@ -12,16 +12,15 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.myfaces.trinidad.util.ExternalContextUtils;
 import org.esupportail.commons.exceptions.UserNotFoundException;
 import org.esupportail.commons.services.i18n.I18nUtils;
 import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
-import org.apache.myfaces.trinidad.util.ExternalContextUtils;
-import org.esupportail.sifacmissions.domain.beans.User;
-import org.esupportail.sifacmissions.services.auth.Authenticator;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.utils.strings.StringUtils;
-import org.esupportail.commons.web.controllers.ExceptionController;
+import org.esupportail.sifacmissions.domain.beans.User;
+import org.esupportail.sifacmissions.services.auth.Authenticator;
 
 /**
  * @author Yves Deschamps (Universite de Lille 1) - 2010
@@ -32,7 +31,7 @@ public class SessionController extends AbstractDomainAwareBean {
 	/**
 	 * For Serialize.
 	 */
-	private static final long serialVersionUID = 6725001881639400299L;
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * For Logging.
@@ -40,29 +39,9 @@ public class SessionController extends AbstractDomainAwareBean {
 	private final Logger logger = new LoggerImpl(getClass());
 
 	/**
-	 * The exception controller.
-	 */
-	private ExceptionController exceptionController;
-
-	/**
-	 * The application version.
-	 */
-	private String version;
-
-	/**
-	 * The application site.
-	 */
-	private String site;
-
-	/**
 	 * The current action from menu.
 	 */
 	private String action;
-
-	/**
-	 * The from form current action.
-	 */
-	private String fromAction;
 
 	/**
 	 * The authenticator.
@@ -85,11 +64,6 @@ public class SessionController extends AbstractDomainAwareBean {
 	private String casLogoutUrl;
 
 	/**
-	 * The show exception details state.
-	 */
-	private boolean showExceptionDetails;
-
-	/**
 	 * The current User.
 	 */
 	private User currentUser;
@@ -103,42 +77,8 @@ public class SessionController extends AbstractDomainAwareBean {
 
 	@Override
 	public void afterPropertiesSet() {
-		Assert.notNull(this.exceptionController, "property exceptionController of class " + this.getClass().getName() + " can not be null");
-		Assert.notNull(this.authenticator, "property authenticator of class " + this.getClass().getName() + " can not be null");
-		Assert.notNull(this.version, "property version of class " + this.getClass().getName() + " can not be null");
-		Assert.notNull(this.site, "property site of class " + this.getClass().getName() + " can not be null");
-		Assert.notNull(this.casLogoutUrl, "property casLogoutUrl of class " + this.getClass().getName() + " can not be null");
-	}
-
-	/**
-	 * 
-	 * @return the version
-	 */
-	public String getVersion() {
-		return version;
-	}
-
-	/**
-	 * @param version
-	 *            the version to set
-	 */
-	public void setVersion(String version) {
-		this.version = version;
-	}
-
-	/**
-	 * @return the site
-	 */
-	public String getSite() {
-		return site;
-	}
-
-	/**
-	 * @param site
-	 *            the site to set
-	 */
-	public void setSite(String site) {
-		this.site = site;
+		Assert.notNull(authenticator, "property authenticator of class " + this.getClass().getName() + " can not be null");
+		Assert.notNull(casLogoutUrl, "property casLogoutUrl of class " + this.getClass().getName() + " can not be null");
 	}
 
 	/**
@@ -211,23 +151,7 @@ public class SessionController extends AbstractDomainAwareBean {
 	public void reset() {
 		super.reset();
 		action = null;
-		fromAction = null;
 		currentUser = null;
-	}
-
-	/**
-	 * @return the fromAction
-	 */
-	public String getFromAction() {
-		return fromAction;
-	}
-
-	/**
-	 * @param fromAction
-	 *            the fromAction to set
-	 */
-	public void setFromAction(String fromAction) {
-		this.fromAction = fromAction;
 	}
 
 	/**
@@ -345,36 +269,6 @@ public class SessionController extends AbstractDomainAwareBean {
 		}
 		
 		return locale;
-	}
-
-	/**
-	 * @param exceptionController
-	 */
-	public void setExceptionController(ExceptionController exceptionController) {
-		this.exceptionController = exceptionController;
-	}
-
-	/**
-	 * @return the show exception details state.
-	 */
-	public boolean isShowExceptionDetails() {
-		return showExceptionDetails;
-	}
-
-	/**
-	 * @return navigation.
-	 */
-	public String showExceptionDetailsAction() {
-		this.showExceptionDetails = true;
-		return null;
-	}
-
-	/**
-	 * @return navigation.
-	 */
-	public String hideExceptionDetailsAction() {
-		this.showExceptionDetails = false;
-		return null;
 	}
 
 	/**
