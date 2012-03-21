@@ -8,8 +8,6 @@
 
 	<context:property-placeholder location="classpath:/properties/defaults.properties,classpath:/properties/config.properties" />
 
-	<bean id="app_context" class="org.esupportail.commons.context.ApplicationContextHolder" />
-
 	<import resource="ldap/ldap.xml" />
     <import resource="classpath*:META-INF/esup-sifacmiss2-domain-services-auth.xml" />
 	<import resource="classpath*:META-INF/esup-sifacmiss2-domain-services-domain.xml" />

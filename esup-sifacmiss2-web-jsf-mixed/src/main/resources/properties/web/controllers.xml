@@ -6,21 +6,26 @@
 	<bean id="sessionController"
 		class="org.esupportail.sifacmissions.web.controllers.SessionController"
 		parent="abstractDomainAwareBean" scope="session">
-		<property name="authenticator" ref="authenticator"/>
-		<property name="exceptionController" ref="exceptionController"/>
+		<property name="authenticator" ref="authenticator" />
+		<property name="exceptionController" ref="exceptionController" />
 		<property name="version" value="${misc.version}" />
 		<property name="site" value="nothing" />
-		<property name="casLogoutUrl" value="${cas.url}/logout?service=%s"/>
-		<property name="defaultLanguage" value="${locale.language}"/>
-		<property name="displayAboutLink" value="${view.displayAboutLink}"/>
-		<property name="displayHelpLink" value="${view.displayHelpLink}"/>
-		<property name="displayMobileLink" value="${view.displayMobileLink}"/>
-		<property name="displayServletLink" value="${view.displayServletLink}"/>
+		<property name="casLogoutUrl" value="${cas.url}/logout?service=%s" />
+		<property name="defaultLanguage" value="${locale.language}" />
 	</bean>
-	
+
 	<bean id="exceptionController"
 		class="org.esupportail.sifacmissions.web.controllers.ExceptionController"
 		scope="session">
+	</bean>
+
+	<bean id="homeController"
+		class="org.esupportail.sifacmissions.web.controllers.HomeController"
+		scope="session">
+		<property name="displayAboutLink" value="${view.displayAboutLink}" />
+		<property name="displayHelpLink" value="${view.displayHelpLink}" />
+		<property name="displayMobileLink" value="${view.displayMobileLink}" />
+		<property name="displayServletLink" value="${view.displayServletLink}" />
 	</bean>
 
 	<bean id="welcomeController"

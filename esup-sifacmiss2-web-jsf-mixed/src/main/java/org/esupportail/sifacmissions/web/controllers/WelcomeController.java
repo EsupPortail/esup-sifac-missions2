@@ -109,14 +109,6 @@ public class WelcomeController extends AbstractContextAwareController {
 	}
 
 	/**
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return getClass().getSimpleName() + "#" + hashCode();
-	}
-
-	/**
 	 * @see org.esupportail.sifacmissions.web.controllers.AbstractDomainAwareBean#reset()
 	 */
 	@Override
