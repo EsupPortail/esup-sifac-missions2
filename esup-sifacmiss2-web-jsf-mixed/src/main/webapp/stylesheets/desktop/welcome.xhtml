@@ -14,6 +14,8 @@
 				</tr:selectOneChoice>
 				<tr:spacer width="10px" />
 				<tr:selectOneChoice id="pageSizeSelector" autoSubmit="true"
+					partialTriggers="::yearSelector"
+					inlineStyle="#{empty welcomeController.missions ? 'display:none' : ''}"
 					label="#{msgs['WELCOME.MISSIONS_PER_PAGE']}"
 					value="#{welcomeController.missionsPerPage}">
 					<f:selectItems value="#{welcomeController.missionsPerPageItems}" />
@@ -32,7 +34,7 @@
 				rows="#{welcomeController.missionsPerPage}"
 				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}"
 				rowDisclosureListener="#{welcomeController.detailsToggled}"
-				allDetailsEnabled="true" styleClass="mission-container">
+				styleClass="mission-container">
 				<f:facet name="detailStamp">
 					<tr:table value="#{mission.details}" var="detail"
 						emptyText="#{msgs['WELCOME.MISSION.EMPTY_DETAILS']}"
