@@ -19,6 +19,7 @@
 		<navigation-case>
 			<from-outcome>welcome</from-outcome>
 			<to-view-id>/stylesheets/desktop/welcome.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -26,6 +27,7 @@
 		<navigation-case>
 			<from-outcome>about</from-outcome>
 			<to-view-id>/stylesheets/desktop/about.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -33,6 +35,7 @@
 		<navigation-case>
 			<from-outcome>help</from-outcome>
 			<to-view-id>/stylesheets/desktop/help.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 
@@ -49,6 +52,7 @@
 		<navigation-case>
 			<from-outcome>welcome</from-outcome>
 			<to-view-id>/stylesheets/mobile/welcome.xhtml</to-view-id>
+			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
@@ -56,6 +60,7 @@
         <navigation-case>
             <from-outcome>mission</from-outcome>
             <to-view-id>/stylesheets/mobile/mission.xhtml</to-view-id>
+			<redirect />
         </navigation-case>
     </navigation-rule>
 	
