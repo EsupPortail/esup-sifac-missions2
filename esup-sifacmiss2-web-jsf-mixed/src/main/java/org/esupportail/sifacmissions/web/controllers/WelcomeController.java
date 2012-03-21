@@ -91,11 +91,6 @@ public class WelcomeController extends AbstractContextAwareController {
 	 */
 	private List<SelectItem> missionsPerPageItems;
 	
-	private boolean displayAboutLink = true;
-	private boolean displayHelpLink = true;
-	private boolean displayMobileLink = true;
-	private boolean displayServletLink = true;
-	
 	private CoreTable missionsTable;
 
 	public CoreTable getMissionsTable() {
@@ -128,22 +123,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	public void reset() {
 		currentUser = null;
 		matricule = null;
-		missionsPerPageItems = null;
 		
-		// Initialize current user
-		initUser();
-		
-		// Initialize SIFAC parameters
-		initSifac();
-		
-		// Initialize application data
-		initData();
-	}
-
-	/**
-	 * Initialize the application data
-	 */
-	private void initData() {
 		// Get missions table pagination
 		missionsPerPageItems = new ArrayList<SelectItem>();
 		missionsPerPageItems.add(new SelectItem(5, "5"));
@@ -162,8 +142,6 @@ public class WelcomeController extends AbstractContextAwareController {
         for (int i = year; i >= lastYear; i--) {
             yearItems.add(new SelectItem(i));
         }
-        
-		changeYear();
 	}
 
 	/**
@@ -197,6 +175,12 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * @return missions
 	 */
 	public List<Mission> getMissions() {
+		if (missions == null) {
+			currentUser = getCurrentUser();
+			initSifac();
+			changeYear();
+		}
+		
 		return missions;
 	}
 
@@ -294,20 +278,6 @@ public class WelcomeController extends AbstractContextAwareController {
 	public String getMatricule() {
 		return matricule;
 	}
-
-	/**
-	 * initialize user (object).
-	 */
-	private void initUser() {
-		if (currentUser == null) {
-			if (getCurrentUser() != null) {
-				String myUid = getCurrentUser().getLogin();
-				currentUser = getDomainService().getUser(myUid);
-			}
-		} else if (!currentUser.equals(getCurrentUser())) {
-			reset();
-		}
-	}
 	
 	public Mission getCurrentMission() {
 		return currentMission;
@@ -317,70 +287,6 @@ public class WelcomeController extends AbstractContextAwareController {
 		this.currentMission = mission;
 	}
 	
-	/**
-	 * @return true if the 'about' page link should be displayed
-	 */
-    public boolean isDisplayAboutLink()
-    {
-        return displayAboutLink;
-    }
-
-    /**
-     * @param flag the 'displayAboutLink' flag
-     */
-    public void setDisplayAboutLink(boolean flag)
-    {
-        this.displayAboutLink = flag;
-    }
-
-    /**
-     * @return true if the 'about' page link should be displayed
-     */
-    public boolean isDisplayHelpLink()
-    {
-        return displayHelpLink;
-    }
-
-    /**
-     * @param flag the 'displayHelpLink' flag
-     */
-    public void setDisplayHelpLink(boolean flag)
-    {
-        this.displayHelpLink = flag;
-    }
-    
-    /**
-     * @return true if the 'mobile' link should be displayed
-     */
-    public boolean isDisplayMobileLink()
-    {
-        return displayMobileLink;
-    }
-    
-    /**
-     * @param flag the 'displayMobileLink' flag
-     */
-    public void setDisplayMobileLink(boolean flag)
-    {
-        this.displayMobileLink = flag;
-    }
-    
-    /**
-     * @return true if the 'servlet' link should be displayed
-     */
-    public boolean isDisplayServletLink()
-    {
-        return displayServletLink;
-    }
-    
-    /**
-     * @param flag the 'displayServletLink' flag
-     */
-    public void setDisplayServletLink(boolean flag)
-    {
-        this.displayServletLink = flag;
-    }
-    
     /**
 	 * @return the missionsPerPageItems
 	 */

@@ -12,6 +12,10 @@
 		<property name="site" value="nothing" />
 		<property name="casLogoutUrl" value="${cas.url}/logout?service=%s"/>
 		<property name="defaultLanguage" value="${locale.language}"/>
+		<property name="displayAboutLink" value="${view.displayAboutLink}"/>
+		<property name="displayHelpLink" value="${view.displayHelpLink}"/>
+		<property name="displayMobileLink" value="${view.displayMobileLink}"/>
+		<property name="displayServletLink" value="${view.displayServletLink}"/>
 	</bean>
 	
 	<bean id="exceptionController"
@@ -22,10 +26,6 @@
 	<bean id="welcomeController"
 		class="org.esupportail.sifacmissions.web.controllers.WelcomeController"
 		parent="abstractContextAwareController" scope="session">
-		<property name="displayAboutLink" value="${view.displayAboutLink}"/>
-		<property name="displayHelpLink" value="${view.displayHelpLink}"/>
-		<property name="displayMobileLink" value="${view.displayMobileLink}"/>
-		<property name="displayServletLink" value="${view.displayServletLink}"/>
 	</bean>
 
 	<bean id="abstractContextAwareController" abstract="true"
