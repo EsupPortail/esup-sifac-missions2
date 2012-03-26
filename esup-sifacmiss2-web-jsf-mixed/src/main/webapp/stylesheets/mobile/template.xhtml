@@ -4,8 +4,11 @@
 	xmlns:tr="http://myfaces.apache.org/trinidad"
 	locale="#{sessionController.locale}">
 	<tr:document title="#{msgs['BLANK.TEXT']}">
-		<ui:include src="facet.xhtml" />
-		
+		<f:facet name="metaContainer">
+			<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+			<link rel="apple-touch-icon" href="#{facesContext.externalContext.requestContextPath}/media/images/blank-icon.png" />
+			<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/media/iPhone/iPhone-jqt.css" />
+		</f:facet>
 		<div id="jqt">
 			<div class="current">
 				<div class="toolbar">
