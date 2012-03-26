@@ -1,27 +1,25 @@
 <f:view xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:tr="http://myfaces.apache.org/trinidad">
-
-	<tr:document>
-		<div style="display: none">
-			<h:form id="desktop" rendered="#{not agentUtil.mobile}">
-				<h:commandButton action="desktopWelcome" immediate="true" id="btn" />
-			</h:form>
-			<h:form id="mobile" rendered="#{agentUtil.mobile}">
-				<h:commandButton action="mobileWelcome" immediate="true" id="btn" />
-			</h:form>
-		</div>
-		<script type="text/javascript">
-			var desktopBtn = document.getElementById("desktop:btn");
-			if (desktopBtn) {
-				desktopBtn.click();
-			} else {
-				var mobileBtn = document.getElementById("mobile:btn");
-				if (mobileBtn) {
-					mobileBtn.click();
-				}
-			}
-		</script>
-	</tr:document>
-
+    <tr:document>
+    	<div style="display: none">
+	        <tr:form rendered="#{not agentUtil.mobile}">
+	            <tr:commandButton action="desktopWelcome" immediate="true" id="desktop" />
+	        </tr:form>
+	        <tr:form rendered="#{agentUtil.mobile}">
+	            <tr:commandButton action="mobileWelcome" immediate="true" id="mobile" />
+	        </tr:form> 
+        </div>
+        <script type="text/javascript">
+            var inputs = document.getElementsByTagName("button");
+            for (i = 0; i &#x3c; inputs.length; i++) {
+            	var item = inputs.item(i);
+                var name = item.id; 
+                if (name.indexOf("desktop") != -1) {
+                	item.click();
+                } else if(name.indexOf("mobile") != -1) {
+                	item.click();
+                }
+            }    
+        </script>
+    </tr:document>
 </f:view>
