@@ -39,7 +39,7 @@
 				<f:facet name="detailStamp">
 					<tr:table value="#{mission.details}" var="detail"
 						emptyText="#{msgs['WELCOME.MISSION.EMPTY_DETAILS']}"
-						styleClass="mission-details #{status.index mod 2 == 0 ? 'even' : 'odd'}">
+						styleClass="mission-details #{status.even ? 'even' : 'odd'}">
 						<tr:column styleClass="mission-paid">
 							<tr:selectBooleanCheckbox selected="#{detail.paid}" disabled="true" />
 						</tr:column>
