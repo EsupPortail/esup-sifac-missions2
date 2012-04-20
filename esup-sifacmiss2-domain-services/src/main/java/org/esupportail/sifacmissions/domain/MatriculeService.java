@@ -1,20 +1,16 @@
-/**
- * ESUP-Portail esup-sifac-missions - Copyright (c) 2009 ESUP-Portail consortium
- * http://sourcesup.cru.fr/projects/esup-sifacmissions
- */
 package org.esupportail.sifacmissions.domain;
 
-import java.io.Serializable;
-
 /**
- * @author Yves deschamps - Universite Lille1 - France
+ * @author Yves Deschamps (Universite Lille1 - France)
  */
-public interface MatriculeService extends Serializable {
+public interface MatriculeService {
 	
 	/**
-	 * @param id
-	 * @return matricule for user id.
+	 * Récupère le numéro de matricule de l'utilisateur spécifié.
+	 * 
+	 * @param uid Identifiant de l'utilisateur
+	 * @return Numéro de matricule
 	 */
-	String getMatricule(String id);
+	String getMatricule(String uid);
 
 }

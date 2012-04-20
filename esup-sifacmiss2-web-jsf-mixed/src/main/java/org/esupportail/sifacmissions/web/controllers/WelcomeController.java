@@ -101,16 +101,6 @@ public class WelcomeController extends AbstractContextAwareController {
 		this.missionsTable = table;
 	}
 
-	/**
-	 * Bean constructor.
-	 */
-	public WelcomeController() {
-		super();
-	}
-
-	/**
-	 * @see org.esupportail.sifacmissions.web.controllers.AbstractDomainAwareBean#reset()
-	 */
 	@Override
 	public void reset() {
 		currentUser = null;

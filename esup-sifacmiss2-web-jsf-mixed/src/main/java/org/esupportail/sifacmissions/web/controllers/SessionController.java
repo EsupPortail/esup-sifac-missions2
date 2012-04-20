@@ -112,7 +112,6 @@ public class SessionController extends AbstractDomainAwareBean {
 				currentUser = new User();
 				currentUser.setLogin(uid);
 				currentUser.setDisplayName(I18nUtils.createI18nService() .getString(e.getMessage()));
-				currentUser.setAdmin(false);
 			}
 			
 			return currentUser;
@@ -135,7 +134,6 @@ public class SessionController extends AbstractDomainAwareBean {
 					currentUser = new User();
 					currentUser.setLogin(uid);
 					currentUser.setDisplayName(I18nUtils.createI18nService().getString(e.getMessage()));
-					currentUser.setAdmin(false);
 				}
 				
 				return currentUser;

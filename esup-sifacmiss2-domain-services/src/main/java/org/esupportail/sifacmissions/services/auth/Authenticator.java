@@ -6,13 +6,16 @@ package org.esupportail.sifacmissions.services.auth;
 import org.esupportail.sifacmissions.domain.beans.User;
 
 /**
- * @author Yves Deschamps (Universite de Lille 1) - 2010
+ * Cette classe permet d'authentifier l'utilisateur courant.
  * 
+ * @author Yves Deschamps (Universite de Lille 1)
  */
 public interface Authenticator {
 
 	/**
-	 * @return the authenticated user.
+	 * Authentifie et récupère l'utilisateur courant.
+	 * 
+	 * @return Utilisateur courant
 	 * @throws Exception 
 	 */
 	User getUser() throws Exception;

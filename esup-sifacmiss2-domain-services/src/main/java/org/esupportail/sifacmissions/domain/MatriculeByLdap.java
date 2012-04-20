@@ -1,7 +1,3 @@
-/**
- * ESUP-Portail esup-sifac-missions - Copyright (c) 2009 ESUP-Portail consortium
- * http://sourcesup.cru.fr/projects/esup-sifacmissions
- */
 package org.esupportail.sifacmissions.domain;
 
 import org.esupportail.commons.services.ldap.LdapUser;
@@ -13,24 +9,17 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.StringUtils;
 
 /**
- * @author Yves deschamps - Universite Lille1 - France
+ * Service permettant de récupérer le matricule de l'utilisateur depuis un
+ * annuaire LDAP.
+ * 
+ * @author Yves Deschamps (Université Lille1 - France)
  */
 public class MatriculeByLdap implements MatriculeService, InitializingBean {
 
-	private static final long serialVersionUID = -6041573166349914967L;
-	
 	private final Logger logger = new LoggerImpl(getClass());
-
-	private LdapUserService ldapUserService;
 	
+	private LdapUserService ldapUserService;
 	private String matriculeAttribute;
-
-	/**
-	 * Bean constructor.
-	 */
-	public MatriculeByLdap() {
-		super();
-	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
@@ -39,14 +28,14 @@ public class MatriculeByLdap implements MatriculeService, InitializingBean {
 	}
 
 	/**
-	 * @param ldapUserService the ldapUserService to set
+	 * @param ldapUserService Service de récupération des utilisateurs via LDAP
 	 */
 	public void setLdapUserService(LdapUserService ldapUserService) {
 		this.ldapUserService = ldapUserService;
 	}
 
 	/**
-	 * @param matriculeAttribute the matriculeAttribute to set
+	 * @param matriculeAttribute Attribut LDAP permettant de lire le matricule
 	 */
 	public void setMatriculeAttribute(String matriculeAttribute) {
 		this.matriculeAttribute = matriculeAttribute;
@@ -56,14 +45,16 @@ public class MatriculeByLdap implements MatriculeService, InitializingBean {
 	public String getMatricule(String id) {
 		LdapUser ldapUser = ldapUserService.getLdapUser(id);
 		String matricule = ldapUser.getAttribute(matriculeAttribute);
-		
+
 		if (StringUtils.hasText(matricule)) {
-			logger.info("Récupération du matricule '" + matricule + "' pour '" + id + "'");
+			if (logger.isDebugEnabled()) {
+				logger.debug("Récupération du matricule '" + matricule + "' pour '" + id + "'");
+			}
+			
 			return matricule;
 		}
-		
-		logger.error("Aucun matricule n'a pu être récupéré pour '" + id + "'");
-		
+
+		logger.warn("Aucun matricule n'a pu être récupéré pour '" + id + "'");
 		return null;
 	}
 

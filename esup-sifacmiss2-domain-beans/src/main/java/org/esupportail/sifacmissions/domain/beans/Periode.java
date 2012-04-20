@@ -1,58 +1,41 @@
-/**
- * ESUP-Portail esup-sifac-missions - Copyright (c) 2009 ESUP-Portail consortium
- * http://sourcesup.cru.fr/projects/esup-sifacmissions
- */
 package org.esupportail.sifacmissions.domain.beans;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
- * @author Yves Deschamps - Universite Lille1 - France.
+ * Cette classe permet de représenter un interval de temps.
  * 
+ * @author Yves deschamps (Universite Lille1 - France)
+ * @author Florent Cailhol (Anyware Services)
  */
-public class Periode implements Serializable {
-
-	/**
-	 * For Serialize.
-	 */
-	private static final long serialVersionUID = 6548384879369400668L;
+public class Periode {
 
 	private Date debut;
 	private Date fin;
 
 	/**
-	 * Bean constructor.
-	 */
-	public Periode() {
-		super();
-	}
-
-	/**
-	 * @return debut.
+	 * @return Date de debut
 	 */
 	public Date getDebut() {
 		return debut;
 	}
 
 	/**
-	 * @param debut
-	 *            the debut to set.
+	 * @param debut Date de debut
 	 */
 	public void setDebut(Date debut) {
 		this.debut = debut;
 	}
 
 	/**
-	 * @return fin.
+	 * @return Date de fin
 	 */
 	public Date getFin() {
 		return fin;
 	}
 
 	/**
-	 * @param fin
-	 *            the fin to set.
+	 * @param fin Date de fin
 	 */
 	public void setFin(Date fin) {
 		this.fin = fin;

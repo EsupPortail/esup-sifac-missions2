@@ -1,36 +1,27 @@
-/**
- * ESUP-Portail esup-sifac-missions - Copyright (c) 2009 ESUP-Portail consortium
- * http://sourcesup.cru.fr/projects/esup-sifacmissions
- */
 package org.esupportail.sifacmissions.domain.beans;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
 /**
- * @author Yves deschamps - Universite Lille1 - France
+ * Cette classe représente les missions SIFAC.
+ * 
+ * @author Yves deschamps (Universite Lille1 - France)
+ * @author Florent Cailhol (Anyware Services)
  */
-@SuppressWarnings("unchecked")
-public class Mission implements Serializable {
+public class Mission {
 
 	/**
-	 * For Serialize.
+	 * Comparateur pour effectuer un tri par offre de missions.
 	 */
-	private static final long serialVersionUID = 7458384879369400668L;
-	
-	/**
-     * For Sorting.
-     */
-    @SuppressWarnings("rawtypes")
-    public static Comparator<Mission> ORDER_ORDRE = new Comparator() {
-        @Override
-        public int compare(Object o1, Object o2) {
-            return ((Mission) o1).getOrdre().compareTo(((Mission) o2).getOrdre());
-        }
-    };
+	public static Comparator<Mission> ORDER_ORDRE = new Comparator<Mission>() {
+		@Override
+		public int compare(Mission m1, Mission m2) {
+			return m1.getOrdre().compareTo(m2.getOrdre());
+		}
+	};
 
 	private String numero;
 	private String motif;
@@ -41,16 +32,6 @@ public class Mission implements Serializable {
 	private Periode periode;
 	private List<MissionDetails> details;
 
-	/**
-	 * Bean constructor.
-	 */
-	public Mission() {
-		super();
-	}
-
-	/**
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
 	@Override
 	public boolean equals(final Object obj) {
 		if (obj == null) {
@@ -59,87 +40,87 @@ public class Mission implements Serializable {
 		if (!(obj instanceof Mission)) {
 			return false;
 		}
-		
+
 		return numero.equals(((Mission) obj).getNumero());
 	}
-	
+
 	@Override
-    public int hashCode() {
-        return super.hashCode();
-    }
+	public int hashCode() {
+		return super.hashCode();
+	}
 
 	/**
-	 * @return Numero.
+	 * @return Numéro de mission
 	 */
 	public String getNumero() {
 		return numero;
 	}
 
 	/**
-	 * @param numero the numero to set.
+	 * @param numero Numéro de mission
 	 */
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
 	/**
-	 * @return Motif.
+	 * @return Motif
 	 */
 	public String getMotif() {
 		return motif;
 	}
 
 	/**
-	 * @param motif the motif to set.
+	 * @param motif Motif
 	 */
 	public void setMotif(String motif) {
 		this.motif = motif;
 	}
 
 	/**
-	 * @return Montant.
+	 * @return Montant
 	 */
 	public BigDecimal getMontant() {
 		return montant;
 	}
 
 	/**
-	 * @param montant the montant to set.
+	 * @param montant Montant
 	 */
 	public void setMontant(BigDecimal montant) {
 		this.montant = montant;
 	}
 
 	/**
-	 * @return remboursement.
+	 * @return Montant remboursé
 	 */
 	public BigDecimal getRemboursement() {
 		return remboursement;
 	}
 
 	/**
-	 * @param remboursement the remboursement to set.
+	 * @param remboursement Montant remboursé
 	 */
 	public void setRemboursement(BigDecimal remboursement) {
 		this.remboursement = remboursement;
 	}
 
 	/**
-	 * @return Date.
+	 * @return Date
 	 */
 	public Date getDate() {
 		return date;
 	}
 
 	/**
-	 * @param date the date to set.
+	 * @param date Date
 	 */
 	public void setDate(Date date) {
 		this.date = date;
 	}
 
 	/**
-	 * @return Ordre.
+	 * @return Ordre
 	 */
 	public Long getOrdre() {
 		return ordre;
@@ -153,45 +134,45 @@ public class Mission implements Serializable {
 	}
 
 	/**
-	 * @return période.
+	 * @return Période.
 	 */
 	public Periode getPeriode() {
 		return periode;
 	}
 
 	/**
-	 * @param periode the periode to set.
+	 * @param periode Période
 	 */
 	public void setPeriode(Periode periode) {
 		this.periode = periode;
 	}
-	
+
 	/**
-	 * @return Details
+	 * @return Liste des détails
 	 */
 	public List<MissionDetails> getDetails() {
 		return details;
 	}
-	
+
 	/**
-	 * @param details the details to set.
+	 * @param details Liste des détails
 	 */
 	public void setDetails(List<MissionDetails> details) {
 		this.details = details;
 	}
-	
+
 	/**
-	 * @return status
+	 * @return status Etat du remboursement
 	 */
 	public Integer getStatus() {
 		if (remboursement.signum() == 0) {
 			return MissionStatus.NON_REMBOURSABLE;
 		}
-		
+
 		if (date != null) {
 			return MissionStatus.VALIDEE;
 		}
-		
+
 		return MissionStatus.EN_ATTENTE;
 	}
 

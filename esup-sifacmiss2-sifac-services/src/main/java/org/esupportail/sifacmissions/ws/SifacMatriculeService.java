@@ -7,23 +7,64 @@ import javax.xml.rpc.ServiceException;
 import org.apache.axis.client.Stub;
 import org.esupportail.sifacmissions.ws.holders.TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder;
 
+/**
+ * Cette classe permet d'assurer une cohérence entre le code de l'application et
+ * celui généré à partir des WSDL de SIFAC. Il s'agit d'un proxy pour le web
+ * service MATRICULE.
+ * 
+ * @author Florent Cailhol (Anyware Services)
+ */
 public class SifacMatriculeService {
 
-	private String endpoint;
-	private String username;
-	private String password;
-	
+	private final String endpoint;
+	private final String username;
+	private final String password;
+
 	private ZWEB_SERVICE_MATRICULESoapBindingStub stub;
-	
-	public SifacMatriculeService(String endpoint, String username, String password)
-	{
+
+	/**
+	 * Constructeur.
+	 * 
+	 * @param endpoint Adresse du web service
+	 */
+	public SifacMatriculeService(String endpoint) {
+		this(endpoint, null, null);
+	}
+
+	/**
+	 * Constructeur à utiliser si le web service requiert une identification
+	 * HTTP de type BASIC.
+	 * 
+	 * @param endpoint Adresse du web service
+	 * @param username
+	 * @param password
+	 */
+	public SifacMatriculeService(String endpoint, String username, String password) {
 		this.endpoint = endpoint;
 		this.username = username;
 		this.password = password;
 	}
-	
-	private ZWEB_SERVICE_MATRICULESoapBindingStub getStub() throws ServiceException
-	{
+
+	/**
+	 * Proxy vers la méthode MATRICULE.
+	 * 
+	 * @param login Paramètre LOGIN
+	 * @return Champ MATRICULE
+	 * @throws RemoteException
+	 * @throws ServiceException
+	 */
+	public String getMatricule(String login) throws RemoteException, ServiceException {
+		TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder ret = new TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder();
+		getStub().z_ZPORTSMF_MATRICULE(login, ret);
+
+		if (ret.value.getItem().length > 0) {
+			return ret.value.getItem(0).getMATRICULE();
+		}
+
+		return null;
+	}
+
+	private ZWEB_SERVICE_MATRICULESoapBindingStub getStub() throws ServiceException {
 		if (stub == null) {
 			ZWEB_SERVICE_MATRICULEServiceLocator loc = new ZWEB_SERVICE_MATRICULEServiceLocator();
 			loc.setZWEB_SERVICE_MATRICULESoapBindingEndpointAddress(endpoint);
@@ -37,17 +78,6 @@ public class SifacMatriculeService {
 		}
 
 		return stub;
-	}
-	
-	public String getMatricule(String id) throws RemoteException, ServiceException {
-		TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder ret = new TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder();
-		getStub().z_ZPORTSMF_MATRICULE(id, ret);
-		
-		if (ret.value.getItem().length > 0) {
-			return ret.value.getItem(0).getMATRICULE();
-		}
-		
-		return null;
 	}
 
 }
