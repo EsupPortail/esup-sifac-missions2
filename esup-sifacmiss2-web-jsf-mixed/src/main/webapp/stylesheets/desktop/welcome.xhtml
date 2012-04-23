@@ -41,7 +41,8 @@
 						emptyText="#{msgs['WELCOME.MISSION.EMPTY_DETAILS']}"
 						styleClass="mission-details #{status.even ? 'even' : 'odd'}">
 						<tr:column styleClass="mission-paid">
-							<tr:selectBooleanCheckbox selected="#{detail.paid}" disabled="true" />
+							<tr:image source="/media/images/information.png" rendered="#{detail.paid}" />
+							<tr:spacer width="16" rendered="#{not detail.paid}" />
 						</tr:column>
 						<tr:column styleClass="mission-desc">
 							<tr:outputText value="#{detail.description}" />
