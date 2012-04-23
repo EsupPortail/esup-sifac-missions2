@@ -1,3 +1,13 @@
+1.0.0-RC6
+
+  * Updated 'about' page
+  * Added JavaDoc
+
+
+1.0.0-RC5
+
+  * Fix portlet mode
+
 
 1.0.0-RC4
 
@@ -15,6 +25,7 @@
   * Show condensed date when possible
   * Removed locale selection
   * Removed settings controller
+
 
 1.0.0-RC3 (2012-03-08)
 
