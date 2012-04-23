@@ -2,6 +2,7 @@
 
   * Updated 'about' page
   * Added JavaDoc
+  * Made authentication mandatory 
 
 
 1.0.0-RC5

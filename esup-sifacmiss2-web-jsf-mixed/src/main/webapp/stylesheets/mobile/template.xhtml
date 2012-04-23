@@ -14,18 +14,7 @@
 				<div class="toolbar">
 					<ui:insert name="toolbar" />
 				</div>
-				<f:subview rendered="#{not empty sessionController.currentUser}">
-					<ui:insert name="content" />
-				</f:subview>
-				<f:subview rendered="#{empty sessionController.currentUser}">
-					<ul class="rounded">
-						<li class="arrow">
-							<h:outputLink value="/stylesheets/protected/m_login.xhtml">
-								<h:outputText value="#{msgs['LOGIN.TEXT']}" />
-							</h:outputLink>
-						</li>
-					</ul>
-				</f:subview>
+				<ui:insert name="content" />
 			</div>
 		</div>
 	</tr:document>

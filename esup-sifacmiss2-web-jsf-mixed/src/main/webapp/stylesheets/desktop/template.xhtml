@@ -5,8 +5,6 @@
 	<tr:document title="#{msgs['BLANK.TEXT']}">
 		<ui:include src="menu.xhtml" />
 		<tr:spacer height="20px" />
-		<f:subview rendered="#{not empty sessionController.currentUser}">
-			<ui:insert name="content" />
-		</f:subview>
+		<ui:insert name="content" />
 	</tr:document>
 </f:view>
