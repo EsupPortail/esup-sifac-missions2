@@ -13,10 +13,6 @@
 			<supported-locale>fr</supported-locale>
 		</locale-config>
 		<el-resolver>org.esupportail.commons.jsf.ResourceBundleFacesELResolver</el-resolver>
-		<resource-bundle>
-            <base-name>org.esupportail.sifacmissions.web.jsf.ResourceBundle</base-name>
-            <var>msgs</var>
-        </resource-bundle>
 	</application>
 
 </faces-config>
