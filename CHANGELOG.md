@@ -1,8 +1,10 @@
 1.0.0-RC6
 
-  * Updated 'about' page
   * Added JavaDoc
-  * Made authentication mandatory 
+  * Updated 'about' page
+  * Updated i18n service to ECV2
+  * Changed authentication to make it mandatory 
+  * Changed mobile views from pure JSF to Trindad
 
 
 1.0.0-RC5
