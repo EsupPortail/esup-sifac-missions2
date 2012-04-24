@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<groupId>org.esupportail</groupId>
 	<artifactId>esup-sifacmiss2</artifactId>
 	<version>1.0.0-RC6-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	
+
 	<name>esup-sifacmiss2</name>
-	
+
 	<repositories>
 		<repository>
 			<id>esup</id>
@@ -32,7 +34,7 @@
 			</releases>
 		</repository>
 	</repositories>
-	
+
 	<distributionManagement>
 		<repository>
 			<id>esup</id>
@@ -45,12 +47,12 @@
 			<url>https://mvn.esup-portail.org/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
-	
+
 	<scm>
 		<developerConnection>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/trunk</developerConnection>
 		<url>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/</url>
 	</scm>
-	
+
 	<build>
 		<defaultGoal>install</defaultGoal>
 		<plugins>
@@ -74,29 +76,24 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.9</version>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.7</version>
 				<configuration>
-					<useProjectReferences>true</useProjectReferences>
-					<additionalProjectnatures>
-						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
-					</additionalProjectnatures>
-					<additionalBuildcommands>
-						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
-					</additionalBuildcommands>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
+					<minmemory>128m</minmemory>
+					<maxmemory>512m</maxmemory>
+					<goal>javadoc:javadoc</goal>
+					<reportOutputDirectory>docs/javadoc</reportOutputDirectory>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<esupcommons.version>0.2.8</esupcommons.version>
 	</properties>
-	
+
 	<modules>
 		<module>esup-sifacmiss2-domain-beans</module>
 		<module>esup-sifacmiss2-domain-services</module>
