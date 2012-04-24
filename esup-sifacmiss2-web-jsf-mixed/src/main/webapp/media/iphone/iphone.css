@@ -1,15 +1,34 @@
+/* Default */
+.row.picto.divers { background-image: url(pictos/divers.png); }
+
+/* User defined */
+.row.picto.airplane { background-image: url(pictos/airplane.png ); }
+.row.picto.bus { background-image: url(pictos/bus.png ); }
+.row.picto.hotel { background-image: url(pictos/hotel.png ); }
+.row.picto.parking { background-image: url(pictos/parking.png ); }
+.row.picto.restaurant { background-image: url(pictos/restaurant.png ); }
+.row.picto.taxi { background-image: url(pictos/taxi.png ); }
+.row.picto.train { background-image: url(pictos/train.png ); }
+
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
 body {
 	margin: 0 !important;
 	padding: 0 !important;
-	width: 100% !important;
 	font-family: Helvetica !important;
 	background: #FFFFFF !important;
 	color: #000000 !important;
 }
 
-form {
-	width: 100% !important;
-	padding: 0 !important;
+.row.picto {
+	background: 4px center no-repeat;
+}
+
+.row.picto .labelText {
+	margin: 0 0 0 40px !important;
 }
 
 a[selected],a:active {
@@ -66,6 +85,8 @@ a[selected="progress"] {
 	color: #FFFFFF !important;
 	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0 !important;
 	-webkit-border-image: url(/media/iphone/images/backButton.png) 0 5 0 5 !important;
+	-moz-border-image: url(/media/iphone/images/backButton.png) 0 5 0 5 !important;
+	border-image: url(/media/iphone/images/backButton.png) 0 5 0 5 !important;
 }
 
 .acceptButton {
@@ -81,6 +102,8 @@ a[selected="progress"] {
 	color: #FFFFFF !important;
 	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0 !important;
 	-webkit-border-image: url(/media/iphone/images/blueButton.png) 0 5 0 5 !important;
+	-moz-border-image: url(/media/iphone/images/blueButton.png) 0 5 0 5 !important;
+	border-image: url(/media/iphone/images/blueButton.png) 0 5 0 5 !important;
 }
 
 .button {
@@ -96,6 +119,8 @@ a[selected="progress"] {
 	color: #FFFFFF !important;
 	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0 !important;
 	-webkit-border-image: url(/media/iphone/images/toolButton.png) 0 5 0 5 !important;
+	-moz-border-image: url(/media/iphone/images/toolButton.png) 0 5 0 5 !important;
+	border-image: url(/media/iphone/images/toolButton.png) 0 5 0 5 !important;
 }
 
 .cancelButton {
@@ -111,6 +136,8 @@ a[selected="progress"] {
 	color: #FFFFFF !important;
 	text-shadow: rgba(0, 0, 0, 0.6) 0px -1px 0 !important;
 	-webkit-border-image: url(/media/iphone/images/toolButton.png) 0 5 0 5 !important;
+	-moz-border-image: url(/media/iphone/images/toolButton.png) 0 5 0 5 !important;
+	border-image: url(/media/iphone/images/toolButton.png) 0 5 0 5 !important;
 }
 
 .listing {
@@ -195,7 +222,7 @@ a[selected="progress"] {
 	line-height: 42px !important;
 	font-weight: bold !important;
 	color: #7388a5 !important;
-	text-align: right !important;
+	text-align: left !important;
 	width: 90px !important;
 	white-space: nowrap !important;
 }
@@ -205,13 +232,14 @@ a[selected="progress"] {
 	margin: 0 !important;
 	border: none !important;
 	padding: 12px 10px 0 110px !important;
-	text-align: left !important;
+	text-align: right !important;
 	font-weight: bold !important;
 	text-decoration: inherit !important;
 	height: 42px !important;
 	color: inherit !important;
 	box-sizing: border-box !important;
-	webkit-box-sizing: border-box !important;
+	-webkit-box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
 }
 
 .messageCombobox {
@@ -239,6 +267,7 @@ a[selected="progress"] {
 	color: inherit !important;
 	box-sizing: border-box !important;
 	-webkit-box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
 	width: 100% !important;
 	background: url(/media/iphone/images/listArrow.png) no-repeat right center !important;
 	overflow: hidden;
@@ -248,7 +277,8 @@ a[selected="progress"] {
 
 .panelBase {
 	box-sizing: border-box !important;
-	webkit-box-sizing: border-box !important;
+	-webkit-box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
 	padding: 10px !important;
 	background: #c8c8c8 url(/media/iphone/images/pinstripes.png) !important;
 	min-height: 372px !important;
@@ -260,6 +290,7 @@ a[selected="progress"] {
 	padding: 0;
 	background: #FFFFFF;
 	-webkit-border-radius: 10px;
+	border-radius: 10px;
 	border: 1px solid #999999;
 	text-align: right;
 	font-size: 16px;
@@ -272,6 +303,7 @@ a[selected="progress"] {
 	width: 100% !important;
 	text-align: left;
 	-webkit-border-radius: 0 !important;
+	border-radius: 0 !important;
 }
 
 .row_tall {
@@ -280,6 +312,7 @@ a[selected="progress"] {
 	padding: 10px !important;
 	border-top: 1px solid #999999 !important;
 	-webkit-border-radius: 0 !important;
+	border-radius: 0 !important;
 	text-align: left !important;
 	font-size: 15px !important;
 	font-weight: normal !important;
@@ -302,10 +335,6 @@ a[selected="progress"] {
 
 .multirowTable .af_table_control-bar-top {
 	background-color: #FFFFFF !important;
-}
-
-.slide {
-	-webkit-transition: left 1s linear, top 1s linear;
 }
 
 .panelList ul {
@@ -341,6 +370,7 @@ a[selected="progress"] {
 .panelBase .af_panelFormLayout {
 	background: #FFFFFF;
 	-webkit-border-radius: 10px;
+	border-radius: 10px;
 	border: 1px solid #999999;
 }
 
@@ -424,32 +454,7 @@ a[selected="progress"] {
 	color: inherit !important;
 	box-sizing: border-box !important;
 	-webkit-box-sizing: border-box !important;
-}
-
-.messageText_full {
-	position: absolute !important;
-	margin: 0 0 0 14px !important;
-	padding: 10px 2% 3px 2% !important;
-	display: block !important;
-	width: 100% !important;
-	text-align: left !important;
-	font-weight: bold !important;
-	text-decoration: inherit !important;
-	font-size: 18px !important;
-	color: inherit !important;
-}
-
-.messageText_image {
-	display: block !important;
-	text-decoration: none !important;
-	color: inherit !important;
-	padding-top: 14px !important;
-	padding-bottom: 14px !important;
-	padding-left: 48px !important;
-	padding-right: 5px !important;
-	font-size: 16px !important;
-	font-weight: bold !important;
-	text-align: left !important;
+	-moz-box-sizing: border-box !important;
 }
 
 label {
@@ -476,18 +481,6 @@ label {
 	font-size: 14px !important;
 	font-weight: normal !important;
 	color: #000000 !important;
-}
-
-.slide {
-	-webkit-transition: left 1s linear, top 1s linear;
-}
-
-.displayblock {
-	display: block;
-}
-
-.dislpaynone {
-	display: none;
 }
 
 .helpButton {
@@ -523,7 +516,8 @@ label {
 	height: 42px !important;
 	color: inherit !important;
 	box-sizing: border-box !important;
-	webkit-box-sizing: border-box !important;
+	-webkit-box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
 	font-size: 12pt;
 }
 
@@ -540,6 +534,7 @@ label {
 	color: inherit !important;
 	box-sizing: border-box !important;
 	-webkit-box-sizing: border-box !important;
+	-moz-box-sizing: border-box !important;
 	width: 100% !important;
 	background: url(/media/iphone/images/listArrow.png) no-repeat right center !important;
 	overflow: hidden;
