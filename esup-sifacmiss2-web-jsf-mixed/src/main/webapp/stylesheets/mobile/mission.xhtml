@@ -1,94 +1,80 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:tr="http://myfaces.apache.org/trinidad"
 	template="template.xhtml">
-
+	
 	<ui:define name="toolbar">
-		<h1>
-			<h:outputText value="#{welcomeController.currentMission.motif}" />
-		</h1>
-		<h:form>
-			<h:commandLink action="welcome" styleClass="button">
-				<f:setPropertyActionListener value="welcome" target="#{sessionController.action}" />
-				<h:outputText value="#{msgs['BACK.TEXT']}" />
-			</h:commandLink>
-		</h:form>
+		<tr:form>
+			<tr:panelHeader styleClass="toolbar" text="#{mobileMissionController.currentMission.motif}">
+				<tr:commandLink styleClass="backButton" text="#{msgs['BACK.TEXT']}" action="missions">
+					<f:setPropertyActionListener value="missions" target="#{sessionController.action}" />
+				</tr:commandLink>
+			</tr:panelHeader>
+		</tr:form>
 	</ui:define>
 	
 	<ui:define name="content">
-		<div class="scroll">
-			<ul class="rounded mission">
-				<li>
-					<h:outputText value="#{msgs['WELCOME.MISSION.M_ORDRE']}" />
-					<small>
-						<h:outputText value="#{welcomeController.currentMission.ordre}" />
-					</small>
-				</li>
-				<li>
-					<h:outputText value="#{msgs['WELCOME.MISSION.M_START']}" />
-					<small>
-						<h:outputText value="#{welcomeController.currentMission.periode.debut}">
-							<tr:convertDateTime locale="fr" type="date" />
-						</h:outputText>
-					</small>
-				</li>
-				<li>
-					<h:outputText value="#{msgs['WELCOME.MISSION.M_END']}" />
-					<small>
-						<h:outputText value="#{welcomeController.currentMission.periode.fin}">
-							<tr:convertDateTime locale="fr" type="date" />
-						</h:outputText>
-					</small>
-				</li>
-				<li>
-					<h:outputText value="#{msgs['WELCOME.MISSION.M_MONTANT']}" />
-					<small>
-						<h:outputText value="#{welcomeController.currentMission.montant}">
-							<tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
-						</h:outputText>
-					</small>
-				</li>
-				<li>
-					<h:outputText value="#{msgs['WELCOME.MISSION.M_STATUS']}" />
-					<small>
-						<h:outputText rendered="#{welcomeController.currentMission.status == 0}"
-									  value="#{msgs['WELCOME.STATUS.M_NON_REMBOURSABLE']}"/>
-						<h:outputText rendered="#{welcomeController.currentMission.status == 1}"
-									  value="#{msgs['WELCOME.STATUS.M_EN_ATTENTE']}"/>
-						<h:outputText rendered="#{welcomeController.currentMission.status == 2}"
-									  value="#{msgs['WELCOME.STATUS.M_VALIDEE']}"/>
-					</small>
-				</li>
-				<f:subview rendered="#{welcomeController.currentMission.status != 0}">
-					<li>
-						<h:outputText value="#{msgs['WELCOME.MISSION.M_DATE']}" />
-						<small>
-							<h:outputText rendered="#{welcomeController.currentMission.status == 1}"
-										  value="-" />
-							<h:outputText rendered="#{welcomeController.currentMission.status == 2}"
-										  value="#{welcomeController.currentMission.date}" />
-						</small>
-					</li>
-				</f:subview>
-			</ul>
-			<f:subview rendered="#{not empty welcomeController.currentMission.details}">
+		<div class="panelBase">
+			<tr:panelCaptionGroup>
+				<div class="row">
+					<tr:outputText styleClass="labelText" value="#{msgs['WELCOME.MISSION.M_ORDRE']}" />
+					<tr:outputText styleClass="messageText" value="#{mobileMissionController.currentMission.ordre}" />
+				</div>
+				<div class="row">
+					<tr:outputText styleClass="labelText" value="#{msgs['WELCOME.MISSION.M_START']}" />
+					<tr:outputText styleClass="messageText" value="#{mobileMissionController.currentMission.periode.debut}">
+						<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
+					</tr:outputText>
+				</div>
+				<div class="row">
+					<tr:outputText styleClass="labelText" value="#{msgs['WELCOME.MISSION.M_END']}" />
+					<tr:outputText styleClass="messageText" value="#{mobileMissionController.currentMission.periode.fin}">
+						<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
+					</tr:outputText>
+				</div>
+				<div class="row">
+					<tr:outputText styleClass="labelText" value="#{msgs['WELCOME.MISSION.M_MONTANT']}" />
+					<tr:outputText styleClass="messageText" value="#{mobileMissionController.currentMission.montant}">
+						<tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
+					</tr:outputText>
+				</div>
+				<div class="row">
+					<tr:outputText styleClass="labelText" value="#{msgs['WELCOME.MISSION.M_STATUS']}" />
+					<tr:outputText styleClass="messageText"
+						rendered="#{mobileMissionController.currentMission.status == 0}" 
+						value="#{msgs['WELCOME.STATUS.M_NON_REMBOURSABLE']}"/>
+					<tr:outputText styleClass="messageText"
+						rendered="#{mobileMissionController.currentMission.status == 1}" 
+						value="#{msgs['WELCOME.STATUS.M_EN_ATTENTE']}"/>
+					<tr:outputText styleClass="messageText"
+						rendered="#{mobileMissionController.currentMission.status == 2}" 
+						value="#{msgs['WELCOME.STATUS.M_VALIDEE']}"/>
+				</div>
+				<div class="row">
+					<tr:outputText styleClass="labelText" value="#{msgs['WELCOME.MISSION.M_DATE']}" />
+					<tr:outputText styleClass="messageText"
+						rendered="#{mobileMissionController.currentMission.status != 2}" 
+						value="#{msgs['WELCOME.MISSION.M_DATE_BLANK']}"/>
+					<tr:outputText styleClass="messageText"
+						rendered="#{mobileMissionController.currentMission.status == 2}" 
+						value="#{mobileMissionController.currentMission.date}"/>
+				</div>
+			</tr:panelCaptionGroup>
+			<ui:fragment rendered="#{not empty mobileMissionController.currentMission.details}">
 				<h2>
-					<h:outputText value="#{msgs['WELCOME.MISSION.M_DETAILS']}" />
+					<tr:outputText value="#{msgs['WELCOME.MISSION.M_DETAILS']}" />
 				</h2>
-				<ul class="rounded details">
-					<tr:iterator var="detail" value="#{welcomeController.currentMission.details}">
-						<li class="#{detail.paid ? '' : 'gray'} cat-#{not empty detail.categorie ? detail.categorie : 'divers'}">
-							<small>
-								<h:outputText value="#{detail.montant}">
-									<tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
-								</h:outputText>
-							</small>
-							<h:outputText value="#{detail.description}" />
-						</li>
+				<tr:panelCaptionGroup>
+					<tr:iterator var="detail" value="#{mobileMissionController.currentMission.details}">
+						<div class="row #{detail.paid ? '' : 'gray'} cat-#{not empty detail.categorie ? detail.categorie : 'divers'}">
+							<tr:outputText styleClass="labelText" value="#{detail.description}" />
+							<tr:outputText styleClass="messageText" value="#{detail.montant}">
+								<tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
+							</tr:outputText>
+						</div>
 					</tr:iterator>
-				</ul>
-			</f:subview>
+				</tr:panelCaptionGroup>
+			</ui:fragment>
 		</div>
 	</ui:define>
 

@@ -1,21 +1,12 @@
 <f:view xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:tr="http://myfaces.apache.org/trinidad"
 	locale="#{sessionController.locale}">
 	<tr:document title="#{msgs['BLANK.TEXT']}">
 		<f:facet name="metaContainer">
 			<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-			<link rel="apple-touch-icon" href="#{facesContext.externalContext.requestContextPath}/media/images/blank-icon.png" />
-			<link rel="stylesheet" type="text/css" href="#{facesContext.externalContext.requestContextPath}/media/iPhone/iPhone-jqt.css" />
 		</f:facet>
-		<div id="jqt">
-			<div class="current">
-				<div class="toolbar">
-					<ui:insert name="toolbar" />
-				</div>
-				<ui:insert name="content" />
-			</div>
-		</div>
+		<ui:insert name="toolbar" />
+		<ui:insert name="content" />
 	</tr:document>
 </f:view>

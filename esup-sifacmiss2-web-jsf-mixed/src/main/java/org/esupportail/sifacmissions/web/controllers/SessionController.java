@@ -210,7 +210,7 @@ public class SessionController extends AbstractDomainAwareBean {
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 		String preReturnUrl = request.getRequestURL().toString().replaceFirst("/stylesheets/[^/]*$", "");
 		int index = preReturnUrl.lastIndexOf("/");
-		String returnUrl = preReturnUrl.substring(0, index + 1).concat("welcome.xhtml");
+		String returnUrl = preReturnUrl.substring(0, index + 1).concat("missions.xhtml");
 		String forwardUrl;
 		forwardUrl = String.format(casLogoutUrl,StringUtils.utf8UrlEncode(returnUrl));
 		request.getSession().invalidate();
@@ -223,7 +223,7 @@ public class SessionController extends AbstractDomainAwareBean {
 		}
 		
 		facesContext.responseComplete();
-		action = "welcome";
+		action = "missions";
 		
 		return null;
 	}

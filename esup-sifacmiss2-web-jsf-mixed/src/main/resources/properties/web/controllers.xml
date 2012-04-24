@@ -21,9 +21,14 @@
 		<property name="version" value="${misc.version}" />
 	</bean>
 
-	<bean id="welcomeController"
-		class="org.esupportail.sifacmissions.web.controllers.WelcomeController"
+	<bean id="missionController"
+		class="org.esupportail.sifacmissions.web.controllers.MissionController"
 		parent="abstractContextAwareController" scope="session">
+	</bean>
+
+	<bean id="mobileMissionController"
+		class="org.esupportail.sifacmissions.web.controllers.MobileMissionController"
+		parent="missionController" scope="session">
 	</bean>
 
 	<bean id="abstractContextAwareController" abstract="true"

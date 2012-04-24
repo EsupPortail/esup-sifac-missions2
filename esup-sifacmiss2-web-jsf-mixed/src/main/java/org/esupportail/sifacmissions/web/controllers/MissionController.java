@@ -29,13 +29,9 @@ import org.esupportail.sifacmissions.web.utils.StringUtils;
 /**
  * A visual bean for the welcome page.
  */
-public class WelcomeController extends AbstractContextAwareController {
+@SuppressWarnings("serial")
+public class MissionController extends AbstractContextAwareController {
 
-	/**
-	 * The serialization id.
-	 */
-	private static final long serialVersionUID = 1L;
-	
 	/**
 	 * A logger.
 	 */
@@ -45,11 +41,6 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * The current user.
 	 */
 	private User currentUser;
-	
-	/**
-	 * The current mission.
-	 */
-	private Mission currentMission;
 
 	/**
 	 * Matricule.
@@ -65,7 +56,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * Prenom.
 	 */
 	private String prenom;
-	
+
 	/**
 	 * Current year.
 	 */
@@ -80,17 +71,17 @@ public class WelcomeController extends AbstractContextAwareController {
 	 * The missions.
 	 */
 	private List<Mission> missions;
-	
+
 	/**
 	 * The mission pagination count.
 	 */
 	private Integer missionsPerPage = 5;
-	
+
 	/**
 	 * An items list for for missions pagination.
 	 */
 	private List<SelectItem> missionsPerPageItems;
-	
+
 	private CoreTable missionsTable;
 
 	public CoreTable getMissionsTable() {
@@ -105,7 +96,7 @@ public class WelcomeController extends AbstractContextAwareController {
 	public void reset() {
 		currentUser = null;
 		matricule = null;
-		
+
 		// Get missions table pagination
 		missionsPerPageItems = new ArrayList<SelectItem>();
 		missionsPerPageItems.add(new SelectItem(5, "5"));
@@ -113,44 +104,49 @@ public class WelcomeController extends AbstractContextAwareController {
 		missionsPerPageItems.add(new SelectItem(25, "25"));
 		missionsPerPageItems.add(new SelectItem(50, "50"));
 		missionsPerPageItems.add(new SelectItem(100, "100"));
-		
-	    // Get the current year
-        year = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date())).intValue();
-        
-        // Get displayed years
-        yearItems = new ArrayList<SelectItem>();
-        
-        int lastYear = Math.max(getDomainService().getFirstYear(), year - 1);
-        for (int i = year; i >= lastYear; i--) {
-            yearItems.add(new SelectItem(i));
-        }
+
+		// Get the current year
+		year = Integer.valueOf(new SimpleDateFormat("yyyy").format(new Date())).intValue();
+
+		// Get displayed years
+		yearItems = new ArrayList<SelectItem>();
+
+		int lastYear = Math.max(getDomainService().getFirstYear(), year - 1);
+		for (int i = year; i >= lastYear; i--) {
+			yearItems.add(new SelectItem(i));
+		}
 	}
 
 	/**
 	 * Set the SIFAC web service parameters
 	 */
 	private void initSifac() {
-		logger.info("Current User: " + currentUser.getLogin());
-		
+		if (logger.isDebugEnabled()) {
+			logger.debug("Current User: " + currentUser.getLogin());
+		}
+
 		if (matricule == null) {
 			matricule = getDomainService().getMatriculeService().getMatricule(currentUser.getLogin());
-			
+
 			if (matricule == null) {
 				if (getDomainService().isHomonyme(currentUser)) {
-				    addWarnMessage(null, "WELCOME.ERROR.HOMONYME");
-				} else {
+					addWarnMessage(null, "WELCOME.ERROR.HOMONYME");
+				}
+				else {
 					if (nom == null) {
 						nom = StringUtils.removeAccent(getDomainService().getNom(currentUser.getLogin()));
 					}
-					
+
 					if (prenom == null) {
 						prenom = StringUtils.removeAccent(getDomainService().getPrenom(currentUser.getLogin()));
 					}
 				}
 			}
 		}
-		
-		logger.info("Web Service Parameters : Maticule " + matricule + " - Nom " + nom + " Prenom " + prenom);
+
+		if (logger.isDebugEnabled()) {
+			logger.debug("Web Service Parameters: maticule=" + matricule + ", nom=" + nom + ", prenom=" + prenom);
+		}
 	}
 
 	/**
@@ -162,7 +158,7 @@ public class WelcomeController extends AbstractContextAwareController {
 			initSifac();
 			changeYear();
 		}
-		
+
 		return missions;
 	}
 
@@ -200,42 +196,42 @@ public class WelcomeController extends AbstractContextAwareController {
 	public List<SelectItem> getYearItems() {
 		return yearItems;
 	}
-	
+
 	public void yearChanged(ValueChangeEvent event) {
 		setYear((Integer) event.getNewValue());
 		changeYear();
 	}
-	
+
 	public void detailsToggled(RowDisclosureEvent event) {
 		RowKeySet rows = event.getAddedSet();
-		
+
 		if (rows.size() > 0) {
 			UIXTable table = (UIXTable) event.getSource();
 			Iterator<Object> it = rows.iterator();
-			
+
 			while (it.hasNext()) {
 				requestMissionDetails((Mission) table.getRowData(it.next()));
 			}
 		}
 	}
-	
+
 	private void dataChanged() {
 		if (missionsTable != null) {
 			missionsTable.setDisclosedRowKeys(new RowKeySetImpl());
 		}
 	}
-	
-	private void requestMissionDetails(Mission mission) {
+
+	protected void requestMissionDetails(Mission mission) {
 		if (mission.getDetails() != null) {
 			return;
 		}
-		
+
 		try {
 			mission.setDetails(getDomainService().getMissionDetails(matricule, mission.getNumero()));
 		}
 		catch (SifacException e) {
 			logger.error(e);
-		    addWarnMessage(null, "WELCOME.ERROR.SERVICE");
+			addWarnMessage(null, "WELCOME.ERROR.SERVICE");
 		}
 	}
 
@@ -243,37 +239,24 @@ public class WelcomeController extends AbstractContextAwareController {
 		try {
 			if (matricule == null) {
 				addWarnMessage(null, "WELCOME.ERROR.GETMATRICULE");
-			} else {
+			}
+			else {
 				missions = getDomainService().getFraisMissions(matricule, nom, prenom, year);
 				Collections.sort(missions, Collections.reverseOrder(Mission.ORDER_ORDRE));
 				dataChanged();
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			logger.error(e);
-		    addWarnMessage(null, "WELCOME.ERROR.SERVICE");
+			addWarnMessage(null, "WELCOME.ERROR.SERVICE");
 		}
 	}
 
 	/**
-	 * @return matricule.
-	 */
-	public String getMatricule() {
-		return matricule;
-	}
-	
-	public Mission getCurrentMission() {
-		return currentMission;
-	}
-	
-	public void setCurrentMission(Mission mission) {
-		requestMissionDetails(mission);
-		this.currentMission = mission;
-	}
-	
-    /**
 	 * @return the missionsPerPageItems
 	 */
 	public List<SelectItem> getMissionsPerPageItems() {
 		return missionsPerPageItems;
 	}
+
 }

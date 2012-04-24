@@ -10,15 +10,15 @@
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>desktopWelcome</from-outcome>
-			<to-view-id>/stylesheets/desktop/welcome.xhtml</to-view-id>
+			<to-view-id>/stylesheets/desktop/missions.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/stylesheets/desktop/*</from-view-id>
 		<navigation-case>
-			<from-outcome>welcome</from-outcome>
-			<to-view-id>/stylesheets/desktop/welcome.xhtml</to-view-id>
+			<from-outcome>missions</from-outcome>
+			<to-view-id>/stylesheets/desktop/missions.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
@@ -43,15 +43,15 @@
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>mobileWelcome</from-outcome>
-			<to-view-id>/stylesheets/mobile/welcome.xhtml</to-view-id>
+			<to-view-id>/stylesheets/mobile/missions.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/stylesheets/mobile/*</from-view-id>
 		<navigation-case>
-			<from-outcome>welcome</from-outcome>
-			<to-view-id>/stylesheets/mobile/welcome.xhtml</to-view-id>
+			<from-outcome>missions</from-outcome>
+			<to-view-id>/stylesheets/mobile/missions.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>

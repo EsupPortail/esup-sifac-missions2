@@ -5,14 +5,14 @@
 		<id>iphone</id>
 		<family>iphoneFamily</family>
 		<render-kit-id>org.apache.myfaces.trinidad.desktop</render-kit-id>
-		<style-sheet-name>media/iPhone/iPhone.css</style-sheet-name>
+		<style-sheet-name>media/iphone/iphone.css</style-sheet-name>
 	</skin>
-	
+
 	<skin>
 		<id>iphonePortlet</id>
 		<family>iphoneFamily</family>
 		<render-kit-id>portlet</render-kit-id>
-		<style-sheet-name>media/iPhone/iPhone.css</style-sheet-name>
+		<style-sheet-name>media/iphone/iphonePortlet.css</style-sheet-name>
 	</skin>
 
 	<skin>

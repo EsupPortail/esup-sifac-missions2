@@ -1,0 +1,65 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:tr="http://myfaces.apache.org/trinidad"
+	template="template.xhtml">
+	
+	<ui:define name="toolbar">
+		<tr:panelHeader styleClass="toolbar" text="#{msgs['M_BLANK.TEXT']}" />
+	</ui:define>
+
+	<ui:define name="content">
+		<tr:form>
+			<div class="panelBase">
+				<tr:messages/>
+				<tr:panelCaptionGroup>
+					<div class="row">
+						<tr:outputText styleClass="labelText" value="Année" />
+						<tr:selectOneChoice styleClass="messageCombobox"
+							id="yearSelector" autoSubmit="true"
+							valueChangeListener="#{mobileMissionController.yearChanged}"
+							value="#{mobileMissionController.year}">
+							<f:selectItems value="#{mobileMissionController.yearItems}" />
+						</tr:selectOneChoice>
+					</div>
+				</tr:panelCaptionGroup>
+				<tr:table binding="#{mobileMissionController.missionsTable}"
+					partialTriggers="::yearSelector"
+					value="#{mobileMissionController.missions}" var="mission"
+					emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{mobileMissionController.year}"
+					rows="0">
+					<tr:column>
+						<tr:panelGroupLayout layout="vertical" styleClass="listing">
+							<tr:commandLink action="mission" text="#{mission.motif}" styleClass="listingLink">
+								<f:setPropertyActionListener value="mission" target="#{sessionController.action}" />
+								<f:setPropertyActionListener value="#{mission}" target="#{mobileMissionController.currentMission}" />
+							</tr:commandLink>
+							<div>
+								<tr:outputText value="#{msgs['WELCOME.MISSION.M_START']} &#160;" />
+								<tr:outputText value="#{mission.periode.debut}">
+									<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
+								</tr:outputText>
+							</div>
+							<div>
+								<tr:outputText value="#{msgs['WELCOME.MISSION.M_END']} &#160;" />
+								<tr:outputText value="#{mission.periode.fin}">
+									<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
+								</tr:outputText>
+							</div>
+							<div>
+								<tr:outputText value="#{mission.montant}">
+									<tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
+								</tr:outputText>
+							</div>
+						</tr:panelGroupLayout>
+					</tr:column>
+				</tr:table>
+			</div>
+		</tr:form>
+		<script type="text/javascript">
+			function changeYear() {
+				document.getElementById('changeYearBtn').getElementsByTagName("input").item(0).click();
+			}
+		</script>
+	</ui:define>
+
+</ui:composition>

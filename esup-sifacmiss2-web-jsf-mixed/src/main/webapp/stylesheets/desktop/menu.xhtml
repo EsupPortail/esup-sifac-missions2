@@ -4,9 +4,9 @@
 	xmlns:tr="http://myfaces.apache.org/trinidad" id="navigation">
 	
 	<tr:navigationPane hint="bar" shortDesc="#{msgs['MENU.SHORTDESC']}">
-		<tr:commandNavigationItem text="#{msgs['WELCOME.TEXT']}" action="welcome"
-			disabled="#{empty sessionController.action or sessionController.action == 'welcome'}">
-			<f:setPropertyActionListener value="welcome"
+		<tr:commandNavigationItem text="#{msgs['WELCOME.TEXT']}" action="missions"
+			disabled="#{empty sessionController.action or sessionController.action == 'missions'}">
+			<f:setPropertyActionListener value="missions"
 				target="#{sessionController.action}" />
 		</tr:commandNavigationItem>
 		

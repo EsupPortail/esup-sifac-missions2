@@ -54,7 +54,6 @@ public abstract class AbstractContextAwareController extends AbstractDomainAware
 		try {
 			return sessionController.getCurrentUser();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return null;
 		}

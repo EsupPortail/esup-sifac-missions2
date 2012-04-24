@@ -68,6 +68,19 @@
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
+	
+	<build>
+		<filters>
+			<filter>src/main/resources/properties/defaults.properties</filter>
+			<filter>src/main/resources/properties/config.properties</filter>
+		</filters>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+	</build>
 
 	<profiles>
 		<profile>
@@ -76,21 +89,14 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<build>
-				<filters>
-					<filter>src/main/resources/properties/defaults.properties</filter>
-					<filter>src/main/resources/properties/config.properties</filter>
-				</filters>
+				<defaultGoal>jetty:run</defaultGoal>
 				<resources>
 					<resource>
-						<directory>src/main/resources</directory>
+						<directory>src/main/webapp/WEB-INF</directory>
 						<filtering>true</filtering>
-					</resource>
-					<resource>
-						<directory>src/main/webapp</directory>
-						<filtering>true</filtering>
+						<targetPath>${project.build.directory}</targetPath>
 					</resource>
 				</resources>
-				<defaultGoal>jetty:run</defaultGoal>
 				<plugins>
 					<plugin>
 						<groupId>org.mortbay.jetty</groupId>
@@ -98,7 +104,7 @@
 						<version>6.1.26</version>
 						<configuration>
 							<contextPath>/</contextPath>
-							<webXml>${project.build.directory}/classes/WEB-INF/web.xml</webXml>
+							<webXml>${project.build.directory}/web.xml</webXml>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -107,16 +113,6 @@
 		<profile>
 			<id>production</id>
 			<build>
-				<filters>
-					<filter>src/main/resources/properties/defaults.properties</filter>
-					<filter>src/main/resources/properties/config.properties</filter>
-				</filters>
-				<resources>
-					<resource>
-						<directory>src/main/resources</directory>
-						<filtering>true</filtering>
-					</resource>
-				</resources>
 				<plugins>
 					<plugin>
 						<artifactId>maven-war-plugin</artifactId>

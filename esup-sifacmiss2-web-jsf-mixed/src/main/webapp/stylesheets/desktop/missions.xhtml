@@ -7,18 +7,18 @@
 			<tr:messages/>
 			<tr:panelHorizontalLayout>
 				<tr:selectOneChoice id="yearSelector" autoSubmit="true"
-					valueChangeListener="#{welcomeController.yearChanged}"
+					valueChangeListener="#{missionController.yearChanged}"
 					label="#{msgs['WELCOME.YEAR.SELECT_LABEL']}"
-					value="#{welcomeController.year}">
-					<f:selectItems value="#{welcomeController.yearItems}" />
+					value="#{missionController.year}">
+					<f:selectItems value="#{missionController.yearItems}" />
 				</tr:selectOneChoice>
 				<tr:spacer width="10px" />
 				<tr:selectOneChoice id="pageSizeSelector" autoSubmit="true"
 					partialTriggers="yearSelector"
-					inlineStyle="#{empty welcomeController.missions ? 'display:none' : ''}"
+					inlineStyle="#{empty missionController.missions ? 'display:none' : ''}"
 					label="#{msgs['WELCOME.MISSIONS_PER_PAGE']}"
-					value="#{welcomeController.missionsPerPage}">
-					<f:selectItems value="#{welcomeController.missionsPerPageItems}" />
+					value="#{missionController.missionsPerPage}">
+					<f:selectItems value="#{missionController.missionsPerPageItems}" />
 				</tr:selectOneChoice>
 				<tr:spacer width="10px"/>
 				<tr:statusIndicator>
@@ -28,13 +28,13 @@
 				</tr:statusIndicator>
 			</tr:panelHorizontalLayout>
 			<tr:spacer height="20px" />
-			<tr:table binding="#{welcomeController.missionsTable}"
+			<tr:table binding="#{missionController.missionsTable}"
 				partialTriggers="::yearSelector ::pageSizeSelector"
-				value="#{welcomeController.missions}"
+				value="#{missionController.missions}"
 				var="mission" varStatus="status"
-				rows="#{welcomeController.missionsPerPage}"
+				rows="#{missionController.missionsPerPage}"
 				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}"
-				rowDisclosureListener="#{welcomeController.detailsToggled}"
+				rowDisclosureListener="#{missionController.detailsToggled}"
 				styleClass="mission-container" rowBandingInterval="1">
 				<f:facet name="detailStamp">
 					<tr:table value="#{mission.details}" var="detail"
