@@ -1,3 +1,14 @@
+.table-list .list-item-block > .desc {
+  & > .label,
+  & > .value {
+    display: inline-block;
+  }
+  
+  & > .label {
+    width: 50px;
+  }
+}
+
 // MISSION DETAILS
 // ---------------
 
@@ -19,10 +30,14 @@
 }
 
 // Decorate rows
-.row > .label[class^="picto-"],
-.row > .label[class*=" picto-"] {
+.row.picto > .label {
   background-repeat: no-repeat;
   background-position: left center;
-  line-height: 32px;
   padding-left: 36px;
+}
+
+// Fix line-height
+.row.picto > .label,
+.row.picto > .value {
+	line-height: 32px;
 }

@@ -19,8 +19,8 @@
 }
 
 .toolbar > .backButton {
-  .border-image(~"url(/media/iphone/images/backButtonBrdr.png) 0 8 0 14");
-  background: url(/media/iphone/images/backButtonBack.png) repeat-x;
+  .border-image(~"url(@{toolbarBackBtnBorderPath}) 0 8 0 14");
+  background: url(@toolbarBackBtnBgPath) repeat-x;
   padding: 0;
   border-width: 0 8px 0 14px;
   height: 30px;
@@ -37,6 +37,7 @@
   
   & > .backButton {
     float: left;
+    margin-right: 8px;
   }
   
   & > h1 {

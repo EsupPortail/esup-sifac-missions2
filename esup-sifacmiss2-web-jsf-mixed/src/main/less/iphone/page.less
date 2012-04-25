@@ -16,10 +16,16 @@ body {
 // Default chrome skin
 .page-container {
   #font > .sans-serif();
-  background: @pageBackgroundColor url(@pageBackgroundPath);
+  color: @pageFontColor;
+  background: @pageBackgroundColor url(@pageBackgroundPath) fixed;
+  -webkit-margin-collapse: separate;
+  
+  &:after {
+    content: " ";
+  }
 }
 
 // Ensure height 100% in servlet mode
 body > .page-container {
-	height: 100%;
+	min-height: 100%;
 }
