@@ -1,0 +1,68 @@
+// Fix trinidad table padding
+// --------------------------
+
+td.af_table_detail {
+  padding: 0;
+  
+  .mission-details {
+    padding: 1px;
+  }
+}
+
+// Missions container
+// ------------------
+
+.mission-container {
+  td {
+    vertical-align: middle;
+  }
+  
+  div {
+    & > .af_showDetail_disclosure-icon-link {
+      display: block;
+      margin: 0 auto;
+      width: 16px;
+      height: 16px;
+      text-decoration: none;
+    }
+    
+    & > .af_showDetail_prompt-link {
+      display: none;
+    }
+  }
+}
+
+// Mission details
+// ---------------
+
+.mission-details {
+  table,
+  td {
+    background: transparent;
+    border: 0;
+  }
+  
+  &.even {
+    background: #e9e8e8;
+  }
+  
+  .mission-paid {
+    width: 20px;
+  }
+  
+  .mission-desc {
+    min-width: 190px;
+    padding-right: 9px
+  }
+  
+  .mission-mont {
+    text-align: right;
+    width: 70px;
+  }
+  
+  // Empty table
+  td[colspan='3'] {
+    font-style: italic;
+    color: #555;
+  }
+}
