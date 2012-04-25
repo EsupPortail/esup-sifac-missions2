@@ -9,51 +9,48 @@
 
 	<ui:define name="content">
 		<tr:form>
-			<div class="panelBase">
-				<tr:messages/>
-				<tr:panelCaptionGroup>
-					<div class="row">
-						<tr:outputText styleClass="labelText" value="Année" />
-						<tr:selectOneChoice styleClass="messageCombobox"
-							id="yearSelector" autoSubmit="true"
-							valueChangeListener="#{mobileMissionController.yearChanged}"
-							value="#{mobileMissionController.year}">
-							<f:selectItems value="#{mobileMissionController.yearItems}" />
-						</tr:selectOneChoice>
-					</div>
-				</tr:panelCaptionGroup>
-				<tr:table binding="#{mobileMissionController.missionsTable}"
-					partialTriggers="::yearSelector"
-					value="#{mobileMissionController.missions}" var="mission"
-					emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{mobileMissionController.year}"
-					rows="0">
-					<tr:column>
-						<tr:panelGroupLayout layout="vertical" styleClass="listing">
-							<tr:commandLink action="mission" text="#{mission.motif}" styleClass="listingLink">
-								<f:setPropertyActionListener value="mission" target="#{sessionController.action}" />
-								<f:setPropertyActionListener value="#{mission}" target="#{mobileMissionController.currentMission}" />
-							</tr:commandLink>
-							<div>
-								<tr:outputText value="#{msgs['WELCOME.MISSION.M_START']} &#160;" />
-								<tr:outputText value="#{mission.periode.debut}">
-									<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
-								</tr:outputText>
-							</div>
-							<div>
-								<tr:outputText value="#{msgs['WELCOME.MISSION.M_END']} &#160;" />
-								<tr:outputText value="#{mission.periode.fin}">
-									<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
-								</tr:outputText>
-							</div>
-							<div>
-								<tr:outputText value="#{mission.montant}">
-									<tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
-								</tr:outputText>
-							</div>
-						</tr:panelGroupLayout>
-					</tr:column>
-				</tr:table>
+			<div class="chromebar">
+				<tr:selectOneChoice id="yearSelector" autoSubmit="true" simple="true"
+					valueChangeListener="#{mobileMissionController.yearChanged}"
+					value="#{mobileMissionController.year}">
+					<f:selectItems value="#{mobileMissionController.yearItems}" />
+				</tr:selectOneChoice>
 			</div>
+			<tr:messages/>
+			<tr:table styleClass="table-list"
+				partialTriggers="::yearSelector"
+				value="#{mobileMissionController.missions}" var="mission"
+				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{mobileMissionController.year}"
+				rows="0">
+				<tr:column>
+					<tr:panelGroupLayout styleClass="list-item-block">
+						<tr:commandLink action="mission">
+							<f:setPropertyActionListener value="mission" target="#{sessionController.action}" />
+							<f:setPropertyActionListener value="#{mission}" target="#{mobileMissionController.currentMission}" />
+						</tr:commandLink>
+						<div class="info">
+							<tr:outputText value="#{mission.montant}">
+								<tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
+							</tr:outputText>
+						</div>
+						<div class="title">
+							<tr:outputText value="#{mission.motif}" />
+						</div>
+						<div class="desc">
+							<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_START']}" />
+							<tr:outputText styleClass="value" value="#{mission.periode.debut}">
+								<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
+							</tr:outputText>
+						</div>
+						<div class="desc">
+							<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_END']}" />
+							<tr:outputText styleClass="value" value="#{mission.periode.fin}">
+								<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
+							</tr:outputText>
+						</div>
+					</tr:panelGroupLayout>
+				</tr:column>
+			</tr:table>
 		</tr:form>
 		<script type="text/javascript">
 			function changeYear() {
