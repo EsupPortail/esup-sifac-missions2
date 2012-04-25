@@ -1,0 +1,28 @@
+// MISSION DETAILS
+// ---------------
+
+// Shadow paid rows
+.row.paid > * {
+  .opacity(50);
+  color: #000 !important;
+}
+
+// PICTOGRAMS
+// ----------
+
+// Import pictograms
+@import "../pictograms.less";
+
+// Fix row height
+.row.picto {
+  padding: 4px 10px 4px 4px;
+}
+
+// Decorate rows
+.row > .label[class^="picto-"],
+.row > .label[class*=" picto-"] {
+  background-repeat: no-repeat;
+  background-position: left center;
+  line-height: 32px;
+  padding-left: 36px;
+}

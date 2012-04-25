@@ -1,0 +1,30 @@
+// MACRO DEFINITION
+// --------------------------------------------------
+
+// Variables
+@pictogramPath:    "/media/pictos";
+@pictogramDefault: "divers";
+
+// Mixin
+.pictogram(@picto: @pictogramDefault) {
+  background-image: url("@{pictogramPath}/@{picto}.png");
+}
+
+// PICTOGRAMS 
+// --------------------------------------------------
+
+// Internal
+// --------
+
+.picto-default    { .pictogram(@pictogramDefault); }
+
+// User defined
+// ------------
+
+.picto-airplane   { .pictogram("airplane"); }
+.picto-bus        { .pictogram("bus"); }
+.picto-hotel      { .pictogram("hotel"); }
+.picto-parking    { .pictogram("parking"); }
+.picto-restaurant { .pictogram("restaurant"); }
+.picto-taxi       { .pictogram("taxi"); }
+.picto-train      { .pictogram("train"); }

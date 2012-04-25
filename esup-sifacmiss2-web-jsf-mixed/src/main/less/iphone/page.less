@@ -1,0 +1,25 @@
+
+// Resets
+// ------
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+// Page background
+// ---------------
+
+// Default chrome skin
+.page-container {
+  #font > .sans-serif();
+  background: @pageBackgroundColor url(@pageBackgroundPath);
+}
+
+// Ensure height 100% in servlet mode
+body > .page-container {
+	height: 100%;
+}

@@ -1,0 +1,45 @@
+.panel {
+  .border-radius(8px);
+  border: 1px solid #999;
+  margin: 10px;
+  background: #fff;
+}
+
+.panel .row {
+  padding: 10px;
+  border-top: 1px solid #999;
+  
+  &:first-child {
+    border-top: 0;
+  }
+  
+  & > .label,
+  & > .value {
+    .box-sizing(border-box);
+    display: inline-block;
+    line-height: 20px;
+    width: 50%;
+  }
+
+  & > .label {
+    text-align: left;
+    font-weight: bold;
+  }
+
+  & > .value {
+    text-align: right;
+    color: #4C566C;
+  }
+}
+
+.panel-title {
+	text-shadow: 0 1px 0 rgba(255,255,255,.8);
+	font-weight: bold;
+	color: #4C566C;
+	padding: 0 10px;
+	margin: 20px 10px 5px;
+}
+
+.panel-title + .panel {
+	margin: 0 10px 10px;
+}

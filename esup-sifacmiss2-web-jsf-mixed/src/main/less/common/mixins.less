@@ -1,0 +1,118 @@
+// UTILITY MIXINS
+// --------------------------------------------------
+
+// Clearfix
+// --------
+
+.clearfix {
+  *zoom: 1;
+  
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  
+  &:after {
+    clear: both;
+  }
+}
+
+// Webkit-style focus
+// ------------------
+
+.tab-focus() {
+  // Default
+  outline: thin dotted #333;
+  // Webkit
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+// Center-align a block level element
+// ----------------------------------
+
+.center-block() {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Sizing shortcuts
+// ----------------
+
+.size(@height, @width) {
+  width: @width;
+  height: @height;
+}
+
+.square(@size) {
+  .size(@size, @size);
+}
+
+// Text overflow
+// -------------
+
+.text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// CSS image replacement
+// ---------------------
+
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+// CSS3 PROPERTIES
+// --------------------------------------------------
+
+// Border image
+.border-image(@image) {
+  -webkit-border-image: @image;
+     -moz-border-image: @image;
+          border-image: @image;
+}
+
+// Border radius
+.border-radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// Drop shadows
+.box-shadow(@shadow) {
+  -webkit-box-shadow: @shadow;
+     -moz-box-shadow: @shadow;
+          box-shadow: @shadow;
+}
+
+// Box sizing
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+     -moz-box-sizing: @boxmodel;
+      -ms-box-sizing: @boxmodel;
+          box-sizing: @boxmodel;
+}
+
+// Opacity
+.opacity(@opacity) {
+  opacity: @opacity / 100;
+  filter: ~"alpha(opacity=@{opacity})";
+}
+
+// BROWSER PROPERTIES
+// --------------------------------------------------
+
+// Native appearance
+.appearance(@appearance) {
+  -webkit-appearance: @appearance;
+     -moz-appearance: @appearance;
+}

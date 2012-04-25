@@ -1,0 +1,45 @@
+@toolbarHeight: 45px;
+
+.toolbar {
+  .box-sizing(border-box);
+  background: @toolbarBackgroupColor url(@toolbarBackgroupPath) repeat-x;
+  border-bottom: 1px solid @toolbarBorderColor;
+  padding: 7px 10px;
+  height: @toolbarHeight;
+}
+
+.toolbar > h1 {
+  #font > .sans-serif(20px, bold, @toolbarHeight - 14);
+  .text-overflow();
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  color: @toolbarTitleColor;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+}
+
+.toolbar > .backButton {
+  .border-image(~"url(/media/iphone/images/backButtonBrdr.png) 0 8 0 14");
+  background: url(/media/iphone/images/backButtonBack.png) repeat-x;
+  padding: 0;
+  border-width: 0 8px 0 14px;
+  height: 30px;
+  line-height: 28px;
+  vertical-align: middle;
+  text-decoration: none;
+  color: @toolbarTitleColor;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+}
+
+.toolbar {
+  .clearfix();
+  
+  & > .backButton {
+    float: left;
+  }
+  
+  & > h1 {
+    text-align: center;
+  }
+}
