@@ -18,10 +18,6 @@ public class MobileMissionController extends MissionController {
 	 * @param mission the current mission
 	 */
 	public void setCurrentMission(Mission mission) {
-		// Reset the mission table
-		setMissionsTable(null);
-
-		// Get mission details and update the current one
 		requestMissionDetails(mission);
 		currentMission = mission;
 	}
