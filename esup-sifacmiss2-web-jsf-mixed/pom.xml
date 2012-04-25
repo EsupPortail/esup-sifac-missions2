@@ -94,6 +94,7 @@
 					</includes>
 				</configuration>
 				<executions>
+					<!-- Eclipse m2e may fail here. Just ignore it. -->
 					<execution>
 						<goals>
 							<goal>compile</goal>
