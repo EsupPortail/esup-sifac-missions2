@@ -1,3 +1,9 @@
+// Trinidad fixes
+@import "common/trinidad.less";
+
+// Common mixins
+@import "common/mixins.less";
+
 // Fix trinidad table padding
 // --------------------------
 
@@ -19,10 +25,8 @@ td.af_table_detail {
   
   div {
     & > .af_showDetail_disclosure-icon-link {
-      display: block;
-      margin: 0 auto;
-      width: 16px;
-      height: 16px;
+      .center-block()
+      .square(16px);
       text-decoration: none;
     }
     
@@ -37,6 +41,7 @@ td.af_table_detail {
 
 .mission-details {
   table,
+  tr,
   td {
     background: transparent;
     border: 0;
