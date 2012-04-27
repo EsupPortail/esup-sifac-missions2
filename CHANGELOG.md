@@ -8,12 +8,12 @@
   * Replaced CSS skins by LESS
 
 
-1.0.0-RC5
+1.0.0-RC5 (2012-03-27)
 
   * Fix portlet mode
 
 
-1.0.0-RC4
+1.0.0-RC4 (2012-03-22)
 
   * Added CHANGELOG
   * Added READMEs
