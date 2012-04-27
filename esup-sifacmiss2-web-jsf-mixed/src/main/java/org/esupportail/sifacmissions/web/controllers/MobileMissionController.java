@@ -6,6 +6,12 @@ import org.esupportail.sifacmissions.domain.beans.Mission;
 public class MobileMissionController extends MissionController {
 
 	private Mission currentMission;
+	
+	@Override
+	public void reset() {
+		super.reset();
+		currentMission = null;
+	}
 
 	/**
 	 * @return the current mission

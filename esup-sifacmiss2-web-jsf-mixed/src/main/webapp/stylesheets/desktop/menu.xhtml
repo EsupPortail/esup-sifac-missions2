@@ -23,7 +23,11 @@
 			<f:setPropertyActionListener value="help"
 				target="#{sessionController.action}" />
 		</tr:commandNavigationItem>
-			
+		
+		<tr:commandNavigationItem text="#{msgs['LOGOUT.TEXT']}"
+			action="#{sessionController.logoutAction}" immediate="true"
+			rendered="#{sessionController.logoutEnable}" />
+		
 		<tr:commandNavigationItem text="#{msgs['MOBILE.TEXT']}"
 			action="mobileWelcome" immediate="true"
 			rendered="#{not sessionController.portletMode and homeController.displayMobileLink}" />

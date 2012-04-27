@@ -22,4 +22,7 @@
 	<import resource="web/agentUtil.xml" />
 	<import resource="web/controllers.xml" />
 
+	<bean id="app_context"
+		class="org.esupportail.commons.context.ApplicationContextHolder" />
+
 </beans>

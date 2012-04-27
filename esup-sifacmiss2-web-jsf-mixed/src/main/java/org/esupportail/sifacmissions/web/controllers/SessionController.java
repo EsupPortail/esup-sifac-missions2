@@ -19,6 +19,7 @@ import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.utils.strings.StringUtils;
+import org.esupportail.commons.web.controllers.ExceptionController;
 import org.esupportail.sifacmissions.domain.beans.User;
 import org.esupportail.sifacmissions.services.auth.Authenticator;
 
@@ -44,6 +45,11 @@ public class SessionController extends AbstractDomainAwareBean {
 	private String action;
 
 	/**
+	 * The exception controller.
+	 */
+	private ExceptionController exceptionController;
+
+	/**
 	 * The authenticator.
 	 */
 	private Authenticator authenticator;
@@ -67,18 +73,19 @@ public class SessionController extends AbstractDomainAwareBean {
 	 * The current User.
 	 */
 	private User currentUser;
-	
-	/**
-	 * Constructor.
-	 */
-	public SessionController() {
-		super();
-	}
 
 	@Override
 	public void afterPropertiesSet() {
-		Assert.notNull(authenticator, "property authenticator of class " + this.getClass().getName() + " can not be null");
-		Assert.notNull(casLogoutUrl, "property casLogoutUrl of class " + this.getClass().getName() + " can not be null");
+		Assert.notNull(exceptionController, "property exceptionController of class " + getClass().getName() + " can not be null");
+		Assert.notNull(authenticator, "property authenticator of class " + getClass().getName() + " can not be null");
+		Assert.notNull(casLogoutUrl, "property casLogoutUrl of class " + getClass().getName() + " can not be null");
+	}
+
+	/**
+	 * @param exceptionController the exceptionController to set
+	 */
+	public void setExceptionController(ExceptionController exceptionController) {
+		this.exceptionController = exceptionController;
 	}
 
 	/**
@@ -89,8 +96,7 @@ public class SessionController extends AbstractDomainAwareBean {
 	}
 
 	/**
-	 * @param action
-	 *            the action to set
+	 * @param action the action to set
 	 */
 	public void setAction(String action) {
 		this.action = action;
@@ -101,54 +107,58 @@ public class SessionController extends AbstractDomainAwareBean {
 		if (isPortletMode()) {
 			FacesContext fc = FacesContext.getCurrentInstance();
 			String uid = fc.getExternalContext().getRemoteUser();
-			
+
 			if (currentUser != null && currentUser.getLogin().equals(uid)) {
 				return currentUser;
 			}
-			
+
 			try {
 				currentUser = getDomainService().getUser(uid);
-			} catch (UserNotFoundException e) {
+			}
+			catch (UserNotFoundException e) {
 				currentUser = new User();
 				currentUser.setLogin(uid);
-				currentUser.setDisplayName(I18nUtils.createI18nService() .getString(e.getMessage()));
+				currentUser.setDisplayName(I18nUtils.createI18nService().getString(e.getMessage()));
 			}
-			
+
 			return currentUser;
 		}
-		
+
 		User authUser;
-		
+
 		try {
 			authUser = authenticator.getUser();
 			if (authUser != null) {
 				if (currentUser != null && currentUser.getLogin().equals(authUser.getLogin())) {
 					return currentUser;
 				}
-				
+
 				String uid = authUser.getLogin();
-				
+
 				try {
 					currentUser = getDomainService().getUser(uid);
-				} catch (UserNotFoundException e) {
+				}
+				catch (UserNotFoundException e) {
 					currentUser = new User();
 					currentUser.setLogin(uid);
 					currentUser.setDisplayName(I18nUtils.createI18nService().getString(e.getMessage()));
 				}
-				
+
 				return currentUser;
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			logger.error(e);
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public void reset() {
 		super.reset();
-		action = null;
+		
+		action = "missions";
 		currentUser = null;
 	}
 
@@ -158,18 +168,19 @@ public class SessionController extends AbstractDomainAwareBean {
 	public boolean isPortletMode() {
 		if (!modeDetected) {
 			modeDetected = true;
-			
+
 			if (logger.isDebugEnabled()) {
 				logger.debug("Mode detected in Application");
 			}
-			
+
 			FacesContext fc = FacesContext.getCurrentInstance();
 			portletMode = ExternalContextUtils.isPortlet(fc.getExternalContext());
-			
+
 			if (logger.isDebugEnabled()) {
 				if (portletMode) {
 					logger.debug("Portlet mode detected");
-				} else {
+				}
+				else {
 					logger.debug("Servlet mode detected");
 				}
 			}
@@ -185,7 +196,7 @@ public class SessionController extends AbstractDomainAwareBean {
 		if (isPortletMode()) {
 			return false;
 		}
-		
+
 		return (getCurrentUser() == null);
 	}
 
@@ -197,34 +208,32 @@ public class SessionController extends AbstractDomainAwareBean {
 		if (isPortletMode()) {
 			return false;
 		}
-		
+
 		return (getCurrentUser() != null);
 	}
 
 	/**
 	 * @return nothing and make logout.
 	 */
-	public String logoutAction() {
+	public String logoutAction() throws IOException {
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext externalContext = facesContext.getExternalContext();
+
 		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+
 		String preReturnUrl = request.getRequestURL().toString().replaceFirst("/stylesheets/[^/]*$", "");
 		int index = preReturnUrl.lastIndexOf("/");
+
 		String returnUrl = preReturnUrl.substring(0, index + 1).concat("missions.xhtml");
-		String forwardUrl;
-		forwardUrl = String.format(casLogoutUrl,StringUtils.utf8UrlEncode(returnUrl));
+		String forwardUrl = String.format(casLogoutUrl, StringUtils.utf8UrlEncode(returnUrl));
+
 		request.getSession().invalidate();
 		request.getSession(true);
-		
-		try {
-			externalContext.redirect(forwardUrl);
-		} catch (IOException e) {
-			logger.error(e);
-		}
-		
+
+		exceptionController.restart();
+		externalContext.redirect(forwardUrl);
 		facesContext.responseComplete();
-		action = "missions";
-		
+
 		return null;
 	}
 
@@ -247,25 +256,27 @@ public class SessionController extends AbstractDomainAwareBean {
 	 */
 	public void setLocale(Locale locale) {
 		FacesContext context = FacesContext.getCurrentInstance();
-		
+
 		if (context != null) {
 			context.getViewRoot().setLocale(locale);
-		} else {
+		}
+		else {
 			logger.warn("Cannot set the locale because the context is null");
 		}
 	}
-	
+
 	@Override
 	public Locale getLocale() {
 		Locale locale = null;
 		FacesContext context = FacesContext.getCurrentInstance();
-		
+
 		if (context != null) {
 			locale = context.getViewRoot().getLocale();
-		} else {
+		}
+		else {
 			locale = new Locale("fr");
 		}
-		
+
 		return locale;
 	}
 
@@ -283,7 +294,7 @@ public class SessionController extends AbstractDomainAwareBean {
 	public String getDisplayLanguage() {
 		Locale locale = getLocale();
 		StringBuffer buf = new StringBuffer(locale.getDisplayLanguage(locale));
-		
+
 		return buf.toString();
 	}
 
@@ -295,14 +306,14 @@ public class SessionController extends AbstractDomainAwareBean {
 		UIParameter component = (UIParameter) event.getComponent().findComponent("language");
 		String languageString = component.getValue().toString();
 		FacesContext context = FacesContext.getCurrentInstance();
-		
+
 		if (context != null) {
 			context.getViewRoot().setLocale(new Locale(languageString));
 		}
-		
+
 		return null;
 	}
-	
+
 	/**
 	 * @param language the language to set
 	 */

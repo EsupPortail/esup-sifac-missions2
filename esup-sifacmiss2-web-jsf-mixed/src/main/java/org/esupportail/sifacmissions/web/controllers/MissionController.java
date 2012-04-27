@@ -94,8 +94,11 @@ public class MissionController extends AbstractContextAwareController {
 
 	@Override
 	public void reset() {
+		missionsTable = null;
 		currentUser = null;
 		matricule = null;
+		nom = null;
+		prenom = null;
 
 		// Get missions table pagination
 		missionsPerPageItems = new ArrayList<SelectItem>();
