@@ -10,6 +10,8 @@
 	</parent>
 
 	<artifactId>esup-sifacmiss2-web-jsf-mixed</artifactId>
+	
+	<!-- Eclipse m2e may fail here. Create config.properties! -->
 	<packaging>war</packaging>
 
 	<properties>
