@@ -5,6 +5,7 @@
   * Updated i18n service to ECV2
   * Changed authentication to make it mandatory 
   * Changed mobile views from pure JSF to Trindad
+  * Replaced CSS skins by LESS
 
 
 1.0.0-RC5
