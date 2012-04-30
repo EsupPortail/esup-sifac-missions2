@@ -10,15 +10,15 @@
 	<ui:define name="content">
 		<tr:form>
 			<div class="chromebar">
-				<tr:selectOneChoice id="yearSelector" autoSubmit="true" simple="true"
+				<tr:selectOneChoice immediate="true" simple="true"
 					valueChangeListener="#{mobileMissionController.yearChanged}"
-					value="#{mobileMissionController.year}">
+					value="#{mobileMissionController.year}"
+					onchange="submit()">
 					<f:selectItems value="#{mobileMissionController.yearItems}" />
 				</tr:selectOneChoice>
 			</div>
 			<tr:messages/>
 			<tr:table styleClass="table-list"
-				partialTriggers="::yearSelector"
 				value="#{mobileMissionController.missions}" var="mission"
 				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{mobileMissionController.year}"
 				rows="0">
