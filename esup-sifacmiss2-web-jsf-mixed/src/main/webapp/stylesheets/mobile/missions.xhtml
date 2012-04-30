@@ -29,7 +29,7 @@
 							<f:setPropertyActionListener value="#{mission}" target="#{mobileMissionController.currentMission}" />
 						</tr:commandLink>
 						<div class="info">
-							<tr:outputText value="#{mission.montant}">
+							<tr:outputText value="#{mission.remboursement}">
 								<tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
 							</tr:outputText>
 						</div>
