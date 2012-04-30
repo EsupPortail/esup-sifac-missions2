@@ -5,21 +5,21 @@
 		<id>iphone</id>
 		<family>iphoneFamily</family>
 		<render-kit-id>org.apache.myfaces.trinidad.desktop</render-kit-id>
-		<style-sheet-name>media/iphone.css</style-sheet-name>
+		<style-sheet-name>media/skins/iphone.css</style-sheet-name>
 	</skin>
 
 	<skin>
 		<id>iphonePortlet</id>
 		<family>iphoneFamily</family>
 		<render-kit-id>portlet</render-kit-id>
-		<style-sheet-name>media/iphone/iphonePortlet.css</style-sheet-name>
+		<style-sheet-name>media/skins/iphone/iphonePortlet.css</style-sheet-name>
 	</skin>
 
 	<skin>
 		<id>minimal</id>
 		<family>minimalFamily</family>
 		<render-kit-id>org.apache.myfaces.trinidad.desktop</render-kit-id>
-		<style-sheet-name>media/minimal.css</style-sheet-name>
+		<style-sheet-name>media/skins/minimal.css</style-sheet-name>
 	</skin>
 
 </skins>
