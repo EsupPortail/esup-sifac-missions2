@@ -13,6 +13,11 @@ public class User implements Serializable {
 	
 	private String login;
 	private String displayName;
+	
+	@Override
+	public int hashCode() {
+		return login.hashCode();
+	}
 
 	@Override
 	public boolean equals(Object obj) {
