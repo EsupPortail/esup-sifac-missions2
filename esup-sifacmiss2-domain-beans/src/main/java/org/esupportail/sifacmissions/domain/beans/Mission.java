@@ -1,5 +1,6 @@
 package org.esupportail.sifacmissions.domain.beans;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Comparator;
 import java.util.Date;
@@ -11,7 +12,9 @@ import java.util.List;
  * @author Yves deschamps (Universite Lille1 - France)
  * @author Florent Cailhol (Anyware Services)
  */
-public class Mission {
+public class Mission implements Serializable {
+
+	private static final long serialVersionUID = 7531554542364823201L;
 
 	/**
 	 * Comparateur pour effectuer un tri par offre de missions.
@@ -31,6 +34,11 @@ public class Mission {
 	private Long ordre;
 	private Periode periode;
 	private List<MissionDetails> details;
+	
+	@Override
+	public int hashCode() {
+		return numero.hashCode();
+	}
 
 	@Override
 	public boolean equals(final Object obj) {
@@ -42,11 +50,6 @@ public class Mission {
 		}
 
 		return numero.equals(((Mission) obj).getNumero());
-	}
-
-	@Override
-	public int hashCode() {
-		return super.hashCode();
 	}
 
 	/**
