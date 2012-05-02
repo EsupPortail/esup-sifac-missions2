@@ -1,12 +1,16 @@
 package org.esupportail.sifacmissions.domain.beans;
 
+import java.io.Serializable;
+
 import org.springframework.core.style.ToStringCreator;
 
 /**
  * Cette classe représente un utilisateur.
  */
-public class User {
+public class User implements Serializable {
 
+	private static final long serialVersionUID = 3045693858467707618L;
+	
 	private String login;
 	private String displayName;
 
