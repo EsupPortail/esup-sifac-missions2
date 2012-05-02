@@ -4,7 +4,15 @@
 	locale="#{sessionController.locale}">
 	<tr:document title="#{msgs['BLANK.TEXT']}">
 		<f:facet name="metaContainer">
+			<!-- Lock viewport -->
 			<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+			<!-- Define app skin -->
+			<meta name="apple-mobile-web-app-capable" content="yes" /> 
+			<!-- Home icon -->
+			<link rel="apple-touch-icon" sizes="57x57" href="../../media/ios/touch-icon-iphone-114.jpg" />
+			<link rel="apple-touch-icon" sizes="72x72" href="../../media/ios/touch-icon-ipad-144.jpg" />
+			<link rel="apple-touch-icon" sizes="114x114" href="../../media/ios/touch-icon-iphone-114.jpg" />
+			<link rel="apple-touch-icon" sizes="144x144" href="../../media/ios/touch-icon-ipad-144.jpg" />
 		</f:facet>
 		<div class="page-container">
 			<ui:insert name="toolbar" />
