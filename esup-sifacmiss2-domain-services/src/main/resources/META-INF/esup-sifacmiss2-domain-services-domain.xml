@@ -21,7 +21,7 @@
 		<property name="matriculeService" ref="sifacMatriculeService" />
 	</bean>
 
-	<bean id="matriculeBySifac" class="org.esupportail.sifacmissions.domain.MatriculeByMock" lazy-init="true">
+	<bean id="matriculeByMock" class="org.esupportail.sifacmissions.domain.MatriculeByMock" lazy-init="true">
 		<property name="matricule" value="${domain.matricule.mock.matricule}" />
 	</bean>
 	
