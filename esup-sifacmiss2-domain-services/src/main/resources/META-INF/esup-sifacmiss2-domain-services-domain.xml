@@ -20,6 +20,10 @@
 	<bean id="matriculeBySifac" class="org.esupportail.sifacmissions.domain.MatriculeBySifac" lazy-init="true">
 		<property name="matriculeService" ref="sifacMatriculeService" />
 	</bean>
+
+	<bean id="matriculeBySifac" class="org.esupportail.sifacmissions.domain.MatriculeByMock" lazy-init="true">
+		<property name="matricule" value="${domain.matricule.mock.matricule}" />
+	</bean>
 	
 	<bean id="sifacMatriculeService" class="org.esupportail.sifacmissions.ws.SifacMatriculeService" lazy-init="true">
         <constructor-arg><value>${domain.matricule.sifac.ws.url}</value></constructor-arg>
