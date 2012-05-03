@@ -12,7 +12,7 @@
 		<id>iphonePortlet</id>
 		<family>iphoneFamily</family>
 		<render-kit-id>portlet</render-kit-id>
-		<style-sheet-name>media/skins/iphone/iphonePortlet.css</style-sheet-name>
+		<style-sheet-name>media/skins/iphone-portlet.css</style-sheet-name>
 	</skin>
 
 	<skin>

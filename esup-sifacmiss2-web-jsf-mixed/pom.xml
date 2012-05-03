@@ -92,6 +92,7 @@
 					<compress>true</compress>
 					<includes>
 						<include>iphone.less</include>
+						<include>iphone-portlet.less</include>
 						<include>minimal.less</include>
 					</includes>
 				</configuration>
