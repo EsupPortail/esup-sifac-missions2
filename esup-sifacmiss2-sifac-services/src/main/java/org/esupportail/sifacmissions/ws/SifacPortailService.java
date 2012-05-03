@@ -142,8 +142,11 @@ public class SifacPortailService {
 			for (int i = 0; i < detailsArray.length; i++) {
 				MissionDetails details = new MissionDetails();
 
-				details.setCategorie(categorizer.getCategory(detailsArray[i].getCAT_FRAIS_DEPL()));
-				details.setDescription(StringUtils.trimWhitespace(detailsArray[i].getDES_FRAIS_DEPL()));
+				String catCode = detailsArray[i].getCAT_FRAIS_DEPL();
+				String catDesc = detailsArray[i].getDES_FRAIS_DEPL();
+
+				details.setCategorie(categorizer.getCategory(catCode, catDesc));
+				details.setDescription(StringUtils.trimWhitespace(catDesc));
 				details.setMontant(detailsArray[i].getMONTANT());
 				details.setPaid(detailsArray[i].getPAYE_SOCIETE().equals("X"));
 

@@ -78,17 +78,28 @@ public class Categorizer {
 	 * @return Catégorie ou null si aucune catégorie ne correspond.
 	 */
 	public String getCategory(String word) {
+		return getCategory(word, null);
+	}
+	
+	/**
+	 * @see #getCategory(String)
+	 * 
+	 * @param word Mot clé
+	 * @param hint Indice
+	 * @return Catégorie ou null si aucune catégorie ne correspond.
+	 */
+	public String getCategory(String word, String hint) {
 		String category = dictionary.get(word.toLowerCase());
-
+		
 		if (logger.isDebugEnabled()) {
 			if (category != null) {
 				logger.debug("Found category '" + category + "' using '" + word + "'");
 			}
 			else {
-				logger.debug("No category was found using '" + word + "'");
+				logger.debug("No category was found using '" + word + "'" + (hint != null ? " (" + hint + ")" : ""));
 			}
 		}
-
+		
 		return category;
 	}
 
