@@ -24,7 +24,7 @@
 				rows="0">
 				<tr:column>
 					<tr:panelGroupLayout styleClass="list-item-block">
-						<tr:commandLink action="mission">
+						<tr:commandLink action="mission" text="#{msgs['WELCOME.MISSION.M_VIEW']}">
 							<f:setPropertyActionListener value="mission" target="#{sessionController.action}" />
 							<f:setPropertyActionListener value="#{mission}" target="#{mobileMissionController.currentMission}" />
 						</tr:commandLink>
