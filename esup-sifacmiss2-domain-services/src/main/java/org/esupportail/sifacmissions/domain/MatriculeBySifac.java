@@ -8,8 +8,10 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.StringUtils;
 
 /**
- * @author Yves Deschamps (Universite Lille1 - France)
+ * Service permettant de récupérer le matricule de l'utilisateur depuis le
+ * web service de SIFAC.
  * 
+ * @author Yves Deschamps (Universite Lille1 - France)
  */
 public class MatriculeBySifac implements MatriculeService, InitializingBean {
 
