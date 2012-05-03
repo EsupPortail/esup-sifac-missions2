@@ -36,7 +36,7 @@
 			</div>
 			<div class="row">
 				<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_MONTANT']}" />
-				<tr:outputText styleClass="value" value="#{mobileMissionController.currentMission.montant}">
+				<tr:outputText styleClass="value" value="#{mobileMissionController.currentMission.remboursement}">
 					<tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
 				</tr:outputText>
 			</div>
