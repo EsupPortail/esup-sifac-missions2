@@ -2,9 +2,12 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:tr="http://myfaces.apache.org/trinidad"
 	locale="#{sessionController.locale}">
+
 	<tr:document title="#{msgs['BLANK.TEXT']}">
-		<ui:include src="menu.xhtml" />
-		<tr:spacer height="20px" />
-		<ui:insert name="content" />
+		<div class="portlet">
+			<ui:include src="menu.xhtml" />
+			<ui:insert name="content" />
+		</div>
 	</tr:document>
+
 </f:view>

@@ -2,8 +2,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:tr="http://myfaces.apache.org/trinidad" template="template.xhtml">
 	<ui:define name="content">
-		<tr:form>
-			<tr:outputText value="#{msgs['HELP.TEXT.SUMMARY']}" />
-		</tr:form>
+		<div class="portlet-body">
+			<p>
+				<tr:outputText value="#{msgs['HELP.TEXT.SUMMARY']}" />
+			</p>
+		</div>
 	</ui:define>
 </ui:composition>

@@ -5,29 +5,28 @@
 	<ui:define name="content">
 		<tr:form>
 			<tr:messages/>
-			<tr:panelHorizontalLayout>
+			<tr:panelHorizontalLayout styleClass="mission-selector">
 				<tr:selectOneChoice id="yearSelector" autoSubmit="true"
+					styleClass="year-selector"
 					valueChangeListener="#{missionController.yearChanged}"
 					label="#{msgs['WELCOME.YEAR.SELECT_LABEL']}"
 					value="#{missionController.year}">
 					<f:selectItems value="#{missionController.yearItems}" />
 				</tr:selectOneChoice>
-				<tr:spacer width="10px" />
 				<tr:selectOneChoice id="pageSizeSelector" autoSubmit="true"
 					partialTriggers="yearSelector"
+					styleClass="rows-selector"
 					inlineStyle="#{empty missionController.missions ? 'display:none' : ''}"
 					label="#{msgs['WELCOME.MISSIONS_PER_PAGE']}"
 					value="#{missionController.missionsPerPage}">
 					<f:selectItems value="#{missionController.missionsPerPageItems}" />
 				</tr:selectOneChoice>
-				<tr:spacer width="10px"/>
 				<tr:statusIndicator>
 					<f:facet name="busy">
 						<tr:image source="/adf/images/sibusy.gif" height="16" width="16"/>
 					</f:facet>
 				</tr:statusIndicator>
 			</tr:panelHorizontalLayout>
-			<tr:spacer height="20px" />
 			<tr:table binding="#{missionController.missionsTable}"
 				partialTriggers="::yearSelector ::pageSizeSelector"
 				value="#{missionController.missions}"

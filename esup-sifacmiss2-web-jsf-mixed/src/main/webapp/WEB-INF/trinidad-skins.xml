@@ -22,4 +22,11 @@
 		<style-sheet-name>media/skins/minimal.css</style-sheet-name>
 	</skin>
 
+	<skin>
+		<id>minimalPortlet</id>
+		<family>minimalFamily</family>
+		<render-kit-id>portlet</render-kit-id>
+		<style-sheet-name>media/skins/minimal-portlet.css</style-sheet-name>
+	</skin>
+
 </skins>

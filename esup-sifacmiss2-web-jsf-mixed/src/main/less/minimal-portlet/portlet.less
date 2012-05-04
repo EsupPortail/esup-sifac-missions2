@@ -1,0 +1,91 @@
+
+// Mission selector
+// ----------------
+
+table.mission-selector {
+  margin: 1em 0.5em 0.5em;
+ 
+  table,
+  td {
+    margin: 0;
+    padding: 0;
+  }
+  
+  td {
+    padding-right: 0.5em;
+  }
+}
+
+// Pagination control
+// ------------------
+
+table.af_table_control-bar-top {
+  margin: 0;
+  border-width: 1px;
+
+  table {
+    margin: 0;
+  }
+}
+
+// Table titles
+// ------------
+
+table.af_table_content {
+  th {
+    color: #666;
+  }
+}
+
+// Titles and paragraphs
+// ---------------------
+
+.portlet-body {
+  & > h3.portlet-section-header {
+    color: #000;
+    font: bold 14px Verdana,Arial,Helvetica,sans-serif;
+  }
+  
+  & > p {
+    margin: 0.4em 0 1em;
+  }
+}
+
+// Missions table
+// --------------
+
+.mission-container {
+  // Disclosure icons
+  .p_OraHideShowDisclosedSymbol {
+    color: #333;
+  }
+  
+  // Table borders
+  table.af_table_content > tbody > tr > td {
+    border: 1px solid #999 !important;
+  }
+  
+  // Fix padding for numeric rows
+  .af_column_cell-number,
+  .af_column_cell-number-band {
+    padding-right: 0.5em;
+  }
+  
+  // Mission details
+  .mission-details {
+    // No borders
+    table.af_table_content > tbody > tr > td {
+      border: 0 !important;
+    }
+    
+    // Fix margins
+    table {
+      margin: 0;
+    }
+    
+    // Fix paddings
+    td {
+      padding: 4px 2px;
+    }
+  }
+}

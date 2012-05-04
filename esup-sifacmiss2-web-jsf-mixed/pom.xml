@@ -94,6 +94,7 @@
 						<include>iphone.less</include>
 						<include>iphone-portlet.less</include>
 						<include>minimal.less</include>
+						<include>minimal-portlet.less</include>
 					</includes>
 				</configuration>
 				<executions>
