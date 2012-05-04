@@ -92,11 +92,13 @@ public class Categorizer {
 		String category = dictionary.get(word.toLowerCase());
 		
 		if (logger.isDebugEnabled()) {
+			String hintText = hint != null ? " (" + hint + ")" : "";
+			
 			if (category != null) {
-				logger.debug("Found category '" + category + "' using '" + word + "'");
+				logger.debug("Found category '" + category + "' using '" + word + "'" + hintText);
 			}
 			else {
-				logger.debug("No category was found using '" + word + "'" + (hint != null ? " (" + hint + ")" : ""));
+				logger.debug("No category was found using '" + word + "'" + hintText);
 			}
 		}
 		
