@@ -7,6 +7,7 @@
 		<property name="skins">
 			<map>
 				<entry key="iPhone" value="iphoneFamily" />
+				<entry key="iPad" value="iphoneFamily" />
                 <entry key="Android" value="iphoneFamily" />
                 <entry key="Pre" value="iphoneFamily" />
                 <entry key="BlackBerry" value="iphoneFamily" />
