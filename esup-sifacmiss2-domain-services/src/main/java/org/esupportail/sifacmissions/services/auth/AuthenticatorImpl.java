@@ -27,6 +27,10 @@ public class AuthenticatorImpl implements Authenticator, InitializingBean {
 	 */
 	public void setAuthenticationService(final AuthenticationService authenticationService) {
 		this.authenticationService = authenticationService;
+		
+		if (logger.isDebugEnabled()) {
+			logger.debug("authenticationService: " + authenticationService.getClass().getName());
+		}
 	}
 
 	@Override
