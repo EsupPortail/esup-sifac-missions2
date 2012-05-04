@@ -9,11 +9,11 @@
 
 	<ui:define name="content">
 		<tr:form>
-			<div class="chromebar">
+			<div class="chromebar" id="chromebar">
 				<tr:selectOneChoice immediate="true" simple="true"
 					valueChangeListener="#{mobileMissionController.yearChanged}"
 					value="#{mobileMissionController.year}"
-					onchange="submit()">
+					onchange="lockUIandSubmit()">
 					<f:selectItems value="#{mobileMissionController.yearItems}" />
 				</tr:selectOneChoice>
 			</div>
@@ -53,8 +53,19 @@
 			</tr:table>
 		</tr:form>
 		<script type="text/javascript">
-			function changeYear() {
-				document.getElementById('changeYearBtn').getElementsByTagName("input").item(0).click();
+			function lockUIandSubmit() {
+				var chromebar = document.getElementById('chromebar');
+				var selectContrainer = document.getElementsByTagName("span").item(0);
+				var selectInput = selectContrainer.getElementsByTagName("select").item(0);
+				
+				// Display a status indicator
+				selectContrainer.className = selectContrainer.className + " loading";
+				
+				// Submit form
+				chromebar.parentNode.submit();
+				
+				// Disable input
+				selectInput.setAttribute("disabled", "disabled");
 			}
 		</script>
 	</ui:define>

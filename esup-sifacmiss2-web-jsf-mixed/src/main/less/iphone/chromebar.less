@@ -11,7 +11,17 @@
   .border-radius(20px);
   .box-shadow(~"inset 0 2px 4px rgba(0,0,0,0.4), 0 1px 0 rgba(255,255,255,.3)");
   border: 1px solid @chromebarSelectBorderColor;
+  
+  background-image: url(@chromebarLoadingPath); // Fix iPhone preload
   background: @chromebarSelectBgColor;
+  
+  &.loading {
+    background: @chromebarSelectBgColor url(@chromebarLoadingPath) 10px center no-repeat;
+    
+    & > select {
+      padding-left: 30px;
+    }
+  }
   
   & > select {
     .box-sizing(border-box);
@@ -26,5 +36,9 @@
     color: @chromebarSelectTextColor;
     line-height: 30px;
     vertical-align: middle;
+    
+    &[disabled] {
+      color: lighten(@chromebarSelectTextColor, 30%);
+    }
   }
 }
