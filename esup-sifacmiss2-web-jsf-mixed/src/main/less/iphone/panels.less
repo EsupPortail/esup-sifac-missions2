@@ -15,12 +15,13 @@
   
   & > .label,
   & > .value {
+    .box-sizing(border-box);
+    .text-overflow();
     display: inline-block;
     line-height: 20px;
   }
 
   & > .label {
-    .text-overflow();
     text-align: left;
     font-weight: bold;
     width: 55%;
