@@ -15,14 +15,6 @@
   background-image: url(@chromebarLoadingPath); // Fix iPhone preload
   background: @chromebarSelectBgColor;
   
-  &.loading {
-    background: @chromebarSelectBgColor url(@chromebarLoadingPath) 10px center no-repeat;
-    
-    & > select {
-      padding-left: 30px;
-    }
-  }
-  
   & > select {
     .box-sizing(border-box);
     .appearance(textfield);
@@ -39,6 +31,30 @@
     
     &[disabled] {
       color: lighten(@chromebarSelectTextColor, 30%);
+    }
+  }
+}
+
+.chromebar {
+  position: relative;
+  
+  & > .status-indicator {
+    .square(16px);
+    background: url(@chromebarLoadingPath);
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+  
+  &.loading {
+    & > .status-indicator {
+      display: block;
+      top: 16px;
+      left: 16px;
+    }
+    
+    & > span > select {
+      padding-left: 30px;
     }
   }
 }
