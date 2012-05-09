@@ -1,6 +1,7 @@
-@toolbarHeight: 45px;
+@toolbarHeight: 44px;
 
 .toolbar {
+  .clearfix();
   .box-sizing(border-box);
   background: @toolbarBackgroupColor url(@toolbarBackgroupPath) repeat-x;
   border-bottom: 1px solid @toolbarBorderColor;
@@ -11,14 +12,17 @@
 .toolbar > h1 {
   #font > .sans-serif(20px, bold, @toolbarHeight - 14);
   .text-overflow();
+  text-align: center;
   vertical-align: middle;
   margin: 0;
   padding: 0;
   color: @toolbarTitleColor;
   text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+  max-width: 300px;
 }
 
 .toolbar > .backButton {
+  .box-sizing(border-box);
   .border-image(~"url(@{toolbarBackBtnBorderPath}) 0 8 0 14");
   background: url(@toolbarBackBtnBgPath) repeat-x;
   padding: 0;
@@ -30,17 +34,10 @@
   color: @toolbarTitleColor;
   font-weight: bold;
   text-shadow: 0 -1px 0 rgba(0,0,0,.4);
+  float: left;
 }
 
-.toolbar {
-  .clearfix();
-  
-  & > .backButton {
-    float: left;
-    margin-right: 8px;
-  }
-  
-  & > h1 {
-    text-align: center;
-  }
+.toolbar > .backButton + h1 {
+  .box-sizing(border-box);
+  padding-left: 8px;
 }
