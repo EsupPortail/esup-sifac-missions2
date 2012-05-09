@@ -38,13 +38,13 @@
                             <tr:outputText value="#{mission.motif}" />
                         </div>
                         <div class="desc">
-                            <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_START']}" />
+                            <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_START']} " />
                             <tr:outputText styleClass="value" value="#{mission.periode.debut}">
                                 <tr:convertDateTime locale="#{sessionController.locale}" type="date" />
                             </tr:outputText>
                         </div>
                         <div class="desc">
-                            <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_END']}" />
+                            <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_END']} " />
                             <tr:outputText styleClass="value" value="#{mission.periode.fin}">
                                 <tr:convertDateTime locale="#{sessionController.locale}" type="date" />
                             </tr:outputText>
