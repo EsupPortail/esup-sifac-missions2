@@ -4,7 +4,8 @@
     template="template.xhtml">
     
     <ui:define name="toolbar">
-        <tr:panelHeader styleClass="toolbar" text="#{msgs['M_BLANK.TEXT']}" />
+        <tr:panelHeader styleClass="toolbar" text="#{msgs['M_BLANK.TEXT']}"
+            rendered="#{not sessionController.portletMode}" />
     </ui:define>
 
     <ui:define name="content">
