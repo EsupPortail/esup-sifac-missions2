@@ -16,6 +16,7 @@
 					onchange="lockUIandSubmit()">
 					<f:selectItems value="#{mobileMissionController.yearItems}" />
 				</tr:selectOneChoice>
+				<div class="status-indicator"></div>
 			</div>
 			<tr:messages/>
 			<tr:table styleClass="table-list"
@@ -59,7 +60,7 @@
 				var selectInput = selectContrainer.getElementsByTagName("select").item(0);
 				
 				// Display a status indicator
-				selectContrainer.className = selectContrainer.className + " loading";
+				chromebar.className = chromebar.className + " loading";
 				
 				// Submit form
 				chromebar.parentNode.submit();
