@@ -1,27 +1,27 @@
 <f:view xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:tr="http://myfaces.apache.org/trinidad"
-	locale="#{sessionController.locale}">
-	<tr:document title="#{msgs['BLANK.TEXT']}">
-		<f:facet name="metaContainer">
-			<!-- Lock viewport -->
-			<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-			<!-- Define app skin -->
-			<meta name="apple-mobile-web-app-capable" content="yes" /> 
-			<!-- Home icon -->
-			<link rel="apple-touch-icon" sizes="57x57" href="../../media/ios/touch-icon-iphone-114.jpg" />
-			<link rel="apple-touch-icon" sizes="72x72" href="../../media/ios/touch-icon-ipad-144.jpg" />
-			<link rel="apple-touch-icon" sizes="114x114" href="../../media/ios/touch-icon-iphone-114.jpg" />
-			<link rel="apple-touch-icon" sizes="144x144" href="../../media/ios/touch-icon-ipad-144.jpg" />
-			<!-- Startup image -->
-			<link rel="apple-touch-startup-image" media="(max-device-width: 480px) and not (-webkit-min-device-pixel-ratio: 2)" href="../../media/ios/startup-iphone.jpg" />
-			<link rel="apple-touch-startup-image" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" href="../../media/ios/startup-iphone-retina.jpg" />
-			<link rel="apple-touch-startup-image" media="(min-device-width: 768px) and (orientation: portrait)" href="../../media/ios/startup-ipad-portrait.jpg" />
-			<link rel="apple-touch-startup-image" media="(min-device-width: 768px) and (orientation: landscape)" href="../../media/ios/startup-ipad-landscape.jpg" />
-		</f:facet>
-		<div class="page-container">
-			<ui:insert name="toolbar" />
-			<ui:insert name="content" />
-		</div>
-	</tr:document>
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:tr="http://myfaces.apache.org/trinidad"
+    locale="#{sessionController.locale}">
+    <tr:document title="#{msgs['BLANK.TEXT']}">
+        <f:facet name="metaContainer">
+            <!-- Lock viewport -->
+            <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+            <!-- Define app skin -->
+            <meta name="apple-mobile-web-app-capable" content="yes" /> 
+            <!-- Home icon -->
+            <link rel="apple-touch-icon" sizes="57x57" href="../../media/ios/touch-icon-iphone-114.jpg" />
+            <link rel="apple-touch-icon" sizes="72x72" href="../../media/ios/touch-icon-ipad-144.jpg" />
+            <link rel="apple-touch-icon" sizes="114x114" href="../../media/ios/touch-icon-iphone-114.jpg" />
+            <link rel="apple-touch-icon" sizes="144x144" href="../../media/ios/touch-icon-ipad-144.jpg" />
+            <!-- Startup image -->
+            <link rel="apple-touch-startup-image" media="(max-device-width: 480px) and not (-webkit-min-device-pixel-ratio: 2)" href="../../media/ios/startup-iphone.jpg" />
+            <link rel="apple-touch-startup-image" media="(max-device-width: 480px) and (-webkit-min-device-pixel-ratio: 2)" href="../../media/ios/startup-iphone-retina.jpg" />
+            <link rel="apple-touch-startup-image" media="(min-device-width: 768px) and (orientation: portrait)" href="../../media/ios/startup-ipad-portrait.jpg" />
+            <link rel="apple-touch-startup-image" media="(min-device-width: 768px) and (orientation: landscape)" href="../../media/ios/startup-ipad-landscape.jpg" />
+        </f:facet>
+        <div class="page-container">
+            <ui:insert name="toolbar" />
+            <ui:insert name="content" />
+        </div>
+    </tr:document>
 </f:view>

@@ -1,82 +1,82 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:tr="http://myfaces.apache.org/trinidad"
-	template="template.xhtml">
-	
-	<ui:define name="toolbar">
-		<tr:form>
-			<tr:panelGroupLayout styleClass="toolbar">
-				<tr:commandLink styleClass="backButton" text="#{msgs['BACK.TEXT']}" action="missions">
-					<f:setPropertyActionListener value="missions" target="#{sessionController.action}" />
-				</tr:commandLink>
-				<h1>
-					<tr:outputText value="#{mobileMissionController.currentMission.motif}" />
-				</h1>
-			</tr:panelGroupLayout>
-		</tr:form>
-	</ui:define>
-	
-	<ui:define name="content">
-		<tr:panelGroupLayout styleClass="panel">
-			<div class="row">
-				<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_ORDRE']}" />
-				<tr:outputText styleClass="value" value="#{mobileMissionController.currentMission.ordre}" />
-			</div>
-			<div class="row">
-				<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_START']}" />
-				<tr:outputText styleClass="value" value="#{mobileMissionController.currentMission.periode.debut}">
-					<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
-				</tr:outputText>
-			</div>
-			<div class="row">
-				<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_END']}" />
-				<tr:outputText styleClass="value" value="#{mobileMissionController.currentMission.periode.fin}">
-					<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
-				</tr:outputText>
-			</div>
-			<div class="row">
-				<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_MONTANT']}" />
-				<tr:outputText styleClass="value" value="#{mobileMissionController.currentMission.remboursement}">
-					<tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
-				</tr:outputText>
-			</div>
-			<div class="row">
-				<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_STATUS']}" />
-				<tr:outputText styleClass="value"
-					rendered="#{mobileMissionController.currentMission.status == 0}" 
-					value="#{msgs['WELCOME.STATUS.M_NON_REMBOURSABLE']}"/>
-				<tr:outputText styleClass="value"
-					rendered="#{mobileMissionController.currentMission.status == 1}" 
-					value="#{msgs['WELCOME.STATUS.M_EN_ATTENTE']}"/>
-				<tr:outputText styleClass="value"
-					rendered="#{mobileMissionController.currentMission.status == 2}" 
-					value="#{msgs['WELCOME.STATUS.M_VALIDEE']}"/>
-			</div>
-			<div class="row">
-				<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_DATE']}" />
-				<tr:outputText styleClass="value"
-					rendered="#{mobileMissionController.currentMission.status != 2}" 
-					value="#{msgs['WELCOME.MISSION.M_DATE_BLANK']}"/>
-				<tr:outputText styleClass="value"
-					rendered="#{mobileMissionController.currentMission.status == 2}" 
-					value="#{mobileMissionController.currentMission.date}"/>
-			</div>
-		</tr:panelGroupLayout>
-		<ui:fragment rendered="#{not empty mobileMissionController.currentMission.details}">
-			<div class="panel-title">
-				<tr:outputText value="#{msgs['WELCOME.MISSION.M_DETAILS']}" />
-			</div>
-			<tr:panelGroupLayout styleClass="panel">
-				<tr:iterator var="detail" value="#{mobileMissionController.currentMission.details}">
-					<div class="row picto #{detail.paid ? 'paid' : ''}">
-						<tr:outputText styleClass="label picto-#{not empty detail.categorie ? detail.categorie : 'default'}" value="#{detail.description}" />
-						<tr:outputText styleClass="value" value="#{detail.montant}">
-							<tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
-						</tr:outputText>
-					</div>
-				</tr:iterator>
-			</tr:panelGroupLayout>
-		</ui:fragment>
-	</ui:define>
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:tr="http://myfaces.apache.org/trinidad"
+    template="template.xhtml">
+    
+    <ui:define name="toolbar">
+        <tr:form>
+            <tr:panelGroupLayout styleClass="toolbar">
+                <tr:commandLink styleClass="backButton" text="#{msgs['BACK.TEXT']}" action="missions">
+                    <f:setPropertyActionListener value="missions" target="#{sessionController.action}" />
+                </tr:commandLink>
+                <h1>
+                    <tr:outputText value="#{mobileMissionController.currentMission.motif}" />
+                </h1>
+            </tr:panelGroupLayout>
+        </tr:form>
+    </ui:define>
+    
+    <ui:define name="content">
+        <tr:panelGroupLayout styleClass="panel">
+            <div class="row">
+                <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_ORDRE']}" />
+                <tr:outputText styleClass="value" value="#{mobileMissionController.currentMission.ordre}" />
+            </div>
+            <div class="row">
+                <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_START']}" />
+                <tr:outputText styleClass="value" value="#{mobileMissionController.currentMission.periode.debut}">
+                    <tr:convertDateTime locale="#{sessionController.locale}" type="date" />
+                </tr:outputText>
+            </div>
+            <div class="row">
+                <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_END']}" />
+                <tr:outputText styleClass="value" value="#{mobileMissionController.currentMission.periode.fin}">
+                    <tr:convertDateTime locale="#{sessionController.locale}" type="date" />
+                </tr:outputText>
+            </div>
+            <div class="row">
+                <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_MONTANT']}" />
+                <tr:outputText styleClass="value" value="#{mobileMissionController.currentMission.remboursement}">
+                    <tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
+                </tr:outputText>
+            </div>
+            <div class="row">
+                <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_STATUS']}" />
+                <tr:outputText styleClass="value"
+                    rendered="#{mobileMissionController.currentMission.status == 0}" 
+                    value="#{msgs['WELCOME.STATUS.M_NON_REMBOURSABLE']}"/>
+                <tr:outputText styleClass="value"
+                    rendered="#{mobileMissionController.currentMission.status == 1}" 
+                    value="#{msgs['WELCOME.STATUS.M_EN_ATTENTE']}"/>
+                <tr:outputText styleClass="value"
+                    rendered="#{mobileMissionController.currentMission.status == 2}" 
+                    value="#{msgs['WELCOME.STATUS.M_VALIDEE']}"/>
+            </div>
+            <div class="row">
+                <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_DATE']}" />
+                <tr:outputText styleClass="value"
+                    rendered="#{mobileMissionController.currentMission.status != 2}" 
+                    value="#{msgs['WELCOME.MISSION.M_DATE_BLANK']}"/>
+                <tr:outputText styleClass="value"
+                    rendered="#{mobileMissionController.currentMission.status == 2}" 
+                    value="#{mobileMissionController.currentMission.date}"/>
+            </div>
+        </tr:panelGroupLayout>
+        <ui:fragment rendered="#{not empty mobileMissionController.currentMission.details}">
+            <div class="panel-title">
+                <tr:outputText value="#{msgs['WELCOME.MISSION.M_DETAILS']}" />
+            </div>
+            <tr:panelGroupLayout styleClass="panel">
+                <tr:iterator var="detail" value="#{mobileMissionController.currentMission.details}">
+                    <div class="row picto #{detail.paid ? 'paid' : ''}">
+                        <tr:outputText styleClass="label picto-#{not empty detail.categorie ? detail.categorie : 'default'}" value="#{detail.description}" />
+                        <tr:outputText styleClass="value" value="#{detail.montant}">
+                            <tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
+                        </tr:outputText>
+                    </div>
+                </tr:iterator>
+            </tr:panelGroupLayout>
+        </ui:fragment>
+    </ui:define>
 
 </ui:composition>

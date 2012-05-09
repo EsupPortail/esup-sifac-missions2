@@ -1,13 +1,13 @@
 <f:view xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:tr="http://myfaces.apache.org/trinidad"
-	locale="#{sessionController.locale}">
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:tr="http://myfaces.apache.org/trinidad"
+    locale="#{sessionController.locale}">
 
-	<tr:document title="#{msgs['BLANK.TEXT']}">
-		<div class="portlet">
-			<ui:include src="menu.xhtml" />
-			<ui:insert name="content" />
-		</div>
-	</tr:document>
+    <tr:document title="#{msgs['BLANK.TEXT']}">
+        <div class="portlet">
+            <ui:include src="menu.xhtml" />
+            <ui:insert name="content" />
+        </div>
+    </tr:document>
 
 </f:view>

@@ -1,74 +1,74 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:tr="http://myfaces.apache.org/trinidad"
-	template="template.xhtml">
-	
-	<ui:define name="toolbar">
-		<tr:panelHeader styleClass="toolbar" text="#{msgs['M_BLANK.TEXT']}" />
-	</ui:define>
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:tr="http://myfaces.apache.org/trinidad"
+    template="template.xhtml">
+    
+    <ui:define name="toolbar">
+        <tr:panelHeader styleClass="toolbar" text="#{msgs['M_BLANK.TEXT']}" />
+    </ui:define>
 
-	<ui:define name="content">
-		<tr:form>
-			<div class="chromebar" id="chromebar">
-				<tr:selectOneChoice immediate="true" simple="true"
-					valueChangeListener="#{mobileMissionController.yearChanged}"
-					value="#{mobileMissionController.year}"
-					onchange="lockUIandSubmit()">
-					<f:selectItems value="#{mobileMissionController.yearItems}" />
-				</tr:selectOneChoice>
-				<div class="status-indicator"></div>
-			</div>
-			<tr:messages/>
-			<tr:table styleClass="table-list"
-				value="#{mobileMissionController.missions}" var="mission"
-				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{mobileMissionController.year}"
-				rows="0">
-				<tr:column>
-					<tr:panelGroupLayout styleClass="list-item-block">
-						<tr:commandLink action="mission" text="#{msgs['WELCOME.MISSION.M_VIEW']}">
-							<f:setPropertyActionListener value="mission" target="#{sessionController.action}" />
-							<f:setPropertyActionListener value="#{mission}" target="#{mobileMissionController.currentMission}" />
-						</tr:commandLink>
-						<div class="info">
-							<tr:outputText value="#{mission.remboursement}">
-								<tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
-							</tr:outputText>
-						</div>
-						<div class="title">
-							<tr:outputText value="#{mission.motif}" />
-						</div>
-						<div class="desc">
-							<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_START']}" />
-							<tr:outputText styleClass="value" value="#{mission.periode.debut}">
-								<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
-							</tr:outputText>
-						</div>
-						<div class="desc">
-							<tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_END']}" />
-							<tr:outputText styleClass="value" value="#{mission.periode.fin}">
-								<tr:convertDateTime locale="#{sessionController.locale}" type="date" />
-							</tr:outputText>
-						</div>
-					</tr:panelGroupLayout>
-				</tr:column>
-			</tr:table>
-		</tr:form>
-		<script type="text/javascript">
-			function lockUIandSubmit() {
-				var chromebar = document.getElementById('chromebar');
-				var selectContrainer = document.getElementsByTagName("span").item(0);
-				var selectInput = selectContrainer.getElementsByTagName("select").item(0);
-				
-				// Display a status indicator
-				chromebar.className = chromebar.className + " loading";
-				
-				// Submit form
-				chromebar.parentNode.submit();
-				
-				// Disable input
-				selectInput.setAttribute("disabled", "disabled");
-			}
-		</script>
-	</ui:define>
+    <ui:define name="content">
+        <tr:form>
+            <div class="chromebar" id="chromebar">
+                <tr:selectOneChoice immediate="true" simple="true"
+                    valueChangeListener="#{mobileMissionController.yearChanged}"
+                    value="#{mobileMissionController.year}"
+                    onchange="lockUIandSubmit()">
+                    <f:selectItems value="#{mobileMissionController.yearItems}" />
+                </tr:selectOneChoice>
+                <div class="status-indicator"></div>
+            </div>
+            <tr:messages/>
+            <tr:table styleClass="table-list"
+                value="#{mobileMissionController.missions}" var="mission"
+                emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{mobileMissionController.year}"
+                rows="0">
+                <tr:column>
+                    <tr:panelGroupLayout styleClass="list-item-block">
+                        <tr:commandLink action="mission" text="#{msgs['WELCOME.MISSION.M_VIEW']}">
+                            <f:setPropertyActionListener value="mission" target="#{sessionController.action}" />
+                            <f:setPropertyActionListener value="#{mission}" target="#{mobileMissionController.currentMission}" />
+                        </tr:commandLink>
+                        <div class="info">
+                            <tr:outputText value="#{mission.remboursement}">
+                                <tr:convertNumber locale="#{sessionController.locale}" type="currency" currencySymbol="&#8364;" />
+                            </tr:outputText>
+                        </div>
+                        <div class="title">
+                            <tr:outputText value="#{mission.motif}" />
+                        </div>
+                        <div class="desc">
+                            <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_START']}" />
+                            <tr:outputText styleClass="value" value="#{mission.periode.debut}">
+                                <tr:convertDateTime locale="#{sessionController.locale}" type="date" />
+                            </tr:outputText>
+                        </div>
+                        <div class="desc">
+                            <tr:outputText styleClass="label" value="#{msgs['WELCOME.MISSION.M_END']}" />
+                            <tr:outputText styleClass="value" value="#{mission.periode.fin}">
+                                <tr:convertDateTime locale="#{sessionController.locale}" type="date" />
+                            </tr:outputText>
+                        </div>
+                    </tr:panelGroupLayout>
+                </tr:column>
+            </tr:table>
+        </tr:form>
+        <script type="text/javascript">
+            function lockUIandSubmit() {
+                var chromebar = document.getElementById('chromebar');
+                var selectContrainer = document.getElementsByTagName("span").item(0);
+                var selectInput = selectContrainer.getElementsByTagName("select").item(0);
+                
+                // Display a status indicator
+                chromebar.className = chromebar.className + " loading";
+                
+                // Submit form
+                chromebar.parentNode.submit();
+                
+                // Disable input
+                selectInput.setAttribute("disabled", "disabled");
+            }
+        </script>
+    </ui:define>
 
 </ui:composition>

@@ -1,98 +1,98 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:tr="http://myfaces.apache.org/trinidad" template="template.xhtml">
-	<ui:define name="content">
-		<tr:form>
-			<tr:messages/>
-			<tr:panelHorizontalLayout styleClass="mission-selector">
-				<tr:selectOneChoice id="yearSelector" autoSubmit="true"
-					styleClass="year-selector"
-					valueChangeListener="#{missionController.yearChanged}"
-					label="#{msgs['WELCOME.YEAR.SELECT_LABEL']}"
-					value="#{missionController.year}">
-					<f:selectItems value="#{missionController.yearItems}" />
-				</tr:selectOneChoice>
-				<tr:selectOneChoice id="pageSizeSelector" autoSubmit="true"
-					partialTriggers="yearSelector"
-					styleClass="rows-selector"
-					inlineStyle="#{empty missionController.missions ? 'display:none' : ''}"
-					label="#{msgs['WELCOME.MISSIONS_PER_PAGE']}"
-					value="#{missionController.missionsPerPage}">
-					<f:selectItems value="#{missionController.missionsPerPageItems}" />
-				</tr:selectOneChoice>
-				<tr:statusIndicator>
-					<f:facet name="busy">
-						<tr:image source="/adf/images/sibusy.gif" height="16" width="16"/>
-					</f:facet>
-				</tr:statusIndicator>
-			</tr:panelHorizontalLayout>
-			<tr:table binding="#{missionController.missionsTable}"
-				partialTriggers="::yearSelector ::pageSizeSelector"
-				value="#{missionController.missions}"
-				var="mission" varStatus="status"
-				rows="#{missionController.missionsPerPage}"
-				emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}"
-				rowDisclosureListener="#{missionController.detailsToggled}"
-				styleClass="mission-container" rowBandingInterval="1">
-				<f:facet name="detailStamp">
-					<tr:table value="#{mission.details}" var="detail"
-						emptyText="#{msgs['WELCOME.MISSION.EMPTY_DETAILS']}"
-						styleClass="mission-details #{status.index % 2 == 0 ? 'even' : 'odd'}">
-						<tr:column styleClass="mission-paid">
-							<tr:image source="/media/images/information.png" rendered="#{detail.paid}" />
-							<tr:spacer width="16" rendered="#{not detail.paid}" />
-						</tr:column>
-						<tr:column styleClass="mission-desc">
-							<tr:outputText value="#{detail.description}" />
-						</tr:column>
-						<tr:column styleClass="mission-mont">
-							<tr:outputText value="#{detail.montant}">
-								<tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
-							</tr:outputText>
-						</tr:column>
-					</tr:table>
-				</f:facet>
-				<tr:column headerText="#{msgs['WELCOME.MISSION.MOTIF']}">
-					<tr:outputText value="#{mission.motif}" />
-				</tr:column>
-				<tr:column headerText="#{msgs['WELCOME.MISSION.MONTANT_REMB']}" align="right">
-					<tr:outputText value="#{mission.remboursement}">
-						<tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
-					</tr:outputText>
-				</tr:column>
-				<tr:column headerText="#{msgs['WELCOME.MISSION.DATE']}">
-					<tr:outputText rendered="#{not empty mission.date}"
-						value="#{mission.date}">
-						<tr:convertDateTime locale="fr" type="date" />
-					</tr:outputText>
-					<tr:outputText rendered="#{empty mission.date and mission.remboursement gt 0}"
-						value="#{msgs['WELCOME.MISSION.ATTENTE']}" />
-				</tr:column>
-				<tr:column headerText="#{msgs['WELCOME.MISSION.ORDRE']}">
-					<tr:outputText value="#{mission.ordre}" />
-				</tr:column>
-				<tr:column headerText="#{msgs['WELCOME.MISSION.PERIODE']}">
-					<tr:group>
-						<f:subview rendered="#{mission.periode.debut != mission.periode.fin}">
-							<h:outputText value="#{msgs['WELCOME.MISSION.PERIODE.FROM']} " />
-							<h:outputText value="#{mission.periode.debut}">
-								<tr:convertDateTime locale="fr" type="date" dateStyle="full" />
-							</h:outputText>
-							<h:outputText value=" #{msgs['WELCOME.MISSION.PERIODE.TO']} " />
-							<h:outputText value="#{mission.periode.fin}">
-								<tr:convertDateTime locale="fr" type="date" dateStyle="full" />
-							</h:outputText>
-						</f:subview>
-						<f:subview rendered="#{mission.periode.debut == mission.periode.fin}">
-							<h:outputText value="#{msgs['WELCOME.MISSION.PERIODE.DATE']} " />
-							<h:outputText value="#{mission.periode.debut}">
-								<tr:convertDateTime locale="fr" type="date" dateStyle="full" />
-							</h:outputText>
-						</f:subview>
-					</tr:group>
-				</tr:column>
-			</tr:table>
-		</tr:form>
-	</ui:define>
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:tr="http://myfaces.apache.org/trinidad" template="template.xhtml">
+    <ui:define name="content">
+        <tr:form>
+            <tr:messages/>
+            <tr:panelHorizontalLayout styleClass="mission-selector">
+                <tr:selectOneChoice id="yearSelector" autoSubmit="true"
+                    styleClass="year-selector"
+                    valueChangeListener="#{missionController.yearChanged}"
+                    label="#{msgs['WELCOME.YEAR.SELECT_LABEL']}"
+                    value="#{missionController.year}">
+                    <f:selectItems value="#{missionController.yearItems}" />
+                </tr:selectOneChoice>
+                <tr:selectOneChoice id="pageSizeSelector" autoSubmit="true"
+                    partialTriggers="yearSelector"
+                    styleClass="rows-selector"
+                    inlineStyle="#{empty missionController.missions ? 'display:none' : ''}"
+                    label="#{msgs['WELCOME.MISSIONS_PER_PAGE']}"
+                    value="#{missionController.missionsPerPage}">
+                    <f:selectItems value="#{missionController.missionsPerPageItems}" />
+                </tr:selectOneChoice>
+                <tr:statusIndicator>
+                    <f:facet name="busy">
+                        <tr:image source="/adf/images/sibusy.gif" height="16" width="16"/>
+                    </f:facet>
+                </tr:statusIndicator>
+            </tr:panelHorizontalLayout>
+            <tr:table binding="#{missionController.missionsTable}"
+                partialTriggers="::yearSelector ::pageSizeSelector"
+                value="#{missionController.missions}"
+                var="mission" varStatus="status"
+                rows="#{missionController.missionsPerPage}"
+                emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']}"
+                rowDisclosureListener="#{missionController.detailsToggled}"
+                styleClass="mission-container" rowBandingInterval="1">
+                <f:facet name="detailStamp">
+                    <tr:table value="#{mission.details}" var="detail"
+                        emptyText="#{msgs['WELCOME.MISSION.EMPTY_DETAILS']}"
+                        styleClass="mission-details #{status.index % 2 == 0 ? 'even' : 'odd'}">
+                        <tr:column styleClass="mission-paid">
+                            <tr:image source="/media/images/information.png" rendered="#{detail.paid}" />
+                            <tr:spacer width="16" rendered="#{not detail.paid}" />
+                        </tr:column>
+                        <tr:column styleClass="mission-desc">
+                            <tr:outputText value="#{detail.description}" />
+                        </tr:column>
+                        <tr:column styleClass="mission-mont">
+                            <tr:outputText value="#{detail.montant}">
+                                <tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
+                            </tr:outputText>
+                        </tr:column>
+                    </tr:table>
+                </f:facet>
+                <tr:column headerText="#{msgs['WELCOME.MISSION.MOTIF']}">
+                    <tr:outputText value="#{mission.motif}" />
+                </tr:column>
+                <tr:column headerText="#{msgs['WELCOME.MISSION.MONTANT_REMB']}" align="right">
+                    <tr:outputText value="#{mission.remboursement}">
+                        <tr:convertNumber locale="fr" type="currency" currencySymbol="&#8364;" />
+                    </tr:outputText>
+                </tr:column>
+                <tr:column headerText="#{msgs['WELCOME.MISSION.DATE']}">
+                    <tr:outputText rendered="#{not empty mission.date}"
+                        value="#{mission.date}">
+                        <tr:convertDateTime locale="fr" type="date" />
+                    </tr:outputText>
+                    <tr:outputText rendered="#{empty mission.date and mission.remboursement gt 0}"
+                        value="#{msgs['WELCOME.MISSION.ATTENTE']}" />
+                </tr:column>
+                <tr:column headerText="#{msgs['WELCOME.MISSION.ORDRE']}">
+                    <tr:outputText value="#{mission.ordre}" />
+                </tr:column>
+                <tr:column headerText="#{msgs['WELCOME.MISSION.PERIODE']}">
+                    <tr:group>
+                        <f:subview rendered="#{mission.periode.debut != mission.periode.fin}">
+                            <h:outputText value="#{msgs['WELCOME.MISSION.PERIODE.FROM']} " />
+                            <h:outputText value="#{mission.periode.debut}">
+                                <tr:convertDateTime locale="fr" type="date" dateStyle="full" />
+                            </h:outputText>
+                            <h:outputText value=" #{msgs['WELCOME.MISSION.PERIODE.TO']} " />
+                            <h:outputText value="#{mission.periode.fin}">
+                                <tr:convertDateTime locale="fr" type="date" dateStyle="full" />
+                            </h:outputText>
+                        </f:subview>
+                        <f:subview rendered="#{mission.periode.debut == mission.periode.fin}">
+                            <h:outputText value="#{msgs['WELCOME.MISSION.PERIODE.DATE']} " />
+                            <h:outputText value="#{mission.periode.debut}">
+                                <tr:convertDateTime locale="fr" type="date" dateStyle="full" />
+                            </h:outputText>
+                        </f:subview>
+                    </tr:group>
+                </tr:column>
+            </tr:table>
+        </tr:form>
+    </ui:define>
 </ui:composition>

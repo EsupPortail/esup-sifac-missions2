@@ -1,35 +1,35 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:tr="http://myfaces.apache.org/trinidad" template="template.xhtml">
-	<ui:define name="content">
-		<div class="portlet-body">
-			<h3 class="portlet-section-header">
-				<tr:outputText value="#{msgs['BLANK.TEXT']}" />
-			</h3>
-			<p><tr:outputText value="#{homeController.version}" /></p>
-			
-			<h3 class="portlet-section-header">
-				<tr:outputText value="#{msgs['ABOUT.TEXT.SUMMARY']}" />
-			</h3>
-			<p><tr:outputText value="#{msgs['ABOUT.TEXT.SUMMARY.CONTENT']}" /></p>
-			
-			<h3 class="portlet-section-header">
-				<tr:outputText value="#{msgs['ABOUT.TEXT.AUTHORS']}" />
-			</h3>
-			<ul>
-				<li><tr:outputText value="#{msgs['ABOUT.AUTHORS.AWS']}" /></li>
-				<li><tr:outputText value="#{msgs['ABOUT.AUTHORS.YDESCHAMPS']}" /></li>
-			</ul>
-			
-			<h3 class="portlet-section-header">
-				<tr:outputText value="#{msgs['ABOUT.TEXT.LICENCE']}" />
-			</h3>
-			<p>
-				<tr:goLink text="#{msgs['ABOUT.TEXT.LICENCE.CONTENT']}"
-					destination="#{msgs['ABOUT.TEXT.LICENCE.CONTENT.LINK']}" />
-			</p>
-			<p><tr:outputText value="#{msgs['ABOUT.TEXT.COPYRIGHT']}" /></p>
-		</div>
-	</ui:define>
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:tr="http://myfaces.apache.org/trinidad" template="template.xhtml">
+    <ui:define name="content">
+        <div class="portlet-body">
+            <h3 class="portlet-section-header">
+                <tr:outputText value="#{msgs['BLANK.TEXT']}" />
+            </h3>
+            <p><tr:outputText value="#{homeController.version}" /></p>
+            
+            <h3 class="portlet-section-header">
+                <tr:outputText value="#{msgs['ABOUT.TEXT.SUMMARY']}" />
+            </h3>
+            <p><tr:outputText value="#{msgs['ABOUT.TEXT.SUMMARY.CONTENT']}" /></p>
+            
+            <h3 class="portlet-section-header">
+                <tr:outputText value="#{msgs['ABOUT.TEXT.AUTHORS']}" />
+            </h3>
+            <ul>
+                <li><tr:outputText value="#{msgs['ABOUT.AUTHORS.AWS']}" /></li>
+                <li><tr:outputText value="#{msgs['ABOUT.AUTHORS.YDESCHAMPS']}" /></li>
+            </ul>
+            
+            <h3 class="portlet-section-header">
+                <tr:outputText value="#{msgs['ABOUT.TEXT.LICENCE']}" />
+            </h3>
+            <p>
+                <tr:goLink text="#{msgs['ABOUT.TEXT.LICENCE.CONTENT']}"
+                    destination="#{msgs['ABOUT.TEXT.LICENCE.CONTENT.LINK']}" />
+            </p>
+            <p><tr:outputText value="#{msgs['ABOUT.TEXT.COPYRIGHT']}" /></p>
+        </div>
+    </ui:define>
 </ui:composition>
