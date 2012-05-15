@@ -63,6 +63,8 @@
 				<configuration>
 					<tagBase>https://subversion.cru.fr/esup-sifacmiss2/tags</tagBase>
 					<tagNameFormat>@{project.version}</tagNameFormat>
+					<preparationGoals>clean package javadoc:aggregate-jar install</preparationGoals>
+					<goals>deploy</goals>
 				</configuration>
 			</plugin>
 			<plugin>
