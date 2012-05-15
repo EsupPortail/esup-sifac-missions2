@@ -14,9 +14,13 @@ import org.esupportail.sifacmissions.domain.beans.Mission;
 import org.esupportail.sifacmissions.domain.beans.MissionDetails;
 import org.esupportail.sifacmissions.domain.beans.Periode;
 import org.esupportail.sifacmissions.utils.Categorizer;
-import org.esupportail.sifacmissions.ws.holders.TABLE_OF_BAPIRET2Holder;
-import org.esupportail.sifacmissions.ws.holders.TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder;
-import org.esupportail.sifacmissions.ws.holders.TABLE_OF_ZZPORTSTT_BAPI_MISSION_DETAILHolder;
+import org.esupportail.sifacmissions.ws.generated.ZWEB_SERVICE_PORTAILServiceLocator;
+import org.esupportail.sifacmissions.ws.generated.ZWEB_SERVICE_PORTAILSoapBindingStub;
+import org.esupportail.sifacmissions.ws.generated.ZZPORTSTT_BAPI_MISSION;
+import org.esupportail.sifacmissions.ws.generated.ZZPORTSTT_BAPI_MISSION_DETAIL;
+import org.esupportail.sifacmissions.ws.generated.holders.TABLE_OF_BAPIRET2Holder;
+import org.esupportail.sifacmissions.ws.generated.holders.TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder;
+import org.esupportail.sifacmissions.ws.generated.holders.TABLE_OF_ZZPORTSTT_BAPI_MISSION_DETAILHolder;
 import org.springframework.util.StringUtils;
 
 /**

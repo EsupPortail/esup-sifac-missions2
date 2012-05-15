@@ -5,7 +5,9 @@ import java.rmi.RemoteException;
 import javax.xml.rpc.ServiceException;
 
 import org.apache.axis.client.Stub;
-import org.esupportail.sifacmissions.ws.holders.TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder;
+import org.esupportail.sifacmissions.ws.generated.ZWEB_SERVICE_MATRICULEServiceLocator;
+import org.esupportail.sifacmissions.ws.generated.ZWEB_SERVICE_MATRICULESoapBindingStub;
+import org.esupportail.sifacmissions.ws.generated.holders.TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder;
 
 /**
  * Cette classe permet d'assurer une cohérence entre le code de l'application et

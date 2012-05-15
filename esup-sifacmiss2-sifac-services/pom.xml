@@ -32,7 +32,7 @@
                         <wsdlFile>matricule.wsdl</wsdlFile>
                         <wsdlFile>portail.wsdl</wsdlFile>
                     </wsdlFiles>
-                    <packageSpace>org.esupportail.sifacmissions.ws</packageSpace>
+                    <packageSpace>org.esupportail.sifacmissions.ws.generated</packageSpace>
 				</configuration>
 			</plugin>
 			<plugin>
