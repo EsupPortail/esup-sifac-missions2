@@ -1,0 +1,35 @@
+.toolbar {
+  .clearfix();
+  padding: 12px 10px 0;
+}
+
+.toolbar > h1 {
+  #font > .sans-serif(20px, bold, 32px);
+  .text-overflow();
+  .panel-title();
+  text-align: center;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+  max-width: 300px;
+}
+
+.toolbar > .backButton {
+  .border-image(~"url(@{toolbarBackBtnBorderPath}) 0 5 0 5");
+  padding: 1px 4px;
+  border-width: 0 5px;
+  line-height: 28px;
+  vertical-align: middle;
+  text-decoration: none;
+  color: @toolbarBackBtnColor;
+  font-size: 12px;
+  font-weight: bold;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.6);
+  float: left;
+}
+
+.toolbar > .backButton + h1 {
+  .box-sizing(border-box);
+  padding-left: 8px;
+  max-width: none;
+}
