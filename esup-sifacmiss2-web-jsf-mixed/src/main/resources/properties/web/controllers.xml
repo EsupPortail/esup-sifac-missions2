@@ -16,7 +16,7 @@
 		<property name="exceptionController" ref="exceptionController" />
 		<property name="authenticator" ref="authenticator" />
 		<property name="casLogoutUrl" value="${cas.url}/logout?service=%s" />
-		<property name="defaultLanguage" value="${locale.language}" />
+		<property name="defaultLanguage" value="${app.language}" />
 	</bean>
 
 	<bean id="homeController"
