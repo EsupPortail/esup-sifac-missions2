@@ -26,7 +26,7 @@
 		<property name="displayHelpLink" value="${view.displayHelpLink}" />
 		<property name="displayMobileLink" value="${view.displayMobileLink}" />
 		<property name="displayServletLink" value="${view.displayServletLink}" />
-		<property name="version" value="${misc.version}" />
+		<property name="version" value="${app.version}" />
 	</bean>
 
 	<bean id="missionController"

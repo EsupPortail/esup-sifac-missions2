@@ -15,7 +15,7 @@
 	<packaging>war</packaging>
 
 	<properties>
-		<misc.version>${project.version}</misc.version>
+		<app.version>${project.version}</app.version>
 		<javax.portlet.version>1.0</javax.portlet.version>
 		<javax.servlet.version>2.5</javax.servlet.version>
 		<portlet.bridge.version>1.0.0</portlet.bridge.version>
