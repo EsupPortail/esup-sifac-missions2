@@ -30,7 +30,7 @@ import org.esupportail.sifacmissions.web.utils.StringUtils;
  * A visual bean for the welcome page.
  */
 @SuppressWarnings("serial")
-public class MissionController extends AbstractContextAwareController {
+public class MissionController extends AbstractDomainAwareBean {
 
 	/**
 	 * A logger.
