@@ -100,26 +100,18 @@
 	<!-- for CAS -->
 	<filter>
 		<filter-name>CAS Authentication Filter</filter-name>
-		<filter-class>org.jasig.cas.client.authentication.AuthenticationFilter</filter-class>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
-			<param-name>casServerLoginUrl</param-name>
-			<param-value>${cas.url}/login</param-value>
-		</init-param>
-		<init-param>
-			<param-name>serverName</param-name>
-			<param-value>${cas.serverName}</param-value>
+			<param-name>targetBeanName</param-name>
+			<param-value>authenticationFilter</param-value>
 		</init-param>
 	</filter>
 	<filter>
 		<filter-name>CAS Validation Filter</filter-name>
-		<filter-class>org.jasig.cas.client.validation.Cas10TicketValidationFilter</filter-class>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
 		<init-param>
-			<param-name>casServerUrlPrefix</param-name>
-			<param-value>${cas.url}</param-value>
-		</init-param>
-		<init-param>
-			<param-name>serverName</param-name>
-			<param-value>${cas.serverName}</param-value>
+			<param-name>targetBeanName</param-name>
+			<param-value>validationFilter</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>

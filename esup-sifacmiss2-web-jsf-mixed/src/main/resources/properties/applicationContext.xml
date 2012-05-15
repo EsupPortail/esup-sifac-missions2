@@ -14,11 +14,10 @@
 	<import resource="classpath*:META-INF/esup-sifacmiss2-sifac-services.xml" />
 
 	<import resource="cache/cache.xml" />
-	<import resource="exceptionHandling/exceptionHandling.xml" />
 	<import resource="i18n/i18n.xml" />
 	<import resource="misc/abstractBeans.xml" />
 	<import resource="misc/application.xml" />
-	<import resource="smtp/smtp.xml" />
+	<import resource="web/cas.xml" />
 	<import resource="web/agentUtil.xml" />
 	<import resource="web/controllers.xml" />
 
