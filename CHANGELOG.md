@@ -7,6 +7,7 @@
   * Changed authentication to make it mandatory 
   * Changed mobile views from pure JSF to Trindad
   * Replaced CSS skins by LESS
+  * Improved Maven build
 
 
 1.0.0-RC5 (2012-03-27)
