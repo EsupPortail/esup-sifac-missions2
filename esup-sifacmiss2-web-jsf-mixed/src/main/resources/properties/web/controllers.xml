@@ -31,12 +31,17 @@
 
 	<bean id="missionController"
 		class="org.esupportail.sifacmissions.web.controllers.MissionController"
-		parent="abstractDomainAwareBean" scope="session">
+		parent="abstractContextAwareController" scope="session">
 	</bean>
 
 	<bean id="mobileMissionController"
 		class="org.esupportail.sifacmissions.web.controllers.MobileMissionController"
 		parent="missionController" scope="session">
+	</bean>
+
+	<bean id="abstractContextAwareController" abstract="true"
+		parent="abstractDomainAwareBean" scope="session">
+		<property name="sessionController" ref="sessionController" />
 	</bean>
 
 </beans>
