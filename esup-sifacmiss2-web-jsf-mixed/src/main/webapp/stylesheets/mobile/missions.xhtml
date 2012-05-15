@@ -20,10 +20,14 @@
                 <div class="status-indicator"></div>
             </div>
             <tr:messages/>
-            <tr:table styleClass="table-list"
+            <ui:fragment rendered="#{empty mobileMissionController.missions}">
+            	<div class="panel-title">
+            		<tr:outputText value="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{mobileMissionController.year}" />
+            	</div>
+            </ui:fragment>
+            <tr:table styleClass="table-list" rows="0"
                 value="#{mobileMissionController.missions}" var="mission"
-                emptyText="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{mobileMissionController.year}"
-                rows="0">
+                rendered="#{not empty mobileMissionController.missions}">
                 <tr:column>
                     <tr:panelGroupLayout styleClass="list-item-block">
                         <tr:commandLink action="mission" text="#{msgs['WELCOME.MISSION.M_VIEW']}">
