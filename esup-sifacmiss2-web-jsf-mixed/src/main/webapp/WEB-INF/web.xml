@@ -122,6 +122,18 @@
 		<filter-name>CAS Validation Filter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<filter>
+	    <filter-name>requestContextFilter</filter-name>
+	    <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+	</filter>
+	<filter-mapping>
+	    <filter-name>requestContextFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	    <dispatcher>REQUEST</dispatcher>
+	    <dispatcher>INCLUDE</dispatcher>
+	    <dispatcher>FORWARD</dispatcher>
+	</filter-mapping>
 
 	<!-- Session Time Out -->
 	<session-config>
