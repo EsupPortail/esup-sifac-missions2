@@ -1,14 +1,14 @@
 package org.esupportail.sifacmissions.web.controllers;
 
-public class HomeController {
-	
-	private static final String DEFAULT_VERSION = "UNKNOWN";
+import org.esupportail.commons.beans.AbstractApplicationAwareBean;
+
+@SuppressWarnings("serial")
+public class HomeController extends AbstractApplicationAwareBean {
 
 	private boolean displayAboutLink = true;
 	private boolean displayHelpLink = true;
 	private boolean displayMobileLink = true;
 	private boolean displayServletLink = true;
-	private String version = DEFAULT_VERSION;
 
 	/**
 	 * @return true if the 'about' page link should be displayed
@@ -70,13 +70,6 @@ public class HomeController {
 	 * @return the version of the application
 	 */
 	public String getVersion() {
-		return version;
-	}
-
-	/**
-	 * @param version the application version
-	 */
-	public void setVersion(String version) {
-		this.version = version;
+		return getApplicationService().getVersion().toString();
 	}
 }

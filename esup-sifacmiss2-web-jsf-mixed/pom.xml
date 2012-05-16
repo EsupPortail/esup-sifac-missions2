@@ -72,6 +72,7 @@
 	</dependencies>
 	
 	<build>
+		<defaultGoal>install</defaultGoal>
 		<filters>
 			<filter>src/main/resources/properties/defaults.properties</filter>
 			<filter>src/main/resources/properties/config.properties</filter>
@@ -80,6 +81,20 @@
 			<resource>
 				<directory>src/main/resources</directory>
 				<filtering>true</filtering>
+				<includes>
+					<include>properties/cache/ehcache.xml</include>
+					<include>properties/misc/application.xml</include>
+					<include>log4j.properties</include>
+				</includes>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+				<excludes>
+					<exclude>properties/cache/ehcache.xml</exclude>
+					<exclude>properties/misc/application.xml</exclude>
+					<exclude>log4j.properties</exclude>
+				</excludes>
 			</resource>
 		</resources>
 		<plugins>
@@ -113,7 +128,6 @@
 				<configuration>
 					<webResources>
 						<resource>
-							<filtering>true</filtering>
 							<directory>src/main/webapp</directory>
 							<includes>
 								<include>WEB-INF/web.xml</include>

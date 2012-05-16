@@ -21,12 +21,11 @@
 
 	<bean id="homeController"
 		class="org.esupportail.sifacmissions.web.controllers.HomeController"
-		scope="session">
+		parent="abstractApplicationAwareBean" scope="session">
 		<property name="displayAboutLink" value="${view.displayAboutLink}" />
 		<property name="displayHelpLink" value="${view.displayHelpLink}" />
 		<property name="displayMobileLink" value="${view.displayMobileLink}" />
 		<property name="displayServletLink" value="${view.displayServletLink}" />
-		<property name="version" value="${app.version}" />
 	</bean>
 
 	<bean id="missionController"
