@@ -1,4 +1,4 @@
-1.0.0-RC6 (2012-06-04)
+1.0.0 (2012-06-04)
 
   * Added JavaDoc
   * Added mock MatriculeService
