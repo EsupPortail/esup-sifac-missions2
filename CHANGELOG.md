@@ -1,3 +1,8 @@
+1.0.1
+
+  * Fixed application version regex
+
+
 1.0.0 (2012-06-04)
 
   * Added JavaDoc
