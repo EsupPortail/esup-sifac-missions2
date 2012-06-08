@@ -27,7 +27,7 @@ public class ApplicationServiceImpl extends SimpleApplicationServiceImpl {
 	public void afterPropertiesSet() {
 		Assert.notNull(versionString, "Missing version");
 		
-		Pattern p = Pattern.compile("^([0-9]+)\\.([0-9]+)\\.([0-9]+)(?:\\-.+)$");
+		Pattern p = Pattern.compile("^([0-9]+)\\.([0-9]+)\\.([0-9]+)(-.+)?$");
 		Matcher m = p.matcher(versionString);
 		
 		Assert.isTrue(m.matches(), "Invalid version");
