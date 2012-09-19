@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>esup-sifacmiss2</artifactId>
 		<groupId>org.esupportail</groupId>
-		<version>1.0.1</version>
+		<version>1.0.2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>esup-sifacmiss2-web-jsf-mixed</artifactId>

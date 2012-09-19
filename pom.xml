@@ -5,7 +5,7 @@
 
 	<groupId>org.esupportail</groupId>
 	<artifactId>esup-sifacmiss2</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>esup-sifacmiss2</name>
@@ -47,8 +47,8 @@
 	</distributionManagement>
 
 	<scm>
-		<developerConnection>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/tags/1.0.1</developerConnection>
-		<url>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/tags/1.0.1</url>
+		<developerConnection>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/trunk</developerConnection>
+		<url>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/</url>
 	</scm>
 
 	<build>
