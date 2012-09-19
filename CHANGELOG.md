@@ -1,4 +1,4 @@
-1.0.1
+1.0.1 (2012-09-19)
 
   * Fixed application version regex
 
