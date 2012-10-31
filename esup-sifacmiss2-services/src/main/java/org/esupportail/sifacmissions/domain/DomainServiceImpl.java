@@ -12,8 +12,6 @@ import net.sf.ehcache.Element;
 
 import org.esupportail.commons.services.ldap.LdapUser;
 import org.esupportail.commons.services.ldap.LdapUserService;
-import org.esupportail.commons.services.logging.Logger;
-import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.sifacmissions.models.Mission;
 import org.esupportail.sifacmissions.models.MissionDetails;
 import org.esupportail.sifacmissions.models.User;
@@ -21,6 +19,8 @@ import org.esupportail.sifacmissions.services.matricule.MatriculeService;
 import org.esupportail.sifacmissions.services.mission.MissionException;
 import org.esupportail.sifacmissions.services.mission.MissionService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
  */
 public class DomainServiceImpl implements DomainService, InitializingBean {
 
-    private final Logger logger = new LoggerImpl(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private MissionService sifacService;
     private LdapUserService ldapUserService;
