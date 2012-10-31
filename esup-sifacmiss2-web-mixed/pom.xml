@@ -81,7 +81,7 @@
 		<!-- ESUP Sifacmiss v2 -->
 		<dependency>
 			<groupId>org.esupportail</groupId>
-			<artifactId>esup-sifacmiss2-domain-services</artifactId>
+			<artifactId>esup-sifacmiss2-services</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

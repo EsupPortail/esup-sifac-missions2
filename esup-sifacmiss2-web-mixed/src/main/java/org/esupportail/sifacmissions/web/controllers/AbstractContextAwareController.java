@@ -1,7 +1,7 @@
 package org.esupportail.sifacmissions.web.controllers;
 
-import org.esupportail.sifacmissions.domain.beans.User;
 import org.esupportail.commons.utils.Assert;
+import org.esupportail.sifacmissions.domain.beans.User;
 
 /**
  * An abstract class inherited by all the beans for them to get:
@@ -12,50 +12,50 @@ import org.esupportail.commons.utils.Assert;
  */
 public abstract class AbstractContextAwareController extends AbstractDomainAwareBean {
 
-	/**
-	 * The serialization id.
-	 */
-	private static final long serialVersionUID = 1L;
-	
-	/**
-	 * The SessionController.
-	 */
-	private SessionController sessionController;
+    /**
+     * The serialization id.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor.
-	 */
-	protected AbstractContextAwareController() {
-		super();
-	}
+    /**
+     * The SessionController.
+     */
+    private SessionController sessionController;
 
-	@Override
-	public void afterPropertiesSetInternal() {
-		Assert.notNull(this.sessionController, "property sessionController of class " + this.getClass().getName() + " can not be null");
-	}
+    /**
+     * Constructor.
+     */
+    protected AbstractContextAwareController() {
+        super();
+    }
 
-	/**
-	 * @param sessionController the sessionController to set
-	 */
-	public void setSessionController(final SessionController sessionController) {
-		this.sessionController = sessionController;
-	}
+    @Override
+    public void afterPropertiesSetInternal() {
+        Assert.notNull(this.sessionController, "property sessionController of class " + this.getClass().getName() + " can not be null");
+    }
 
-	/**
-	 * @return the sessionController
-	 */
-	public SessionController getSessionController() {
-		return sessionController;
-	}
+    /**
+     * @param sessionController the sessionController to set
+     */
+    public void setSessionController(final SessionController sessionController) {
+        this.sessionController = sessionController;
+    }
 
-	@Override
-	protected User getCurrentUser() {
-		try {
-			return sessionController.getCurrentUser();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+    /**
+     * @return the sessionController
+     */
+    public SessionController getSessionController() {
+        return sessionController;
+    }
+
+    @Override
+    protected User getCurrentUser() {
+        try {
+            return sessionController.getCurrentUser();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }

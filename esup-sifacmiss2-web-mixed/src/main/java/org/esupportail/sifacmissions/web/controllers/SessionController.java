@@ -12,7 +12,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.myfaces.trinidad.util.ExternalContextUtils;
 import org.esupportail.commons.exceptions.UserNotFoundException;
 import org.esupportail.commons.services.i18n.I18nUtils;
 import org.esupportail.commons.services.logging.Logger;
@@ -23,301 +22,296 @@ import org.esupportail.commons.web.controllers.ExceptionController;
 import org.esupportail.sifacmissions.domain.beans.User;
 import org.esupportail.sifacmissions.services.auth.Authenticator;
 
+import org.apache.myfaces.trinidad.util.ExternalContextUtils;
+
 /**
  * @author Yves Deschamps (Universite de Lille 1) - 2010
- * 
  */
 public class SessionController extends AbstractDomainAwareBean {
 
-	/**
-	 * For Serialize.
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * For Serialize.
+     */
+    private static final long serialVersionUID = 1L;
 
-	/**
-	 * For Logging.
-	 */
-	private final Logger logger = new LoggerImpl(getClass());
+    /**
+     * For Logging.
+     */
+    private final Logger logger = new LoggerImpl(getClass());
 
-	/**
-	 * The current action from menu.
-	 */
-	private String action;
+    /**
+     * The current action from menu.
+     */
+    private String action;
 
-	/**
-	 * The exception controller.
-	 */
-	private ExceptionController exceptionController;
+    /**
+     * The exception controller.
+     */
+    private ExceptionController exceptionController;
 
-	/**
-	 * The authenticator.
-	 */
-	private Authenticator authenticator;
+    /**
+     * The authenticator.
+     */
+    private Authenticator authenticator;
 
-	/**
-	 * The detected mode (desktop or mobile).
-	 */
-	private boolean modeDetected;
+    /**
+     * The detected mode (desktop or mobile).
+     */
+    private boolean modeDetected;
 
-	/**
-	 * True if we are in portlet mode.
-	 */
-	private boolean portletMode;
+    /**
+     * True if we are in portlet mode.
+     */
+    private boolean portletMode;
 
-	/**
-	 * The CAS logout URL.
-	 */
-	private String casLogoutUrl;
+    /**
+     * The CAS logout URL.
+     */
+    private String casLogoutUrl;
 
-	/**
-	 * The current User.
-	 */
-	private User currentUser;
+    /**
+     * The current User.
+     */
+    private User currentUser;
 
-	@Override
-	public void afterPropertiesSet() {
-		Assert.notNull(exceptionController, "property exceptionController of class " + getClass().getName() + " can not be null");
-		Assert.notNull(authenticator, "property authenticator of class " + getClass().getName() + " can not be null");
-		Assert.notNull(casLogoutUrl, "property casLogoutUrl of class " + getClass().getName() + " can not be null");
-	}
+    @Override
+    public void afterPropertiesSet() {
+        Assert.notNull(exceptionController, "property exceptionController of class " + getClass().getName() + " can not be null");
+        Assert.notNull(authenticator, "property authenticator of class " + getClass().getName() + " can not be null");
+        Assert.notNull(casLogoutUrl, "property casLogoutUrl of class " + getClass().getName() + " can not be null");
+    }
 
-	/**
-	 * @param exceptionController the exceptionController to set
-	 */
-	public void setExceptionController(ExceptionController exceptionController) {
-		this.exceptionController = exceptionController;
-	}
+    /**
+     * @param exceptionController the exceptionController to set
+     */
+    public void setExceptionController(ExceptionController exceptionController) {
+        this.exceptionController = exceptionController;
+    }
 
-	/**
-	 * @return the action
-	 */
-	public String getAction() {
-		return action;
-	}
+    /**
+     * @return the action
+     */
+    public String getAction() {
+        return action;
+    }
 
-	/**
-	 * @param action the action to set
-	 */
-	public void setAction(String action) {
-		this.action = action;
-	}
+    /**
+     * @param action the action to set
+     */
+    public void setAction(String action) {
+        this.action = action;
+    }
 
-	@Override
-	public User getCurrentUser() {
-		if (isPortletMode()) {
-			FacesContext fc = FacesContext.getCurrentInstance();
-			String uid = fc.getExternalContext().getRemoteUser();
+    @Override
+    public User getCurrentUser() {
+        if (isPortletMode()) {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            String uid = fc.getExternalContext().getRemoteUser();
 
-			if (currentUser != null && currentUser.getLogin().equals(uid)) {
-				return currentUser;
-			}
+            if (currentUser != null && currentUser.getLogin().equals(uid)) {
+                return currentUser;
+            }
 
-			try {
-				currentUser = getDomainService().getUser(uid);
-			}
-			catch (UserNotFoundException e) {
-				currentUser = new User();
-				currentUser.setLogin(uid);
-				currentUser.setDisplayName(I18nUtils.createI18nService().getString(e.getMessage()));
-			}
+            try {
+                currentUser = getDomainService().getUser(uid);
+            } catch (UserNotFoundException e) {
+                currentUser = new User();
+                currentUser.setLogin(uid);
+                currentUser.setDisplayName(I18nUtils.createI18nService().getString(e.getMessage()));
+            }
 
-			return currentUser;
-		}
+            return currentUser;
+        }
 
-		User authUser;
+        User authUser;
 
-		try {
-			authUser = authenticator.getUser();
-			if (authUser != null) {
-				if (currentUser != null && currentUser.getLogin().equals(authUser.getLogin())) {
-					return currentUser;
-				}
+        try {
+            authUser = authenticator.getUser();
+            if (authUser != null) {
+                if (currentUser != null && currentUser.getLogin().equals(authUser.getLogin())) {
+                    return currentUser;
+                }
 
-				String uid = authUser.getLogin();
+                String uid = authUser.getLogin();
 
-				try {
-					currentUser = getDomainService().getUser(uid);
-				}
-				catch (UserNotFoundException e) {
-					currentUser = new User();
-					currentUser.setLogin(uid);
-					currentUser.setDisplayName(I18nUtils.createI18nService().getString(e.getMessage()));
-				}
+                try {
+                    currentUser = getDomainService().getUser(uid);
+                } catch (UserNotFoundException e) {
+                    currentUser = new User();
+                    currentUser.setLogin(uid);
+                    currentUser.setDisplayName(I18nUtils.createI18nService().getString(e.getMessage()));
+                }
 
-				return currentUser;
-			}
-		}
-		catch (Exception e) {
-			logger.error(e);
-		}
+                return currentUser;
+            }
+        } catch (Exception e) {
+            logger.error(e);
+        }
 
-		return null;
-	}
+        return null;
+    }
 
-	@Override
-	public void reset() {
-		super.reset();
-		
-		action = "missions";
-		currentUser = null;
-	}
+    @Override
+    public void reset() {
+        super.reset();
 
-	/**
-	 * @return true if portlet mode.
-	 */
-	public boolean isPortletMode() {
-		if (!modeDetected) {
-			modeDetected = true;
+        action = "missions";
+        currentUser = null;
+    }
 
-			if (logger.isDebugEnabled()) {
-				logger.debug("Mode detected in Application");
-			}
+    /**
+     * @return true if portlet mode.
+     */
+    public boolean isPortletMode() {
+        if (!modeDetected) {
+            modeDetected = true;
 
-			FacesContext fc = FacesContext.getCurrentInstance();
-			portletMode = ExternalContextUtils.isPortlet(fc.getExternalContext());
+            if (logger.isDebugEnabled()) {
+                logger.debug("Mode detected in Application");
+            }
 
-			if (logger.isDebugEnabled()) {
-				if (portletMode) {
-					logger.debug("Portlet mode detected");
-				}
-				else {
-					logger.debug("Servlet mode detected");
-				}
-			}
-		}
-		return portletMode;
-	}
+            FacesContext fc = FacesContext.getCurrentInstance();
+            portletMode = ExternalContextUtils.isPortlet(fc.getExternalContext());
 
-	/**
-	 * @return true if login button is enable.
-	 * @throws Exception
-	 */
-	public boolean isLoginEnable() throws Exception {
-		if (isPortletMode()) {
-			return false;
-		}
+            if (logger.isDebugEnabled()) {
+                if (portletMode) {
+                    logger.debug("Portlet mode detected");
+                } else {
+                    logger.debug("Servlet mode detected");
+                }
+            }
+        }
+        return portletMode;
+    }
 
-		return (getCurrentUser() == null);
-	}
+    /**
+     * @return true if login button is enable.
+     * @throws Exception
+     */
+    public boolean isLoginEnable() throws Exception {
+        if (isPortletMode()) {
+            return false;
+        }
 
-	/**
-	 * @return true if login button is enable.
-	 * @throws Exception
-	 */
-	public boolean isLogoutEnable() throws Exception {
-		if (isPortletMode()) {
-			return false;
-		}
+        return (getCurrentUser() == null);
+    }
 
-		return (getCurrentUser() != null);
-	}
+    /**
+     * @return true if login button is enable.
+     * @throws Exception
+     */
+    public boolean isLogoutEnable() throws Exception {
+        if (isPortletMode()) {
+            return false;
+        }
 
-	/**
-	 * @return nothing and make logout.
-	 */
-	public String logoutAction() throws IOException {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		ExternalContext externalContext = facesContext.getExternalContext();
+        return (getCurrentUser() != null);
+    }
 
-		HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+    /**
+     * @return nothing and make logout.
+     */
+    public String logoutAction() throws IOException {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        ExternalContext externalContext = facesContext.getExternalContext();
 
-		String preReturnUrl = request.getRequestURL().toString().replaceFirst("/stylesheets/[^/]*$", "");
-		int index = preReturnUrl.lastIndexOf("/");
+        HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
 
-		String returnUrl = preReturnUrl.substring(0, index + 1).concat("missions.xhtml");
-		String forwardUrl = String.format(casLogoutUrl, StringUtils.utf8UrlEncode(returnUrl));
+        String preReturnUrl = request.getRequestURL().toString().replaceFirst("/stylesheets/[^/]*$", "");
+        int index = preReturnUrl.lastIndexOf("/");
 
-		request.getSession().invalidate();
-		request.getSession(true);
+        String returnUrl = preReturnUrl.substring(0, index + 1).concat("missions.xhtml");
+        String forwardUrl = String.format(casLogoutUrl, StringUtils.utf8UrlEncode(returnUrl));
 
-		exceptionController.restart();
-		externalContext.redirect(forwardUrl);
-		facesContext.responseComplete();
+        request.getSession().invalidate();
+        request.getSession(true);
 
-		return null;
-	}
+        exceptionController.restart();
+        externalContext.redirect(forwardUrl);
+        facesContext.responseComplete();
 
-	/**
-	 * @param casLogoutUrl the casLogoutUrl to set
-	 */
-	public void setCasLogoutUrl(String casLogoutUrl) {
-		this.casLogoutUrl = casLogoutUrl;
-	}
+        return null;
+    }
 
-	/**
-	 * @param authenticator the authenticator to set
-	 */
-	public void setAuthenticator(Authenticator authenticator) {
-		this.authenticator = authenticator;
-	}
+    /**
+     * @param casLogoutUrl the casLogoutUrl to set
+     */
+    public void setCasLogoutUrl(String casLogoutUrl) {
+        this.casLogoutUrl = casLogoutUrl;
+    }
 
-	/**
-	 * @param locale the locale to set
-	 */
-	public void setLocale(Locale locale) {
-		FacesContext context = FacesContext.getCurrentInstance();
+    /**
+     * @param authenticator the authenticator to set
+     */
+    public void setAuthenticator(Authenticator authenticator) {
+        this.authenticator = authenticator;
+    }
 
-		if (context != null) {
-			context.getViewRoot().setLocale(locale);
-		}
-		else {
-			logger.warn("Cannot set the locale because the context is null");
-		}
-	}
+    /**
+     * @param locale the locale to set
+     */
+    public void setLocale(Locale locale) {
+        FacesContext context = FacesContext.getCurrentInstance();
 
-	@Override
-	public Locale getLocale() {
-		Locale locale = null;
-		FacesContext context = FacesContext.getCurrentInstance();
+        if (context != null) {
+            context.getViewRoot().setLocale(locale);
+        } else {
+            logger.warn("Cannot set the locale because the context is null");
+        }
+    }
 
-		if (context != null) {
-			locale = context.getViewRoot().getLocale();
-		}
-		else {
-			locale = new Locale("fr");
-		}
+    @Override
+    public Locale getLocale() {
+        Locale locale = null;
+        FacesContext context = FacesContext.getCurrentInstance();
 
-		return locale;
-	}
+        if (context != null) {
+            locale = context.getViewRoot().getLocale();
+        } else {
+            locale = new Locale("fr");
+        }
 
-	/**
-	 * @return an Url (with the good host, port and context...).
-	 */
-	public String getServletUrl() {
-		FacesContext facesContext = FacesContext.getCurrentInstance();
-		return facesContext.getExternalContext().getRequestContextPath() + "/stylesheets/home.xhtml";
-	}
+        return locale;
+    }
 
-	/**
-	 * @return language.
-	 */
-	public String getDisplayLanguage() {
-		Locale locale = getLocale();
-		StringBuffer buf = new StringBuffer(locale.getDisplayLanguage(locale));
+    /**
+     * @return an Url (with the good host, port and context...).
+     */
+    public String getServletUrl() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        return facesContext.getExternalContext().getRequestContextPath() + "/stylesheets/home.xhtml";
+    }
 
-		return buf.toString();
-	}
+    /**
+     * @return language.
+     */
+    public String getDisplayLanguage() {
+        Locale locale = getLocale();
+        StringBuffer buf = new StringBuffer(locale.getDisplayLanguage(locale));
 
-	/**
-	 * @param event
-	 * @return null;
-	 */
-	public String setLocaleAction(ActionEvent event) {
-		UIParameter component = (UIParameter) event.getComponent().findComponent("language");
-		String languageString = component.getValue().toString();
-		FacesContext context = FacesContext.getCurrentInstance();
+        return buf.toString();
+    }
 
-		if (context != null) {
-			context.getViewRoot().setLocale(new Locale(languageString));
-		}
+    /**
+     * @param event
+     * @return null;
+     */
+    public String setLocaleAction(ActionEvent event) {
+        UIParameter component = (UIParameter) event.getComponent().findComponent("language");
+        String languageString = component.getValue().toString();
+        FacesContext context = FacesContext.getCurrentInstance();
 
-		return null;
-	}
+        if (context != null) {
+            context.getViewRoot().setLocale(new Locale(languageString));
+        }
 
-	/**
-	 * @param language the language to set
-	 */
-	public void setDefaultLanguage(String language) {
-		setSessionLocale(new Locale(language));
-	}
+        return null;
+    }
+
+    /**
+     * @param language the language to set
+     */
+    public void setDefaultLanguage(String language) {
+        setSessionLocale(new Locale(language));
+    }
 }
