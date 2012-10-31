@@ -15,7 +15,7 @@ import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.sifacmissions.models.Mission;
 import org.esupportail.sifacmissions.models.MissionDetails;
-import org.esupportail.sifacmissions.ws.SifacPortailService;
+import org.esupportail.sifacmissions.ws.SifacPortail;
 
 import org.springframework.beans.factory.InitializingBean;
 
@@ -28,7 +28,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
 
     private String mandant;
     private Integer firstYear;
-    private SifacPortailService portailService;
+    private SifacPortail portailService;
     private CacheManager cacheManager;
     private String cacheName;
     private Cache cache;
@@ -50,7 +50,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
     /**
      * @param service Client permettant de requêter le web service PORTAIL
      */
-    public void setPortailService(SifacPortailService service) {
+    public void setPortailService(SifacPortail service) {
         this.portailService = service;
     }
 
@@ -70,11 +70,11 @@ public class SifacMissionService implements MissionService, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(mandant, "property mandant of class " + getClass().getName() + " can not be null");
-        Assert.notNull(firstYear, "property firstYear of class " + getClass().getName() + " can not be null");
-        Assert.notNull(portailService, "property portailService of class " + getClass().getName() + " can not be null");
-        Assert.notNull(cacheManager, "property cacheManager of class " + getClass().getName() + " can not be null");
-        Assert.notNull(cacheName, "property cacheName of class " + getClass().getName() + " can not be null");
+        Assert.notNull(mandant, "property mandant can not be null");
+        Assert.notNull(firstYear, "property firstYear can not be null");
+        Assert.notNull(portailService, "property portailService can not be null");
+        Assert.notNull(cacheManager, "property cacheManager can not be null");
+        Assert.notNull(cacheName, "property cacheName can not be null");
 
         if (!cacheManager.cacheExists(cacheName)) {
             cacheManager.addCache(cacheName);

@@ -1,4 +1,4 @@
-package org.esupportail.sifacmissions.domain;
+package org.esupportail.sifacmissions.services.matricule;
 
 /**
  * @author Yves Deschamps (Universite Lille1 - France)

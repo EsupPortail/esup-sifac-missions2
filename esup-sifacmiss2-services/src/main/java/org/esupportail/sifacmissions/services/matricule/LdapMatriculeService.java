@@ -1,4 +1,4 @@
-package org.esupportail.sifacmissions.domain;
+package org.esupportail.sifacmissions.services.matricule;
 
 import org.esupportail.commons.services.ldap.LdapUser;
 import org.esupportail.commons.services.ldap.LdapUserService;
@@ -14,8 +14,9 @@ import org.springframework.util.StringUtils;
  * annuaire LDAP.
  *
  * @author Yves Deschamps (Université Lille1 - France)
+ * @author Florent Cailhol (Anyware Services)
  */
-public class MatriculeByLdap implements MatriculeService, InitializingBean {
+public class LdapMatriculeService implements MatriculeService, InitializingBean {
 
     private final Logger logger = new LoggerImpl(getClass());
 
@@ -24,8 +25,8 @@ public class MatriculeByLdap implements MatriculeService, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(ldapUserService, "property ldapUserService of class " + getClass().getName() + " can not be null");
-        Assert.notNull(matriculeAttribute, "property matriculeAttribute of class " + getClass().getName() + " can not be null");
+        Assert.notNull(ldapUserService, "property ldapUserService can not be null");
+        Assert.notNull(matriculeAttribute, "property matriculeAttribute can not be null");
     }
 
     /**

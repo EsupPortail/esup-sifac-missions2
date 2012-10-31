@@ -31,7 +31,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Florent Cailhol (Anyware Services)
  */
-public class SifacPortailService {
+public class SifacPortail {
 
     private final String endpoint;
 
@@ -50,7 +50,7 @@ public class SifacPortailService {
      *
      * @param endpoint Adresse du web service
      */
-    public SifacPortailService(String endpoint) {
+    public SifacPortail(String endpoint) {
         this(endpoint, null, null);
     }
 
@@ -62,7 +62,7 @@ public class SifacPortailService {
      * @param username
      * @param password
      */
-    public SifacPortailService(String endpoint, String username, String password) {
+    public SifacPortail(String endpoint, String username, String password) {
         this.endpoint = endpoint;
         this.username = username;
         this.password = password;

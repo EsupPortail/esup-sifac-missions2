@@ -17,7 +17,7 @@ import org.apache.axis.client.Stub;
  *
  * @author Florent Cailhol (Anyware Services)
  */
-public class SifacMatriculeService {
+public class SifacMatricule {
 
     private final String endpoint;
     private final String username;
@@ -30,7 +30,7 @@ public class SifacMatriculeService {
      *
      * @param endpoint Adresse du web service
      */
-    public SifacMatriculeService(String endpoint) {
+    public SifacMatricule(String endpoint) {
         this(endpoint, null, null);
     }
 
@@ -42,7 +42,7 @@ public class SifacMatriculeService {
      * @param username
      * @param password
      */
-    public SifacMatriculeService(String endpoint, String username, String password) {
+    public SifacMatricule(String endpoint, String username, String password) {
         this.endpoint = endpoint;
         this.username = username;
         this.password = password;

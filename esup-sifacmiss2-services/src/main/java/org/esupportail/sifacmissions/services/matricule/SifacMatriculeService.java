@@ -1,9 +1,9 @@
-package org.esupportail.sifacmissions.domain;
+package org.esupportail.sifacmissions.services.matricule;
 
 import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
-import org.esupportail.sifacmissions.ws.SifacMatriculeService;
+import org.esupportail.sifacmissions.ws.SifacMatricule;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.StringUtils;
@@ -14,22 +14,22 @@ import org.springframework.util.StringUtils;
  *
  * @author Yves Deschamps (Universite Lille1 - France)
  */
-public class MatriculeBySifac implements MatriculeService, InitializingBean {
+public class SifacMatriculeService implements MatriculeService, InitializingBean {
 
     private final Logger logger = new LoggerImpl(getClass());
 
-    private SifacMatriculeService matriculeService;
+    private SifacMatricule matriculeService;
 
     /**
      * @param matriculeService Service SIFAC de récupération des matricules
      */
-    public void setMatriculeService(SifacMatriculeService matriculeService) {
+    public void setMatriculeService(SifacMatricule matriculeService) {
         this.matriculeService = matriculeService;
     }
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(matriculeService, "property matriculeService of class " + getClass().getName() + " can not be null");
+        Assert.notNull(matriculeService, "property matriculeService can not be null");
     }
 
     @Override

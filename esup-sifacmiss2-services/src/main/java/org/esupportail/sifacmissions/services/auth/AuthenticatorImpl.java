@@ -36,7 +36,7 @@ public class AuthenticatorImpl implements Authenticator, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(authenticationService, "property authenticationService of class " + getClass().getName() + " can not be null");
+        Assert.notNull(authenticationService, "property authenticationService can not be null");
     }
 
     @Override

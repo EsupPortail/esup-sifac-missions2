@@ -8,6 +8,7 @@ import java.util.List;
 import org.esupportail.sifacmissions.models.Mission;
 import org.esupportail.sifacmissions.models.MissionDetails;
 import org.esupportail.sifacmissions.models.User;
+import org.esupportail.sifacmissions.services.matricule.MatriculeService;
 import org.esupportail.sifacmissions.services.mission.MissionException;
 
 /**

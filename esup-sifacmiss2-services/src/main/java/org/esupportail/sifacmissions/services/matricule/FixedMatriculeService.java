@@ -1,4 +1,4 @@
-package org.esupportail.sifacmissions.domain;
+package org.esupportail.sifacmissions.services.matricule;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
@@ -7,9 +7,9 @@ import org.springframework.util.Assert;
  * Service permettant de récupérer le matricule de l'utilisateur depuis un
  * paramètre de configuration.
  *
- * @author Florent Cailhol
+ * @author Florent Cailhol (Anyware Services)
  */
-public class MatriculeByMock implements MatriculeService, InitializingBean {
+public class FixedMatriculeService implements MatriculeService, InitializingBean {
 
     private String matricule;
 

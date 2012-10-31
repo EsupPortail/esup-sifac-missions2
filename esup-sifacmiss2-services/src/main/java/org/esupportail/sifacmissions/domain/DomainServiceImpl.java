@@ -18,13 +18,13 @@ import org.esupportail.commons.utils.Assert;
 import org.esupportail.sifacmissions.models.Mission;
 import org.esupportail.sifacmissions.models.MissionDetails;
 import org.esupportail.sifacmissions.models.User;
+import org.esupportail.sifacmissions.services.matricule.MatriculeService;
 import org.esupportail.sifacmissions.services.mission.MissionException;
 import org.esupportail.sifacmissions.services.mission.MissionService;
 
 import org.springframework.beans.factory.InitializingBean;
 
 /**
- * @see org.esupportail.sifacmissions.domain.DomainService
  * @author Yves Deschamps (Universite de Lille 1)
  * @author Florent Cailhol (Anyware Services)
  */
