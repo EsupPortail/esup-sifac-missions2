@@ -26,7 +26,8 @@
 		</property>
 		<property name="attributesAsString" value="${ldap.userAttributes}">
 			<description>
-				The comma-separated list of the LDAP attributes to retrieve.
+				The comma-separated list of the LDAP attributes to
+				retrieve.
 			</description>
 		</property>
 		<property name="searchAttribute" value="${ldap.searchUserAttribute}">
@@ -45,11 +46,11 @@
 		<description>
 			The LDAP template used to acces the LDAP directory. See
 			http://ldaptemplate.sourceforge.net.
-        </description>
+		</description>
 		<property name="contextSource" ref="contextSource">
 			<description>
 				The data source used by the LDAP template.
-            </description>
+			</description>
 		</property>
 	</bean>
 
@@ -64,7 +65,7 @@
 			base
 			ou=people,dc=esup-portail,dc=edu, with scope "sub". See
 			http://ldaptemplate.sourceforge.net.
-        </description>
+		</description>
 		<property name="urls">
 			<description>The LDAP URL(s) of the directory.</description>
 			<list>
@@ -75,7 +76,7 @@
 		<property name="userDn" value="${ldap.userDn}">
 			<description>
 				The dn used to bind to the LDAP directory.
-            </description>
+			</description>
 		</property>
 		<property name="password" value="${ldap.password}">
 			<description>
@@ -89,7 +90,7 @@
 			<description>
 				The environment properties, for instance to set the
 				timeout.
-            </description>
+			</description>
 			<map>
 				<entry key="com.sun.jndi.ldap.connect.timeout" value="${ldap.connectTimeout}" />
 			</map>

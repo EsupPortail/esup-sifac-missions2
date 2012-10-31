@@ -2,8 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
-	    http://www.springframework.org/schema/beans
-	    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 	<bean id="domainService" class="org.esupportail.sifacmissions.domain.DomainServiceImpl">
 		<property name="ldapUserService" ref="ldapUserService" />
@@ -13,23 +13,33 @@
 		<property name="cacheName" value="User" />
 	</bean>
 
-	<bean id="matriculeByLdap" class="org.esupportail.sifacmissions.domain.MatriculeByLdap" lazy-init="true">
+	<bean id="matriculeByLdap" class="org.esupportail.sifacmissions.domain.MatriculeByLdap"
+		lazy-init="true">
 		<property name="ldapUserService" ref="ldapUserService" />
 		<property name="matriculeAttribute" value="${domain.matricule.ldap.attribute}" />
 	</bean>
 
-	<bean id="matriculeBySifac" class="org.esupportail.sifacmissions.domain.MatriculeBySifac" lazy-init="true">
+	<bean id="matriculeBySifac" class="org.esupportail.sifacmissions.domain.MatriculeBySifac"
+		lazy-init="true">
 		<property name="matriculeService" ref="sifacMatriculeService" />
 	</bean>
 
-	<bean id="matriculeByMock" class="org.esupportail.sifacmissions.domain.MatriculeByMock" lazy-init="true">
+	<bean id="matriculeByMock" class="org.esupportail.sifacmissions.domain.MatriculeByMock"
+		lazy-init="true">
 		<property name="matricule" value="${domain.matricule.mock.matricule}" />
 	</bean>
-	
-	<bean id="sifacMatriculeService" class="org.esupportail.sifacmissions.ws.SifacMatriculeService" lazy-init="true">
-        <constructor-arg><value>${domain.matricule.sifac.ws.url}</value></constructor-arg>
-        <constructor-arg><value>${domain.matricule.sifac.ws.login}</value></constructor-arg>
-        <constructor-arg><value>${domain.matricule.sifac.ws.password}</value></constructor-arg>
-    </bean>
+
+	<bean id="sifacMatriculeService" class="org.esupportail.sifacmissions.ws.SifacMatriculeService"
+		lazy-init="true">
+		<constructor-arg>
+			<value>${domain.matricule.sifac.ws.url}</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>${domain.matricule.sifac.ws.login}</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>${domain.matricule.sifac.ws.password}</value>
+		</constructor-arg>
+	</bean>
 
 </beans>

@@ -5,16 +5,18 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="authenticationFilter" class="org.jasig.cas.client.authentication.AuthenticationFilter">
-		<property name="casServerLoginUrl" value="${cas.url}/login"/>
-		<property name="serverName" value="${cas.serverName}"/>
+	<bean id="authenticationFilter"
+		class="org.jasig.cas.client.authentication.AuthenticationFilter">
+		<property name="casServerLoginUrl" value="${cas.url}/login" />
+		<property name="serverName" value="${cas.serverName}" />
 	</bean>
 
-	<bean id="validationFilter" class="org.jasig.cas.client.validation.Cas10TicketValidationFilter">
-		<property name="serverName" value="${cas.serverName}"/>
+	<bean id="validationFilter"
+		class="org.jasig.cas.client.validation.Cas10TicketValidationFilter">
+		<property name="serverName" value="${cas.serverName}" />
 		<property name="ticketValidator">
 			<bean class="org.jasig.cas.client.validation.Cas10TicketValidator">
-				<constructor-arg value="${cas.url}"/>
+				<constructor-arg value="${cas.url}" />
 			</bean>
 		</property>
 	</bean>
