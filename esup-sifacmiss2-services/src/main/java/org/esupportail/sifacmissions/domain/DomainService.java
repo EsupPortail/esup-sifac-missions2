@@ -74,14 +74,6 @@ public interface DomainService {
     List<MissionDetails> getMissionDetails(String matricule, String mission) throws MissionException;
 
     /**
-     * Détermine si un utilisateur possède un homonyne.
-     *
-     * @param user Utilisateur
-     * @return true si un utilisateur avec le nom nom est trouvé
-     */
-    Boolean isHomonyme(User user);
-
-    /**
      * Retourne le service de récupération des matricules.
      *
      * @return Service de récupération des matricules

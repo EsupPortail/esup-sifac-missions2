@@ -133,16 +133,12 @@ public class MissionController extends AbstractContextAwareController {
             matricule = getDomainService().getMatriculeService().getMatricule(currentUser.getLogin());
 
             if (matricule == null) {
-                if (getDomainService().isHomonyme(currentUser)) {
-                    addWarnMessage(null, "WELCOME.ERROR.HOMONYME");
-                } else {
-                    if (nom == null) {
-                        nom = StringUtils.removeAccent(getDomainService().getNom(currentUser.getLogin()));
-                    }
+                if (nom == null) {
+                    nom = StringUtils.removeAccent(getDomainService().getNom(currentUser.getLogin()));
+                }
 
-                    if (prenom == null) {
-                        prenom = StringUtils.removeAccent(getDomainService().getPrenom(currentUser.getLogin()));
-                    }
+                if (prenom == null) {
+                    prenom = StringUtils.removeAccent(getDomainService().getPrenom(currentUser.getLogin()));
                 }
             }
         }

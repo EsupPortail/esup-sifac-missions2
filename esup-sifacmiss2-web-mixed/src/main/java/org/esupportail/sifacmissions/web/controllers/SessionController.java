@@ -13,7 +13,6 @@ import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
 
 import org.esupportail.commons.exceptions.UserNotFoundException;
-import org.esupportail.commons.services.i18n.I18nUtils;
 import org.esupportail.commons.utils.strings.StringUtils;
 import org.esupportail.commons.web.controllers.ExceptionController;
 import org.esupportail.sifacmissions.models.User;
@@ -117,7 +116,6 @@ public class SessionController extends AbstractDomainAwareBean {
             } catch (UserNotFoundException e) {
                 currentUser = new User();
                 currentUser.setLogin(uid);
-                currentUser.setDisplayName(I18nUtils.createI18nService().getString(e.getMessage()));
             }
 
             return currentUser;
@@ -139,7 +137,6 @@ public class SessionController extends AbstractDomainAwareBean {
                 } catch (UserNotFoundException e) {
                     currentUser = new User();
                     currentUser.setLogin(uid);
-                    currentUser.setDisplayName(I18nUtils.createI18nService().getString(e.getMessage()));
                 }
 
                 return currentUser;

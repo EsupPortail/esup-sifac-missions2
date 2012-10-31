@@ -78,6 +78,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		<dependency>
+			<groupId>org.esupportail</groupId>
+			<artifactId>esup-commons2-auth</artifactId>
+			<version>${esupcommons.version}</version>
+		</dependency>
 		<!-- ESUP Sifacmiss v2 -->
 		<dependency>
 			<groupId>org.esupportail</groupId>

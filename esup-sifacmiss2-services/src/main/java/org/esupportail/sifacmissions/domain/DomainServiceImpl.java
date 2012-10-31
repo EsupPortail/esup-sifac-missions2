@@ -10,14 +10,13 @@ import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 
-import org.esupportail.commons.services.ldap.LdapUser;
-import org.esupportail.commons.services.ldap.LdapUserService;
 import org.esupportail.sifacmissions.models.Mission;
 import org.esupportail.sifacmissions.models.MissionDetails;
 import org.esupportail.sifacmissions.models.User;
 import org.esupportail.sifacmissions.services.matricule.MatriculeService;
 import org.esupportail.sifacmissions.services.mission.MissionException;
 import org.esupportail.sifacmissions.services.mission.MissionService;
+import org.esupportail.sifacmissions.services.user.UserService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,17 +32,17 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private MissionService sifacService;
-    private LdapUserService ldapUserService;
+    private UserService userService;
     private MatriculeService matriculeService;
     private CacheManager cacheManager;
     private String cacheName;
     private Cache cache;
 
     /**
-     * @param ldapUserService Service de récupération des utilisateurs via LDAP
+     * @param userService Service de récupération des utilisateurs
      */
-    public void setLdapUserService(LdapUserService ldapUserService) {
-        this.ldapUserService = ldapUserService;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     /**
@@ -76,7 +75,7 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(ldapUserService, "property ldapUserService can not be null");
+        Assert.notNull(userService, "property userService can not be null");
         Assert.notNull(sifacService, "property sifacService can not be null");
         Assert.notNull(matriculeService, "property matriculeService can not be null");
         Assert.notNull(cacheManager, "property cacheManager can not be null");
@@ -99,19 +98,17 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
 
             user = (User) cache.get(id).getObjectValue();
         } else {
-            LdapUser ldapUser = this.ldapUserService.getLdapUser(id);
-
-            user = new User();
-            user.setLogin(ldapUser.getId());
-            user.setDisplayName(ldapUser.getAttribute("displayName"));
-
             if (logger.isDebugEnabled()) {
-                logger.debug("User " + id + " not found in cache... and put in...");
+                logger.debug("User " + id + " not found in cache...");
             }
 
-            cache.put(new Element(id, user));
+            user = userService.getUser(id);
 
-            return user;
+            if (user != null) {
+                cache.put(new Element(id, user));
+            } else {
+                logger.warn("User " + id + " not found");
+            }
         }
 
         return user;
@@ -124,14 +121,12 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
 
     @Override
     public String getNom(String id) {
-        LdapUser ldapUser = ldapUserService.getLdapUser(id);
-        return ldapUser.getAttribute("sn").toUpperCase();
+        return getUser(id).getNom().toUpperCase();
     }
 
     @Override
     public String getPrenom(String id) {
-        LdapUser ldapUser = ldapUserService.getLdapUser(id);
-        return ldapUser.getAttribute("givenName").toUpperCase();
+        return getUser(id).getPrenom().toUpperCase();
     }
 
     @Override
@@ -142,14 +137,6 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
     @Override
     public List<MissionDetails> getMissionDetails(String matricule, String numeroMission) throws MissionException {
         return sifacService.getMissionDetails(matricule, numeroMission);
-    }
-
-    @Override
-    public Boolean isHomonyme(User user) {
-        String filter = "(displayname=" + user.getDisplayName() + ")";
-        List<LdapUser> users = ldapUserService.getLdapUsersFromFilter(filter);
-
-        return users.size() > 1;
     }
 
     @Override
