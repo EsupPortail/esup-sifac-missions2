@@ -6,7 +6,7 @@ import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.web.controllers.Resettable;
 import org.esupportail.sifacmissions.domain.DomainService;
-import org.esupportail.sifacmissions.domain.beans.User;
+import org.esupportail.sifacmissions.models.User;
 
 /**
  * An abstract class inherited by all the beans for them to get:

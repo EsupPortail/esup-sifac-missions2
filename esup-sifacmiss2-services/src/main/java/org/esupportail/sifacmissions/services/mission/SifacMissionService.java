@@ -2,7 +2,7 @@
  * ESUP-Portail esup-sifac-missions - Copyright (c) 2009 ESUP-Portail consortium
  * http://sourcesup.cru.fr/projects/esup-sifacmissions
  */
-package org.esupportail.sifacmissions.services.sifac;
+package org.esupportail.sifacmissions.services.mission;
 
 import java.util.List;
 
@@ -13,8 +13,8 @@ import net.sf.ehcache.Element;
 import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
-import org.esupportail.sifacmissions.domain.beans.Mission;
-import org.esupportail.sifacmissions.domain.beans.MissionDetails;
+import org.esupportail.sifacmissions.models.Mission;
+import org.esupportail.sifacmissions.models.MissionDetails;
 import org.esupportail.sifacmissions.ws.SifacPortailService;
 
 import org.springframework.beans.factory.InitializingBean;
@@ -22,7 +22,7 @@ import org.springframework.beans.factory.InitializingBean;
 /**
  * Web service d'accès aux données de l'application SIFAC.
  */
-public class SifacServiceImpl implements SifacService, InitializingBean {
+public class SifacMissionService implements MissionService, InitializingBean {
 
     private final Logger logger = new LoggerImpl(getClass());
 
@@ -90,7 +90,7 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws SifacException {
+    public List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws MissionException {
         if (nom == null) {
             nom = "";
         }
@@ -106,7 +106,7 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
             try {
                 fms = portailService.getFraisMissions(matricule, nom, prenom, year.toString());
             } catch (Exception e) {
-                throw new SifacException(e);
+                throw new MissionException(e);
             }
 
             if (logger.isDebugEnabled()) {
@@ -128,7 +128,7 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<MissionDetails> getMissionDetails(String matricule, String numeroMission) throws SifacException {
+    public List<MissionDetails> getMissionDetails(String matricule, String numeroMission) throws MissionException {
         List<MissionDetails> details = null;
         String cacheKey = matricule + "|" + numeroMission + "|" + mandant;
 
@@ -136,7 +136,7 @@ public class SifacServiceImpl implements SifacService, InitializingBean {
             try {
                 details = portailService.getMissionDetails(matricule, numeroMission);
             } catch (Exception e) {
-                throw new SifacException(e);
+                throw new MissionException(e);
             }
 
             if (logger.isDebugEnabled()) {

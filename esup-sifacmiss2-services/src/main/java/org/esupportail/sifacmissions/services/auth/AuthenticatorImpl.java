@@ -7,7 +7,7 @@ import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.utils.ContextUtils;
-import org.esupportail.sifacmissions.domain.beans.User;
+import org.esupportail.sifacmissions.models.User;
 
 import org.springframework.beans.factory.InitializingBean;
 

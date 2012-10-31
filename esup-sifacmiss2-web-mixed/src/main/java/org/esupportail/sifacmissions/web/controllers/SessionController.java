@@ -19,7 +19,7 @@ import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.utils.strings.StringUtils;
 import org.esupportail.commons.web.controllers.ExceptionController;
-import org.esupportail.sifacmissions.domain.beans.User;
+import org.esupportail.sifacmissions.models.User;
 import org.esupportail.sifacmissions.services.auth.Authenticator;
 
 import org.apache.myfaces.trinidad.util.ExternalContextUtils;

@@ -16,9 +16,9 @@ import javax.faces.model.SelectItem;
 
 import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
-import org.esupportail.sifacmissions.domain.beans.Mission;
-import org.esupportail.sifacmissions.domain.beans.User;
-import org.esupportail.sifacmissions.services.sifac.SifacException;
+import org.esupportail.sifacmissions.models.Mission;
+import org.esupportail.sifacmissions.models.User;
+import org.esupportail.sifacmissions.services.mission.MissionException;
 import org.esupportail.sifacmissions.web.utils.StringUtils;
 
 import org.apache.myfaces.trinidad.component.UIXTable;
@@ -231,7 +231,7 @@ public class MissionController extends AbstractContextAwareController {
 
         try {
             mission.setDetails(getDomainService().getMissionDetails(matricule, mission.getNumero()));
-        } catch (SifacException e) {
+        } catch (MissionException e) {
             logger.error(e);
             addWarnMessage(null, "WELCOME.ERROR.SERVICE");
         }

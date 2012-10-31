@@ -3,7 +3,7 @@
  */
 package org.esupportail.sifacmissions.services.auth;
 
-import org.esupportail.sifacmissions.domain.beans.User;
+import org.esupportail.sifacmissions.models.User;
 
 /**
  * Cette classe permet d'authentifier l'utilisateur courant.

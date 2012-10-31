@@ -9,9 +9,9 @@ import java.util.List;
 
 import javax.xml.rpc.ServiceException;
 
-import org.esupportail.sifacmissions.domain.beans.Mission;
-import org.esupportail.sifacmissions.domain.beans.MissionDetails;
-import org.esupportail.sifacmissions.domain.beans.Periode;
+import org.esupportail.sifacmissions.models.Mission;
+import org.esupportail.sifacmissions.models.MissionDetails;
+import org.esupportail.sifacmissions.models.Periode;
 import org.esupportail.sifacmissions.utils.Categorizer;
 import org.esupportail.sifacmissions.ws.generated.ZWEB_SERVICE_PORTAILServiceLocator;
 import org.esupportail.sifacmissions.ws.generated.ZWEB_SERVICE_PORTAILSoapBindingStub;

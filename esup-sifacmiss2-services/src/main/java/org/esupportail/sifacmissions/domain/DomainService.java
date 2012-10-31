@@ -5,10 +5,10 @@ package org.esupportail.sifacmissions.domain;
 
 import java.util.List;
 
-import org.esupportail.sifacmissions.domain.beans.Mission;
-import org.esupportail.sifacmissions.domain.beans.MissionDetails;
-import org.esupportail.sifacmissions.domain.beans.User;
-import org.esupportail.sifacmissions.services.sifac.SifacException;
+import org.esupportail.sifacmissions.models.Mission;
+import org.esupportail.sifacmissions.models.MissionDetails;
+import org.esupportail.sifacmissions.models.User;
+import org.esupportail.sifacmissions.services.mission.MissionException;
 
 /**
  * Service permettant de manipuler les modèles métiers de l'application.
@@ -58,9 +58,9 @@ public interface DomainService {
      * @param prenom Prénom
      * @param year Année
      * @return Liste des frais de mission
-     * @throws SifacException
+     * @throws MissionException
      */
-    List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws SifacException;
+    List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws MissionException;
 
     /**
      * Récupère la liste des frais pour l'utilisateur et la mission donnés.
@@ -68,9 +68,9 @@ public interface DomainService {
      * @param matricule Numéro de matricule
      * @param mission Numéro de mission
      * @return Liste de détails
-     * @throws SifacException
+     * @throws MissionException
      */
-    List<MissionDetails> getMissionDetails(String matricule, String mission) throws SifacException;
+    List<MissionDetails> getMissionDetails(String matricule, String mission) throws MissionException;
 
     /**
      * Détermine si un utilisateur possède un homonyne.

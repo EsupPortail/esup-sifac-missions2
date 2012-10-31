@@ -1,4 +1,4 @@
-package org.esupportail.sifacmissions.domain.beans;
+package org.esupportail.sifacmissions.models;
 
 import java.util.Date;
 

@@ -1,7 +1,7 @@
 package org.esupportail.sifacmissions.web.controllers;
 
 import org.esupportail.commons.utils.Assert;
-import org.esupportail.sifacmissions.domain.beans.User;
+import org.esupportail.sifacmissions.models.User;
 
 /**
  * An abstract class inherited by all the beans for them to get:

@@ -1,4 +1,4 @@
-package org.esupportail.sifacmissions.services.sifac;
+package org.esupportail.sifacmissions.services.mission;
 
 /**
  * Levée par les services SIFAC.
@@ -6,14 +6,14 @@ package org.esupportail.sifacmissions.services.sifac;
  * @author Florent Cailhol (Anyware Services)
  */
 @SuppressWarnings("serial")
-public class SifacException extends Exception {
+public class MissionException extends Exception {
 
     /**
      * Constructeur.
      *
      * @param cause Cause de l'exception
      */
-    public SifacException(Throwable cause) {
+    public MissionException(Throwable cause) {
         super(cause);
     }
 

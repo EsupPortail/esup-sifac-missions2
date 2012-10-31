@@ -1,4 +1,4 @@
-package org.esupportail.sifacmissions.domain.beans;
+package org.esupportail.sifacmissions.models;
 
 /**
  * Valeurs possibles pour indiquer l'état du remboursement d'une mission.

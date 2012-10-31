@@ -1,9 +1,9 @@
-package org.esupportail.sifacmissions.services.sifac;
+package org.esupportail.sifacmissions.services.mission;
 
 import java.util.List;
 
-import org.esupportail.sifacmissions.domain.beans.Mission;
-import org.esupportail.sifacmissions.domain.beans.MissionDetails;
+import org.esupportail.sifacmissions.models.Mission;
+import org.esupportail.sifacmissions.models.MissionDetails;
 
 /**
  * Service d'accès aux données de l'application SIFAC.
@@ -11,7 +11,7 @@ import org.esupportail.sifacmissions.domain.beans.MissionDetails;
  * @author Yves Deschamps (Universite de Lille 1)
  * @author Florent Cailhol (Anyware Services)
  */
-public interface SifacService {
+public interface MissionService {
 
     /**
      * Récupère l'année de la mise en ligne de l'application SIFAC.
@@ -29,9 +29,9 @@ public interface SifacService {
      * @param prenom Prénom
      * @param year Année
      * @return Liste des frais de mission
-     * @throws SifacException
+     * @throws MissionException
      */
-    List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws SifacException;
+    List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws MissionException;
 
     /**
      * Récupère la liste des frais pour l'utilisateur et la mission donnés.
@@ -39,8 +39,8 @@ public interface SifacService {
      * @param matricule Numéro de matricule
      * @param mission Numéro de mission
      * @return Liste de détails
-     * @throws SifacException
+     * @throws MissionException
      */
-    List<MissionDetails> getMissionDetails(String matricule, String mission) throws SifacException;
+    List<MissionDetails> getMissionDetails(String matricule, String mission) throws MissionException;
 
 }

@@ -1,6 +1,6 @@
 package org.esupportail.sifacmissions.web.controllers;
 
-import org.esupportail.sifacmissions.domain.beans.Mission;
+import org.esupportail.sifacmissions.models.Mission;
 
 @SuppressWarnings("serial")
 public class MobileMissionController extends MissionController {

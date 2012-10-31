@@ -15,11 +15,11 @@ import org.esupportail.commons.services.ldap.LdapUserService;
 import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
-import org.esupportail.sifacmissions.domain.beans.Mission;
-import org.esupportail.sifacmissions.domain.beans.MissionDetails;
-import org.esupportail.sifacmissions.domain.beans.User;
-import org.esupportail.sifacmissions.services.sifac.SifacException;
-import org.esupportail.sifacmissions.services.sifac.SifacService;
+import org.esupportail.sifacmissions.models.Mission;
+import org.esupportail.sifacmissions.models.MissionDetails;
+import org.esupportail.sifacmissions.models.User;
+import org.esupportail.sifacmissions.services.mission.MissionException;
+import org.esupportail.sifacmissions.services.mission.MissionService;
 
 import org.springframework.beans.factory.InitializingBean;
 
@@ -32,7 +32,7 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
 
     private final Logger logger = new LoggerImpl(getClass());
 
-    private SifacService sifacService;
+    private MissionService sifacService;
     private LdapUserService ldapUserService;
     private MatriculeService matriculeService;
     private CacheManager cacheManager;
@@ -49,7 +49,7 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
     /**
      * @param sifacService Services SIFAC
      */
-    public void setSifacService(SifacService sifacService) {
+    public void setSifacService(MissionService sifacService) {
         this.sifacService = sifacService;
     }
 
@@ -135,12 +135,12 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
     }
 
     @Override
-    public List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws SifacException {
+    public List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws MissionException {
         return sifacService.getFraisMissions(matricule, nom, prenom, year);
     }
 
     @Override
-    public List<MissionDetails> getMissionDetails(String matricule, String numeroMission) throws SifacException {
+    public List<MissionDetails> getMissionDetails(String matricule, String numeroMission) throws MissionException {
         return sifacService.getMissionDetails(matricule, numeroMission);
     }
 
