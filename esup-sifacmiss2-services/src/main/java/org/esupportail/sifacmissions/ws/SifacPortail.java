@@ -22,6 +22,8 @@ import org.esupportail.sifacmissions.ws.generated.holders.TABLE_OF_ZZPORTSTT_BAP
 import org.esupportail.sifacmissions.ws.generated.holders.TABLE_OF_ZZPORTSTT_BAPI_MISSION_DETAILHolder;
 
 import org.apache.axis.client.Stub;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**
@@ -31,7 +33,7 @@ import org.springframework.util.StringUtils;
  *
  * @author Florent Cailhol (Anyware Services)
  */
-public class SifacPortail {
+public class SifacPortail implements InitializingBean {
 
     private final String endpoint;
     private final String username;
@@ -69,6 +71,11 @@ public class SifacPortail {
      */
     public void setCategorizer(Categorizer categorizer) {
         this.categorizer = categorizer;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Assert.notNull(categorizer, "property categorizer can not be null");
     }
 
     /**
