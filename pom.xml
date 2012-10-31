@@ -5,7 +5,7 @@
 
 	<groupId>org.esupportail</groupId>
 	<artifactId>esup-sifacmiss2</artifactId>
-	<version>1.0.2-SNAPSHOT</version>
+	<version>1.1.0-RC1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>esup-sifacmiss2</name>
