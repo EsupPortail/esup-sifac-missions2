@@ -1,20 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
-		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.0.xsd">
 
-	<bean id="sifacService"
-		class="org.esupportail.sifacmissions.services.sifac.SifacServiceImpl">
-		<property name="mandant" value="${sifac.mandant}" />
-		<property name="firstYear" value="${sifac.firstYear}" />
-		<property name="portailService" ref="sifacPortailService" />
-		<property name="cacheManager" ref="cacheManager" />
-		<property name="cacheName" value="ListOfFraisMission" />
+	<bean id="sifacMatricule" class="org.esupportail.sifacmissions.ws.SifacMatricule"
+		lazy-init="true">
+		<constructor-arg>
+			<value>${domain.matricule.sifac.ws.url}</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>${domain.matricule.sifac.ws.login}</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>${domain.matricule.sifac.ws.password}</value>
+		</constructor-arg>
 	</bean>
 
-	<bean id="sifacPortailService" class="org.esupportail.sifacmissions.ws.SifacPortailService">
+	<bean id="sifacPortail" class="org.esupportail.sifacmissions.ws.SifacPortail">
 		<constructor-arg>
 			<value>${sifac.ws.url}</value>
 		</constructor-arg>

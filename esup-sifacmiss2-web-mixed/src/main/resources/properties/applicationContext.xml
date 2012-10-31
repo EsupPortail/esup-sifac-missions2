@@ -14,7 +14,8 @@
 	<import resource="ldap/ldap.xml" />
 	<import resource="services/auth.xml" />
 	<import resource="services/sifac.xml" />
-	<import resource="services/services.xml" />
+	<import resource="services/matricule.xml" />
+	<import resource="services/mission.xml" />
 
 	<import resource="cache/cache.xml" />
 	<import resource="i18n/i18n.xml" />

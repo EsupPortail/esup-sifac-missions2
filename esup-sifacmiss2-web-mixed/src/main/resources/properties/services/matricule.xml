@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<bean id="domainService" class="org.esupportail.sifacmissions.domain.DomainServiceImpl">
+		<property name="userService" ref="ldapUserService" />
+		<property name="sifacService" ref="sifacService" />
+		<property name="matriculeService" ref="${domain.matricule.bean}" />
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="cacheName" value="User" />
+	</bean>
+
+	<bean id="matriculeByLdap" lazy-init="true"
+		class="org.esupportail.sifacmissions.services.matricule.LdapMatriculeService">
+		<property name="userService" ref="ldapUserService" />
+		<property name="matriculeAttribute" value="${domain.matricule.ldap.attribute}" />
+	</bean>
+
+	<bean id="matriculeBySifac" lazy-init="true"
+		class="org.esupportail.sifacmissions.services.matricule.SifacMatriculeService">
+		<property name="matriculeService" ref="sifacMatricule" />
+	</bean>
+
+	<bean id="matriculeByMock" lazy-init="true"
+		class="org.esupportail.sifacmissions.services.matricule.FixedMatriculeService">
+		<property name="matricule" value="${domain.matricule.mock.matricule}" />
+	</bean>
+
+</beans>
