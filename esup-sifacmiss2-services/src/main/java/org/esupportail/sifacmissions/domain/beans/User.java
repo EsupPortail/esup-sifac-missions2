@@ -9,61 +9,61 @@ import org.springframework.core.style.ToStringCreator;
  */
 public class User implements Serializable {
 
-	private static final long serialVersionUID = 3045693858467707618L;
-	
-	private String login;
-	private String displayName;
-	
-	@Override
-	public int hashCode() {
-		return login.hashCode();
-	}
+    private static final long serialVersionUID = 3045693858467707618L;
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		
-		if (!(obj instanceof User)) {
-			return false;
-		}
-		
-		return login.equals(((User) obj).getLogin());
-	}
+    private String login;
+    private String displayName;
 
-	@Override
-	public String toString() {
-		ToStringCreator tsc = new ToStringCreator(this);
-		return tsc.append("login", login).append("displayName", displayName).toString();
-	}
+    @Override
+    public int hashCode() {
+        return login.hashCode();
+    }
 
-	/**
-	 * @return Login
-	 */
-	public String getLogin() {
-		return login;
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
 
-	/**
-	 * @param login Login
-	 */
-	public void setLogin(String login) {
-		this.login = login;
-	}
+        if (!(obj instanceof User)) {
+            return false;
+        }
 
-	/**
-	 * @return Nom
-	 */
-	public String getDisplayName() {
-		return this.displayName;
-	}
+        return login.equals(((User) obj).getLogin());
+    }
 
-	/**
-	 * @param displayName Nom
-	 */
-	public void setDisplayName(String displayName) {
-		this.displayName = displayName;
-	}
+    @Override
+    public String toString() {
+        ToStringCreator tsc = new ToStringCreator(this);
+        return tsc.append("login", login).append("displayName", displayName).toString();
+    }
+
+    /**
+     * @return Login
+     */
+    public String getLogin() {
+        return login;
+    }
+
+    /**
+     * @param login Login
+     */
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    /**
+     * @return Nom
+     */
+    public String getDisplayName() {
+        return this.displayName;
+    }
+
+    /**
+     * @param displayName Nom
+     */
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
 
 }

@@ -8,6 +8,7 @@ import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.utils.ContextUtils;
 import org.esupportail.sifacmissions.domain.beans.User;
+
 import org.springframework.beans.factory.InitializingBean;
 
 /**
@@ -15,93 +16,92 @@ import org.springframework.beans.factory.InitializingBean;
  */
 public class AuthenticatorImpl implements Authenticator, InitializingBean {
 
-	private static final String AUTH_INFO_ATTRIBUTE = AuthenticatorImpl.class.getName() + ".authInfo";
-	private static final String USER_ATTRIBUTE = AuthenticatorImpl.class.getName() + ".user";
+    private static final String AUTH_INFO_ATTRIBUTE = AuthenticatorImpl.class.getName() + ".authInfo";
+    private static final String USER_ATTRIBUTE = AuthenticatorImpl.class.getName() + ".user";
 
-	private final Logger logger = new LoggerImpl(getClass());
+    private final Logger logger = new LoggerImpl(getClass());
 
-	private AuthenticationService authenticationService;
+    private AuthenticationService authenticationService;
 
-	/**
-	 * @param authenticationService Service d'authentification
-	 */
-	public void setAuthenticationService(final AuthenticationService authenticationService) {
-		this.authenticationService = authenticationService;
-		
-		if (logger.isDebugEnabled()) {
-			logger.debug("authenticationService: " + authenticationService.getClass().getName());
-		}
-	}
+    /**
+     * @param authenticationService Service d'authentification
+     */
+    public void setAuthenticationService(final AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
 
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		Assert.notNull(authenticationService, "property authenticationService of class " + getClass().getName() + " can not be null");
-	}
+        if (logger.isDebugEnabled()) {
+            logger.debug("authenticationService: " + authenticationService.getClass().getName());
+        }
+    }
 
-	@Override
-	public User getUser() throws Exception {
-		try {
-			AuthInfo authInfo = (AuthInfo) ContextUtils.getSessionAttribute(AUTH_INFO_ATTRIBUTE);
-			if (authInfo != null) {
-				User user = (User) ContextUtils.getSessionAttribute(USER_ATTRIBUTE);
-				if (logger.isDebugEnabled()) {
-					logger.debug("found auth info in session: " + user);
-				}
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Assert.notNull(authenticationService, "property authenticationService of class " + getClass().getName() + " can not be null");
+    }
 
-				return user;
-			}
+    @Override
+    public User getUser() throws Exception {
+        try {
+            AuthInfo authInfo = (AuthInfo) ContextUtils.getSessionAttribute(AUTH_INFO_ATTRIBUTE);
+            if (authInfo != null) {
+                User user = (User) ContextUtils.getSessionAttribute(USER_ATTRIBUTE);
+                if (logger.isDebugEnabled()) {
+                    logger.debug("found auth info in session: " + user);
+                }
 
-			if (logger.isDebugEnabled()) {
-				logger.debug("no auth info found in session");
-			}
+                return user;
+            }
 
-			authInfo = authenticationService.getAuthInfo();
-			if (authInfo == null) {
-				if (logger.isDebugEnabled()) {
-					logger.debug("authInfo is null");
-				}
+            if (logger.isDebugEnabled()) {
+                logger.debug("no auth info found in session");
+            }
 
-				return null;
-			}
+            authInfo = authenticationService.getAuthInfo();
+            if (authInfo == null) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("authInfo is null");
+                }
 
-			if (AuthUtils.SHIBBOLETH.equals(authInfo.getType())) {
-				if (logger.isDebugEnabled()) {
-					logger.debug("Shibboleth authentication");
-				}
+                return null;
+            }
 
-				User user = new User();
-				user.setLogin(authInfo.getId());
+            if (AuthUtils.SHIBBOLETH.equals(authInfo.getType())) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("Shibboleth authentication");
+                }
 
-				storeToSession(authInfo, user);
-				return user;
-			}
+                User user = new User();
+                user.setLogin(authInfo.getId());
 
-			if (AuthUtils.CAS.equals(authInfo.getType())) {
-				if (logger.isDebugEnabled()) {
-					logger.debug("CAS authentication");
-				}
+                storeToSession(authInfo, user);
+                return user;
+            }
 
-				User user = new User();
-				user.setLogin(authInfo.getId());
+            if (AuthUtils.CAS.equals(authInfo.getType())) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("CAS authentication");
+                }
 
-				storeToSession(authInfo, user);
-				return user;
-			}
-		}
-		catch (Exception e) {
-			throw new Exception(e.getMessage(), e);
-		}
+                User user = new User();
+                user.setLogin(authInfo.getId());
 
-		return null;
-	}
+                storeToSession(authInfo, user);
+                return user;
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage(), e);
+        }
 
-	private void storeToSession(final AuthInfo authInfo, final User user) {
-		if (logger.isDebugEnabled()) {
-			logger.debug("storing to session: " + authInfo);
-		}
+        return null;
+    }
 
-		ContextUtils.setSessionAttribute(AUTH_INFO_ATTRIBUTE, authInfo);
-		ContextUtils.setSessionAttribute(USER_ATTRIBUTE, user);
-	}
+    private void storeToSession(final AuthInfo authInfo, final User user) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("storing to session: " + authInfo);
+        }
+
+        ContextUtils.setSessionAttribute(AUTH_INFO_ATTRIBUTE, authInfo);
+        ContextUtils.setSessionAttribute(USER_ATTRIBUTE, user);
+    }
 
 }

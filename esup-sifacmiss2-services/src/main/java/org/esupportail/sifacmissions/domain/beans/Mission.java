@@ -8,175 +8,176 @@ import java.util.List;
 
 /**
  * Cette classe représente les missions SIFAC.
- * 
+ *
  * @author Yves deschamps (Universite Lille1 - France)
  * @author Florent Cailhol (Anyware Services)
  */
 public class Mission implements Serializable {
 
-	private static final long serialVersionUID = 7531554542364823201L;
+    private static final long serialVersionUID = 7531554542364823201L;
 
-	/**
-	 * Comparateur pour effectuer un tri par offre de missions.
-	 */
-	public static Comparator<Mission> ORDER_ORDRE = new Comparator<Mission>() {
-		@Override
-		public int compare(Mission m1, Mission m2) {
-			return m1.getOrdre().compareTo(m2.getOrdre());
-		}
-	};
+    /**
+     * Comparateur pour effectuer un tri par offre de missions.
+     */
+    public static Comparator<Mission> ORDER_ORDRE = new Comparator<Mission>() {
 
-	private String numero;
-	private String motif;
-	private BigDecimal montant;
-	private BigDecimal remboursement;
-	private Date date;
-	private Long ordre;
-	private Periode periode;
-	private List<MissionDetails> details;
-	
-	@Override
-	public int hashCode() {
-		return numero.hashCode();
-	}
+        @Override
+        public int compare(Mission m1, Mission m2) {
+            return m1.getOrdre().compareTo(m2.getOrdre());
+        }
+    };
 
-	@Override
-	public boolean equals(final Object obj) {
-		if (obj == null) {
-			return false;
-		}
-		if (!(obj instanceof Mission)) {
-			return false;
-		}
+    private String numero;
+    private String motif;
+    private BigDecimal montant;
+    private BigDecimal remboursement;
+    private Date date;
+    private Long ordre;
+    private Periode periode;
+    private List<MissionDetails> details;
 
-		return numero.equals(((Mission) obj).getNumero());
-	}
+    @Override
+    public int hashCode() {
+        return numero.hashCode();
+    }
 
-	/**
-	 * @return Numéro de mission
-	 */
-	public String getNumero() {
-		return numero;
-	}
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (!(obj instanceof Mission)) {
+            return false;
+        }
 
-	/**
-	 * @param numero Numéro de mission
-	 */
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
+        return numero.equals(((Mission) obj).getNumero());
+    }
 
-	/**
-	 * @return Motif
-	 */
-	public String getMotif() {
-		return motif;
-	}
+    /**
+     * @return Numéro de mission
+     */
+    public String getNumero() {
+        return numero;
+    }
 
-	/**
-	 * @param motif Motif
-	 */
-	public void setMotif(String motif) {
-		this.motif = motif;
-	}
+    /**
+     * @param numero Numéro de mission
+     */
+    public void setNumero(String numero) {
+        this.numero = numero;
+    }
 
-	/**
-	 * @return Montant
-	 */
-	public BigDecimal getMontant() {
-		return montant;
-	}
+    /**
+     * @return Motif
+     */
+    public String getMotif() {
+        return motif;
+    }
 
-	/**
-	 * @param montant Montant
-	 */
-	public void setMontant(BigDecimal montant) {
-		this.montant = montant;
-	}
+    /**
+     * @param motif Motif
+     */
+    public void setMotif(String motif) {
+        this.motif = motif;
+    }
 
-	/**
-	 * @return Montant remboursé
-	 */
-	public BigDecimal getRemboursement() {
-		return remboursement;
-	}
+    /**
+     * @return Montant
+     */
+    public BigDecimal getMontant() {
+        return montant;
+    }
 
-	/**
-	 * @param remboursement Montant remboursé
-	 */
-	public void setRemboursement(BigDecimal remboursement) {
-		this.remboursement = remboursement;
-	}
+    /**
+     * @param montant Montant
+     */
+    public void setMontant(BigDecimal montant) {
+        this.montant = montant;
+    }
 
-	/**
-	 * @return Date
-	 */
-	public Date getDate() {
-		return date;
-	}
+    /**
+     * @return Montant remboursé
+     */
+    public BigDecimal getRemboursement() {
+        return remboursement;
+    }
 
-	/**
-	 * @param date Date
-	 */
-	public void setDate(Date date) {
-		this.date = date;
-	}
+    /**
+     * @param remboursement Montant remboursé
+     */
+    public void setRemboursement(BigDecimal remboursement) {
+        this.remboursement = remboursement;
+    }
 
-	/**
-	 * @return Ordre
-	 */
-	public Long getOrdre() {
-		return ordre;
-	}
+    /**
+     * @return Date
+     */
+    public Date getDate() {
+        return date;
+    }
 
-	/**
-	 * @param ordre the ordre to set.
-	 */
-	public void setOrdre(Long ordre) {
-		this.ordre = ordre;
-	}
+    /**
+     * @param date Date
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
-	/**
-	 * @return Période.
-	 */
-	public Periode getPeriode() {
-		return periode;
-	}
+    /**
+     * @return Ordre
+     */
+    public Long getOrdre() {
+        return ordre;
+    }
 
-	/**
-	 * @param periode Période
-	 */
-	public void setPeriode(Periode periode) {
-		this.periode = periode;
-	}
+    /**
+     * @param ordre the ordre to set.
+     */
+    public void setOrdre(Long ordre) {
+        this.ordre = ordre;
+    }
 
-	/**
-	 * @return Liste des détails
-	 */
-	public List<MissionDetails> getDetails() {
-		return details;
-	}
+    /**
+     * @return Période.
+     */
+    public Periode getPeriode() {
+        return periode;
+    }
 
-	/**
-	 * @param details Liste des détails
-	 */
-	public void setDetails(List<MissionDetails> details) {
-		this.details = details;
-	}
+    /**
+     * @param periode Période
+     */
+    public void setPeriode(Periode periode) {
+        this.periode = periode;
+    }
 
-	/**
-	 * @return status Etat du remboursement
-	 */
-	public Integer getStatus() {
-		if (remboursement.signum() == 0) {
-			return MissionStatus.NON_REMBOURSABLE;
-		}
+    /**
+     * @return Liste des détails
+     */
+    public List<MissionDetails> getDetails() {
+        return details;
+    }
 
-		if (date != null) {
-			return MissionStatus.VALIDEE;
-		}
+    /**
+     * @param details Liste des détails
+     */
+    public void setDetails(List<MissionDetails> details) {
+        this.details = details;
+    }
 
-		return MissionStatus.EN_ATTENTE;
-	}
+    /**
+     * @return status Etat du remboursement
+     */
+    public Integer getStatus() {
+        if (remboursement.signum() == 0) {
+            return MissionStatus.NON_REMBOURSABLE;
+        }
+
+        if (date != null) {
+            return MissionStatus.VALIDEE;
+        }
+
+        return MissionStatus.EN_ATTENTE;
+    }
 
 }
