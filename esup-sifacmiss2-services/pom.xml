@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
 		<artifactId>esup-sifacmiss2</artifactId>
 		<groupId>org.esupportail</groupId>
 		<version>1.1.0-RC1-SNAPSHOT</version>
 	</parent>
-	
-	<artifactId>esup-sifacmiss2-sifac-services</artifactId>
-	
+
+	<artifactId>esup-sifacmiss2-services</artifactId>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -28,11 +29,11 @@
 				</executions>
 				<configuration>
 					<sourceDirectory>${project.basedir}/src/main/resources/wsdl</sourceDirectory>
-                    <wsdlFiles>
-                        <wsdlFile>matricule.wsdl</wsdlFile>
-                        <wsdlFile>portail.wsdl</wsdlFile>
-                    </wsdlFiles>
-                    <packageSpace>org.esupportail.sifacmissions.ws.generated</packageSpace>
+					<wsdlFiles>
+						<wsdlFile>matricule.wsdl</wsdlFile>
+						<wsdlFile>portail.wsdl</wsdlFile>
+					</wsdlFiles>
+					<packageSpace>org.esupportail.sifacmissions.ws.generated</packageSpace>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -56,27 +57,22 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<dependencies>
-        <dependency>
-            <groupId>org.apache.axis</groupId>
-            <artifactId>axis</artifactId>
-            <version>1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.axis</groupId>
-            <artifactId>axis-jaxrpc</artifactId>
-            <version>1.4</version>
-        </dependency>
-        <dependency>
-            <groupId>wsdl4j</groupId>
-            <artifactId>wsdl4j</artifactId>
-            <version>1.6.2</version>
-        </dependency>
 		<dependency>
-			<groupId>org.esupportail</groupId>
-			<artifactId>esup-sifacmiss2-domain-beans</artifactId>
-			<version>${project.version}</version>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.axis</groupId>
+			<artifactId>axis-jaxrpc</artifactId>
+			<version>1.4</version>
+		</dependency>
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+			<version>1.6.2</version>
 		</dependency>
 	</dependencies>
 

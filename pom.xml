@@ -94,9 +94,7 @@
 	</properties>
 
 	<modules>
-		<module>esup-sifacmiss2-domain-beans</module>
-		<module>esup-sifacmiss2-domain-services</module>
-		<module>esup-sifacmiss2-sifac-services</module>
+		<module>esup-sifacmiss2-services</module>
 		<module>esup-sifacmiss2-web-jsf-mixed</module>
 	</modules>
 
