@@ -11,15 +11,7 @@
 
 	<artifactId>esup-sifacmiss2-web-mixed</artifactId>
 	
-	<!-- Eclipse m2e may fail here. Create config.properties! -->
 	<packaging>war</packaging>
-
-	<properties>
-		<app.version>${project.version}</app.version>
-		<javax.portlet.version>1.0</javax.portlet.version>
-		<javax.servlet.version>2.5</javax.servlet.version>
-		<portlet.bridge.version>1.0.0</portlet.bridge.version>
-	</properties>
 
 	<dependencyManagement>
 		<dependencies>
@@ -37,25 +29,20 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- Servlet & portlet -->
+		<!-- ===== Provided dependencies =================================== -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
-			<version>${javax.servlet.version}</version>
+			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.portlet</groupId>
 			<artifactId>portlet-api</artifactId>
-			<version>${javax.portlet.version}</version>
+			<version>1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.myfaces.portlet-bridge</groupId>
-			<artifactId>portlet-bridge-impl</artifactId>
-			<version>${portlet.bridge.version}</version>
-		</dependency>
-		<!-- ESUP Commons v2 -->
+		<!-- ===== Compile time dependencies =============================== -->
 		<dependency>
 			<groupId>org.esupportail</groupId>
 			<artifactId>esup-commons2-jsf-trinidad</artifactId>
@@ -83,11 +70,17 @@
 			<artifactId>esup-commons2-auth</artifactId>
 			<version>${esupcommons.version}</version>
 		</dependency>
-		<!-- ESUP Sifacmiss v2 -->
 		<dependency>
 			<groupId>org.esupportail</groupId>
 			<artifactId>esup-sifacmiss2-services</artifactId>
 			<version>${project.version}</version>
+		</dependency>
+		<!-- ===== Runtime dependencies ==================================== -->
+		<dependency>
+			<groupId>org.apache.myfaces.portlet-bridge</groupId>
+			<artifactId>portlet-bridge-impl</artifactId>
+			<version>1.0.0</version>
+			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
 	

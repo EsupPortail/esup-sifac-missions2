@@ -97,6 +97,7 @@
 		<module>esup-sifacmiss2-services</module>
 		<module>esup-sifacmiss2-services-sifac</module>
 		<module>esup-sifacmiss2-web-mixed</module>
+		<module>esup-sifacmiss2-web-up4</module>
 	</modules>
 
 </project>
