@@ -14,7 +14,6 @@ import org.esupportail.commons.services.ldap.LdapUser;
 import org.esupportail.commons.services.ldap.LdapUserService;
 import org.esupportail.commons.services.logging.Logger;
 import org.esupportail.commons.services.logging.LoggerImpl;
-import org.esupportail.commons.utils.Assert;
 import org.esupportail.sifacmissions.models.Mission;
 import org.esupportail.sifacmissions.models.MissionDetails;
 import org.esupportail.sifacmissions.models.User;
@@ -23,6 +22,7 @@ import org.esupportail.sifacmissions.services.mission.MissionException;
 import org.esupportail.sifacmissions.services.mission.MissionService;
 
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.util.Assert;
 
 /**
  * @author Yves Deschamps (Universite de Lille 1)
@@ -76,11 +76,11 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(ldapUserService, "property ldapUserService of class " + getClass().getName() + " can not be null");
-        Assert.notNull(sifacService, "property sifacService of class " + getClass().getName() + " can not be null");
-        Assert.notNull(matriculeService, "property matriculeService of class " + getClass().getName() + " can not be null");
-        Assert.notNull(cacheManager, "property cacheManager of class " + getClass().getName() + " can not be null");
-        Assert.notNull(cacheName, "property cacheName of class " + getClass().getName() + " can not be null");
+        Assert.notNull(ldapUserService, "property ldapUserService can not be null");
+        Assert.notNull(sifacService, "property sifacService can not be null");
+        Assert.notNull(matriculeService, "property matriculeService can not be null");
+        Assert.notNull(cacheManager, "property cacheManager can not be null");
+        Assert.notNull(cacheName, "property cacheName can not be null");
 
         if (!cacheManager.cacheExists(cacheName)) {
             cacheManager.addCache(cacheName);

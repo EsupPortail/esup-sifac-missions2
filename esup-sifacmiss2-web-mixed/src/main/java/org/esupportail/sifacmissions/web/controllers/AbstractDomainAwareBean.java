@@ -1,10 +1,11 @@
 package org.esupportail.sifacmissions.web.controllers;
 
 import org.esupportail.commons.beans.AbstractJsfMessagesAwareBean;
-import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.web.controllers.Resettable;
 import org.esupportail.sifacmissions.domain.DomainService;
 import org.esupportail.sifacmissions.models.User;
+
+import org.springframework.util.Assert;
 
 /**
  * An abstract class inherited by all the beans for them to get:
@@ -34,7 +35,7 @@ public abstract class AbstractDomainAwareBean extends AbstractJsfMessagesAwareBe
     @Override
     public void afterPropertiesSet() {
         super.afterPropertiesSet();
-        Assert.notNull(domainService, "property domainService of class " + getClass().getName() + " can not be null");
+        Assert.notNull(domainService, "property domainService can not be null");
         afterPropertiesSetInternal();
         reset();
     }

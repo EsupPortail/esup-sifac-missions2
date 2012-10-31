@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.esupportail.commons.exceptions.UserNotFoundException;
 import org.esupportail.commons.services.i18n.I18nUtils;
-import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.utils.strings.StringUtils;
 import org.esupportail.commons.web.controllers.ExceptionController;
 import org.esupportail.sifacmissions.models.User;
@@ -23,6 +22,7 @@ import org.esupportail.sifacmissions.services.auth.Authenticator;
 import org.apache.myfaces.trinidad.util.ExternalContextUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 /**
  * @author Yves Deschamps (Universite de Lille 1) - 2010
@@ -76,9 +76,9 @@ public class SessionController extends AbstractDomainAwareBean {
 
     @Override
     public void afterPropertiesSet() {
-        Assert.notNull(exceptionController, "property exceptionController of class " + getClass().getName() + " can not be null");
-        Assert.notNull(authenticator, "property authenticator of class " + getClass().getName() + " can not be null");
-        Assert.notNull(casLogoutUrl, "property casLogoutUrl of class " + getClass().getName() + " can not be null");
+        Assert.notNull(exceptionController, "property exceptionController can not be null");
+        Assert.notNull(authenticator, "property authenticator of class can not be null");
+        Assert.notNull(casLogoutUrl, "property casLogoutUrl of class can not be null");
     }
 
     /**

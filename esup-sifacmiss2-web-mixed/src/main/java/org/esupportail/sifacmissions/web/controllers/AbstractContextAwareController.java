@@ -1,7 +1,8 @@
 package org.esupportail.sifacmissions.web.controllers;
 
-import org.esupportail.commons.utils.Assert;
 import org.esupportail.sifacmissions.models.User;
+
+import org.springframework.util.Assert;
 
 /**
  * An abstract class inherited by all the beans for them to get:
@@ -31,7 +32,7 @@ public abstract class AbstractContextAwareController extends AbstractDomainAware
 
     @Override
     public void afterPropertiesSetInternal() {
-        Assert.notNull(this.sessionController, "property sessionController of class " + this.getClass().getName() + " can not be null");
+        Assert.notNull(sessionController, "property sessionController can not be null");
     }
 
     /**

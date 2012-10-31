@@ -8,11 +8,10 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
-import org.esupportail.commons.utils.Assert;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.util.Assert;
 
 /**
  * @author Yves Deschamps (Universite de Lille 1) - 2010

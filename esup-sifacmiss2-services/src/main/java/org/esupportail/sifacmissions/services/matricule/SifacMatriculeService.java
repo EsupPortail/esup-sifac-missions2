@@ -1,11 +1,11 @@
 package org.esupportail.sifacmissions.services.matricule;
 
-import org.esupportail.commons.utils.Assert;
 import org.esupportail.sifacmissions.ws.SifacMatricule;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 /**

@@ -10,7 +10,6 @@ import net.sf.ehcache.Cache;
 import net.sf.ehcache.CacheManager;
 import net.sf.ehcache.Element;
 
-import org.esupportail.commons.utils.Assert;
 import org.esupportail.sifacmissions.models.Mission;
 import org.esupportail.sifacmissions.models.MissionDetails;
 import org.esupportail.sifacmissions.ws.SifacPortail;
@@ -18,6 +17,7 @@ import org.esupportail.sifacmissions.ws.SifacPortail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.util.Assert;
 
 /**
  * Web service d'accès aux données de l'application SIFAC.

@@ -3,13 +3,13 @@ package org.esupportail.sifacmissions.services.auth;
 import org.esupportail.commons.services.authentication.AuthUtils;
 import org.esupportail.commons.services.authentication.AuthenticationService;
 import org.esupportail.commons.services.authentication.info.AuthInfo;
-import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.utils.ContextUtils;
 import org.esupportail.sifacmissions.models.User;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.util.Assert;
 
 /**
  * @author Yves Deschamps (Universite de Lille 1)
