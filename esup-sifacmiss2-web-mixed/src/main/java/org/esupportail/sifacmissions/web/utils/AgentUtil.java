@@ -8,10 +8,10 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 
-import org.esupportail.commons.services.logging.Logger;
-import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
@@ -19,7 +19,7 @@ import org.springframework.beans.factory.InitializingBean;
  */
 public class AgentUtil implements InitializingBean {
 
-    private final Logger logger = new LoggerImpl(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private String phoneFamily;
     private Map<String, String> skins;
@@ -34,7 +34,7 @@ public class AgentUtil implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(skins, "property skins of class " + this.getClass().getName() + " can not be null");
+        Assert.notNull(skins, "property skins can not be null");
     }
 
     /**

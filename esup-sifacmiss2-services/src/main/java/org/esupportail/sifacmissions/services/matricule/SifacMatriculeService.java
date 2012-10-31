@@ -1,10 +1,10 @@
 package org.esupportail.sifacmissions.services.matricule;
 
-import org.esupportail.commons.services.logging.Logger;
-import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.sifacmissions.ws.SifacMatricule;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.StringUtils;
 
@@ -16,7 +16,7 @@ import org.springframework.util.StringUtils;
  */
 public class SifacMatriculeService implements MatriculeService, InitializingBean {
 
-    private final Logger logger = new LoggerImpl(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private SifacMatricule matriculeService;
 

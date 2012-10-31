@@ -2,10 +2,10 @@ package org.esupportail.sifacmissions.services.matricule;
 
 import org.esupportail.commons.services.ldap.LdapUser;
 import org.esupportail.commons.services.ldap.LdapUserService;
-import org.esupportail.commons.services.logging.Logger;
-import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.StringUtils;
 
@@ -18,7 +18,7 @@ import org.springframework.util.StringUtils;
  */
 public class LdapMatriculeService implements MatriculeService, InitializingBean {
 
-    private final Logger logger = new LoggerImpl(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private LdapUserService ldapUserService;
     private String matriculeAttribute;

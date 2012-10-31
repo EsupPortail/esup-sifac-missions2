@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.esupportail.commons.exceptions.UserNotFoundException;
 import org.esupportail.commons.services.i18n.I18nUtils;
-import org.esupportail.commons.services.logging.Logger;
-import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.utils.strings.StringUtils;
 import org.esupportail.commons.web.controllers.ExceptionController;
@@ -23,6 +21,8 @@ import org.esupportail.sifacmissions.models.User;
 import org.esupportail.sifacmissions.services.auth.Authenticator;
 
 import org.apache.myfaces.trinidad.util.ExternalContextUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author Yves Deschamps (Universite de Lille 1) - 2010
@@ -37,7 +37,7 @@ public class SessionController extends AbstractDomainAwareBean {
     /**
      * For Logging.
      */
-    private final Logger logger = new LoggerImpl(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * The current action from menu.
@@ -145,7 +145,7 @@ public class SessionController extends AbstractDomainAwareBean {
                 return currentUser;
             }
         } catch (Exception e) {
-            logger.error(e);
+            logger.error("Failed to authenticate current user", e);
         }
 
         return null;

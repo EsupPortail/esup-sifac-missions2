@@ -7,8 +7,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Properties;
 
-import org.esupportail.commons.services.logging.Logger;
-import org.esupportail.commons.services.logging.LoggerImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Classe utilitaire permettant de détecter la catégorie associée à un mot clé.
@@ -17,7 +17,7 @@ import org.esupportail.commons.services.logging.LoggerImpl;
  */
 public class Categorizer {
 
-    private static final Logger logger = new LoggerImpl(Categorizer.class.getName());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private Properties words;
     private Map<String, String> dictionary;

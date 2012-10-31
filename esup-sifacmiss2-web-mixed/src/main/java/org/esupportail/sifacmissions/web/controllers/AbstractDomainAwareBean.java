@@ -1,8 +1,6 @@
 package org.esupportail.sifacmissions.web.controllers;
 
 import org.esupportail.commons.beans.AbstractJsfMessagesAwareBean;
-import org.esupportail.commons.services.logging.Logger;
-import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.web.controllers.Resettable;
 import org.esupportail.sifacmissions.domain.DomainService;
@@ -20,12 +18,6 @@ public abstract class AbstractDomainAwareBean extends AbstractJsfMessagesAwareBe
      * serialVersionUID
      */
     private static final long serialVersionUID = 1L;
-
-    /**
-     * A logger.
-     */
-    @SuppressWarnings("unused")
-    private final Logger logger = new LoggerImpl(this.getClass());
 
     /**
      * see {@link DomainService}.

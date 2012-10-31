@@ -34,15 +34,11 @@ import org.springframework.util.StringUtils;
 public class SifacPortail {
 
     private final String endpoint;
-
     private final String username;
-
     private final String password;
 
     private Categorizer categorizer;
-
     private ZWEB_SERVICE_PORTAILSoapBindingStub stub;
-
     private DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     /**

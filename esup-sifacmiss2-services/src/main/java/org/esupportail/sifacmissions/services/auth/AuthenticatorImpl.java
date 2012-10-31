@@ -3,12 +3,12 @@ package org.esupportail.sifacmissions.services.auth;
 import org.esupportail.commons.services.authentication.AuthUtils;
 import org.esupportail.commons.services.authentication.AuthenticationService;
 import org.esupportail.commons.services.authentication.info.AuthInfo;
-import org.esupportail.commons.services.logging.Logger;
-import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.commons.utils.Assert;
 import org.esupportail.commons.utils.ContextUtils;
 import org.esupportail.sifacmissions.models.User;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
@@ -19,7 +19,7 @@ public class AuthenticatorImpl implements Authenticator, InitializingBean {
     private static final String AUTH_INFO_ATTRIBUTE = AuthenticatorImpl.class.getName() + ".authInfo";
     private static final String USER_ATTRIBUTE = AuthenticatorImpl.class.getName() + ".user";
 
-    private final Logger logger = new LoggerImpl(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private AuthenticationService authenticationService;
 

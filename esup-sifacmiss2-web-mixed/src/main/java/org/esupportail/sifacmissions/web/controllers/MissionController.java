@@ -14,8 +14,6 @@ import java.util.List;
 import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
-import org.esupportail.commons.services.logging.Logger;
-import org.esupportail.commons.services.logging.LoggerImpl;
 import org.esupportail.sifacmissions.models.Mission;
 import org.esupportail.sifacmissions.models.User;
 import org.esupportail.sifacmissions.services.mission.MissionException;
@@ -26,6 +24,8 @@ import org.apache.myfaces.trinidad.component.core.data.CoreTable;
 import org.apache.myfaces.trinidad.event.RowDisclosureEvent;
 import org.apache.myfaces.trinidad.model.RowKeySet;
 import org.apache.myfaces.trinidad.model.RowKeySetImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A visual bean for the welcome page.
@@ -36,7 +36,7 @@ public class MissionController extends AbstractContextAwareController {
     /**
      * A logger.
      */
-    private final Logger logger = new LoggerImpl(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     /**
      * The current user.
@@ -232,7 +232,7 @@ public class MissionController extends AbstractContextAwareController {
         try {
             mission.setDetails(getDomainService().getMissionDetails(matricule, mission.getNumero()));
         } catch (MissionException e) {
-            logger.error(e);
+            logger.error("Failed to get mission details", e);
             addWarnMessage(null, "WELCOME.ERROR.SERVICE");
         }
     }
@@ -247,7 +247,7 @@ public class MissionController extends AbstractContextAwareController {
                 dataChanged();
             }
         } catch (Exception e) {
-            logger.error(e);
+            logger.error("Failed to change year", e);
             addWarnMessage(null, "WELCOME.ERROR.SERVICE");
         }
     }
