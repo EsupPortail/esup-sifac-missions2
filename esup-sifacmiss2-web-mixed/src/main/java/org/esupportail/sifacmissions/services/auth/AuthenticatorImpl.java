@@ -65,18 +65,6 @@ public class AuthenticatorImpl implements Authenticator, InitializingBean {
                 return null;
             }
 
-            if (AuthUtils.SHIBBOLETH.equals(authInfo.getType())) {
-                if (logger.isDebugEnabled()) {
-                    logger.debug("Shibboleth authentication");
-                }
-
-                User user = new User();
-                user.setLogin(authInfo.getId());
-
-                storeToSession(authInfo, user);
-                return user;
-            }
-
             if (AuthUtils.CAS.equals(authInfo.getType())) {
                 if (logger.isDebugEnabled()) {
                     logger.debug("CAS authentication");
