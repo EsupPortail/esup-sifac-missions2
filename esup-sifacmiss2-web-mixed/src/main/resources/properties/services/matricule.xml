@@ -22,6 +22,8 @@
 	<bean id="matriculeBySifac" lazy-init="true"
 		class="org.esupportail.sifacmissions.services.matricule.SifacMatriculeService">
 		<property name="matriculeService" ref="sifacMatricule" />
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="cacheName" value="Matricule" />
 	</bean>
 
 	<bean id="matriculeByMock" lazy-init="true"

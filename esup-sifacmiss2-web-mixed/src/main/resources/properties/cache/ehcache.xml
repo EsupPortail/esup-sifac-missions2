@@ -17,6 +17,9 @@
 		maxElementsInMemory="1000" timeToIdleSeconds="300" timeToLiveSeconds="600"
 		eternal="false" overflowToDisk="true" />
 
+	<cache name="Matricule" maxElementsInMemory="1000" timeToIdleSeconds="900"
+		timeToLiveSeconds="1800" eternal="false" overflowToDisk="true" />
+
 	<cache name="User" maxElementsInMemory="1000" timeToIdleSeconds="900"
 		timeToLiveSeconds="1800" eternal="false" overflowToDisk="true" />
 
