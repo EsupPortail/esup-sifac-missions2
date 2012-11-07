@@ -23,12 +23,6 @@ public class LdapMatriculeService implements MatriculeService, InitializingBean 
     private UserService userService;
     private String matriculeAttribute;
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        Assert.notNull(userService, "property userService can not be null");
-        Assert.notNull(matriculeAttribute, "property matriculeAttribute can not be null");
-    }
-
     /**
      * @param userService Service de récupération des utilisateurs
      */
@@ -41,6 +35,12 @@ public class LdapMatriculeService implements MatriculeService, InitializingBean 
      */
     public void setMatriculeAttribute(String matriculeAttribute) {
         this.matriculeAttribute = matriculeAttribute;
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        Assert.notNull(userService, "userService is required");
+        Assert.notNull(matriculeAttribute, "matriculeAttribute is required");
     }
 
     @Override

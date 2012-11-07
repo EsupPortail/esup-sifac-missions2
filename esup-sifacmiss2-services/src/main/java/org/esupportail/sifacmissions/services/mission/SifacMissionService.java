@@ -24,13 +24,13 @@ import org.springframework.util.Assert;
  */
 public class SifacMissionService implements MissionService, InitializingBean {
 
+    private static final String CACHE_NAME = SifacMissionService.class.getName();
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private String mandant;
     private Integer firstYear;
     private SifacPortail portailService;
     private CacheManager cacheManager;
-    private String cacheName;
     private Cache cache;
 
     /**
@@ -61,26 +61,18 @@ public class SifacMissionService implements MissionService, InitializingBean {
         this.cacheManager = cacheManager;
     }
 
-    /**
-     * @param cacheName Nom interne du cache à utiliser
-     */
-    public void setCacheName(String cacheName) {
-        this.cacheName = cacheName;
-    }
-
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(mandant, "property mandant can not be null");
-        Assert.notNull(firstYear, "property firstYear can not be null");
-        Assert.notNull(portailService, "property portailService can not be null");
-        Assert.notNull(cacheManager, "property cacheManager can not be null");
-        Assert.notNull(cacheName, "property cacheName can not be null");
+        Assert.notNull(mandant, "mandant is required");
+        Assert.notNull(firstYear, "firstYear is required");
+        Assert.notNull(portailService, "portailService is required");
+        Assert.notNull(cacheManager, "cacheManager is required");
 
-        if (!cacheManager.cacheExists(cacheName)) {
-            cacheManager.addCache(cacheName);
+        if (!cacheManager.cacheExists(CACHE_NAME)) {
+            cacheManager.addCache(CACHE_NAME);
         }
 
-        cache = cacheManager.getCache(cacheName);
+        cache = cacheManager.getCache(CACHE_NAME);
     }
 
     @Override

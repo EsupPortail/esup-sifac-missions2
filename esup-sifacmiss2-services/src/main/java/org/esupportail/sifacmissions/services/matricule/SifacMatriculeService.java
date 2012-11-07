@@ -21,11 +21,11 @@ import org.springframework.util.StringUtils;
  */
 public class SifacMatriculeService implements MatriculeService, InitializingBean {
 
+    private static final String CACHE_NAME = SifacMatriculeService.class.getName();
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private SifacMatricule matriculeService;
     private CacheManager cacheManager;
-    private String cacheName;
     private Cache cache;
 
     /**
@@ -35,17 +35,23 @@ public class SifacMatriculeService implements MatriculeService, InitializingBean
         this.matriculeService = matriculeService;
     }
 
+    /**
+     * @param cacheManager Gestionnaire de cache
+     */
+    public void setCacheManager(CacheManager cacheManager) {
+        this.cacheManager = cacheManager;
+    }
+
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(matriculeService, "property matriculeService can not be null");
-        Assert.notNull(cacheManager, "property cacheManager can not be null");
-        Assert.notNull(cacheName, "property cacheName can not be null");
+        Assert.notNull(matriculeService, "matriculeService is required");
+        Assert.notNull(cacheManager, "cacheManager is required");
 
-        if (!cacheManager.cacheExists(cacheName)) {
-            cacheManager.addCache(cacheName);
+        if (!cacheManager.cacheExists(CACHE_NAME)) {
+            cacheManager.addCache(CACHE_NAME);
         }
 
-        cache = cacheManager.getCache(cacheName);
+        cache = cacheManager.getCache(CACHE_NAME);
     }
 
     @Override
