@@ -59,8 +59,8 @@ public class LdapUserService implements UserService, InitializingBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         Assert.notNull(ldapTemplate, "ldapTemplate is required");
-        Assert.notNull(dnSubPath, "dnSubPath is required");
-        Assert.notNull(objectClass, "objectClass is required");
+        Assert.hasText(dnSubPath, "dnSubPath is required");
+        Assert.hasText(objectClass, "objectClass is required");
         Assert.hasText(uidAttribute, "uidAttribute is required");
         Assert.hasText(firstnameAttribute, "firstnameAttribute is required");
         Assert.hasText(lastnameAttribute, "lastnameAttribute is required");
