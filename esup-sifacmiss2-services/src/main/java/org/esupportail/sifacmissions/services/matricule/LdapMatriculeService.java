@@ -40,7 +40,7 @@ public class LdapMatriculeService implements MatriculeService, InitializingBean 
     @Override
     public void afterPropertiesSet() throws Exception {
         Assert.notNull(userService, "userService is required");
-        Assert.notNull(matriculeAttribute, "matriculeAttribute is required");
+        Assert.hasText(matriculeAttribute, "matriculeAttribute is required");
     }
 
     @Override
@@ -50,13 +50,16 @@ public class LdapMatriculeService implements MatriculeService, InitializingBean 
 
         if (StringUtils.hasText(matricule)) {
             if (logger.isDebugEnabled()) {
-                logger.debug("Récupération du matricule '" + matricule + "' pour '" + id + "'");
+                logger.debug("Récupération du matricule '{}' pour '{}'", matricule, id);
             }
 
             return matricule;
         }
 
-        logger.warn("Aucun matricule n'a pu être récupéré pour '" + id + "'");
+        if (logger.isWarnEnabled()) {
+            logger.warn("Aucun matricule n'a pu être récupéré pour '{}'", id);
+        }
+
         return null;
     }
 
