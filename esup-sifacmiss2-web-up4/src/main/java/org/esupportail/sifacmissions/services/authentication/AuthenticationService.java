@@ -1,4 +1,4 @@
-package org.esupportail.sifacmissions.web.services.authentication;
+package org.esupportail.sifacmissions.services.authentication;
 
 public interface AuthenticationService {
 
