@@ -44,6 +44,11 @@
 				<version>${springframework.version}</version>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework.mobile</groupId>
+				<artifactId>spring-mobile-device</artifactId>
+				<version>1.0.0.RELEASE</version>
+			</dependency> 
+			<dependency>
 				<groupId>org.codehaus.jackson</groupId>
 				<artifactId>jackson-mapper-asl</artifactId>
 				<version>1.4.2</version>
@@ -75,6 +80,10 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc-portlet</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.mobile</groupId>
+			<artifactId>spring-mobile-device</artifactId>
+		</dependency> 
 		<!-- ===== Runtime dependencies ==================================== -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

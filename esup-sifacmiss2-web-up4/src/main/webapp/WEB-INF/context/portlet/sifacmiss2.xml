@@ -2,13 +2,19 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
 		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+		http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/util
+		http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+	<!-- ===== Portlet requirements ======================================== -->
 
 	<context:property-placeholder location="classpath:defaults.properties,classpath:config.properties" />
+	<context:component-scan base-package="org.esupportail.sifacmissions.web.beans"/>
 	<context:component-scan base-package="org.esupportail.sifacmissions.web.controllers"/>
 	<context:annotation-config />
 
@@ -16,8 +22,82 @@
 		<property name="defaultErrorView" value="error" />
 	</bean>
 
-	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:ehcache.xml" />
+	<!-- ===== Authentication services ===================================== -->
+
+	<alias name="authenticationService" alias="${auth.bean}" />
+
+	<bean id="portalAuthenticationService" lazy-init="true"
+		class="org.esupportail.sifacmissions.services.authentication.PortalAuthenticationService">
+		<property name="uidAttribute" value="${auth.portal.uidAttribute}" />
+	</bean>
+
+	<bean id="fixedAuthenticationService" lazy-init="true"
+		class="org.esupportail.sifacmissions.services.authentication.FixedAuthenticationService">
+		<property name="uid" value="${auth.fixed.uid}" />
+	</bean>
+
+	<!-- ===== Matricule services ========================================== -->
+
+	<alias name="matriculeService" alias="${matricule.bean}" />
+
+	<bean id="ldapMatriculeService" lazy-init="true"
+		class="org.esupportail.sifacmissions.services.matricule.LdapMatriculeService">
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="ldapTemplate">
+			<bean class="org.springframework.ldap.core.LdapTemplate">
+				<property name="contextSource">
+					<bean class="org.springframework.ldap.core.support.LdapContextSource">
+						<property name="url" value="${matricule.ldap.url}" />
+						<property name="userDn" value="${matricule.ldap.userDn}"/>
+						<property name="password" value="${matricule.ldap.password}"/>
+						<property name="base" value="${matricule.ldap.base}"/>
+					</bean>
+				</property>
+			</bean>
+		</property>
+		<property name="dnSubPath" value="${matricule.ldap.dnSubPath" />
+		<property name="matriculeAttribute" value="${matricule.ldap.matriculeAttribute" />
+	</bean>
+
+	<bean id="sifacMatriculeService" lazy-init="true"
+		class="org.esupportail.sifacmissions.services.matricule.SifacMatriculeService">
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="matriculeService">
+			<bean class="org.esupportail.sifacmissions.ws.SifacMatricule">
+				<constructor-arg index="0" value="${matricule.sifac.endpoint}" />
+				<constructor-arg index="1" value="${matricule.sifac.username}" />
+				<constructor-arg index="2" value="${matricule.sifac.password}" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="fixedMatriculeService" lazy-init="true"
+		class="org.esupportail.sifacmissions.services.matricule.FixedMatriculeService">
+		<property name="uid" value="${matricule.fixed.matricule}" />
+	</bean>
+
+	<!-- ===== Mission services ============================================ -->
+	
+	<alias name="missionService" alias="sifacMissionService" />
+
+	<bean id="sifacMissionService" lazy-init="true"
+		class="org.esupportail.sifacmissions.services.mission.SifacMissionService">
+		<property name="cacheManager" ref="cacheManager" />
+		<property name="portailService">
+			<bean class="org.esupportail.sifacmissions.ws.SifacPortail">
+				<constructor-arg index="0" value="${mission.sifac.endpoint}" />
+				<constructor-arg index="1" value="${mission.sifac.username}" />
+				<constructor-arg index="2" value="${mission.sifac.password}" />
+				<property name="categorizer">
+					<bean class="org.esupportail.sifacmissions.utils.Categorizer">
+						<property name="words">
+							<util:properties location="classpath:properties/words.properties" />
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+		<property name="firstYear" value="${mission.sifac.firstYear}"/>
 	</bean>
 
 </beans>

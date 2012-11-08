@@ -26,6 +26,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Scope;
+import org.springframework.mobile.device.Device;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,8 +41,13 @@ public class MissionController implements InitializingBean {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
+    @Resource(name = "authenticationService")
     private AuthenticationService authenticationService;
+
+    @Resource(name = "matriculeService")
     private MatriculeService matriculeService;
+
+    @Resource(name = "missionService")
     private MissionService missionService;
 
     @Resource
@@ -70,7 +76,7 @@ public class MissionController implements InitializingBean {
     }
 
     @RequestMapping
-    public ModelAndView viewMissions(RenderRequest request) {
+    public ModelAndView viewMissions(Device device, RenderRequest request) {
         initialize(request);
 
         Map<String, Object> model = new HashMap<String, Object>();
@@ -81,11 +87,11 @@ public class MissionController implements InitializingBean {
             logger.error("Unable to get missions", e);
         }
 
-        return new ModelAndView("list", model);
+        return new ModelAndView(device.isMobile() ? "list-jQM" : "list", model);
     }
 
     @RequestMapping(params = "action=mission")
-    public ModelAndView viewMission(RenderRequest request, @RequestParam("id") String id) {
+    public ModelAndView viewMission(Device device, RenderRequest request, @RequestParam("id") String id) {
         initialize(request);
 
         Map<String, Object> model = new HashMap<String, Object>();
@@ -103,7 +109,7 @@ public class MissionController implements InitializingBean {
             logger.error("Unable to get mission", e);
         }
 
-        return new ModelAndView("mission", model);
+        return new ModelAndView(device.isMobile() ? "mission-jQM" : "mission", model);
     }
 
     @RequestMapping(params = "action=changeYear")
