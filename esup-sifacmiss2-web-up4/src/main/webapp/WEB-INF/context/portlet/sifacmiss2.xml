@@ -24,7 +24,7 @@
 
 	<!-- ===== Authentication services ===================================== -->
 
-	<alias name="authenticationService" alias="${auth.bean}" />
+	<alias alias="authenticationService" name="${auth.bean}" />
 
 	<bean id="portalAuthenticationService" lazy-init="true"
 		class="org.esupportail.sifacmissions.services.authentication.PortalAuthenticationService">
@@ -38,7 +38,7 @@
 
 	<!-- ===== Matricule services ========================================== -->
 
-	<alias name="matriculeService" alias="${matricule.bean}" />
+	<alias alias="matriculeService" name="${matricule.bean}" />
 
 	<bean id="ldapMatriculeService" lazy-init="true"
 		class="org.esupportail.sifacmissions.services.matricule.LdapMatriculeService">
@@ -78,7 +78,7 @@
 
 	<!-- ===== Mission services ============================================ -->
 	
-	<alias name="missionService" alias="sifacMissionService" />
+	<alias alias="missionService" name="sifacMissionService" />
 
 	<bean id="sifacMissionService" lazy-init="true"
 		class="org.esupportail.sifacmissions.services.mission.SifacMissionService">
@@ -91,7 +91,7 @@
 				<property name="categorizer">
 					<bean class="org.esupportail.sifacmissions.utils.Categorizer">
 						<property name="words">
-							<util:properties location="classpath:properties/words.properties" />
+							<util:properties location="classpath:words.properties" />
 						</property>
 					</bean>
 				</property>
