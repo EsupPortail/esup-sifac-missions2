@@ -29,16 +29,20 @@ public class LdapMatriculeService implements MatriculeService, InitializingBean 
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
+    private CacheManager cacheManager;
     private LdapTemplate ldapTemplate;
     private String dnSubPath;
     private String objectClass = LDAP_OBJECT_CLASS;
     private String uidAttribute = LDAP_UID;
     private String matriculeAttribute;
-    private CacheManager cacheManager;
-    private Cache cache;
 
+    private Cache cache;
     private AttributesMapper attributesMapper;
     private DistinguishedName dn;
+
+    public void setCacheManager(CacheManager cacheManager) {
+        this.cacheManager = cacheManager;
+    }
 
     public void setLdapTemplate(LdapTemplate ldapTemplate) {
         this.ldapTemplate = ldapTemplate;
