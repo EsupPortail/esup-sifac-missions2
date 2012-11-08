@@ -74,11 +74,26 @@ public class MissionController implements InitializingBean {
         Assert.notNull(missionService, "property missionService cannot be null");
     }
 
+    @RequestMapping(params = "action=changeYear")
+    public void changeYear(ActionRequest request, @RequestParam("year") int year) {
+        initialize(request);
+
+        if (missionService.getFirstYear() <= year && year <= Calendar.getInstance().get(Calendar.YEAR)) {
+            missionHolder.setCurrentYear(year);
+
+            if (logger.isDebugEnabled()) {
+                logger.debug("Changed current year to {}", year);
+            }
+        }
+    }
+
     @RequestMapping
     public ModelAndView viewMissions(RenderRequest request) {
         initialize(request);
 
         Map<String, Object> model = new HashMap<String, Object>();
+        model.put("year", missionHolder.getCurrentYear());
+
         try {
             List<Mission> missions = missionService.getFraisMissions(userParameters.getMatricule(), "", "", missionHolder.getCurrentYear());
             model.put("missions", missions);
@@ -87,6 +102,23 @@ public class MissionController implements InitializingBean {
         }
 
         return new ModelAndView(isMobile(request) ? "list-jQM" : "list", model);
+    }
+
+    @ResourceMapping("details")
+    public ModelAndView getMissionDetails(ResourceRequest request, ResourceResponse response, @RequestParam("id") String id) {
+        initialize(request);
+
+        Map<String, Object> model = new HashMap<String, Object>();
+        try {
+            List<MissionDetails> details = missionService.getMissionDetails(userParameters.getMatricule(), id);
+            model.put("mission", id);
+            model.put("details", details);
+        } catch (MissionException e) {
+            logger.error("Unable to get mission details", e);
+            response.setProperty(ResourceResponse.HTTP_STATUS_CODE, Integer.toString(HttpServletResponse.SC_INTERNAL_SERVER_ERROR));
+        }
+
+        return new ModelAndView("details", model);
     }
 
     @RequestMapping(params = "action=mission")
@@ -108,37 +140,7 @@ public class MissionController implements InitializingBean {
             logger.error("Unable to get mission", e);
         }
 
-        return new ModelAndView(isMobile(request) ? "mission-jQM" : "mission", model);
-    }
-
-    @RequestMapping(params = "action=changeYear")
-    public void changeYear(ActionRequest request, @RequestParam("year") int year) {
-        initialize(request);
-
-        if (missionService.getFirstYear() <= year && year <= Calendar.getInstance().get(Calendar.YEAR)) {
-            missionHolder.setCurrentYear(year);
-
-            if (logger.isDebugEnabled()) {
-                logger.debug("Changed current year to {}", year);
-            }
-        }
-    }
-
-    @ResourceMapping("details")
-    public ModelAndView getMissionDetails(ResourceRequest request, ResourceResponse response, @RequestParam("id") String id) {
-        initialize(request);
-
-        Map<String, Object> model = new HashMap<String, Object>();
-        try {
-            List<MissionDetails> details = missionService.getMissionDetails(userParameters.getMatricule(), id);
-            model.put("details", details);
-        } catch (MissionException e) {
-            logger.error("Unable to get mission details", e);
-            response.setProperty(ResourceResponse.HTTP_STATUS_CODE, Integer.toString(HttpServletResponse.SC_INTERNAL_SERVER_ERROR));
-            model.put("error", e.getMessage());
-        }
-
-        return new ModelAndView("json", model);
+        return new ModelAndView("mission-jQM", model);
     }
 
     private void initialize(PortletRequest request) {

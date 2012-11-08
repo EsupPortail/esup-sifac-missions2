@@ -64,6 +64,16 @@
 				<artifactId>jackson-mapper-asl</artifactId>
 				<version>1.4.2</version>
 			</dependency>
+			<dependency>
+				<groupId>taglibs</groupId>
+				<artifactId>standard</artifactId>
+				<version>1.1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.1.2</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
@@ -81,6 +91,12 @@
 			<version>2.0</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.apache.portals.pluto</groupId>
+			<artifactId>pluto-taglib</artifactId>
+			<version>2.0.2</version>
+			<scope>provided</scope>
+		</dependency>
 		<!-- ===== Compile time dependencies =============================== -->
 		<dependency>
 			<groupId>org.esupportail</groupId>
@@ -95,6 +111,14 @@
 			<groupId>org.springframework.mobile</groupId>
 			<artifactId>spring-mobile-device</artifactId>
 		</dependency> 
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+		</dependency>
 		<!-- ===== Runtime dependencies ==================================== -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
@@ -116,6 +140,9 @@
 				<artifactId>portlet-prototyping-maven-plugin</artifactId>
 				<configuration>
 					<portletNames>esup-sifacmiss2</portletNames>
+					<jsUrls>
+						<url>http://code.jquery.com/jquery-1.8.2.js</url>
+					</jsUrls>
 				</configuration>
 			</plugin>
 		</plugins>
