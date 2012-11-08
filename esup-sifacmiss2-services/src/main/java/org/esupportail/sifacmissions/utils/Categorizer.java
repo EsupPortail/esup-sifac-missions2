@@ -52,6 +52,7 @@ public class Categorizer {
         this.words = words;
         this.dictionary = new HashMap<String, String>();
 
+        StringBuilder sb = new StringBuilder("Loaded words:\n");
         Iterator<Entry<Object, Object>> it = words.entrySet().iterator();
         while (it.hasNext()) {
             Entry<Object, Object> entry = it.next();
@@ -62,12 +63,16 @@ public class Categorizer {
             String[] keywords = wordList.replaceAll("\\s+", ",").split(",");
 
             if (logger.isDebugEnabled()) {
-                logger.debug(category + ": " + Arrays.toString(keywords));
+                sb.append("\t" + category + ": " + Arrays.toString(keywords) + "\n");
             }
 
             for (String word : keywords) {
                 dictionary.put(word, category);
             }
+        }
+
+        if (logger.isDebugEnabled()) {
+            logger.debug(sb.toString());
         }
     }
 
