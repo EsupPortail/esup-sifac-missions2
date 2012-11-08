@@ -27,18 +27,10 @@ public class SifacMissionService implements MissionService, InitializingBean {
     private static final String CACHE_NAME = SifacMissionService.class.getName();
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private String mandant;
     private Integer firstYear;
     private SifacPortail portailService;
     private CacheManager cacheManager;
     private Cache cache;
-
-    /**
-     * @param mandant Numéro de mandat de l'application SIFAC
-     */
-    public void setMandant(String mandant) {
-        this.mandant = mandant;
-    }
 
     /**
      * @param firstYear Première année de fonctionnement de l'application SIFAC
@@ -63,10 +55,9 @@ public class SifacMissionService implements MissionService, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(mandant, "mandant is required");
-        Assert.notNull(firstYear, "firstYear is required");
         Assert.notNull(portailService, "portailService is required");
         Assert.notNull(cacheManager, "cacheManager is required");
+        Assert.notNull(firstYear, "firstYear is required");
 
         if (!cacheManager.cacheExists(CACHE_NAME)) {
             cacheManager.addCache(CACHE_NAME);
@@ -92,7 +83,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
         }
 
         List<Mission> fms = null;
-        String cacheKey = matricule + "|" + nom + "|" + prenom + "|" + year + "|" + mandant;
+        String cacheKey = matricule + "|" + nom + "|" + prenom + "|" + year;
 
         if (cache.get(cacheKey) == null) {
             try {
@@ -122,7 +113,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
     @Override
     public List<MissionDetails> getMissionDetails(String matricule, String numeroMission) throws MissionException {
         List<MissionDetails> details = null;
-        String cacheKey = matricule + "|" + numeroMission + "|" + mandant;
+        String cacheKey = matricule + "|" + numeroMission;
 
         if (cache.get(cacheKey) == null) {
             try {
