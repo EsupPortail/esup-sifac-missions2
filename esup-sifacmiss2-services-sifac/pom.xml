@@ -40,6 +40,7 @@
 	</build>
 
 	<dependencies>
+		<!-- ===== Compile time dependencies =============================== -->
 		<dependency>
 			<groupId>org.apache.axis</groupId>
 			<artifactId>axis</artifactId>
@@ -54,6 +55,11 @@
 			<groupId>wsdl4j</groupId>
 			<artifactId>wsdl4j</artifactId>
 			<version>1.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-discovery</groupId>
+			<artifactId>commons-discovery</artifactId>
+			<version>0.5</version>
 		</dependency>
 	</dependencies>
 
