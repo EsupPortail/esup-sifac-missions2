@@ -11,7 +11,18 @@
 
 	<artifactId>esup-sifacmiss2-web-up4</artifactId>
 	<packaging>war</packaging>
-	
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2/</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>jlehtinen.net</id>
+			<url>http://repo.jlehtinen.net/maven2/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 	<properties>
 		<springframework.version>3.1.2.RELEASE</springframework.version>
 	</properties>
@@ -91,5 +102,23 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<warName>${project.artifactId}-up4-${project.version}</warName>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>net.jlehtinen.portlet</groupId>
+				<artifactId>portlet-prototyping-maven-plugin</artifactId>
+				<configuration>
+					<portletNames>esup-sifacmiss2</portletNames>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>

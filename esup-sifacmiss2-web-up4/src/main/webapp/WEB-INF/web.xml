@@ -34,15 +34,6 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<filter>
-		<filter-name>DeviceResolverRequestFilter</filter-name>
-		<filter-class>org.springframework.mobile.device.DeviceResolverRequestFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>DeviceResolverRequestFilter</filter-name>
-		<url-pattern>/*</url-pattern>
-	</filter-mapping>
-
 	<servlet>
 		<servlet-name>ViewRendererServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.ViewRendererServlet</servlet-class>
