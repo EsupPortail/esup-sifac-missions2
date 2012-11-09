@@ -17,7 +17,7 @@
 
 	<bean id="offlineFixedUserAuthenticationService" lazy-init="true"
 		class="org.esupportail.commons.services.authentication.OfflineFixedUserAuthenticationService">
-		<property name="authId" value="${auth.offlineAuthId}" />
+		<property name="authId" value="${auth.fixed.uid}" />
 		<property name="authType" value="cas" />
 	</bean>
 

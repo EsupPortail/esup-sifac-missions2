@@ -11,12 +11,12 @@
 	<bean id="sifacMissionService"
 		class="org.esupportail.sifacmissions.services.mission.SifacMissionService">
 		<property name="cacheManager" ref="cacheManager" />
-		<property name="firstYear" value="${sifac.firstYear}" />
+		<property name="firstYear" value="${mission.sifac.firstYear}" />
 		<property name="portailService">
 			<bean class="org.esupportail.sifacmissions.ws.SifacPortail">
-				<constructor-arg index="0" value="${sifac.ws.url}" />
-				<constructor-arg index="1" value="${sifac.ws.login}" />
-				<constructor-arg index="2" value="${sifac.ws.password}" />
+				<constructor-arg index="0" value="${mission.sifac.endpoint}" />
+				<constructor-arg index="1" value="${mission.sifac.username}" />
+				<constructor-arg index="2" value="${mission.sifac.password}" />
 				<property name="categorizer">
 					<bean class="org.esupportail.sifacmissions.utils.Categorizer">
 						<property name="words">

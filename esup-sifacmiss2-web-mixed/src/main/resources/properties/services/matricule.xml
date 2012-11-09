@@ -5,7 +5,7 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="matriculeByLdap" lazy-init="true"
+	<bean id="fixedMatriculeService" lazy-init="true"
 		class="org.esupportail.sifacmissions.services.matricule.LdapMatriculeService">
 		<property name="cacheManager" ref="cacheManager" />
 		<property name="ldapTemplate">
@@ -21,24 +21,26 @@
 			</bean>
 		</property>
 		<property name="dnSubPath" value="${matricule.ldap.dnSubPath}" />
+		<property name="objectClass" value="${matricule.ldap.objectClass}"/>
+		<property name="uidAttribute" value="${matricule.ldap.uidAttribute}"/>
 		<property name="matriculeAttribute" value="${matricule.ldap.matriculeAttribute" />
 	</bean>
 
-	<bean id="matriculeBySifac" lazy-init="true"
+	<bean id="sifacMatriculeService" lazy-init="true"
 		class="org.esupportail.sifacmissions.services.matricule.SifacMatriculeService">
 		<property name="cacheManager" ref="cacheManager" />
 		<property name="matriculeService">
 			<bean class="org.esupportail.sifacmissions.ws.SifacMatricule">
-				<constructor-arg index="0" value="${matricule.sifac.ws.url}" />
-				<constructor-arg index="1" value="${matricule.sifac.ws.login}" />
-				<constructor-arg index="2" value="${matricule.sifac.ws.password}" />
+				<constructor-arg index="0" value="${matricule.sifac.endpoint}" />
+				<constructor-arg index="1" value="${matricule.sifac.username}" />
+				<constructor-arg index="2" value="${matricule.sifac.password}" />
 			</bean>
 		</property>
 	</bean>
 
-	<bean id="matriculeByMock" lazy-init="true"
+	<bean id="ldapMatriculeService" lazy-init="true"
 		class="org.esupportail.sifacmissions.services.matricule.FixedMatriculeService">
-		<property name="matricule" value="${matricule.mock.matricule}" />
+		<property name="matricule" value="${matricule.fixed.matricule}" />
 	</bean>
 
 </beans>
