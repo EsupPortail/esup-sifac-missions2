@@ -1,0 +1,31 @@
+.esup-sifacmiss2 .mission-list table {
+	width: 100%;
+}
+.esup-sifacmiss2 .mission-list td {
+	background: transparent !important;
+}
+
+.esup-sifacmiss2 .mission-list tr.mission td {
+	cursor: pointer;
+}
+
+.esup-sifacmiss2 .mission-list tr.mission td:first-child {
+	background: url(../img/expand.png) no-repeat 6px center !important;
+	padding-left: 24px;
+}
+
+.esup-sifacmiss2 .mission-list tr.mission.open td:first-child {
+	background-image: url(../img/collapse.png) !important;
+}
+
+.esup-sifacmiss2 .mission-list tr.details td {
+	border: 0 none !important;
+}
+
+.esup-sifacmiss2 .mission-list tr.details td:first-child {
+	padding-left: 44px;
+}
+
+.esup-sifacmiss2 .mission-list tr.details.paid td:first-child {
+	background: url(../img/paid.png) no-repeat 24px center !important;
+}

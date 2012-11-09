@@ -8,7 +8,7 @@
 <link href="${ resources }/css/styles.css" rel="stylesheet"/>
 
 <div class="fl-widget portlet esup-sifacmiss2">
-<div class="fl-widget-content content portlet-content">
+<div class="fl-widget-content content portlet-content mission-list">
   <table class="portlet-table">
     <thead>
       <tr>
@@ -39,7 +39,7 @@
         <portlet:resourceURL id="details" var="detailsURL">
           <portlet:param name="id" value="${ mission.numero }"/>
         </portlet:resourceURL>
-        <tr data-id="${ mission.numero }" data-url="${ detailsURL }">
+        <tr class="mission" data-id="${ mission.numero }" data-url="${ detailsURL }">
           <td>${ mission.motif }</td>
           <td>
             <fmt:formatNumber value="${ mission.remboursement }" type="currency" currencyCode="EUR"/>
