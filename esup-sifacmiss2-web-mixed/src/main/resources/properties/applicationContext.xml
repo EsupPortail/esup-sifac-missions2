@@ -11,9 +11,7 @@
 	<context:property-placeholder
 		location="classpath:/properties/defaults.properties,classpath:/properties/config.properties" />
 
-	<import resource="ldap/ldap.xml" />
 	<import resource="services/auth.xml" />
-	<import resource="services/sifac.xml" />
 	<import resource="services/matricule.xml" />
 	<import resource="services/mission.xml" />
 

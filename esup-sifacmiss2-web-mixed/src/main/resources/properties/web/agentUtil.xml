@@ -5,8 +5,7 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="agentUtil" class="org.esupportail.sifacmissions.web.utils.AgentUtil"
-		scope="session">
+	<bean id="agentUtil" class="org.esupportail.sifacmissions.web.utils.AgentUtil">
 		<property name="skins">
 			<map>
 				<entry key="iPhone" value="iphoneFamily" />

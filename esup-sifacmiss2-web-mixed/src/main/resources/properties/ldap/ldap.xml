@@ -4,34 +4,17 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
-
-	<bean id="ldapUserService"
-		class="org.esupportail.sifacmissions.services.user.LdapUserService">
-		<property name="ldapTemplate" ref="ldapTemplate" />
-		<property name="dnSubPath" value="${ldap.dnSubPathUsers}" />
-		<property name="uidAttribute" value="${ldap.idUserAttribute}" />
-		<property name="objectClass" value="${ldap.objectClass}" />
-	</bean>
 	
 	<bean id="ldapTemplate" class="org.springframework.ldap.core.LdapTemplate">
-		<property name="contextSource" ref="contextSource"/>
+		<property name="contextSource">
+			<bean class="org.springframework.ldap.core.support.LdapContextSource">
+				<property name="url" value="${ldap.url}"/>
+				<property name="userDn" value="${ldap.userDn}"/>
+				<property name="password" value="${ldap.password}"/>
+				<property name="base" value="${ldap.base}"/>
+			</bean>
+		</property>
 	</bean>
 
-	<bean id="contextSource" class="org.springframework.ldap.core.support.LdapContextSource">
-		<property name="urls">
-			<list>
-				<value>${ldap.url}</value>
-				<value>${ldap.alternateUrl}</value>
-			</list>
-		</property>
-		<property name="userDn" value="${ldap.userDn}"/>
-		<property name="password" value="${ldap.password}"/>
-		<property name="base" value="${ldap.base}"/>
-		<property name="baseEnvironmentProperties">
-			<map>
-				<entry key="com.sun.jndi.ldap.connect.timeout" value="${ldap.connectTimeout}" />
-			</map>
-		</property>
-	</bean>
 
 </beans>

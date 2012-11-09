@@ -1,10 +1,8 @@
 package org.esupportail.sifacmissions.services.auth;
 
-import org.esupportail.commons.services.authentication.AuthUtils;
 import org.esupportail.commons.services.authentication.AuthenticationService;
 import org.esupportail.commons.services.authentication.info.AuthInfo;
 import org.esupportail.commons.utils.ContextUtils;
-import org.esupportail.sifacmissions.models.User;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +11,7 @@ import org.springframework.util.Assert;
 
 /**
  * @author Yves Deschamps (Universite de Lille 1)
+ * @author Florent Cailhol (Anyware Services)
  */
 public class AuthenticatorImpl implements Authenticator, InitializingBean {
 
@@ -36,24 +35,24 @@ public class AuthenticatorImpl implements Authenticator, InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(authenticationService, "property authenticationService can not be null");
+        Assert.notNull(authenticationService, "authenticationService is required");
     }
 
     @Override
-    public User getUser() throws Exception {
+    public String getUser() throws Exception {
         try {
             AuthInfo authInfo = (AuthInfo) ContextUtils.getSessionAttribute(AUTH_INFO_ATTRIBUTE);
             if (authInfo != null) {
-                User user = (User) ContextUtils.getSessionAttribute(USER_ATTRIBUTE);
+                String user = (String) ContextUtils.getSessionAttribute(USER_ATTRIBUTE);
                 if (logger.isDebugEnabled()) {
-                    logger.debug("found auth info in session: " + user);
+                    logger.debug("found auth info in session: {}", user);
                 }
 
                 return user;
             }
 
             if (logger.isDebugEnabled()) {
-                logger.debug("no auth info found in session");
+                logger.debug("No authInfo found in session");
             }
 
             authInfo = authenticationService.getAuthInfo();
@@ -61,20 +60,9 @@ public class AuthenticatorImpl implements Authenticator, InitializingBean {
                 if (logger.isDebugEnabled()) {
                     logger.debug("authInfo is null");
                 }
-
-                return null;
-            }
-
-            if (AuthUtils.CAS.equals(authInfo.getType())) {
-                if (logger.isDebugEnabled()) {
-                    logger.debug("CAS authentication");
-                }
-
-                User user = new User();
-                user.setLogin(authInfo.getId());
-
-                storeToSession(authInfo, user);
-                return user;
+            } else {
+                storeToSession(authInfo, authInfo.getId());
+                return authInfo.getId();
             }
         } catch (Exception e) {
             throw new Exception(e.getMessage(), e);
@@ -83,9 +71,9 @@ public class AuthenticatorImpl implements Authenticator, InitializingBean {
         return null;
     }
 
-    private void storeToSession(final AuthInfo authInfo, final User user) {
+    private void storeToSession(final AuthInfo authInfo, final String user) {
         if (logger.isDebugEnabled()) {
-            logger.debug("storing to session: " + authInfo);
+            logger.debug("Storing to session: {}", authInfo);
         }
 
         ContextUtils.setSessionAttribute(AUTH_INFO_ATTRIBUTE, authInfo);

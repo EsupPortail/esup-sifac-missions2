@@ -5,13 +5,11 @@
 		http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="i18nService"
-		class="org.esupportail.commons.services.i18n.ResourceBundleMessageSourceI18nServiceImpl">
+	<bean id="i18nService" class="org.esupportail.commons.services.i18n.ResourceBundleMessageSourceI18nServiceImpl">
 		<property name="messageSource" ref="msgs" />
 	</bean>
 
-	<bean id="msgs"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<bean id="msgs" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
 				<value>classpath:properties/i18n/bundles/Custom</value>

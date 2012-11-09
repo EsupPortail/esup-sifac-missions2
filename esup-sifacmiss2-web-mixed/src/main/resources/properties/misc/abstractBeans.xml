@@ -21,9 +21,4 @@
 		parent="abstractApplicationAwareBean">
 	</bean>
 
-	<bean id="abstractDomainAwareBean" abstract="true"
-		parent="abstractJsfMessagesAwareBean">
-		<property name="domainService" ref="domainService" />
-	</bean>
-
 </beans>

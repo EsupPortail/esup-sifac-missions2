@@ -12,10 +12,8 @@ import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
 
-import org.esupportail.commons.exceptions.UserNotFoundException;
 import org.esupportail.commons.utils.strings.StringUtils;
 import org.esupportail.commons.web.controllers.ExceptionController;
-import org.esupportail.sifacmissions.models.User;
 import org.esupportail.sifacmissions.services.auth.Authenticator;
 
 import org.apache.myfaces.trinidad.util.ExternalContextUtils;
@@ -24,67 +22,69 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
 /**
- * @author Yves Deschamps (Universite de Lille 1) - 2010
+ * @author Yves Deschamps (Universite de Lille 1)
+ * @author Florent Cailhol (Anyware Services)
  */
+@SuppressWarnings("serial")
 public class SessionController extends AbstractDomainAwareBean {
 
-    /**
-     * For Serialize.
-     */
-    private static final long serialVersionUID = 1L;
-
-    /**
-     * For Logging.
-     */
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    /**
-     * The current action from menu.
-     */
     private String action;
-
-    /**
-     * The exception controller.
-     */
     private ExceptionController exceptionController;
-
-    /**
-     * The authenticator.
-     */
     private Authenticator authenticator;
-
-    /**
-     * The detected mode (desktop or mobile).
-     */
     private boolean modeDetected;
-
-    /**
-     * True if we are in portlet mode.
-     */
     private boolean portletMode;
-
-    /**
-     * The CAS logout URL.
-     */
     private String casLogoutUrl;
-
-    /**
-     * The current User.
-     */
-    private User currentUser;
-
-    @Override
-    public void afterPropertiesSet() {
-        Assert.notNull(exceptionController, "property exceptionController can not be null");
-        Assert.notNull(authenticator, "property authenticator of class can not be null");
-        Assert.notNull(casLogoutUrl, "property casLogoutUrl of class can not be null");
-    }
 
     /**
      * @param exceptionController the exceptionController to set
      */
     public void setExceptionController(ExceptionController exceptionController) {
         this.exceptionController = exceptionController;
+    }
+
+    /**
+     * @param casLogoutUrl the casLogoutUrl to set
+     */
+    public void setCasLogoutUrl(String casLogoutUrl) {
+        this.casLogoutUrl = casLogoutUrl;
+    }
+
+    /**
+     * @param authenticator the authenticator to set
+     */
+    public void setAuthenticator(Authenticator authenticator) {
+        this.authenticator = authenticator;
+    }
+
+    @Override
+    protected void afterPropertiesSetInternal() {
+        Assert.notNull(exceptionController, "exceptionController is required");
+        Assert.notNull(authenticator, "authenticator is required");
+        Assert.notNull(casLogoutUrl, "casLogoutUrl is required");
+    }
+
+    @Override
+    public String getCurrentUser() {
+        if (isPortletMode()) {
+            FacesContext fc = FacesContext.getCurrentInstance();
+            return fc.getExternalContext().getRemoteUser();
+        }
+
+        try {
+            return authenticator.getUser();
+        } catch (Exception e) {
+            logger.error("Failed to get current user", e);
+        }
+
+        return null;
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        action = "missions";
     }
 
     /**
@@ -99,61 +99,6 @@ public class SessionController extends AbstractDomainAwareBean {
      */
     public void setAction(String action) {
         this.action = action;
-    }
-
-    @Override
-    public User getCurrentUser() {
-        if (isPortletMode()) {
-            FacesContext fc = FacesContext.getCurrentInstance();
-            String uid = fc.getExternalContext().getRemoteUser();
-
-            if (currentUser != null && currentUser.getLogin().equals(uid)) {
-                return currentUser;
-            }
-
-            try {
-                currentUser = getDomainService().getUser(uid);
-            } catch (UserNotFoundException e) {
-                currentUser = new User();
-                currentUser.setLogin(uid);
-            }
-
-            return currentUser;
-        }
-
-        User authUser;
-
-        try {
-            authUser = authenticator.getUser();
-            if (authUser != null) {
-                if (currentUser != null && currentUser.getLogin().equals(authUser.getLogin())) {
-                    return currentUser;
-                }
-
-                String uid = authUser.getLogin();
-
-                try {
-                    currentUser = getDomainService().getUser(uid);
-                } catch (UserNotFoundException e) {
-                    currentUser = new User();
-                    currentUser.setLogin(uid);
-                }
-
-                return currentUser;
-            }
-        } catch (Exception e) {
-            logger.error("Failed to authenticate current user", e);
-        }
-
-        return null;
-    }
-
-    @Override
-    public void reset() {
-        super.reset();
-
-        action = "missions";
-        currentUser = null;
     }
 
     /**
@@ -230,18 +175,18 @@ public class SessionController extends AbstractDomainAwareBean {
         return null;
     }
 
-    /**
-     * @param casLogoutUrl the casLogoutUrl to set
-     */
-    public void setCasLogoutUrl(String casLogoutUrl) {
-        this.casLogoutUrl = casLogoutUrl;
-    }
+    @Override
+    public Locale getLocale() {
+        Locale locale = null;
+        FacesContext context = FacesContext.getCurrentInstance();
 
-    /**
-     * @param authenticator the authenticator to set
-     */
-    public void setAuthenticator(Authenticator authenticator) {
-        this.authenticator = authenticator;
+        if (context != null) {
+            locale = context.getViewRoot().getLocale();
+        } else {
+            locale = new Locale("fr");
+        }
+
+        return locale;
     }
 
     /**
@@ -255,20 +200,6 @@ public class SessionController extends AbstractDomainAwareBean {
         } else {
             logger.warn("Cannot set the locale because the context is null");
         }
-    }
-
-    @Override
-    public Locale getLocale() {
-        Locale locale = null;
-        FacesContext context = FacesContext.getCurrentInstance();
-
-        if (context != null) {
-            locale = context.getViewRoot().getLocale();
-        } else {
-            locale = new Locale("fr");
-        }
-
-        return locale;
     }
 
     /**

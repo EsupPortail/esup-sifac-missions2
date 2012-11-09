@@ -15,8 +15,9 @@ import javax.faces.event.ValueChangeEvent;
 import javax.faces.model.SelectItem;
 
 import org.esupportail.sifacmissions.models.Mission;
-import org.esupportail.sifacmissions.models.User;
+import org.esupportail.sifacmissions.services.matricule.MatriculeService;
 import org.esupportail.sifacmissions.services.mission.MissionException;
+import org.esupportail.sifacmissions.services.mission.MissionService;
 
 import org.apache.myfaces.trinidad.component.UIXTable;
 import org.apache.myfaces.trinidad.component.core.data.CoreTable;
@@ -25,6 +26,7 @@ import org.apache.myfaces.trinidad.model.RowKeySet;
 import org.apache.myfaces.trinidad.model.RowKeySetImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.Assert;
 
 /**
  * A visual bean for the welcome page.
@@ -32,47 +34,23 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("serial")
 public class MissionController extends AbstractContextAwareController {
 
-    /**
-     * A logger.
-     */
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    /**
-     * The current user.
-     */
-    private User currentUser;
-
-    /**
-     * Matricule.
-     */
     private String matricule;
-
-    /**
-     * Current year.
-     */
     private Integer year;
-
-    /**
-     * A list of JSF year for the years.
-     */
     private List<SelectItem> yearItems;
-
-    /**
-     * The missions.
-     */
     private List<Mission> missions;
-
-    /**
-     * The mission pagination count.
-     */
     private Integer missionsPerPage = 5;
-
-    /**
-     * An items list for for missions pagination.
-     */
     private List<SelectItem> missionsPerPageItems;
-
     private CoreTable missionsTable;
+    private MatriculeService matriculeService;
+    private MissionService missionService;
+
+    @Override
+    protected void afterPropertiesSetInternal() {
+        Assert.notNull(matriculeService, "matriculeService is required");
+        Assert.notNull(missionService, "missionService is required");
+    }
 
     public CoreTable getMissionsTable() {
         return missionsTable;
@@ -85,7 +63,6 @@ public class MissionController extends AbstractContextAwareController {
     @Override
     public void reset() {
         missionsTable = null;
-        currentUser = null;
         matricule = null;
 
         // Get missions table pagination
@@ -102,7 +79,7 @@ public class MissionController extends AbstractContextAwareController {
         // Get displayed years
         yearItems = new ArrayList<SelectItem>();
 
-        int lastYear = Math.max(getDomainService().getFirstYear(), year - 1);
+        int lastYear = Math.max(missionService.getFirstYear(), year - 1);
         for (int i = year; i >= lastYear; i--) {
             yearItems.add(new SelectItem(i));
         }
@@ -112,12 +89,14 @@ public class MissionController extends AbstractContextAwareController {
      * Set the SIFAC web service parameters
      */
     private void initSifac() {
+        String currentUser = getCurrentUser();
+
         if (logger.isDebugEnabled()) {
-            logger.debug("Current User: {}", currentUser.getLogin());
+            logger.debug("Current User: {}", currentUser);
         }
 
         if (matricule == null) {
-            matricule = getDomainService().getMatriculeService().getMatricule(currentUser.getLogin());
+            matricule = matriculeService.getMatricule(currentUser);
         }
 
         if (logger.isDebugEnabled()) {
@@ -130,7 +109,6 @@ public class MissionController extends AbstractContextAwareController {
      */
     public List<Mission> getMissions() {
         if (missions == null) {
-            currentUser = getCurrentUser();
             initSifac();
             changeYear();
         }
@@ -203,7 +181,7 @@ public class MissionController extends AbstractContextAwareController {
         }
 
         try {
-            mission.setDetails(getDomainService().getMissionDetails(matricule, mission.getNumero()));
+            mission.setDetails(missionService.getMissionDetails(matricule, mission.getNumero()));
         } catch (MissionException e) {
             logger.error("Failed to get mission details", e);
             addWarnMessage(null, "WELCOME.ERROR.SERVICE");
@@ -215,7 +193,7 @@ public class MissionController extends AbstractContextAwareController {
             if (matricule == null) {
                 addWarnMessage(null, "WELCOME.ERROR.GETMATRICULE");
             } else {
-                missions = getDomainService().getFraisMissions(matricule, year);
+                missions = missionService.getFraisMissions(matricule, year);
                 Collections.sort(missions, Collections.reverseOrder(Mission.ORDER_ORDRE));
                 dataChanged();
             }

@@ -33,7 +33,7 @@ public class AgentUtil implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        Assert.notNull(skins, "property skins can not be null");
+        Assert.notNull(skins, "skins is required");
     }
 
     /**
