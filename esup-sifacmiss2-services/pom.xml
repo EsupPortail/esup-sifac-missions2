@@ -13,10 +13,8 @@
 	<artifactId>esup-sifacmiss2-services</artifactId>
 	
 	<properties>
-		<slf4j.version>1.6.6</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
 		<springframework.ldap.version>1.3.1.RELEASE</springframework.ldap.version>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencyManagement>

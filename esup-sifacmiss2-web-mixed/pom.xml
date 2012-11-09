@@ -10,24 +10,43 @@
 	</parent>
 
 	<artifactId>esup-sifacmiss2-web-mixed</artifactId>
-	
 	<packaging>war</packaging>
 
+	<repositories>
+		<repository>
+			<id>esup</id>
+			<url>https://mvn.esup-portail.org/content/repositories/releases</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>
+	</repositories>
+	
+	<distributionManagement>
+		<repository>
+			<id>esup</id>
+			<name>esup-portail</name>
+			<url>https://mvn.esup-portail.org/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
+	
+	<properties>
+		<esupcommons.version>0.3.1</esupcommons.version>
+	</properties>
+	
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.apache.myfaces.core</groupId>
-				<artifactId>myfaces-api</artifactId>
-				<version>1.2.12</version>
-			</dependency>
-			<dependency>
-				<groupId>org.apache.myfaces.core</groupId>
-				<artifactId>myfaces-impl</artifactId>
-				<version>1.2.12</version>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>${slf4j.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
-
+	
 	<dependencies>
 		<!-- ===== Provided dependencies =================================== -->
 		<dependency>
@@ -74,6 +93,12 @@
 			<groupId>org.esupportail</groupId>
 			<artifactId>esup-sifacmiss2-services</artifactId>
 			<version>${project.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<!-- ===== Runtime dependencies ==================================== -->
 		<dependency>
@@ -85,31 +110,6 @@
 	</dependencies>
 	
 	<build>
-		<defaultGoal>install</defaultGoal>
-		<filters>
-			<filter>src/main/resources/properties/defaults.properties</filter>
-			<filter>src/main/resources/properties/config.properties</filter>
-		</filters>
-		<resources>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>true</filtering>
-				<includes>
-					<include>properties/cache/ehcache.xml</include>
-					<include>properties/misc/application.xml</include>
-					<include>log4j.properties</include>
-				</includes>
-			</resource>
-			<resource>
-				<directory>src/main/resources</directory>
-				<filtering>false</filtering>
-				<excludes>
-					<exclude>properties/cache/ehcache.xml</exclude>
-					<exclude>properties/misc/application.xml</exclude>
-					<exclude>log4j.properties</exclude>
-				</excludes>
-			</resource>
-		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.lesscss</groupId>
@@ -126,7 +126,6 @@
 					</includes>
 				</configuration>
 				<executions>
-					<!-- Eclipse m2e may fail here. Just ignore it. -->
 					<execution>
 						<goals>
 							<goal>compile</goal>
@@ -135,20 +134,9 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
-				<version>2.2</version>
 				<configuration>
-					<webResources>
-						<resource>
-							<directory>src/main/webapp</directory>
-							<includes>
-								<include>WEB-INF/web.xml</include>
-								<include>WEB-INF/portlet.xml</include>
-							</includes>
-						</resource>
-					</webResources>
-					<warName>${project.parent.artifactId}-${project.parent.version}</warName>
+					<warName>${project.parent.artifactId}-mixed-${project.version}</warName>
 				</configuration>
 			</plugin>
 			<plugin>
