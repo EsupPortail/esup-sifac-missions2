@@ -11,7 +11,7 @@
 	<!-- ===== Servlet requirements ======================================== -->
 
 	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="useCodeAsDefaultMessage" value="true" />
+		<property name="useCodeAsDefaultMessage" value="true"/>
 		<property name="defaultEncoding" value="UTF-8"/>
 		<property name="basenames">
 			<list>
@@ -20,23 +20,17 @@
 		</property>
 	</bean>
 
-	<bean class="org.springframework.web.servlet.view.XmlViewResolver">
-		<property name="order" value="0" />
-		<property name="location" value="/WEB-INF/context/views.xml" />
-	</bean>
-
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="10" />
-		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-		<property name="cache" value="true" />
+		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+		<property name="cache" value="true"/>
 	</bean>
 
 	<!-- ===== Shared components =========================================== -->
 
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:ehcache.xml" />
+		<property name="configLocation" value="classpath:ehcache.xml"/>
 	</bean>
 
 </beans>

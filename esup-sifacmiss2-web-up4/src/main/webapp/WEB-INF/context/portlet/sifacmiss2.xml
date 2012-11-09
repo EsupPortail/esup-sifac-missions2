@@ -55,7 +55,7 @@
 				</property>
 			</bean>
 		</property>
-		<property name="dnSubPath" value="${matricule.ldap.dnSubPath" />
+		<property name="dnSubPath" value="${matricule.ldap.dnSubPath}" />
 		<property name="matriculeAttribute" value="${matricule.ldap.matriculeAttribute" />
 	</bean>
 
