@@ -19,6 +19,7 @@
 			<portlet-mode>VIEW</portlet-mode>
 		</supports>
 		<supported-locale>fr</supported-locale>
+		<supported-locale>en</supported-locale>
 		<portlet-info>
 			<title>esup-sifacmiss2</title>
 			<short-title>esup-sifacmiss2</short-title>

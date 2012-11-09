@@ -7,8 +7,9 @@
 <c:url value="/resources" var="resources"/>
 <link href="${ resources }/css/styles.css" rel="stylesheet"/>
 
-<div class="esup-sifacmiss2">
-  <table class="data-table">
+<div class="fl-widget portlet esup-sifacmiss2">
+<div class="fl-widget-content content portlet-content">
+  <table class="portlet-table">
     <thead>
       <tr>
         <th>
@@ -71,17 +72,16 @@
       </c:forEach>
     </tbody>
   </table>
-  <script type="text/html" class="details-template">
-  </script>
+</div>
 </div>
 
 <script type="text/javascript">
-  var $ = jQuery,
+  var $ = jQuery || up.jQuery,
       $portlet = $('.esup-sifacmiss2'),
-      $table = $portlet.find('.data-table tbody'),
+      $table = $portlet.find('table tbody'),
       detailsCache = {};
   
-  $table.find('tr').on('click', function() {
+  $table.find('tr').click(function() {
     var $this = $(this),
         id = $this.data('id');
     
@@ -107,8 +107,13 @@
         buildDetails(id, detailsCache[id]);
       }
     } else {
-      $table.find('tr[data-mission=' + id + ']').remove();
       $this.removeClass('open');
+      $table.find('tr.details').each(function() {
+        var $tr = $(this);
+        if ($tr.data('mission') === id) {
+          $tr.remove();
+        }
+      });
     }
   });
 </script>
