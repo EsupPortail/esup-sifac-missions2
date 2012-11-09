@@ -31,7 +31,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    private Integer firstYear;
+    private int firstYear;
     private SifacPortail portailService;
     private CacheManager cacheManager;
     private Cache missionsCache;
@@ -40,7 +40,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
     /**
      * @param firstYear Première année de fonctionnement de l'application SIFAC
      */
-    public void setFirstYear(Integer firstYear) {
+    public void setFirstYear(int firstYear) {
         this.firstYear = firstYear;
     }
 
