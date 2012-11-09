@@ -28,15 +28,6 @@
 		<property name="defaultLanguage" value="${app.language}" />
 	</bean>
 
-	<bean id="homeController"
-		class="org.esupportail.sifacmissions.web.controllers.HomeController"
-		parent="abstractApplicationAwareBean" scope="session">
-		<property name="displayAboutLink" value="${view.displayAboutLink}" />
-		<property name="displayHelpLink" value="${view.displayHelpLink}" />
-		<property name="displayMobileLink" value="${view.displayMobileLink}" />
-		<property name="displayServletLink" value="${view.displayServletLink}" />
-	</bean>
-
 	<bean id="missionController"
 		class="org.esupportail.sifacmissions.web.controllers.MissionController"
 		parent="abstractContextAwareController" scope="session">
