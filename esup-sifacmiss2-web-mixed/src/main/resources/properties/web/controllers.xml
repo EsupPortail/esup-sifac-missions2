@@ -31,6 +31,8 @@
 	<bean id="missionController"
 		class="org.esupportail.sifacmissions.web.controllers.MissionController"
 		parent="abstractContextAwareController" scope="session">
+		<property name="matriculeService" ref="${matricule.bean}"/>
+		<property name="missionService" ref="sifacMissionService"/>
 	</bean>
 
 	<bean id="mobileMissionController"

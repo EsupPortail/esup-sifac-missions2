@@ -52,6 +52,14 @@ public class MissionController extends AbstractContextAwareController {
         Assert.notNull(missionService, "missionService is required");
     }
 
+    public void setMatriculeService(MatriculeService matriculeService) {
+        this.matriculeService = matriculeService;
+    }
+
+    public void setMissionService(MissionService missionService) {
+        this.missionService = missionService;
+    }
+
     public CoreTable getMissionsTable() {
         return missionsTable;
     }
