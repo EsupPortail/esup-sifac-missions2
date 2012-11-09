@@ -17,7 +17,6 @@ import javax.faces.model.SelectItem;
 import org.esupportail.sifacmissions.models.Mission;
 import org.esupportail.sifacmissions.models.User;
 import org.esupportail.sifacmissions.services.mission.MissionException;
-import org.esupportail.sifacmissions.web.utils.StringUtils;
 
 import org.apache.myfaces.trinidad.component.UIXTable;
 import org.apache.myfaces.trinidad.component.core.data.CoreTable;
@@ -47,16 +46,6 @@ public class MissionController extends AbstractContextAwareController {
      * Matricule.
      */
     private String matricule;
-
-    /**
-     * Nom.
-     */
-    private String nom;
-
-    /**
-     * Prenom.
-     */
-    private String prenom;
 
     /**
      * Current year.
@@ -98,8 +87,6 @@ public class MissionController extends AbstractContextAwareController {
         missionsTable = null;
         currentUser = null;
         matricule = null;
-        nom = null;
-        prenom = null;
 
         // Get missions table pagination
         missionsPerPageItems = new ArrayList<SelectItem>();
@@ -126,25 +113,15 @@ public class MissionController extends AbstractContextAwareController {
      */
     private void initSifac() {
         if (logger.isDebugEnabled()) {
-            logger.debug("Current User: " + currentUser.getLogin());
+            logger.debug("Current User: {}", currentUser.getLogin());
         }
 
         if (matricule == null) {
             matricule = getDomainService().getMatriculeService().getMatricule(currentUser.getLogin());
-
-            if (matricule == null) {
-                if (nom == null) {
-                    nom = StringUtils.removeAccent(getDomainService().getNom(currentUser.getLogin()));
-                }
-
-                if (prenom == null) {
-                    prenom = StringUtils.removeAccent(getDomainService().getPrenom(currentUser.getLogin()));
-                }
-            }
         }
 
         if (logger.isDebugEnabled()) {
-            logger.debug("Web Service Parameters: maticule=" + matricule + ", nom=" + nom + ", prenom=" + prenom);
+            logger.debug("Web Service Parameters: maticule={}", matricule);
         }
     }
 
@@ -238,7 +215,7 @@ public class MissionController extends AbstractContextAwareController {
             if (matricule == null) {
                 addWarnMessage(null, "WELCOME.ERROR.GETMATRICULE");
             } else {
-                missions = getDomainService().getFraisMissions(matricule, nom, prenom, year);
+                missions = getDomainService().getFraisMissions(matricule, year);
                 Collections.sort(missions, Collections.reverseOrder(Mission.ORDER_ORDRE));
                 dataChanged();
             }

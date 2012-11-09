@@ -18,20 +18,17 @@ public interface MissionService {
      *
      * @return Première année de fonctionnement
      */
-    Integer getFirstYear();
+    int getFirstYear();
 
     /**
      * Récupère la liste des missions pour un utilisateur et une année donnés.
-     * Le nom et prénom sont ceux de l'utilisateur et doivent être sans accent.
      *
      * @param matricule Numéro de matricule
-     * @param nom Nom
-     * @param prenom Prénom
      * @param year Année
      * @return Liste des frais de mission
      * @throws MissionException
      */
-    List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws MissionException;
+    List<Mission> getFraisMissions(String matricule, int year) throws MissionException;
 
     /**
      * Récupère la liste des frais pour l'utilisateur et la mission donnés.

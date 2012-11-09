@@ -95,7 +95,7 @@ public class MissionController implements InitializingBean {
         model.put("year", missionHolder.getCurrentYear());
 
         try {
-            List<Mission> missions = missionService.getFraisMissions(userParameters.getMatricule(), "", "", missionHolder.getCurrentYear());
+            List<Mission> missions = missionService.getFraisMissions(userParameters.getMatricule(), missionHolder.getCurrentYear());
             model.put("missions", missions);
         } catch (MissionException e) {
             logger.error("Unable to get missions", e);
@@ -127,7 +127,7 @@ public class MissionController implements InitializingBean {
 
         Map<String, Object> model = new HashMap<String, Object>();
         try {
-            List<Mission> missions = missionService.getFraisMissions(userParameters.getMatricule(), null, null, missionHolder.getCurrentYear());
+            List<Mission> missions = missionService.getFraisMissions(userParameters.getMatricule(), missionHolder.getCurrentYear());
             for (Mission mission : missions) {
                 if (mission.getNumero().equals(id)) {
                     List<MissionDetails> details = missionService.getMissionDetails(userParameters.getMatricule(), id);

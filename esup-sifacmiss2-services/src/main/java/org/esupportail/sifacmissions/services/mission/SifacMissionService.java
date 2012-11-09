@@ -21,16 +21,21 @@ import org.springframework.util.Assert;
 
 /**
  * Web service d'accès aux données de l'application SIFAC.
+ *
+ * @author Florent Cailhol (Anyware Services)
  */
 public class SifacMissionService implements MissionService, InitializingBean {
 
-    private static final String CACHE_NAME = SifacMissionService.class.getName();
+    private static final String MISSIONS_CACHE_NAME = SifacMissionService.class.getName() + ".MISSIONS";
+    private static final String DETAILS_CACHE_NAME = SifacMissionService.class.getName() + ".DETAILS";
+
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private Integer firstYear;
     private SifacPortail portailService;
     private CacheManager cacheManager;
-    private Cache cache;
+    private Cache missionsCache;
+    private Cache detailsCache;
 
     /**
      * @param firstYear Première année de fonctionnement de l'application SIFAC
@@ -59,35 +64,32 @@ public class SifacMissionService implements MissionService, InitializingBean {
         Assert.notNull(cacheManager, "cacheManager is required");
         Assert.notNull(firstYear, "firstYear is required");
 
-        if (!cacheManager.cacheExists(CACHE_NAME)) {
-            cacheManager.addCache(CACHE_NAME);
+        if (!cacheManager.cacheExists(MISSIONS_CACHE_NAME)) {
+            cacheManager.addCache(MISSIONS_CACHE_NAME);
         }
 
-        cache = cacheManager.getCache(CACHE_NAME);
+        if (!cacheManager.cacheExists(DETAILS_CACHE_NAME)) {
+            cacheManager.addCache(DETAILS_CACHE_NAME);
+        }
+
+        missionsCache = cacheManager.getCache(MISSIONS_CACHE_NAME);
+        detailsCache = cacheManager.getCache(DETAILS_CACHE_NAME);
     }
 
     @Override
-    public Integer getFirstYear() {
+    public int getFirstYear() {
         return firstYear;
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws MissionException {
-        if (nom == null) {
-            nom = "";
-        }
-
-        if (prenom == null) {
-            prenom = "";
-        }
-
+    public List<Mission> getFraisMissions(String matricule, int year) throws MissionException {
         List<Mission> fms = null;
-        String cacheKey = matricule + "|" + nom + "|" + prenom + "|" + year;
+        String cacheKey = matricule + "-" + year;
 
-        if (cache.get(cacheKey) == null) {
+        if (missionsCache.get(cacheKey) == null) {
             try {
-                fms = portailService.getFraisMissions(matricule, nom, prenom, year.toString());
+                fms = portailService.getFraisMissions(matricule, "", "", Integer.toString(year));
             } catch (Exception e) {
                 throw new MissionException(e);
             }
@@ -96,10 +98,10 @@ public class SifacMissionService implements MissionService, InitializingBean {
                 logger.debug("Frais de missions " + cacheKey + " not found in cache");
             }
 
-            cache.put(new Element(cacheKey, fms));
+            missionsCache.put(new Element(cacheKey, fms));
             return fms;
         } else {
-            fms = (List<Mission>) cache.get(cacheKey).getObjectValue();
+            fms = (List<Mission>) missionsCache.get(cacheKey).getObjectValue();
 
             if (logger.isDebugEnabled()) {
                 logger.debug("Frais de missions " + cacheKey + " found in cache");
@@ -113,9 +115,9 @@ public class SifacMissionService implements MissionService, InitializingBean {
     @Override
     public List<MissionDetails> getMissionDetails(String matricule, String numeroMission) throws MissionException {
         List<MissionDetails> details = null;
-        String cacheKey = matricule + "|" + numeroMission;
+        String cacheKey = matricule + "-" + numeroMission;
 
-        if (cache.get(cacheKey) == null) {
+        if (detailsCache.get(cacheKey) == null) {
             try {
                 details = portailService.getMissionDetails(matricule, numeroMission);
             } catch (Exception e) {
@@ -126,10 +128,10 @@ public class SifacMissionService implements MissionService, InitializingBean {
                 logger.debug("Mission details " + cacheKey + " not found in cache");
             }
 
-            cache.put(new Element(cacheKey, details));
+            detailsCache.put(new Element(cacheKey, details));
             return details;
         } else {
-            details = (List<MissionDetails>) cache.get(cacheKey).getObjectValue();
+            details = (List<MissionDetails>) detailsCache.get(cacheKey).getObjectValue();
 
             if (logger.isDebugEnabled()) {
                 logger.debug("Mission details " + cacheKey + " found in cache");

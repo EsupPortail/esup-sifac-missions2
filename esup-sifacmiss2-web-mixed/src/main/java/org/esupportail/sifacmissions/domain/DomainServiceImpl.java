@@ -115,7 +115,7 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
     }
 
     @Override
-    public Integer getFirstYear() {
+    public int getFirstYear() {
         return sifacService.getFirstYear();
     }
 
@@ -130,8 +130,8 @@ public class DomainServiceImpl implements DomainService, InitializingBean {
     }
 
     @Override
-    public List<Mission> getFraisMissions(String matricule, String nom, String prenom, Integer year) throws MissionException {
-        return sifacService.getFraisMissions(matricule, nom, prenom, year);
+    public List<Mission> getFraisMissions(String matricule, int year) throws MissionException {
+        return sifacService.getFraisMissions(matricule, year);
     }
 
     @Override
