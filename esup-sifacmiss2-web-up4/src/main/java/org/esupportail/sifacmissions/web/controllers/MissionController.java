@@ -2,6 +2,7 @@ package org.esupportail.sifacmissions.web.controllers;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,7 @@ import org.esupportail.sifacmissions.services.mission.MissionException;
 import org.esupportail.sifacmissions.services.mission.MissionService;
 import org.esupportail.sifacmissions.web.beans.MissionHolder;
 import org.esupportail.sifacmissions.web.beans.UserParameters;
+import org.esupportail.sifacmissions.web.beans.YearSelectionForm;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,9 +30,11 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.portlet.ModelAndView;
+import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
 @Controller
@@ -55,6 +59,17 @@ public class MissionController implements InitializingBean {
     @Resource
     private UserParameters userParameters;
 
+    @ModelAttribute("yearSelectionForm")
+    public YearSelectionForm getYearSelectionForm() {
+        YearSelectionForm form = new YearSelectionForm();
+
+        if (missionHolder != null) {
+            form.setYear(missionHolder.getCurrentYear());
+        }
+
+        return form;
+    }
+
     public void setAuthenticationService(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
@@ -74,9 +89,14 @@ public class MissionController implements InitializingBean {
         Assert.notNull(missionService, "property missionService cannot be null");
     }
 
-    @RequestMapping(params = "action=changeYear")
-    public void changeYear(ActionRequest request, @RequestParam("year") int year) {
+    @ActionMapping(params = "action=changeYear")
+    public void changeYear(ActionRequest request, YearSelectionForm form) {
         initialize(request);
+
+        int year = form.getYear();
+        if (logger.isDebugEnabled()) {
+            logger.debug("Trying to change current year to {}", year);
+        }
 
         if (missionService.getFirstYear() <= year && year <= Calendar.getInstance().get(Calendar.YEAR)) {
             missionHolder.setCurrentYear(year);
@@ -100,6 +120,16 @@ public class MissionController implements InitializingBean {
         } catch (MissionException e) {
             logger.error("Unable to get missions", e);
         }
+
+        Map<Integer, String> years = new LinkedHashMap<Integer, String>();
+
+        int i = Calendar.getInstance().get(Calendar.YEAR);
+        int n = missionService.getFirstYear();
+        for (; i >= n; i--) {
+            years.put(i, Integer.toString(i));
+        }
+
+        model.put("years", years);
 
         return new ModelAndView(isMobile(request) ? "list-jQM" : "list", model);
     }

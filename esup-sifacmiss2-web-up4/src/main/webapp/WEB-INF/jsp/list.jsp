@@ -7,7 +7,26 @@
 <c:url value="/resources" var="resources"/>
 <link href="${ resources }/css/styles.css" rel="stylesheet"/>
 
+<portlet:actionURL var="changeYearUrl">
+  <portlet:param name="action" value="changeYear"/>
+</portlet:actionURL>
+
 <div class="fl-widget portlet esup-sifacmiss2">
+<div class="fl-widget-titlebar titlebar portlet-titlebar">
+  <div class="toolbar">
+    <form:form commandName="yearSelectionForm" action="${ changeYearUrl }">
+      <form:label path="year">
+        <spring:message code="missions.year.select"/>
+      </form:label>
+      <form:select path="year">
+        <form:options items="${ years }"/>
+      </form:select>
+      <button>
+         <spring:message code="missions.year.submit"/>
+      </button>
+    </form:form>
+  </div>
+</div>
 <div class="fl-widget-content content portlet-content mission-list">
   <table class="portlet-table">
     <thead>
