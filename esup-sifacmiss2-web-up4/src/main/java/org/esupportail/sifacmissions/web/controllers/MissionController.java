@@ -94,10 +94,6 @@ public class MissionController implements InitializingBean {
         initialize(request);
 
         int year = form.getYear();
-        if (logger.isDebugEnabled()) {
-            logger.debug("Trying to change current year to {}", year);
-        }
-
         if (missionService.getFirstYear() <= year && year <= Calendar.getInstance().get(Calendar.YEAR)) {
             missionHolder.setCurrentYear(year);
 
@@ -190,6 +186,6 @@ public class MissionController implements InitializingBean {
     }
 
     private boolean isMobile(PortletRequest request) {
-        return false;
+        return true;
     }
 }
