@@ -33,3 +33,63 @@
 .esup-sifacmiss2 .mission-list tr.details.paid td:first-child {
 	background: url(../img/paid.png) no-repeat 24px center !important;
 }
+
+.esup-sifacmiss2 .mission .ui-li-aside {
+	margin: 0;
+}
+
+.esup-sifacmiss2 .mission li {
+	padding: 9px 15px;
+}
+
+.esup-sifacmiss2 .details li + li {
+	padding: 2px 15px 2px 10px;
+}
+
+.esup-sifacmiss2 .details span {
+	display: inline-block;
+	line-height: 32px;
+}
+
+.esup-sifacmiss2 .details .paid > * {
+	opacity: .5;
+	color: #000 !important;
+}
+
+.esup-sifacmiss2 .details [class^="picto-"],
+.esup-sifacmiss2 .details [class*="picto-"] {
+	background: no-repeat left center;
+	padding-left: 40px;
+}
+
+.esup-sifacmiss2 .details .picto-default {
+	background-image: url(../img/picto/divers.png);
+}
+
+.esup-sifacmiss2 .details .picto-airplane {
+	background-image: url(../img/picto/airplane.png);
+}
+
+.esup-sifacmiss2 .details .picto-bus {
+	background-image: url(../img/picto/bus.png);
+}
+
+.esup-sifacmiss2 .details .picto-hotel {
+	background-image: url(../img/picto/hotel.png);
+}
+
+.esup-sifacmiss2 .details .picto-parking {
+	background-image: url(../img/picto/parking.png);
+}
+
+.esup-sifacmiss2 .details .picto-restaurant {
+	background-image: url(../img/picto/restaurant.png);
+}
+
+.esup-sifacmiss2 .details .picto-taxi {
+	background-image: url(../img/picto/taxi.png);
+}
+
+.esup-sifacmiss2 .details .picto-train {
+	background-image: url(../img/picto/train.png);
+}
