@@ -50,9 +50,11 @@
     </thead>
     <tbody>
       <c:if test="${ empty missions }">
-        <td colspan="5">
-          <spring:message code="missions.empty"/>
-        </td>
+        <tr class="empty">
+          <td colspan="5">
+            <spring:message code="missions.empty"/>
+          </td>
+        </tr>
       </c:if>
       <c:forEach items="${ missions }" var="mission">
         <portlet:resourceURL id="details" var="detailsURL">
