@@ -20,6 +20,7 @@ import org.esupportail.sifacmissions.services.authentication.AuthenticationServi
 import org.esupportail.sifacmissions.services.matricule.MatriculeService;
 import org.esupportail.sifacmissions.services.mission.MissionException;
 import org.esupportail.sifacmissions.services.mission.MissionService;
+import org.esupportail.sifacmissions.services.view.ViewResolver;
 import org.esupportail.sifacmissions.web.beans.MissionHolder;
 import org.esupportail.sifacmissions.web.beans.UserParameters;
 import org.esupportail.sifacmissions.web.beans.YearSelectionForm;
@@ -58,6 +59,9 @@ public class MissionController implements InitializingBean {
 
     @Resource
     private UserParameters userParameters;
+
+    @Resource
+    private ViewResolver viewResolver;
 
     @ModelAttribute("yearSelectionForm")
     public YearSelectionForm getYearSelectionForm() {
@@ -186,6 +190,6 @@ public class MissionController implements InitializingBean {
     }
 
     private boolean isMobile(PortletRequest request) {
-        return true;
+        return viewResolver.isMobile(request);
     }
 }

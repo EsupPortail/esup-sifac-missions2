@@ -79,7 +79,7 @@
 	</bean>
 
 	<!-- ===== Mission services ============================================ -->
-	
+
 	<alias alias="missionService" name="sifacMissionService"/>
 
 	<bean id="sifacMissionService" lazy-init="true"
@@ -101,5 +101,9 @@
 		</property>
 		<property name="firstYear" value="${mission.sifac.firstYear}"/>
 	</bean>
+
+	<!-- ===== View resolvers ============================================== -->
+
+	<bean class="org.esupportail.sifacmissions.services.view.ThemeNameViewResolver"/>
 
 </beans>
