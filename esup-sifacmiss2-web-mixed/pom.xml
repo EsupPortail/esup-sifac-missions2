@@ -11,6 +11,7 @@
 
 	<artifactId>esup-sifacmiss2-web-mixed</artifactId>
 	<packaging>war</packaging>
+	<name>Webapp servlet / portlet 1.0</name>
 
 	<repositories>
 		<repository>

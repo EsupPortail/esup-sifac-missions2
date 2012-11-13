@@ -11,6 +11,7 @@
 
 	<artifactId>esup-sifacmiss2-web-up4</artifactId>
 	<packaging>war</packaging>
+	<name>Webapp portlet 2.0</name>
 
 	<properties>
 		<springframework.version>3.1.2.RELEASE</springframework.version>

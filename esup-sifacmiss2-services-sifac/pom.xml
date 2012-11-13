@@ -11,6 +11,7 @@
 	</parent>
 
 	<artifactId>esup-sifacmiss2-services-sifac</artifactId>
+	<name>Sifac</name>
 
 	<build>
 		<plugins>
