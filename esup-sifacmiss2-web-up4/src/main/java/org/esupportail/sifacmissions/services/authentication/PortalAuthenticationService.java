@@ -9,13 +9,14 @@ import org.springframework.util.Assert;
 
 public class PortalAuthenticationService implements AuthenticationService, InitializingBean {
 
-    /**
-     * Par défaut, l'attribut permettant de récupérer l'identifiant est uid.
-     */
-    public static final String DEFAULT_UID_ATTRIBUTE = "uid";
+    private static final String DEFAULT_UID_ATTRIBUTE = "uid";
 
     private String uidAttribute = DEFAULT_UID_ATTRIBUTE;
 
+    /**
+     * @param uidAttribute Attribut permettant de récupérer l'identifiant de
+     *            l'utilisateur. <code>uid</code> par défaut.
+     */
     public void setUidAttribute(String uidAttribute) {
         this.uidAttribute = uidAttribute;
     }

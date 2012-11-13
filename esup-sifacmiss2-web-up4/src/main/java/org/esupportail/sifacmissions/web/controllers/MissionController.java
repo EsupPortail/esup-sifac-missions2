@@ -38,6 +38,11 @@ import org.springframework.web.portlet.ModelAndView;
 import org.springframework.web.portlet.bind.annotation.ActionMapping;
 import org.springframework.web.portlet.bind.annotation.ResourceMapping;
 
+/**
+ * Contrôleur permettant l'affichage des frais de mission.
+ *
+ * @author Florent Cailhol (Anyware Services)
+ */
 @Controller
 @Scope("request")
 @RequestMapping("VIEW")
@@ -63,6 +68,9 @@ public class MissionController implements InitializingBean {
     @Resource
     private ViewResolver viewResolver;
 
+    /**
+     * @return Formulaire de sélection de l'année
+     */
     @ModelAttribute("yearSelectionForm")
     public YearSelectionForm getYearSelectionForm() {
         YearSelectionForm form = new YearSelectionForm();
@@ -74,14 +82,23 @@ public class MissionController implements InitializingBean {
         return form;
     }
 
+    /**
+     * @param authenticationService Service d'authentification
+     */
     public void setAuthenticationService(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
     }
 
+    /**
+     * @param matriculeService Service de récupération du matricule
+     */
     public void setMatriculeService(MatriculeService matriculeService) {
         this.matriculeService = matriculeService;
     }
 
+    /**
+     * @param missionService Service de récupération des frais de mission.
+     */
     public void setMissionService(MissionService missionService) {
         this.missionService = missionService;
     }
@@ -93,6 +110,13 @@ public class MissionController implements InitializingBean {
         Assert.notNull(missionService, "property missionService cannot be null");
     }
 
+    /**
+     * Change l'année utilisée par le service de récupération des frais de
+     * mission.
+     *
+     * @param request Requête
+     * @param form Formulaire de sélection de l'année
+     */
     @ActionMapping(params = "action=changeYear")
     public void changeYear(ActionRequest request, YearSelectionForm form) {
         initialize(request);
@@ -107,6 +131,12 @@ public class MissionController implements InitializingBean {
         }
     }
 
+    /**
+     * Liste des frais de missions de l'utilisateur courant.
+     *
+     * @param request Requête
+     * @return Modèle
+     */
     @RequestMapping
     public ModelAndView viewMissions(RenderRequest request) {
         initialize(request);
@@ -134,6 +164,14 @@ public class MissionController implements InitializingBean {
         return new ModelAndView(isMobile(request) ? "list-jQM" : "list", model);
     }
 
+    /**
+     * Affiche les détails de la mission spécifiée (desktop uniquement).
+     *
+     * @param request Requête
+     * @param response Réponse
+     * @param id Identifiant de la mission
+     * @return Modèle
+     */
     @ResourceMapping("details")
     public ModelAndView getMissionDetails(ResourceRequest request, ResourceResponse response, @RequestParam("id") String id) {
         initialize(request);
@@ -151,6 +189,13 @@ public class MissionController implements InitializingBean {
         return new ModelAndView("details", model);
     }
 
+    /**
+     * Affiche les détails de la mission spécifiée (mobile uniquement).
+     *
+     * @param request Requête
+     * @param id Identifiant de la mission
+     * @return Modèle
+     */
     @RequestMapping(params = "action=mission")
     public ModelAndView viewMission(RenderRequest request, @RequestParam("id") String id) {
         initialize(request);

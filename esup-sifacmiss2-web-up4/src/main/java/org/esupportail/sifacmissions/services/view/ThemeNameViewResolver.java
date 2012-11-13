@@ -2,6 +2,12 @@ package org.esupportail.sifacmissions.services.view;
 
 import javax.portlet.PortletRequest;
 
+/**
+ * Ce service détermine le type de vue à utiliser en fonction du thème du
+ * portail.
+ *
+ * @author Florent Cailhol (Anyware Services)
+ */
 public class ThemeNameViewResolver implements ViewResolver {
 
     private static final String THEME_NAME_PROPERTY = "themeName";
