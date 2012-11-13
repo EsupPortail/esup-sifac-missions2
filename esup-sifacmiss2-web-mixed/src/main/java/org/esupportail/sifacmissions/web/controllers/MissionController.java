@@ -70,8 +70,6 @@ public class MissionController extends AbstractContextAwareController {
 
     /**
      * (Trinidad internal)
-     *
-     * @return
      */
     public CoreTable getMissionsTable() {
         return missionsTable;
@@ -79,8 +77,6 @@ public class MissionController extends AbstractContextAwareController {
 
     /**
      * (Trinidad internal)
-     *
-     * @param table
      */
     public void setMissionsTable(CoreTable table) {
         this.missionsTable = table;
@@ -179,8 +175,6 @@ public class MissionController extends AbstractContextAwareController {
 
     /**
      * (Trinidad internal)
-     *
-     * @param event
      */
     public void yearChanged(ValueChangeEvent event) {
         setYear((Integer) event.getNewValue());
@@ -189,8 +183,6 @@ public class MissionController extends AbstractContextAwareController {
 
     /**
      * (Trinidad internal)
-     *
-     * @param event
      */
     public void detailsToggled(RowDisclosureEvent event) {
         RowKeySet rows = event.getAddedSet();
