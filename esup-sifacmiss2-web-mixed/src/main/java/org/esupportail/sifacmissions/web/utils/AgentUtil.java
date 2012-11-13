@@ -14,7 +14,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
 /**
- * @author Yves Deschamps (Universite de Lille 1) - 2010
+ * @author Yves Deschamps (Universite de Lille 1)
  */
 public class AgentUtil implements InitializingBean {
 
@@ -25,7 +25,7 @@ public class AgentUtil implements InitializingBean {
     private boolean mobile;
 
     /**
-     * @param skins the skins to set
+     * @param skins Thèmes
      */
     public void setSkins(Map<String, String> skins) {
         this.skins = skins;
@@ -37,7 +37,10 @@ public class AgentUtil implements InitializingBean {
     }
 
     /**
-     * @return the skin from user-agent detect.
+     * Détecte le thème à utiliser en fonction de l'en-tête
+     * <code>User-Agent</code> envoyé lors de la requête à la page.
+     *
+     * @return Thème à utiliser
      */
     public String getPhoneFamily() {
         if (phoneFamily == null) {
@@ -66,7 +69,7 @@ public class AgentUtil implements InitializingBean {
     }
 
     /**
-     * @return true if mobile
+     * @return <code>true</code> si l'utilisateur utilise un mobile.
      */
     public boolean isMobile() {
         return mobile;

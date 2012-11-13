@@ -6,10 +6,8 @@ package org.esupportail.sifacmissions.web.controllers;
 import java.io.IOException;
 import java.util.Locale;
 
-import javax.faces.component.UIParameter;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.servlet.http.HttpServletRequest;
 
 import org.esupportail.commons.utils.strings.StringUtils;
@@ -38,7 +36,7 @@ public class SessionController extends AbstractDomainAwareBean {
     private String casLogoutUrl;
 
     /**
-     * @param exceptionController the exceptionController to set
+     * @param exceptionController Gestionnaire d'exceptions
      */
     public void setExceptionController(ExceptionController exceptionController) {
         this.exceptionController = exceptionController;
@@ -52,7 +50,7 @@ public class SessionController extends AbstractDomainAwareBean {
     }
 
     /**
-     * @param authenticator the authenticator to set
+     * @param authenticator Service d'authentification
      */
     public void setAuthenticator(Authenticator authenticator) {
         this.authenticator = authenticator;
@@ -88,21 +86,21 @@ public class SessionController extends AbstractDomainAwareBean {
     }
 
     /**
-     * @return the action
+     * @return Action
      */
     public String getAction() {
         return action;
     }
 
     /**
-     * @param action the action to set
+     * @param action Action
      */
     public void setAction(String action) {
         this.action = action;
     }
 
     /**
-     * @return true if portlet mode.
+     * @return <code>true</code> si mode portlet.
      */
     public boolean isPortletMode() {
         if (!modeDetected) {
@@ -127,31 +125,9 @@ public class SessionController extends AbstractDomainAwareBean {
     }
 
     /**
-     * @return true if login button is enable.
-     * @throws Exception
-     */
-    public boolean isLoginEnable() throws Exception {
-        if (isPortletMode()) {
-            return false;
-        }
-
-        return (getCurrentUser() == null);
-    }
-
-    /**
-     * @return true if login button is enable.
-     * @throws Exception
-     */
-    public boolean isLogoutEnable() throws Exception {
-        if (isPortletMode()) {
-            return false;
-        }
-
-        return (getCurrentUser() != null);
-    }
-
-    /**
-     * @return nothing and make logout.
+     * Déconnexion.
+     *
+     * @return null
      */
     public String logoutAction() throws IOException {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -190,54 +166,7 @@ public class SessionController extends AbstractDomainAwareBean {
     }
 
     /**
-     * @param locale the locale to set
-     */
-    public void setLocale(Locale locale) {
-        FacesContext context = FacesContext.getCurrentInstance();
-
-        if (context != null) {
-            context.getViewRoot().setLocale(locale);
-        } else {
-            logger.warn("Cannot set the locale because the context is null");
-        }
-    }
-
-    /**
-     * @return an Url (with the good host, port and context...).
-     */
-    public String getServletUrl() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
-        return facesContext.getExternalContext().getRequestContextPath() + "/stylesheets/home.xhtml";
-    }
-
-    /**
-     * @return language.
-     */
-    public String getDisplayLanguage() {
-        Locale locale = getLocale();
-        StringBuffer buf = new StringBuffer(locale.getDisplayLanguage(locale));
-
-        return buf.toString();
-    }
-
-    /**
-     * @param event
-     * @return null;
-     */
-    public String setLocaleAction(ActionEvent event) {
-        UIParameter component = (UIParameter) event.getComponent().findComponent("language");
-        String languageString = component.getValue().toString();
-        FacesContext context = FacesContext.getCurrentInstance();
-
-        if (context != null) {
-            context.getViewRoot().setLocale(new Locale(languageString));
-        }
-
-        return null;
-    }
-
-    /**
-     * @param language the language to set
+     * @param language Langue
      */
     public void setDefaultLanguage(String language) {
         setSessionLocale(new Locale(language));

@@ -5,6 +5,8 @@ package org.esupportail.sifacmissions.services.auth;
 
 /**
  * Cette classe permet d'authentifier l'utilisateur courant.
+ *
+ * @author Florent Cailhol (Anyware Services)
  */
 public interface Authenticator {
 

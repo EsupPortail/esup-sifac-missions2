@@ -4,9 +4,11 @@ import org.esupportail.commons.beans.AbstractJsfMessagesAwareBean;
 import org.esupportail.commons.web.controllers.Resettable;
 
 /**
- * An abstract class inherited by all the controller beans to get:
- * - the context of the application (sessionController)
- * - the i18n service (i18nService)
+ * Classe héritée par les contrôleurs afin de récupérer :
+ * - le contexte de l'application (sessionController)
+ * - le service d'internationalisation (i18nService)
+ *
+ * @author Florent Cailhol (Anyware Services)
  */
 @SuppressWarnings("serial")
 public abstract class AbstractDomainAwareBean extends AbstractJsfMessagesAwareBean implements Resettable {
@@ -18,21 +20,17 @@ public abstract class AbstractDomainAwareBean extends AbstractJsfMessagesAwareBe
         reset();
     }
 
-    /**
-     * This method is run once the object has been initialized, just before
-     * reset().
-     */
-    protected void afterPropertiesSetInternal() {
-        // override this method
-    }
-
     @Override
     public void reset() {
         // nothing to reset
     }
 
+    protected void afterPropertiesSetInternal() {
+        // override this method
+    }
+
     /**
-     * @return the current user.
+     * @return Utilisateur courant.
      */
     public String getCurrentUser() {
         // override this method

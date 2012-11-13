@@ -29,7 +29,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.Assert;
 
 /**
- * A visual bean for the welcome page.
+ * Contrôleur permettant l'affichage des frais de missions.
+ *
+ * @author Florent Cailhol (Anyware Services)
  */
 @SuppressWarnings("serial")
 public class MissionController extends AbstractContextAwareController {
@@ -46,24 +48,40 @@ public class MissionController extends AbstractContextAwareController {
     private MatriculeService matriculeService;
     private MissionService missionService;
 
+    /**
+     * @param matriculeService Service de récupération des matricules.
+     */
+    public void setMatriculeService(MatriculeService matriculeService) {
+        this.matriculeService = matriculeService;
+    }
+
+    /**
+     * @param missionService Service de récupération des frais de missions.
+     */
+    public void setMissionService(MissionService missionService) {
+        this.missionService = missionService;
+    }
+
     @Override
     protected void afterPropertiesSetInternal() {
         Assert.notNull(matriculeService, "matriculeService is required");
         Assert.notNull(missionService, "missionService is required");
     }
 
-    public void setMatriculeService(MatriculeService matriculeService) {
-        this.matriculeService = matriculeService;
-    }
-
-    public void setMissionService(MissionService missionService) {
-        this.missionService = missionService;
-    }
-
+    /**
+     * (Trinidad internal)
+     *
+     * @return
+     */
     public CoreTable getMissionsTable() {
         return missionsTable;
     }
 
+    /**
+     * (Trinidad internal)
+     *
+     * @param table
+     */
     public void setMissionsTable(CoreTable table) {
         this.missionsTable = table;
     }
@@ -94,7 +112,7 @@ public class MissionController extends AbstractContextAwareController {
     }
 
     /**
-     * Set the SIFAC web service parameters
+     * Set the Sifac web service parameters
      */
     private void initSifac() {
         String currentUser = getCurrentUser();
@@ -159,11 +177,21 @@ public class MissionController extends AbstractContextAwareController {
         return yearItems;
     }
 
+    /**
+     * (Trinidad internal)
+     *
+     * @param event
+     */
     public void yearChanged(ValueChangeEvent event) {
         setYear((Integer) event.getNewValue());
         changeYear();
     }
 
+    /**
+     * (Trinidad internal)
+     *
+     * @param event
+     */
     public void detailsToggled(RowDisclosureEvent event) {
         RowKeySet rows = event.getAddedSet();
 
@@ -196,6 +224,9 @@ public class MissionController extends AbstractContextAwareController {
         }
     }
 
+    /**
+     * Change l'année utilisée pour récupérer les missions.
+     */
     public void changeYear() {
         try {
             if (matricule == null) {
@@ -212,7 +243,7 @@ public class MissionController extends AbstractContextAwareController {
     }
 
     /**
-     * @return the missionsPerPageItems
+     * @return Liste des nombres de missions par pages possibles.
      */
     public List<SelectItem> getMissionsPerPageItems() {
         return missionsPerPageItems;

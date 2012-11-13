@@ -10,6 +10,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
 /**
+ * Cette classe permet d'authentifier l'utilisateur courant.
+ *
  * @author Yves Deschamps (Universite de Lille 1)
  * @author Florent Cailhol (Anyware Services)
  */

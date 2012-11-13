@@ -3,10 +3,12 @@ package org.esupportail.sifacmissions.web.controllers;
 import org.springframework.util.Assert;
 
 /**
- * An abstract class inherited by all the controller beans to get:
- * - the application service (applicationService)
- * - the context of the application (sessionController)
- * - the i18n service (i18nService)
+ * Classe héritée par les contrôleurs afin de récupérer :
+ * - le service application (applicationService)
+ * - le contexte de l'application (sessionController)
+ * - le service d'internationalisation (i18nService)
+ *
+ * @author Florent Cailhol (Anyware Services)
  */
 @SuppressWarnings("serial")
 public abstract class AbstractContextAwareController extends AbstractDomainAwareBean {
