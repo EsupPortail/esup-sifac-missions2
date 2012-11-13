@@ -1,7 +1,9 @@
-1.1.0-RC1
+1.1.0-RC1 (2012-11-13)
 
+  * Add uPortal 4 compatibility
   * Refactor application modules
   * Remove outdated README file
+  * Remove LDAP user service
 
 
 1.0.1 (2012-09-19)
