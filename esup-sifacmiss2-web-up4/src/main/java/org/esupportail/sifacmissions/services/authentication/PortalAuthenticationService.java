@@ -7,6 +7,12 @@ import javax.portlet.PortletRequest;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
+/**
+ * Ce service permet de récupérer l'identifiant de l'utilisateur courant à
+ * partir du portail.
+ *
+ * @author Florent Cailhol (Anyware Services)
+ */
 public class PortalAuthenticationService implements AuthenticationService, InitializingBean {
 
     private static final String DEFAULT_UID_ATTRIBUTE = "uid";
