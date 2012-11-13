@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Cette classe permet de représenter un interval de temps.
  *
- * @author Yves deschamps (Universite Lille1 - France)
+ * @author Yves deschamps (Universite Lille1)
  * @author Florent Cailhol (Anyware Services)
  */
 public class Periode {

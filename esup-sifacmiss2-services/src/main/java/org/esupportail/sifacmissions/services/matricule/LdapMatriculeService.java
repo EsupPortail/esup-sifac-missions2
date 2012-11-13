@@ -21,6 +21,12 @@ import org.springframework.ldap.filter.AndFilter;
 import org.springframework.ldap.filter.EqualsFilter;
 import org.springframework.util.Assert;
 
+/**
+ * Service permet de récupérer le matricule de l'utilisateur depuis un
+ * annuaire LDAP.
+ *
+ * @author Florent Cailhol (Anyware Services)
+ */
 public class LdapMatriculeService implements MatriculeService, InitializingBean {
 
     private static final String CACHE_NAME = LdapMatriculeService.class.getName();
@@ -40,22 +46,40 @@ public class LdapMatriculeService implements MatriculeService, InitializingBean 
     private AttributesMapper attributesMapper;
     private DistinguishedName dn;
 
+    /**
+     * @param cacheManager Gestionnaire de cache
+     */
     public void setCacheManager(CacheManager cacheManager) {
         this.cacheManager = cacheManager;
     }
 
+    /**
+     * @param ldapTemplate Connecteur LDAP.
+     */
     public void setLdapTemplate(LdapTemplate ldapTemplate) {
         this.ldapTemplate = ldapTemplate;
     }
 
+    /**
+     * @param dnSubPath Répertoire où sont stockés les utilisateurs.
+     *            <code>ou=people</code> par défaut.
+     */
     public void setDnSubPath(String dnSubPath) {
         this.dnSubPath = dnSubPath;
     }
 
+    /**
+     * @param objectClass Classe utilisée par les entrées utilisateur.
+     *            <code>Person</code> par défaut.
+     */
     public void setObjectClass(String objectClass) {
         this.objectClass = objectClass;
     }
 
+    /**
+     * @param uidAttribute Attribut permettant d'identifier l'utilisateur.
+     *            <code>uid</code> par défaut.
+     */
     public void setUidAttribute(String uidAttribute) {
         this.uidAttribute = uidAttribute;
     }

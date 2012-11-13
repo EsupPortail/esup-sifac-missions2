@@ -6,7 +6,7 @@ import org.esupportail.sifacmissions.models.Mission;
 import org.esupportail.sifacmissions.models.MissionDetails;
 
 /**
- * Service d'accès aux données de l'application SIFAC.
+ * Service d'accès aux données de l'application Sifac.
  *
  * @author Yves Deschamps (Universite de Lille 1)
  * @author Florent Cailhol (Anyware Services)
@@ -14,7 +14,7 @@ import org.esupportail.sifacmissions.models.MissionDetails;
 public interface MissionService {
 
     /**
-     * Récupère l'année de la mise en ligne de l'application SIFAC.
+     * Récupère l'année de la mise en ligne de l'application Sifac.
      *
      * @return Première année de fonctionnement
      */

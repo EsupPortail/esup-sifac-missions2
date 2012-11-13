@@ -28,7 +28,7 @@ import org.springframework.util.StringUtils;
 
 /**
  * Cette classe permet d'assurer une cohérence entre le code de l'application et
- * celui généré à partir des WSDL de SIFAC. Il s'agit d'un proxy pour le web
+ * celui généré à partir des WSDL de Sifac. Il s'agit d'un proxy pour le web
  * service PORTAIL.
  *
  * @author Florent Cailhol (Anyware Services)

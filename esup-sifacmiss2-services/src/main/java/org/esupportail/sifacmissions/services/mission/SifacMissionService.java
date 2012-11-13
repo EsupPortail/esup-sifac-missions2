@@ -20,7 +20,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
 /**
- * Web service d'accès aux données de l'application SIFAC.
+ * Web service d'accès aux données de l'application Sifac.
  *
  * @author Florent Cailhol (Anyware Services)
  */
@@ -38,7 +38,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
     private Cache detailsCache;
 
     /**
-     * @param firstYear Première année de fonctionnement de l'application SIFAC
+     * @param firstYear Première année de fonctionnement de l'application Sifac
      */
     public void setFirstYear(int firstYear) {
         this.firstYear = firstYear;

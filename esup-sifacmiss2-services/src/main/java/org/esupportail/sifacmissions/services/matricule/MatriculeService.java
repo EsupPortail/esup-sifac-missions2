@@ -1,7 +1,7 @@
 package org.esupportail.sifacmissions.services.matricule;
 
 /**
- * @author Yves Deschamps (Universite Lille1 - France)
+ * @author Florent Cailhol (Anyware Services)
  */
 public interface MatriculeService {
 

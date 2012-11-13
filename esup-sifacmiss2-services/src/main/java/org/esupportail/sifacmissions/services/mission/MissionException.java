@@ -1,7 +1,7 @@
 package org.esupportail.sifacmissions.services.mission;
 
 /**
- * Levée par les services SIFAC.
+ * Levée par les services Sifac.
  *
  * @author Florent Cailhol (Anyware Services)
  */

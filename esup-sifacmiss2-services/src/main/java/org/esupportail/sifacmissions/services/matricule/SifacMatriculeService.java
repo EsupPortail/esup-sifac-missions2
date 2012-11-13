@@ -14,9 +14,9 @@ import org.springframework.util.StringUtils;
 
 /**
  * Service permettant de récupérer le matricule de l'utilisateur depuis le
- * web service de SIFAC.
+ * web service MATRICULE de Sifac.
  *
- * @author Yves Deschamps (Universite Lille1 - France)
+ * @author Yves Deschamps (Universite Lille1)
  * @author Florent Cailhol (Anyware Services)
  */
 public class SifacMatriculeService implements MatriculeService, InitializingBean {
@@ -29,7 +29,7 @@ public class SifacMatriculeService implements MatriculeService, InitializingBean
     private Cache cache;
 
     /**
-     * @param matriculeService Service SIFAC de récupération des matricules
+     * @param matriculeService Service Sifac de récupération des matricules
      */
     public void setMatriculeService(SifacMatricule matriculeService) {
         this.matriculeService = matriculeService;

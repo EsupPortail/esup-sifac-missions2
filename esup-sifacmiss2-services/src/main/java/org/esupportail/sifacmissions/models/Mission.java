@@ -7,9 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Cette classe représente les missions SIFAC.
+ * Cette classe représente les missions Sifac.
  *
- * @author Yves deschamps (Universite Lille1 - France)
+ * @author Yves deschamps (Universite Lille1)
  * @author Florent Cailhol (Anyware Services)
  */
 public class Mission implements Serializable {

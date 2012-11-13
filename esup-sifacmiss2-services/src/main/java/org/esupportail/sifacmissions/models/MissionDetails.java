@@ -3,7 +3,7 @@ package org.esupportail.sifacmissions.models;
 import java.math.BigDecimal;
 
 /**
- * Cette classe représente un frais lié à une mission SIFAC.
+ * Cette classe représente un frais lié à une mission Sifac.
  *
  * @author Florent Cailhol (Anyware Services)
  */
