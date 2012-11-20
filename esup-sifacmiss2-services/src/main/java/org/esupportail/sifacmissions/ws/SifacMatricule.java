@@ -60,9 +60,11 @@ public class SifacMatricule {
         TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder ret = new TABLE_OF_ZZPORTSTT_BAPI_MISSIONHolder();
         getStub().z_ZPORTSMF_MATRICULE(login, ret);
 
-        if (ret.value.getItem().length > 0) {
-            return ret.value.getItem(0).getMATRICULE();
-        }
+        try {
+            if (ret.value.getItem().length > 0) {
+                return ret.value.getItem(0).getMATRICULE();
+            }
+        } catch (NullPointerException e) {}
 
         return null;
     }
