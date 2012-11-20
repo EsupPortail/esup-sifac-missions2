@@ -84,6 +84,10 @@ public class SifacMissionService implements MissionService, InitializingBean {
     @SuppressWarnings("unchecked")
     @Override
     public List<Mission> getFraisMissions(String matricule, int year) throws MissionException {
+        if (logger.isDebugEnabled()) {
+            logger.debug("Trying to get missions using '{}' and year {}", matricule, year);
+        }
+
         List<Mission> fms = null;
         String cacheKey = matricule + "-" + year;
 
@@ -95,7 +99,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
             }
 
             if (logger.isDebugEnabled()) {
-                logger.debug("Frais de missions " + cacheKey + " not found in cache");
+                logger.debug("Got {} missions", fms.size());
             }
 
             missionsCache.put(new Element(cacheKey, fms));
@@ -104,7 +108,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
             fms = (List<Mission>) missionsCache.get(cacheKey).getObjectValue();
 
             if (logger.isDebugEnabled()) {
-                logger.debug("Frais de missions " + cacheKey + " found in cache");
+                logger.debug("Got {} missions from cache", fms.size());
             }
         }
 
@@ -114,6 +118,10 @@ public class SifacMissionService implements MissionService, InitializingBean {
     @SuppressWarnings("unchecked")
     @Override
     public List<MissionDetails> getMissionDetails(String matricule, String numeroMission) throws MissionException {
+        if (logger.isDebugEnabled()) {
+            logger.debug("Trying to get mission {} details using '{}'", numeroMission, matricule);
+        }
+
         List<MissionDetails> details = null;
         String cacheKey = matricule + "-" + numeroMission;
 
@@ -125,7 +133,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
             }
 
             if (logger.isDebugEnabled()) {
-                logger.debug("Mission details " + cacheKey + " not found in cache");
+                logger.debug("Got {} details", details.size());
             }
 
             detailsCache.put(new Element(cacheKey, details));
@@ -134,7 +142,7 @@ public class SifacMissionService implements MissionService, InitializingBean {
             details = (List<MissionDetails>) detailsCache.get(cacheKey).getObjectValue();
 
             if (logger.isDebugEnabled()) {
-                logger.debug("Mission details " + cacheKey + " found in cache");
+                logger.debug("Got {} details from cache", details.size());
             }
         }
 
