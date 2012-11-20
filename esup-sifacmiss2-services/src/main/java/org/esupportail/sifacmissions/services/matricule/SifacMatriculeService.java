@@ -56,34 +56,39 @@ public class SifacMatriculeService implements MatriculeService, InitializingBean
 
     @Override
     public String getMatricule(String id) {
+        if (logger.isDebugEnabled()) {
+            logger.debug("Trying to get matricule using '{}'", id);
+        }
+
         if (cache.get(id) == null) {
+            String matricule = null;
             try {
-                String matricule = matriculeService.getMatricule(id);
-
-                if (StringUtils.hasText(matricule)) {
-                    if (logger.isDebugEnabled()) {
-                        logger.debug("Récupération du matricule '" + matricule + "' pour '" + id + "'");
-                    }
-
-                    cache.put(new Element(id, matricule));
-                    return matricule;
-                } else {
-                    logger.warn("Aucun matricule n'a pu être récupéré pour '" + id + "'");
-                }
+                matricule = matriculeService.getMatricule(id);
             } catch (Exception e) {
-                logger.error("Problème d'accès au web service SAP-GETMATRICULE", e);
+                logger.error("Unable to request SAP-GETMATRICULE", e);
+                return null;
+            }
+
+            if (StringUtils.hasText(matricule)) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug("Got matricule '{}'", matricule);
+                }
+
+                cache.put(new Element(id, matricule));
+                return matricule;
+            } else {
+                logger.warn("No matricule found using '{}'", id);
+                return null;
             }
         } else {
             String matricule = (String) cache.get(id).getObjectValue();
 
             if (logger.isDebugEnabled()) {
-                logger.debug("Récupération du matricule '" + matricule + "' pour '" + id + "' depuis le cache");
+                logger.debug("Got matricule '{}' from cache", matricule, id);
             }
 
             return matricule;
         }
-
-        return null;
     }
 
 }
