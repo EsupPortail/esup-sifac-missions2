@@ -4,6 +4,8 @@ import java.util.Map;
 
 import javax.portlet.PortletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
@@ -17,6 +19,7 @@ public class PortalAuthenticationService implements AuthenticationService, Initi
 
     private static final String DEFAULT_UID_ATTRIBUTE = "uid";
 
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     private String uidAttribute = DEFAULT_UID_ATTRIBUTE;
 
     /**
@@ -43,7 +46,13 @@ public class PortalAuthenticationService implements AuthenticationService, Initi
         @SuppressWarnings("unchecked")
         Map<String, String> userInfo = (Map<String, String>) portletRequest.getAttribute(PortletRequest.USER_INFO);
 
-        return userInfo.get(uidAttribute);
+        String uid = userInfo.get(uidAttribute);
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("Got uid '{}'", uid);
+        }
+
+        return uid;
     }
 
 }
