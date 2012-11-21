@@ -58,7 +58,7 @@
 		<property name="dnSubPath" value="${matricule.ldap.dnSubPath}"/>
 		<property name="objectClass" value="${matricule.ldap.objectClass}"/>
 		<property name="uidAttribute" value="${matricule.ldap.uidAttribute}"/>
-		<property name="matriculeAttribute" value="${matricule.ldap.matriculeAttribute"/>
+		<property name="matriculeAttribute" value="${matricule.ldap.matriculeAttribute}"/>
 	</bean>
 
 	<bean id="sifacMatriculeService" lazy-init="true"
