@@ -65,7 +65,7 @@ public class SessionController extends AbstractDomainAwareBean {
 
     @Override
     public String getCurrentUser() {
-        if (isPortletMode()) {
+        if (getPortletMode()) {
             FacesContext fc = FacesContext.getCurrentInstance();
             return fc.getExternalContext().getRemoteUser();
         }
@@ -102,7 +102,7 @@ public class SessionController extends AbstractDomainAwareBean {
     /**
      * @return <code>true</code> si mode portlet.
      */
-    public boolean isPortletMode() {
+    public boolean getPortletMode() {
         if (!modeDetected) {
             modeDetected = true;
 
