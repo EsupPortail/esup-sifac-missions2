@@ -67,12 +67,6 @@
 			<groupId>org.esupportail</groupId>
 			<artifactId>esup-commons2-jsf-trinidad</artifactId>
 			<version>${esupcommons.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.apache.myfaces.shared</groupId>
-					<artifactId>myfaces-shared-tomahawk</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.esupportail</groupId>
