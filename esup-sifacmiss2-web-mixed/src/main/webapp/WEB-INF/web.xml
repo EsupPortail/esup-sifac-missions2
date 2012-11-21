@@ -3,11 +3,15 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	id="WebApp_ID" version="2.5">
-	
+
 	<display-name>esup-sifacmiss2</display-name>
 	<context-param>
 		<param-name>webAppRootKey</param-name>
 		<param-value>esup-sifacmiss2</param-value>
+	</context-param>
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
 	</context-param>
 
 	<!-- Faces Servlet -->
@@ -40,7 +44,7 @@
 		<param-name>facelets.BUILD_BEFORE_RESTORE</param-name>
 		<param-value>false</param-value>
 	</context-param>
-	
+
 	<!-- Trinidad -->
 	<context-param>
 		<param-name>org.apache.myfaces.trinidad.USE_APPLICATION_VIEW_CACHE</param-name>
@@ -65,6 +69,21 @@
 		<param-value>org.esupportail.commons.jsf.FaceletServletOrPortletViewHandler</param-value>
 	</context-param>
 
+	<!-- for Spring -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:/properties/applicationContext.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
+	</listener>
+
 	<!-- Trinidad -->
 	<filter>
 		<filter-name>trinidad</filter-name>
@@ -74,28 +93,6 @@
 		<filter-name>trinidad</filter-name>
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
-
-	<!-- Resource loader servlet -->
-	<servlet>
-		<servlet-name>resources</servlet-name>
-		<servlet-class>org.apache.myfaces.trinidad.webapp.ResourceServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>resources</servlet-name>
-		<url-pattern>/adf/*</url-pattern>
-	</servlet-mapping>
-
-	<!-- for Spring -->
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:/properties/applicationContext.xml</param-value>
-	</context-param>
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-	<listener>
-		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
-	</listener>
 
 	<!-- for CAS -->
 	<filter>
@@ -122,18 +119,28 @@
 		<filter-name>CAS Validation Filter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
+
 	<filter>
-	    <filter-name>requestContextFilter</filter-name>
-	    <filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
+		<filter-name>requestContextFilter</filter-name>
+		<filter-class>org.springframework.web.filter.RequestContextFilter</filter-class>
 	</filter>
 	<filter-mapping>
-	    <filter-name>requestContextFilter</filter-name>
-	    <url-pattern>/*</url-pattern>
-	    <dispatcher>REQUEST</dispatcher>
-	    <dispatcher>INCLUDE</dispatcher>
-	    <dispatcher>FORWARD</dispatcher>
+		<filter-name>requestContextFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
+
+	<!-- Resource loader servlet -->
+	<servlet>
+		<servlet-name>resources</servlet-name>
+		<servlet-class>org.apache.myfaces.trinidad.webapp.ResourceServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>resources</servlet-name>
+		<url-pattern>/adf/*</url-pattern>
+	</servlet-mapping>
 
 	<!-- Session Time Out -->
 	<session-config>
