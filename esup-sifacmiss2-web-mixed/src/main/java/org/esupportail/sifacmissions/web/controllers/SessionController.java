@@ -66,6 +66,15 @@ public class SessionController extends AbstractDomainAwareBean {
     @Override
     public String getCurrentUser() {
         if (getPortletMode()) {
+            String uid = null;
+            try {
+                uid = authenticator.getUser();
+            } catch (Exception e) {}
+
+            if (uid != null) {
+                return uid;
+            }
+
             FacesContext fc = FacesContext.getCurrentInstance();
             return fc.getExternalContext().getRemoteUser();
         }
