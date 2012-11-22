@@ -15,4 +15,8 @@
 		<el-resolver>org.esupportail.commons.jsf.ResourceBundleFacesELResolver</el-resolver>
 	</application>
 
+	<lifecycle>
+		<phase-listener>org.esupportail.sifacmissions.web.jsf.MobilePhaseListener</phase-listener>
+	</lifecycle>
+
 </faces-config>

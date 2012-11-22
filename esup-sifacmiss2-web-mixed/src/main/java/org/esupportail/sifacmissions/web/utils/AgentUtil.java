@@ -72,6 +72,10 @@ public class AgentUtil implements InitializingBean {
      * @return <code>true</code> si l'utilisateur utilise un mobile.
      */
     public boolean isMobile() {
+        if (phoneFamily == null) {
+            getPhoneFamily();
+        }
+
         return mobile;
     }
 
