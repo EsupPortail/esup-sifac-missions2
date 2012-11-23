@@ -22,10 +22,17 @@
                     <f:selectItems value="#{missionController.missionsPerPageItems}" />
                 </tr:selectOneChoice>
                 <tr:statusIndicator>
+                    <f:facet name="ready">
+                        <tr:spacer height="16" width="16"/>
+                    </f:facet>
                     <f:facet name="busy">
                         <tr:image source="/adf/images/sibusy.gif" height="16" width="16"/>
                     </f:facet>
                 </tr:statusIndicator>
+                <tr:spacer width="20"/>
+                <tr:commandLink text="#{msgs['LOGOUT.TEXT']}"
+                    action="#{sessionController.logoutAction}" immediate="true"
+                    rendered="#{not sessionController.portletMode}" />
             </tr:panelHorizontalLayout>
             <tr:table binding="#{missionController.missionsTable}"
                 partialTriggers="::yearSelector ::pageSizeSelector"

@@ -21,9 +21,9 @@
             </div>
             <tr:messages/>
             <ui:fragment rendered="#{empty mobileMissionController.missions}">
-            	<div class="panel-title">
-            		<tr:outputText value="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{mobileMissionController.year}" />
-            	</div>
+                <div class="panel-title">
+                    <tr:outputText value="#{msgs['WELCOME.MISSION.EMPTY_YEAR']} #{mobileMissionController.year}" />
+                </div>
             </ui:fragment>
             <tr:table styleClass="table-list" rows="0"
                 value="#{mobileMissionController.missions}" var="mission"
