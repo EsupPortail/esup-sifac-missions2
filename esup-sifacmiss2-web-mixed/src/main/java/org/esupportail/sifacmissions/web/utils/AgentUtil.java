@@ -15,14 +15,12 @@ import org.springframework.util.Assert;
 
 /**
  * @author Yves Deschamps (Universite de Lille 1)
+ * @author Florent Cailhol (Anyware Services)
  */
 public class AgentUtil implements InitializingBean {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
-
-    private String phoneFamily;
     private Map<String, String> skins;
-    private boolean mobile;
 
     /**
      * @param skins Thèmes
@@ -43,40 +41,34 @@ public class AgentUtil implements InitializingBean {
      * @return Thème à utiliser
      */
     public String getPhoneFamily() {
-        if (phoneFamily == null) {
-            String agent = null;
-            FacesContext fc = FacesContext.getCurrentInstance();
-            agent = fc.getExternalContext().getRequestHeaderMap().get("User-Agent");
-
-            if (logger.isDebugEnabled()) {
-                logger.debug("User-Agent: " + agent);
-            }
-
-            for (Iterator<String> i = skins.keySet().iterator(); i.hasNext();) {
-                String key = i.next();
-                if (agent != null && agent.indexOf(key) > -1) {
-                    phoneFamily = skins.get(key);
-                    mobile = true;
-
-                    return phoneFamily;
-                }
-            }
-
-            phoneFamily = "minimalFamily";
-        }
-
-        return phoneFamily;
+        String skin = getMobileSkin();
+        return skin != null ? skin : "minimalFamily";
     }
 
     /**
      * @return <code>true</code> si l'utilisateur utilise un mobile.
      */
     public boolean isMobile() {
-        if (phoneFamily == null) {
-            getPhoneFamily();
-        }
-
-        return mobile;
+        return getMobileSkin() != null;
     }
 
+    private String getMobileSkin() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        String agent = fc.getExternalContext().getRequestHeaderMap().get("User-Agent");
+
+        if (logger.isDebugEnabled()) {
+            logger.debug("User-Agent: " + agent);
+        }
+
+        if (agent != null) {
+            for (Iterator<String> it = skins.keySet().iterator(); it.hasNext();) {
+                String key = it.next();
+                if (agent.indexOf(key) > -1) {
+                    return skins.get(key);
+                }
+            }
+        }
+
+        return null;
+    }
 }
