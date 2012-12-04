@@ -93,3 +93,7 @@
 .esup-sifacmiss2 .details .picto-train {
 	background-image: url(../img/picto/train.png);
 }
+
+.esup-sifacmiss2 .details .ui-li-aside {
+	width: auto !important;
+}
