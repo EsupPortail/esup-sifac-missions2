@@ -22,7 +22,7 @@ import org.springframework.ldap.filter.EqualsFilter;
 import org.springframework.util.Assert;
 
 /**
- * Service permet de récupérer le matricule de l'utilisateur depuis un
+ * Service permettant de récupérer le matricule de l'utilisateur depuis un
  * annuaire LDAP.
  *
  * @author Florent Cailhol (Anyware Services)

@@ -1,6 +1,8 @@
 package org.esupportail.sifacmissions.services.matricule;
 
 /**
+ * Service permettant de récupérer le matricule d'un utilisateur.
+ *
  * @author Florent Cailhol (Anyware Services)
  */
 public interface MatriculeService {

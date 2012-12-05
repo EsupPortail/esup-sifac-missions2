@@ -4,7 +4,7 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
 /**
- * Service permet de récupérer le matricule de l'utilisateur depuis un
+ * Service permettant de récupérer le matricule de l'utilisateur depuis un
  * paramètre de configuration. Ce composant ne doit pas être utilisé en
  * production.
  *
