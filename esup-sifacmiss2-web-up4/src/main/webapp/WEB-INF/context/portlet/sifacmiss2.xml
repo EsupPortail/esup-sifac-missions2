@@ -14,8 +14,7 @@
 	<!-- ===== Portlet requirements ======================================== -->
 
 	<context:property-placeholder location="classpath:defaults.properties,classpath:config.properties"/>
-	<context:component-scan base-package="org.esupportail.sifacmissions.web.beans"/>
-	<context:component-scan base-package="org.esupportail.sifacmissions.web.controllers"/>
+	<context:component-scan base-package="org.esupportail.sifacmissions.web"/>
 	<context:annotation-config/>
 
 	<bean id="exceptionResolver" class="org.springframework.web.portlet.handler.SimpleMappingExceptionResolver">

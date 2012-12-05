@@ -1,7 +1,10 @@
 package org.esupportail.sifacmissions.web.beans;
 
+import java.io.Serializable;
+
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 
 /**
  * Ce composant permet de stocker en session les informations relatives aux
@@ -9,9 +12,11 @@ import org.springframework.stereotype.Service;
  *
  * @author Florent Cailhol (Anyware Services)
  */
-@Service("missionHolder")
-@Scope("session")
-public class MissionHolder {
+@Component
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class MissionHolder implements Serializable {
+
+    private static final long serialVersionUID = -5567711696709477297L;
 
     private int currentYear;
 

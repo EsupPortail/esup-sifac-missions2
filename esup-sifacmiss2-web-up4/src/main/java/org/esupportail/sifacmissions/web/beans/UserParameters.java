@@ -1,16 +1,21 @@
 package org.esupportail.sifacmissions.web.beans;
 
+import java.io.Serializable;
+
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.ScopedProxyMode;
+import org.springframework.stereotype.Component;
 
 /**
  * Ce composant permet de stocker en session les informations de l'utilisateur.
  *
  * @author Florent Cailhol (Anyware Services)
  */
-@Service("userParameters")
-@Scope("session")
-public class UserParameters {
+@Component
+@Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
+public class UserParameters  implements Serializable {
+
+    private static final long serialVersionUID = 8785072876451821566L;
 
     private String uid;
     private String matricule;
