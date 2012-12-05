@@ -78,6 +78,13 @@
 		<property name="uid" value="${matricule.fixed.matricule}"/>
 	</bean>
 
+	<bean id="propertiesMatriculeService" lazy-init="true"
+		class="org.esupportail.sifacmissions.services.matricule.PropertiesMatriculeService">
+		<property name="data">
+			<util:properties location="classpath:matricules.properties"/>
+		</property>
+	</bean>
+
 	<!-- ===== Mission services ============================================ -->
 
 	<alias alias="missionService" name="sifacMissionService"/>
