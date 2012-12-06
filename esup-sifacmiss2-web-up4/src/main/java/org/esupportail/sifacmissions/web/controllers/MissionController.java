@@ -186,6 +186,10 @@ public class MissionController implements InitializingBean {
             response.setProperty(ResourceResponse.HTTP_STATUS_CODE, Integer.toString(HttpServletResponse.SC_INTERNAL_SERVER_ERROR));
         }
 
+        // Force UTF-8 encoding
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+
         return new ModelAndView("details", model);
     }
 
