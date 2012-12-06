@@ -5,14 +5,14 @@
 
 	<groupId>org.esupportail</groupId>
 	<artifactId>esup-sifacmiss2</artifactId>
-	<version>1.1.0-RC2-SNAPSHOT</version>
+	<version>1.1.0-RC2</version>
 	<packaging>pom</packaging>
 
 	<name>esup-sifacmiss2</name>
 
 	<scm>
-		<developerConnection>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/trunk</developerConnection>
-		<url>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/</url>
+		<developerConnection>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/tags/1.1.0-RC2</developerConnection>
+		<url>scm:svn:https://subversion.cru.fr/esup-sifacmiss2/tags/1.1.0-RC2</url>
 	</scm>
 
 	<properties>
