@@ -12,10 +12,11 @@
 	</bean>
 
 	<bean id="validationFilter"
-		class="org.jasig.cas.client.validation.Cas10TicketValidationFilter">
+		class="org.jasig.cas.client.validation.Cas20ProxyReceivingTicketValidationFilter">
 		<property name="serverName" value="${cas.serverName}" />
+                <property name="redirectAfterValidation" value="true" />
 		<property name="ticketValidator">
-			<bean class="org.jasig.cas.client.validation.Cas10TicketValidator">
+			<bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
 				<constructor-arg value="${cas.url}" />
 			</bean>
 		</property>
