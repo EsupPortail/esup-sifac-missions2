@@ -99,6 +99,11 @@
 			<artifactId>esup-sifacmiss2-services</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>javax.xml.soap</groupId>
+			<artifactId>javax.xml.soap-api</artifactId>
+			<version>1.4.0</version>
+		</dependency>
 		<!-- ===== Runtime dependencies ==================================== -->
 		<dependency>
 			<groupId>org.apache.myfaces.portlet-bridge</groupId>
